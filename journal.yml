@@ -1,0 +1,11 @@
+# journal.yml
+issue: 15
+year: 2025
+foreword:
+  author: Моисеев В.И.
+  text: |
+    Текст предисловия...
+articles:
+  - author: Иванов И.И.
+    title: Онтология квантовой запутанности
+    abstract: ...

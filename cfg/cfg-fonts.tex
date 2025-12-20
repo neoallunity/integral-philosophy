@@ -1,0 +1,38 @@
+% ============================================
+% cfg-fonts.tex — шрифты и языки
+% ============================================
+
+% cfg/cfg-fonts.tex — единая конфигурация шрифтов (для LuaLaTeX)
+\ProvidesFile{cfg-fonts.tex}[2025/12/15 Journal font config]
+
+% Если используем LuaLaTeX — fontspec + polyglossia
+\RequirePackage{ifluatex}
+\ifluatex
+  \RequirePackage{fontspec}
+  \RequirePackage{polyglossia}
+  \setmainlanguage{russian}
+  \setotherlanguage{english}
+
+  % --- serif (main)
+  \setmainfont{Linux Libertine O}[Ligatures=TeX,Scale=MatchLowercase]
+
+  % --- sans
+  \setsansfont{Linux Biolinum O}[Scale=MatchLowercase]
+
+  % --- mono
+  \setmonofont{Linux Libertine Mono O}[Scale=MatchLowercase]
+
+  % --- math font (если есть специальный math-шрифт)
+  % \setmathfont{Latin Modern Math} % Moved from preamble.tex
+
+  % Явные семейства для кириллицы (fallbacks)
+  \newfontfamily\cyrillicfont{Linux Libertine O}[Script=Cyrillic]
+  \newfontfamily\cyrillicfontsf{Linux Biolinum O}[Script=Cyrillic]
+  \newfontfamily\cyrillicfonttt{Linux Libertine Mono O}[Scale=MatchLowercase]
+
+% \else
+%   % fallback для pdfLaTeX / XeLaTeX без fontspec
+%   \RequirePackage[T2A]{fontenc}
+%   \RequirePackage[utf8]{inputenc}
+%   \RequirePackage[russian,english]{babel}
+\fi

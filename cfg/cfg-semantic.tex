@@ -1,0 +1,201 @@
+% ============================================
+% cfg-semantic.tex — расширенные семантические конструкции
+% ============================================
+
+\RequirePackage{xparse}
+\RequirePackage{xcolor}
+
+% ============================================
+% СЕМАНТИЧЕСКИЕ АКЦЕНТЫ В ТЕКСТЕ
+% ============================================
+
+% Термин (например, для глоссария)
+\NewDocumentCommand{\Term}{m}{%
+  \textbf{\textcolor{JournalAccent!85}{#1}}%
+}
+
+% Важное понятие
+\NewDocumentCommand{\Concept}{m}{%
+  \textit{\textcolor{JournalAccent2!75}{#1}}%
+}
+
+% Цитируемый источник (inline)
+\NewDocumentCommand{\Source}{m}{%
+  \textcolor{JournalAccent!70}{\textit{#1}}%
+}
+
+% Акцент (замена для \emph с фирменным цветом)
+\NewDocumentCommand{\Accent}{m}{%
+  \textcolor{JournalAccent2!80}{\textit{#1}}%
+}
+
+% ============================================
+% СЕМАНТИЧЕСКИЕ БЛОКИ
+% ============================================
+
+% Замечание редакции
+\NewDocumentEnvironment{editorialremark}{}{%
+  \vspace{0.5cm}%
+  \noindent\colorbox{JournalAccent!8}{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}
+      \small\textcolor{JournalAccent!80}{\textbf{Примечание редакции:}}\\[0.2cm]
+}{%
+    \end{minipage}%
+  }%
+  \vspace{0.5cm}%
+}
+
+% Врезка с дополнительной информацией
+\NewDocumentEnvironment{sidebar}{o}{%
+  \vspace{0.5cm}%
+  \noindent\fcolorbox{JournalAccent2!50}{JournalAccent2!5}{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}
+      \IfNoValueTF{#1}{}{%
+        \small\textbf{\textcolor{JournalAccent2!85}{#1}}\\[0.2cm]%
+      }%
+}{%
+    \end{minipage}%
+  }%
+  \vspace{0.5cm}%
+}
+
+% Цитата (с фирменным оформлением)
+\RenewDocumentEnvironment{quote}{}{%
+  \vspace{0.4cm}%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{1.5cm}%
+    \setlength{\rightmargin}{0.5cm}%
+  }%
+  \item\relax\small\itshape\textcolor{JournalAccent!75}%
+}{%
+  \end{list}%
+  \vspace{0.4cm}%
+}
+
+% ============================================
+% СЕМАНТИЧЕСКИЕ РАЗДЕЛИТЕЛИ
+% ============================================
+
+% Тематический разрыв (замена \rule)
+\NewDocumentCommand{\ThematicBreak}{}{%
+  \vspace{0.8cm}%
+  \noindent\textcolor{JournalAccent2!60}{\rule{0.3\textwidth}{0.5pt}}%
+  \vspace{0.8cm}%
+}
+
+% Разделитель секций (более яркий)
+\NewDocumentCommand{\SectionBreak}{}{%
+  \vspace{1cm}%
+  \begin{center}%
+    \textcolor{JournalAccent!70}{\Large\textbullet\quad\textbullet\quad\textbullet}%
+  \end{center}%
+  \vspace{1cm}%
+}
+
+% ============================================
+% НОМЕРА И ССЫЛКИ
+% ============================================
+
+% Номер выпуска (с фирменным стилем)
+\NewDocumentCommand{\IssueNumber}{}{%
+  \textcolor{JournalAccent!85}{\textbf{№\,\journalissue}}%
+}
+
+% Год выпуска
+\NewDocumentCommand{\IssueYear}{}{%
+  \textcolor{JournalAccent!85}{\textbf{\journalyear}}%
+}
+
+% Полное обозначение выпуска
+\NewDocumentCommand{\IssueLabel}{}{%
+  \textcolor{JournalAccent!85}{%
+    \textbf{№\,\journalissue\;•\;\journalyear}%
+  }%
+}
+
+% ============================================
+% АФФИЛИАЦИИ И АДРЕСА
+% ============================================
+
+% Аффилиация автора
+\NewDocumentCommand{\Affiliation}{m m}{%
+  \textsuperscript{#1}\,\textit{#2}%
+}
+
+% Email автора
+\NewDocumentCommand{\AuthorEmail}{m}{%
+  \textcolor{JournalAccent!70}{\texttt{#1}}%
+}
+
+% ORCID (с иконкой если есть)
+\NewDocumentCommand{\AuthorORCID}{m}{%
+  \textcolor{JournalAccent!70}{\textsc{orcid:}\,\texttt{#1}}%
+}
+
+% ============================================
+% ДАТЫ И ВЕРСИИ
+% ============================================
+
+% Дата поступления статьи
+\NewDocumentCommand{\SubmissionDate}{m}{%
+  \small\textit{Поступила:}\;\textcolor{JournalAccent!70}{#1}%
+}
+
+% Дата принятия статьи
+\NewDocumentCommand{\AcceptanceDate}{m}{%
+  \small\textit{Принята:}\;\textcolor{JournalAccent!70}{#1}%
+}
+
+% Дата публикации
+\NewDocumentCommand{\PublicationDate}{m}{%
+  \small\textit{Опубликована:}\;\textcolor{JournalAccent!70}{#1}%
+}
+
+% Блок дат (объединяет три даты)
+\NewDocumentCommand{\ArticleDates}{m m m}{%
+  \vspace{0.5cm}%
+  \noindent\small%
+  \SubmissionDate{#1}\quad|\quad%
+  \AcceptanceDate{#2}\quad|\quad%
+  \PublicationDate{#3}%
+  \vspace{0.5cm}%
+}
+
+% ============================================
+% DOI И ЛИЦЕНЗИИ
+% ============================================
+
+% DOI статьи
+\NewDocumentCommand{\ArticleDOI}{m}{%
+  \noindent\small\textsc{doi:}\;\url{https://doi.org/#1}%
+}
+
+% Лицензия Creative Commons
+\NewDocumentCommand{\CCLicense}{m}{%
+  \noindent\small\textcolor{JournalAccent!70}{%
+    \textcopyright\;Распространяется по лицензии CC\,#1%
+  }%
+}
+
+% ============================================
+% ПЕРЕКРЕСТНЫЕ ССЫЛКИ (СЕМАНТИЧЕСКИЕ)
+% ============================================
+
+% Ссылка на другую статью в выпуске
+\NewDocumentCommand{\RefArticle}{m}{%
+  \textcolor{JournalAccent2!75}{\textit{см. статью}}\;\cref{#1}%
+}
+
+% Ссылка на предыдущий выпуск
+\NewDocumentCommand{\RefPreviousIssue}{m}{%
+  \textcolor{JournalAccent!70}{\textit{см. выпуск}}\;№\,#1%
+}
+
+% ============================================
+% АННОТАЦИИ (ДОПОЛНИТЕЛЬНЫЕ)
+% ============================================
+
+% Краткая версия для TOC (Table of Contents Abstract)
+\NewDocumentCommand{\TOCAbstract}{m}{%
+  \addtocontents{toc}{\protect\begin{quote}\protect\small\textit{#1}\protect\end{quote}}%
+}

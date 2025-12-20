@@ -1,0 +1,51 @@
+% ============================================
+% cfg-structure.tex — структура, заголовки, оглавление
+% ============================================
+
+% Определение длин для линий в заголовках
+\newlength{\JournalSectionRuleW}
+\setlength{\JournalSectionRuleW}{0.25\textwidth} % Примерное значение
+\newlength{\JournalSectionRuleH}
+\setlength{\JournalSectionRuleH}{0.9pt} % Примерное значение
+
+\newlength{\JournalSubsectionRuleW}
+\setlength{\JournalSubsectionRuleW}{0.15\textwidth} % Примерное значение
+\newlength{\JournalSubsectionRuleH}
+\setlength{\JournalSubsectionRuleH}{0.7pt} % Примерное значение
+
+% Глубина нумерации/оглавления
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% Заголовки
+\usepackage{titlesec}
+\usepackage{tikz}
+
+% Фирменный стиль для глав: крупный цветной номер + акцентная линия
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\begin{tikzpicture}[baseline=(n.base)]
+     \node (n) [inner sep=0pt] {\textcolor{JournalAccent2!85}{\fontsize{48}{48}\selectfont\bfseries\thechapter}};
+   \end{tikzpicture}%
+   \hspace{0.8em}%
+   \textcolor{JournalAccent!60}{\rule{0.45\textwidth}{0.9pt}}}
+  {10pt}
+  {\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\textcolor{JournalAccent2!75}{\Large\textbullet}\hspace{0.6em}\textcolor{JournalAccent!75}{\rule{\JournalSectionRuleW}{\JournalSectionRuleH}}\hspace{0.8em}\thesection}
+  {0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\textcolor{JournalAccent!70}{\rule{\JournalSubsectionRuleW}{\JournalSubsectionRuleH}}\hspace{0.7em}\thesubsection}
+  {0.6em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{1.2\baselineskip}
+\titlespacing*{\section}{0pt}{1.0\baselineskip}{0.5\baselineskip}
+\titlespacing*{\subsection}{0pt}{0.8\baselineskip}{0.4\baselineskip}
+
+% Оглавление
+\usepackage{tocloft}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftsecfont}{\normalfont}
+\setlength{\cftbeforechapskip}{0.25\baselineskip}
+\setlength{\cftbeforesecskip}{0.10\baselineskip}

@@ -1,0 +1,63 @@
+% ============================================
+% ЖУРНАЛ "ИНТЕГРАЛЬНАЯ ФИЛОСОФИЯ"
+% Основной файл для выпуска журнала
+% ============================================
+
+% !TEX program = lualatex
+\documentclass[12pt,a4paper]{book}
+
+% Пакеты, стили, метаданные и пользовательские окружения
+\input{preamble} % Temporarily commented out for biblatex isolation test
+% Настройки классов (локальные)
+% \usepackage{biblatex} % Moved to preamble.tex to ensure correct loading order
+
+% ============================================
+% СПИСОК СТАТЕЙ ВЫПУСКА
+% ============================================
+
+
+% ============================================
+% НАЧАЛО ДОКУМЕНТА
+% ============================================
+\begin{document}
+
+\addarticle{moiseev}
+\addarticle{safonov}
+\addarticle{smolyanova}
+\addarticle{podzolkova}
+\addarticle{krasheninnikov}
+\addarticle{bukharov}
+\addarticle{lugowska}
+\addarticle{holkin}
+
+
+% Титульная страница
+\input{chapters/00-titlepage}
+
+% Предварительные материалы
+\frontmatter
+\input{frontmatter/editorial-info}
+\input{frontmatter/preface-ru}
+\input{frontmatter/preface-en}
+
+% Оглавление
+\input{frontmatter/toc}
+\clearpage
+
+% Основные статьи
+\mainmatter
+
+% Английские аннотации статей
+\printallabstracts
+
+% Русские версии статей
+\printallarticles
+
+% Заключительные материалы
+\backmatter
+\input{backmatter/authors}
+
+% Библиография
+\printbibliography[heading=bibintoc,title={Список литературы}]
+
+\end{document}

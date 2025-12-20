@@ -1,0 +1,27 @@
+% ============================================ 
+% cfg-brand.tex — айдентика (цвета/толщины/переключатели) 
+% ============================================ 
+
+% Цвета 
+% Color definitions moved to preamble.tex (global) 
+
+% Геометрия/толщины 
+\newcommand{\JournalMarginX}{16mm} 
+\newcommand{\JournalHeaderY}{-14mm} 
+\newcommand{\JournalFooterH}{22mm} 
+\newcommand{\JournalTitleFooterH}{34mm} 
+
+\newcommand{\JournalRuleThin}{0.5pt} 
+\newcommand{\JournalRuleMed}{0.8pt} 
+\newcommand{\JournalRuleBold}{1.2pt} 
+
+% Текстура (диагональные штрихи) 
+\newcommand{\JournalHatchStep}{1.1} % cm 
+\newcommand{\JournalHatchDx}{2.2cm} 
+
+% Переключатели (using etoolbox toggles, ensure etoolbox is loaded in preamble) 
+\newtoggle{journaltexture} 
+\toggletrue{journaltexture} 
+
+% Удобный хелпер для фона/оверлея: печатаем код только если включен 
+\newcommand{\JournalIfTexture}[1]{\iftoggle{journaltexture}{#1}{}} 

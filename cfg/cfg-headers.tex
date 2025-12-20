@@ -1,0 +1,86 @@
+% ============================================
+% cfg-headers.tex — колонтитулы
+% ============================================
+
+\usepackage{fancyhdr}
+\usepackage{tikzpagenodes}
+\usepackage{xcolor}
+
+\setlength{\headheight}{18.5pt}
+% Два режима: строгий (без текстуры) и "жар" (с текстурой)
+\fancypagestyle{journalPlain}{%
+  \togglefalse{journaltexture}
+  \fancyhf{}
+}
+\fancypagestyle{journalHot}{%
+  \toggletrue{journaltexture}
+  \fancyhf{}
+}
+
+% Титул: без общих оверлеев (они там свои)
+\fancypagestyle{journalTitle}{%
+  \togglefalse{journaltexture}
+  \fancyhf{}
+}
+
+\pagestyle{journalHot}
+
+% Смелее: угловые акценты + верхняя линия + «плашка» внизу (overlay)
+\AddToHook{shipout/foreground}{%
+  \begin{tikzpicture}[remember picture,overlay]
+
+    % Верхняя линия
+    \draw[JournalAccent!65,line width=0.6pt]
+      ([xshift=\JournalMarginX,yshift=\JournalHeaderY]current page.north west) --
+      ([xshift=-\JournalMarginX,yshift=\JournalHeaderY]current page.north east);
+
+    % Второй слой (градиент-эффект за счет 2 линий)
+    \draw[JournalAccent2!45,line width=1.2pt,opacity=0.25]
+      ([xshift=14mm,yshift=-13.3mm]current page.north west) --
+      ([xshift=-14mm,yshift=-13.3mm]current page.north east);
+
+    % Угловые "скобы" сверху
+    \draw[JournalAccent!65,line width=0.6pt]
+      ([xshift=\JournalMarginX,yshift=-10mm]current page.north west) -- ++(10mm,0) -- ++(0,-6mm);
+    \draw[JournalAccent!65,line width=0.6pt]
+      ([xshift=-\JournalMarginX,yshift=-10mm]current page.north east) -- ++(-10mm,0) -- ++(0,-6mm);
+
+    % Нижняя цветная плашка
+    \fill[JournalAccent!9]
+      ([xshift=0mm,yshift=0mm]current page.south west) rectangle
+      ([xshift=0mm,yshift=\JournalFooterH]current page.south east);
+
+    % «Жар»: диагональные штрихи по плашке
+    \JournalIfTexture{%
+      \foreach \x in {0,\JournalHatchStep,...,22} {
+        \draw[JournalAccent2!25,line width=0.35pt,opacity=0.55]
+          ([xshift=\x cm,yshift=0mm]current page.south west) -- ++(\JournalHatchDx,\JournalFooterH);
+      }%
+    }
+
+    % Тонкая линия над футером
+    \draw[JournalAccent!55,line width=0.5pt]
+      ([xshift=\JournalMarginX,yshift=\JournalFooterH]current page.south west) --
+      ([xshift=-\JournalMarginX,yshift=\JournalFooterH]current page.south east);
+
+  \end{tikzpicture}%
+}
+
+% Наполнение колонтитулов
+\fancyhead[LE,RO]{\textcolor{JournalAccent!85}{\thepage}}
+\fancyhead[RE]{\textit{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textit{\nouppercase{\rightmark}}}
+
+% Микро-акцент рядом с номером страницы
+\fancyhead[LE]{\textcolor{JournalAccent2!65}{\large\raisebox{0.2ex}{\textbullet}}\;\textcolor{JournalAccent!85}{\thepage}}
+\fancyhead[RO]{\textcolor{JournalAccent!85}{\thepage}\;\textcolor{JournalAccent2!65}{\large\raisebox{0.2ex}{\textbullet}}}
+
+% Низ: слева URL, по центру название, справа "Выпуск · Год"
+\fancyfoot[L]{\footnotesize\textcolor{JournalAccent!80}{\journalurl}}
+\fancyfoot[C]{\footnotesize\textcolor{JournalAccent!80}{\textit{Интегральная философия}}}
+\fancyfoot[R]{\footnotesize\textcolor{JournalAccent!80}{\journalissue\;•\;\journalyear}}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}

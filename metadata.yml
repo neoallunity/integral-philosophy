@@ -1,0 +1,11 @@
+journal:
+  name: "Интегральная философия"
+  url: "http://allunity.ru"
+  
+issue:
+  number: 15
+  year: 2025
+  
+editor_in_chief:
+  name: "Моисеев В.И."
+  name_en: "Moiseev V.I."

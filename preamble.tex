@@ -1,0 +1,42 @@
+% ============================================ 
+% ПРЕАМБУЛА ВЫПУСКА ЖУРНАЛА 
+% (подключается из main.tex) 
+% ============================================ 
+
+% Улучшение верстки 
+\tolerance=1000 
+\emergencystretch=10pt 
+
+% Базовые пакеты, ранее в journal.cls 
+\RequirePackage{ifthen} 
+\RequirePackage{graphicx} 
+\graphicspath{{images/}{articles/moiseev/images/}{articles/safonov/images/}{articles/smolyanova/images/}{articles/podzolkova/images/}{articles/krasheninnikov/images/}{articles/bukharov/images/}{articles/lugowska/images/}{articles/holkin/images/}} 
+\RequirePackage{geometry} 
+\RequirePackage{fancyhdr} 
+\RequirePackage{xcolor} 
+\RequirePackage{etoolbox} 
+\RequirePackage{titlesec} 
+\RequirePackage{tocloft} 
+\RequirePackage{hyperref}
+\RequirePackage{adjustbox}
+\input{cfg/cfg-fonts.tex}
+\RequirePackage{biblatex}
+
+% Конфигурационные файлы
+\input{cfg/cfg-metadata.tex} 
+\input{cfg/cfg-brand.tex}
+\input{cfg/cfg-macros.tex}
+\input{cfg/cfg-typography.tex} 
+\input{cfg/cfg-math.tex} 
+\input{cfg/cfg-floats.tex} 
+\input{cfg/cfg-structure.tex} 
+\input{cfg/cfg-links.tex} 
+\input{cfg/cfg-bibliography.tex} 
+\input{cfg/cfg-glossary-index.tex} 
+\input{cfg/cfg-headers.tex} 
+\input{cfg/cfg-articles.tex} 
+\input{cfg/cfg-editorial.tex} 
+
+% Определение цветов 
+\definecolor{JournalAccent}{HTML}{1B4F8A} 
+\definecolor{JournalAccent2}{HTML}{B31B5E} 

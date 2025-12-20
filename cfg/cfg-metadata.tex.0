@@ -1,0 +1,30 @@
+% ============================================
+% cfg-metadata.tex — выпуск / версия / метаданные
+% ============================================
+
+% Параметры выпуска
+\newcommand{\journalissue}{15} % ИЗМЕНИТЬ: номер выпуска
+\newcommand{\journalyear}{2025} % ИЗМЕНИТЬ: год выпуска
+\newcommand{\journalurl}{http://allunity.ru}
+
+% Версия документа (меняйте при релизах)
+\newcommand{\docversion}{1.0}
+
+% Дата/время сборки
+\usepackage[useregional]{datetime2}
+\newcommand{\builddatetime}{\DTMnow}
+
+% Количество страниц
+\usepackage{lastpage} % \pageref{LastPage}
+
+% PDF-метаданные (ставим в начале документа, когда доступны счётчики)
+\AtBeginDocument{%
+  \hypersetup{%
+    pdftitle={Интегральная философия. Выпуск \journalissue. \journalyear},%
+    pdfauthor={Коллектив авторов},%
+    pdfsubject={Философия неовсеединства. Версия \docversion. Сборка \builddatetime. Страниц: \pageref{LastPage}},%
+    pdfkeywords={философия, неовсеединство, интегральная философия},%
+    pdfcreator={LuaLaTeX},%
+    pdfproducer={Crixet}%
+  }%
+}

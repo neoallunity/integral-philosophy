@@ -1,0 +1,128 @@
+% ============================================
+% cfg-editorial.tex — редакционные элементы и семантические макросы
+% ============================================
+
+\RequirePackage{xparse}
+
+% ============================================
+% СЕМАНТИЧЕСКИЕ МАКРОСЫ ДЛЯ ПЕРСОНАЛИЙ
+% ============================================
+
+% Главный редактор
+\NewDocumentCommand{\PrintEditorInChief}{m}{%
+  \textsc{Гл. редактор} #1%
+}
+
+% Редактор (обычный)
+\NewDocumentCommand{\PrintEditor}{m}{%
+  \textsc{Редактор} #1%
+}
+
+% Автор статьи (с возможной аффилиацией)
+\NewDocumentCommand{\PrintArticleAuthor}{o m}{%
+  \IfNoValueTF{#1}{%
+    \textbf{#2}%
+  }{%
+    \textbf{#2}\textsuperscript{#1}%
+  }%
+}
+
+% ============================================
+% ОКРУЖЕНИЕ: РЕДАКЦИОННАЯ ПОДПИСЬ
+% ============================================
+
+% Использование:
+%   \begin{editorialsignature}
+%     \PrintEditorInChief{Моисеев В.\,И.}
+%   \end{editoitalsignature}
+
+\NewDocumentEnvironment{editorialsignature}{}{%
+  \vspace{1.2cm}%
+  \begin{flushright}%
+}{%
+  \end{flushright}%
+  \vspace{0.5cm}%
+}
+
+% ============================================
+% ОКРУЖЕНИЕ: ПРЕДИСЛОВИЕ (РУССКОЯЗЫЧНОЕ)
+% ============================================
+
+% Параметры: опционально можно переопределить заголовок
+\NewDocumentEnvironment{foreword}{O{Предисловие}}{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{journalPlain}% или journalHot — на усмотрение
+}{%
+  \clearpage%
+}
+
+% ============================================
+% ОКРУЖЕНИЕ: ПРЕДИСЛОВИЕ (АНГЛОЯЗЫЧНОЕ)
+% ============================================
+
+\NewDocumentEnvironment{forewordEN}{O{Foreword}}{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{journalPlain}%
+  \begin{otherlanguage}{english}%
+}{%
+  \end{otherlanguage}%
+  \clearpage%
+}
+
+% ============================================
+% ОКРУЖЕНИЕ: РАЗДЕЛ АННОТАЦИЙ
+% ============================================
+
+% Для английских аннотаций
+\NewDocumentEnvironment{abstractsection}{O{Abstract}}{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \begin{otherlanguage}{english}%
+}{%
+  \end{otherlanguage}%
+  \clearpage%
+}
+
+% ============================================
+% МАКРОС: ОТДЕЛЬНАЯ АННОТАЦИЯ СТАТЬИ
+% ============================================
+
+% Параметры:
+%   #1 — имя автора
+%   #2 — название статьи
+%   #3 — текст аннотации
+%   #4 — ключевые слова (например, "Keywords: word1, word2")
+
+\NewDocumentCommand{\SingleAbstract}{m m m m}{%
+  \subsection*{#1}%
+  \subsubsection*{#2}%
+  \noindent #3%
+  
+  \vspace{0.3cm}%
+  \noindent\textit{#4}%
+  \vspace{1cm}%
+}
+
+% ============================================
+% ОКРУЖЕНИЕ: ИНФОРМАЦИЯ ОБ АВТОРАХ
+% ============================================
+
+\NewDocumentEnvironment{authorsinfo}{O{Авторы}}{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+}{%
+  \clearpage%
+}
+
+% Отдельный автор
+\NewDocumentCommand{\AuthorBio}{m m}{%
+  \section*{#1}%
+  \noindent #2%
+  \vspace{0.5cm}%
+}

@@ -1,0 +1,86 @@
+\thispagestyle{empty}
+
+% ЕЩЁ ЖАРЧЕ: динамика, второй акцент и диагональная фактура
+\begin{tikzpicture}[remember picture,overlay]
+
+  % Углы (рамка без полной рамки) + «внутренний» второй слой
+  \draw[JournalAccent!70,line width=1.2pt]
+    ([xshift=16mm,yshift=-16mm]current page.north west) -- ++(18mm,0) -- ++(0,-12mm);
+  \draw[JournalAccent!70,line width=1.2pt]
+    ([xshift=-16mm,yshift=-16mm]current page.north east) -- ++(-18mm,0) -- ++(0,-12mm);
+  \draw[JournalAccent!70,line width=1.2pt]
+    ([xshift=16mm,yshift=16mm]current page.south west) -- ++(18mm,0) -- ++(0,12mm);
+  \draw[JournalAccent!70,line width=1.2pt]
+    ([xshift=-16mm,yshift=16mm]current page.south east) -- ++(-18mm,0) -- ++(0,12mm);
+
+  \draw[JournalAccent2!45,line width=0.8pt,opacity=0.7]
+    ([xshift=20mm,yshift=-20mm]current page.north west) -- ++(14mm,0) -- ++(0,-9mm);
+  \draw[JournalAccent2!45,line width=0.8pt,opacity=0.7]
+    ([xshift=-20mm,yshift=-20mm]current page.north east) -- ++(-14mm,0) -- ++(0,-9mm);
+  \draw[JournalAccent2!45,line width=0.8pt,opacity=0.7]
+    ([xshift=20mm,yshift=20mm]current page.south west) -- ++(14mm,0) -- ++(0,9mm);
+  \draw[JournalAccent2!45,line width=0.8pt,opacity=0.7]
+    ([xshift=-20mm,yshift=20mm]current page.south east) -- ++(-14mm,0) -- ++(0,9mm);
+
+  % Нижняя плашка
+  \fill[JournalAccent!10]
+    ([xshift=0mm,yshift=0mm]current page.south west) rectangle
+    ([xshift=0mm,yshift=\JournalTitleFooterH]current page.south east);
+
+  % Диагональная фактура на нижней плашке
+  \JournalIfTexture{%
+    \foreach \x in {-1,0.7,...,22} {
+      \draw[JournalAccent2!25,line width=0.4pt,opacity=0.6]
+        ([xshift=\x cm,yshift=0mm]current page.south west) -- ++(\JournalHatchDx,\JournalTitleFooterH);
+    }%
+  }
+
+  \draw[JournalAccent!65,line width=\JournalRuleMed]
+    ([xshift=\JournalMarginX,yshift=\JournalTitleFooterH]current page.south west) --
+    ([xshift=-\JournalMarginX,yshift=\JournalTitleFooterH]current page.south east);
+\end{tikzpicture}
+
+\begin{center}
+\vspace*{1.1cm}
+
+% Верхний «бейдж»
+\setlength{\fboxsep}{7pt}
+\noindent\fcolorbox{JournalAccent!60}{white}{%
+  \textcolor{JournalAccent!90}{\Large \textsc{Выпуск \journalissue}\;—\;\journalyear}%
+}\\[0.35cm]
+
+{\large \textcolor{JournalAccent!85}{\journalurl}}\\[0.85cm]
+
+% Центральная «плашка»-заголовок (слоистая: тень + основная)
+\setlength{\fboxsep}{12pt}
+
+% Тень/смещение (без дублирования текста: рисуем только подложку)
+\noindent\hspace*{2mm}\fcolorbox{JournalAccent2!35}{JournalAccent2!10}{%
+  \begin{minipage}{0.86\textwidth}
+    \vspace*{1.45cm}
+  \end{minipage}%
+}\\[-0.15cm]
+
+% Основная карточка
+\noindent\fcolorbox{JournalAccent2!80}{JournalAccent!4}{%
+  \begin{minipage}{0.86\textwidth}
+    \centering
+    {\Huge\bfseries \textcolor{JournalAccent2!92}{ИНТЕГРАЛЬНАЯ}\;ФИЛОСОФИЯ}\\[0.35cm]
+    {\large\textsc{ЖУРНАЛ ИНТЕГРАЛЬНОГО СООБЩЕСТВА}}\\[0.35cm]
+    {\Large\bfseries \textcolor{JournalAccent!85}{ВЫПУСК \journalissue}}
+  \end{minipage}%
+}\\[0.9cm]
+
+% Подстрока с боковыми линиями
+\noindent\textcolor{JournalAccent2!60}{\rule{0.16\textwidth}{0.6pt}}\hspace{0.03\textwidth}%
+{\large\textit{The "Integral Philosophy" periodical\\
+the \journalissue-th publication, \journalyear}}\hspace{0.03\textwidth}%
+\textcolor{JournalAccent2!60}{\rule{0.16\textwidth}{0.6pt}}
+
+\vfill
+
+% Низ — поверх плашки
+{\small © Коллектив авторов, \journalyear}\\
+{\small \url{\journalurl}}
+\end{center}
+\clearpage

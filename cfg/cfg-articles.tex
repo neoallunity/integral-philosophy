@@ -1,0 +1,83 @@
+% ============================================
+% cfg-articles.tex — единый шаблон статьи и служебных разделов
+% ============================================
+
+\RequirePackage{xparse}
+
+% Статья: автор как глава, заголовок как ненумерованный раздел, запись в TOC и колонтитулы.
+% Использование:
+%   \JournalArticle{Фамилия И.О.}{Название статьи}
+\NewDocumentCommand{\JournalArticle}{m m}{%
+  \chapter{#1}
+  \section*{#2}
+  \addcontentsline{toc}{section}{#2}%
+  \markright{#2}%
+}
+
+% Русская аннотация + ключевые слова
+%   \RUAbstract{Текст...}{Ключевые слова: ...}
+\NewDocumentCommand{\RUAbstract}{m m}{%
+  \noindent #1
+
+  \vspace{0.3cm}
+  \noindent\textit{#2}
+  \vspace{0.7cm}
+}
+
+% Английская аннотация + keywords
+%   \ENAbstract{Text...}{Keywords: ...}
+\NewDocumentCommand{\ENAbstract}{m m}{%
+  \begin{EN}
+  \noindent #1
+
+  \vspace{0.3cm}
+  \noindent\textit{#2}
+  \end{EN}
+  \vspace{0.7cm}
+}
+
+% ============================================
+% Управление списком статей
+% ============================================
+\newif\ifprintabstract
+
+\ExplSyntaxOn % Start expl3 syntax mode
+
+% --- Internal variables ---
+\clist_new:N \g_journal_articles_clist
+
+% --- Internal functions ---
+% Appends an article identifier to the global list
+\cs_new_protected:Nn \journal_add_article:n
+  {
+    \clist_put_right:Nn \g_journal_articles_clist {#1}
+  }
+
+% Maps through the article list and inputs the main file for each
+\cs_new_protected:Nn \journal_print_articles:
+  {
+    \clist_map_inline:Nn \g_journal_articles_clist { \input{articles/##1/main} }
+  }
+
+% --- User-facing commands ---
+% Wrapper for adding an article
+\NewDocumentCommand{\addarticle}{m}
+  {
+    \journal_add_article:n {#1}
+  }
+
+% Sets a flag and prints all articles (assuming content switches on the flag)
+\NewDocumentCommand{\printallabstracts}{}
+  {
+    \printabstracttrue
+    \journal_print_articles:
+  }
+
+% Clears a flag and prints all articles (assuming content switches on the flag)
+\NewDocumentCommand{\printallarticles}{}
+  {
+    \printabstractfalse
+    \journal_print_articles:
+  }
+
+\ExplSyntaxOff % End expl3 syntax mode

@@ -1,0 +1,25 @@
+% ============================================
+% cfg-macros.tex — пользовательские макросы/окружения
+% ============================================
+
+\newenvironment{articleabstract}[4]{%
+  \noindent\textbf{#1}\\[0.2cm]
+  \noindent\textbf{#2}\\[0.3cm]
+  \noindent #3\\[0.3cm]
+  \noindent\textit{#4}
+  \vspace{0.7cm}
+  \noindent
+}{}
+
+\newenvironment{englishabstract}[4]{%
+  \begin{otherlanguage}{english}%
+  \noindent\textbf{#1}\\[0.2cm]
+  \noindent\textbf{#2}\\[0.3cm]
+  \noindent #3\\[0.3cm]
+  \noindent\textit{#4}
+  \end{otherlanguage}%
+  \vspace{0.7cm}
+}{}
+
+% Алиасы (избавляемся от разнобоя otherlanguage/english)
+\NewDocumentEnvironment{EN}{}{\begin{otherlanguage}{english}}{\end{otherlanguage}}

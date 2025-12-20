@@ -1,0 +1,15 @@
+% ============================================
+% cfg-typography.tex — общая типографика
+% ============================================
+
+\usepackage[protrusion=true]{microtype} % Removed expansion=true due to xetex conflict
+
+% Абзацы
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+% Аккуратные переносы/переполнения
+\emergencystretch=2em
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000

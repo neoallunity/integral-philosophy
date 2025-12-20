@@ -1,0 +1,18 @@
+% ============================================
+% cfg-bibliography.tex — библиография (biblatex/biber)
+% ============================================
+
+\addbibresource{global-bibliography.bib} % Global bibliography for common references
+
+% This command is now a dummy command, the real work is done in the hook below.
+\newcommand{\addallbibresources}{}
+
+\ExplSyntaxOn
+\AtBeginDocument
+  {
+    \clist_map_inline:Nn \g_journal_articles_clist
+      {
+        \addbibresource{articles/##1/references.bib}
+      }
+  }
+\ExplSyntaxOff

@@ -1,0 +1,32 @@
+% ============================================
+% cfg-floats.tex — графика, таблицы, списки, листинги, алгоритмы
+% ============================================
+
+% Геометрия
+
+
+% Графика/цвет
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+% Таблицы
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+
+% Списки
+\usepackage{enumitem}
+\setlist[itemize]{topsep=0.4\baselineskip, itemsep=0.15\baselineskip, leftmargin=*}
+\setlist[enumerate]{topsep=0.4\baselineskip, itemsep=0.15\baselineskip, leftmargin=*}
+
+% Листинги
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Листинг}
+\renewcommand{\lstlistlistingname}{Список листингов}
+\lstset{basicstyle=\ttfamily\small, columns=fullflexible, breaklines=true, frame=single}
+
+% Алгоритмы
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Алгоритм}
+\renewcommand{\listalgorithmname}{Список алгоритмов}
