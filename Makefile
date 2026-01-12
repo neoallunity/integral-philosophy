@@ -60,6 +60,10 @@ all: build
 build: $(PDF)
 	@echo -e "$(GREEN)✓ Сборка завершена: $(PDF)$(NO_COLOR)"
 
+# Синоним для build
+pdf: build
+	@echo -e "$(GREEN)✓ PDF создан: $(PDF)$(NO_COLOR)"
+
 # Полная пересборка
 rebuild: clean build
 
@@ -377,6 +381,16 @@ help:
 	@echo -e "  make update-metadata - Обновить номер выпуска/год"
 	@echo -e "  make new-article     - Создать новую статью из шаблона"
 	@echo -e ""
+	@echo -e "$(GREEN)МНОГОФОРМАТНАЯ ПУБЛИКАЦИЯ:$(NO_COLOR)"
+	@echo -e "  make tei             - Конвертировать Markdown в TEI XML"
+	@echo -e "  make validate        - Валидировать TEI XML"
+	@echo -e "  make html            - Создать HTML версию"
+	@echo -e "  make epub            - Создать EPUB версию"
+	@echo -e "  make docx            - Создать DOCX версию"
+	@echo -e "  make all-formats     - Создать все форматы"
+	@echo -e "  make view-html       - Открыть HTML в браузере"
+	@echo -e "  make tei-stats       - Статистика многоформатной публикации"
+	@echo -e ""
 	@echo -e "$(YELLOW)Документация: README.md$(NO_COLOR)"
 	@echo -e "$(YELLOW)Поддержка: http://allunity.ru$(NO_COLOR)"
 
@@ -397,3 +411,261 @@ h: help
         warnings errors boxes report draft \
         update-metadata new-article \
         test ci help h quick
+
+# ============================================
+# МНОГОФОРМАТНАЯ ПУБЛИКАЦИЯ (TEI)
+# ============================================
+
+# Инструменты для TEI и многоформатной публикации
+PANDOC = pandoc
+SAXON = saxon-he
+XMLLINT = xmllint
+
+# Исходные файлы и директории
+SRC_MD := $(wildcard src/*.md)
+TEI_XML := tei/document.xml
+BUILD_DIR := build
+
+# Директории для различных форматов
+HTML_DIR := $(BUILD_DIR)/html
+LATEX_DIR := $(BUILD_DIR)/latex
+EPUB_DIR := $(BUILD_DIR)/epub
+DOCX_DIR := $(BUILD_DIR)/docx
+
+# XSLT стилевые таблицы
+XSLT_DIR := xslt
+TEI2HTML_XSL := $(XSLT_DIR)/tei2html.xsl
+TEI2LATEX_XSL := $(XSLT_DIR)/tei2latex.xsl
+TEI2EPUB_XSL := $(XSLT_DIR)/tei2epub.xsl
+
+# RelaxNG схема для валидации
+TEI_SCHEMA := schema/tei-site.rng
+
+# --------------------------------------------
+# ЦЕЛИ МНОГОФОРМАТНОЙ ПУБЛИКАЦИИ
+# --------------------------------------------
+
+# Все форматы
+all-formats: html pdf-from-tei epub docx
+	@echo -e "$(GREEN)✓ Все форматы созданы успешно$(NO_COLOR)"
+
+# Markdown + TeX -> TEI
+tei: $(TEI_XML)
+
+$(TEI_XML): $(SRC_MD) | tei-dir check-tei-deps
+	@echo -e "$(BLUE)📝 Конвертация Markdown в TEI XML...$(NO_COLOR)"
+	@if [ -z "$(SRC_MD)" ]; then \
+		echo -e "$(RED)✗ Не найдены исходные Markdown файлы в src/$(NO_COLOR)"; \
+		exit 1; \
+	fi
+	@$(PANDOC) $(SRC_MD) \
+		--from=markdown+tex_math_dollars \
+		--to=tei \
+		--output=$(TEI_XML) \
+		|| { echo -e "$(RED)✗ Ошибка конвертации Markdown в TEI XML$(NO_COLOR)"; exit 1; }
+	@if [ ! -f "$(TEI_XML)" ]; then \
+		echo -e "$(RED)✗ TEI XML файл не был создан$(NO_COLOR)"; \
+		exit 1; \
+	fi
+	@if [ ! -s "$(TEI_XML)" ]; then \
+		echo -e "$(RED)✗ TEI XML файл пуст$(NO_COLOR)"; \
+		exit 1; \
+	fi
+	@echo -e "$(GREEN)✓ TEI XML создан: $(TEI_XML)$(NO_COLOR)"
+
+# Валидация TEI
+validate-tei: $(TEI_XML)
+	@echo -e "$(BLUE)🔍 Валидация TEI XML против схемы...$(NO_COLOR)"
+	@if [ ! -f "$(TEI_SCHEMA)" ]; then \
+		echo -e "$(YELLOW)⚠️  Схема валидации $(TEI_SCHEMA) не найдена, пропускаю валидацию$(NO_COLOR)"; \
+	else \
+		$(XMLLINT) --noout --relaxng $(TEI_SCHEMA) $(TEI_XML) \
+			|| { echo -e "$(RED)✗ TEI XML не прошел валидацию против схемы$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ TEI XML валиден$(NO_COLOR)"; \
+	fi
+
+# TEI -> HTML
+html: validate-tei | html-dir
+	@echo -e "$(BLUE)🌐 Генерация HTML из TEI...$(NO_COLOR)"
+	@if [ ! -f "$(TEI2HTML_XSL)" ]; then \
+		echo -e "$(RED)✗ XSLT таблица $(TEI2HTML_XSL) не найдена$(NO_COLOR)"; \
+		exit 1; \
+	fi
+	@$(SAXON) -s:$(TEI_XML) \
+		-xsl:$(TEI2HTML_XSL) \
+		-o:$(HTML_DIR)/index.html \
+		|| { echo -e "$(RED)✗ Ошибка генерации HTML из TEI$(NO_COLOR)"; exit 1; }
+	@if [ ! -f "$(HTML_DIR)/index.html" ]; then \
+		echo -e "$(RED)✗ HTML файл не был создан$(NO_COLOR)"; \
+		exit 1; \
+	fi
+	@cp build/html/journal.css $(HTML_DIR)/ 2>/dev/null || echo -e "$(YELLOW)⚠️  CSS файл не найден$(NO_COLOR)"
+	@cp build/html/journal.js $(HTML_DIR)/ 2>/dev/null || echo -e "$(YELLOW)⚠️  JS файл не найден$(NO_COLOR)"
+	@echo -e "$(GREEN)✓ HTML создан: $(HTML_DIR)/index.html$(NO_COLOR)"
+
+# TEI -> LaTeX
+latex-from-tei: validate-tei | latex-dir
+	@echo -e "$(BLUE)📄 Генерация LaTeX из TEI...$(NO_COLOR)"
+	@$(SAXON) -s:$(TEI_XML) \
+		-xsl:$(TEI2LATEX_XSL) \
+		-o:$(LATEX_DIR)/document.tex
+	@echo -e "$(GREEN)✓ LaTeX создан: $(LATEX_DIR)/document.tex$(NO_COLOR)"
+
+# LaTeX -> PDF (из TEI)
+pdf-from-tei: latex-from-tei
+	@echo -e "$(BLUE)📑 Компиляция PDF из TEI-LaTeX...$(NO_COLOR)"
+	@cd $(LATEX_DIR) && $(LUALATEX) document.tex
+	@cd $(LATEX_DIR) && $(LUALATEX) document.tex  # Повторная компиляция для ссылок
+	@echo -e "$(GREEN)✓ PDF создан: $(LATEX_DIR)/document.pdf$(NO_COLOR)"
+
+# TEI -> EPUB
+epub: validate-tei | epub-dir
+	@echo -e "$(BLUE)📚 Генерация EPUB из TEI...$(NO_COLOR)"
+	@$(SAXON) -s:$(TEI_XML) \
+		-xsl:$(TEI2EPUB_XSL) \
+		-o:$(EPUB_DIR)/book.xhtml
+	@cp build/epub/styles.css $(EPUB_DIR)/
+	@echo -e "$(BLUE)📦 Создание EPUB архива...$(NO_COLOR)"
+	@cd $(EPUB_DIR) && echo "application/epub+zip" > mimetype
+	@cd $(EPUB_DIR) && mkdir -p META-INF
+	@cd $(EPUB_DIR) && echo '<?xml version="1.0"?><container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="book.xhtml" media-type="application/xhtml+xml"/></rootfiles></container>' > META-INF/container.xml
+	@cd $(EPUB_DIR) && zip -r book.epub mimetype META-INF book.xhtml styles.css
+	@echo -e "$(GREEN)✓ EPUB создан: $(EPUB_DIR)/book.epub$(NO_COLOR)"
+
+# TEI -> DOCX (через Pandoc)
+docx: validate-tei | docx-dir
+	@echo -e "$(BLUE)📄 Генерация DOCX из TEI...$(NO_COLOR)"
+	@$(PANDOC) $(TEI_XML) -o $(DOCX_DIR)/book.docx
+	@echo -e "$(GREEN)✓ DOCX создан: $(DOCX_DIR)/book.docx$(NO_COLOR)"
+
+# --------------------------------------------
+# СОЗДАНИЕ ДИРЕКТОРИЙ
+# --------------------------------------------
+
+tei-dir:
+	@if [ ! -d "tei" ]; then \
+		echo -e "$(BLUE)📁 Создание директории tei...$(NO_COLOR)"; \
+		mkdir -p tei 2>/dev/null || { echo -e "$(RED)✗ Не удалось создать директорию tei$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ Директория tei создана$(NO_COLOR)"; \
+	fi
+
+html-dir:
+	@if [ ! -d "$(HTML_DIR)" ]; then \
+		echo -e "$(BLUE)📁 Создание директории $(HTML_DIR)...$(NO_COLOR)"; \
+		mkdir -p $(HTML_DIR) 2>/dev/null || { echo -e "$(RED)✗ Не удалось создать директорию $(HTML_DIR)$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ Директория $(HTML_DIR) создана$(NO_COLOR)"; \
+	fi
+
+latex-dir:
+	@if [ ! -d "$(LATEX_DIR)" ]; then \
+		echo -e "$(BLUE)📁 Создание директории $(LATEX_DIR)...$(NO_COLOR)"; \
+		mkdir -p $(LATEX_DIR) 2>/dev/null || { echo -e "$(RED)✗ Не удалось создать директорию $(LATEX_DIR)$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ Директория $(LATEX_DIR) создана$(NO_COLOR)"; \
+	fi
+
+epub-dir:
+	@if [ ! -d "$(EPUB_DIR)" ]; then \
+		echo -e "$(BLUE)📁 Создание директории $(EPUB_DIR)...$(NO_COLOR)"; \
+		mkdir -p $(EPUB_DIR) 2>/dev/null || { echo -e "$(RED)✗ Не удалось создать директорию $(EPUB_DIR)$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ Директория $(EPUB_DIR) создана$(NO_COLOR)"; \
+	fi
+
+docx-dir:
+	@if [ ! -d "$(DOCX_DIR)" ]; then \
+		echo -e "$(BLUE)📁 Создание директории $(DOCX_DIR)...$(NO_COLOR)"; \
+		mkdir -p $(DOCX_DIR) 2>/dev/null || { echo -e "$(RED)✗ Не удалось создать директорию $(DOCX_DIR)$(NO_COLOR)"; exit 1; }; \
+		echo -e "$(GREEN)✓ Директория $(DOCX_DIR) создана$(NO_COLOR)"; \
+	fi
+
+build-dirs: tei-dir html-dir latex-dir epub-dir docx-dir
+
+# --------------------------------------------
+# ОЧИСТКА МНОГОФОРМАТНЫХ ФАЙЛОВ
+# --------------------------------------------
+
+clean-tei:
+	@echo -e "$(YELLOW)🧹 Очистка TEI файлов...$(NO_COLOR)"
+	@rm -rf tei/*.xml
+	@echo -e "$(GREEN)✓ TEI файлы очищены$(NO_COLOR)"
+
+clean-formats:
+	@echo -e "$(YELLOW)🧹 Очистка всех форматов...$(NO_COLOR)"
+	@rm -rf $(BUILD_DIR)
+	@echo -e "$(GREEN)✓ Все форматы очищены$(NO_COLOR)"
+
+clean-all: clean clean-tei clean-formats
+
+# --------------------------------------------
+# ПРОВЕРКА ЗАВИСИМОСТЕЙ ДЛЯ TEI
+# --------------------------------------------
+
+check-tei-deps:
+	@echo -e "$(BLUE)🔍 Проверка зависимостей для TEI...$(NO_COLOR)"
+	@command -v $(PANDOC) >/dev/null 2>&1 || { echo -e "$(RED)✗ pandoc не установлен$(NO_COLOR)"; echo -e "$(YELLOW)Установите: sudo apt-get install pandoc$(NO_COLOR)"; exit 1; }
+	@command -v $(SAXON) >/dev/null 2>&1 || { echo -e "$(RED)✗ saxon-he не установлен$(NO_COLOR)"; echo -e "$(YELLOW)Установите: sudo apt-get install saxon-he$(NO_COLOR)"; exit 1; }
+	@command -v $(XMLLINT) >/dev/null 2>&1 || { echo -e "$(RED)✗ xmllint не установлен$(NO_COLOR)"; echo -e "$(YELLOW)Установите: sudo apt-get install libxml2-utils$(NO_COLOR)"; exit 1; }
+	@echo -e "$(BLUE)📋 Проверка версий...$(NO_COLOR)"
+	@PANDOC_VERSION=$$($(PANDOC) --version | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+'); \
+	if [ -z "$$PANDOC_VERSION" ]; then \
+		echo -e "$(YELLOW)⚠️  Не удалось определить версию pandoc$(NO_COLOR)"; \
+	else \
+		echo -e "$(GREEN)✓ pandoc: $$PANDOC_VERSION$(NO_COLOR)"; \
+	fi
+	@SAXON_VERSION=$$($(SAXON) -version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+' | head -1); \
+	if [ -z "$$SAXON_VERSION" ]; then \
+		echo -e "$(YELLOW)⚠️  Не удалось определить версию saxon-he$(NO_COLOR)"; \
+	else \
+		echo -e "$(GREEN)✓ saxon-he: $$SAXON_VERSION$(NO_COLOR)"; \
+	fi
+	@XMLLINT_VERSION=$$($(XMLLINT) --version | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+'); \
+	if [ -z "$$XMLLINT_VERSION" ]; then \
+		echo -e "$(YELLOW)⚠️  Не удалось определить версию xmllint$(NO_COLOR)"; \
+	else \
+		echo -e "$(GREEN)✓ xmllint: $$XMLLINT_VERSION$(NO_COLOR)"; \
+	fi
+	@echo -e "$(GREEN)✓ Все зависимости для TEI установлены$(NO_COLOR)"
+
+# --------------------------------------------
+# ПРОСМОТР РЕЗУЛЬТАТОВ
+# --------------------------------------------
+
+view-html: html
+	@echo -e "$(BLUE)👁️  Открытие HTML версии...$(NO_COLOR)"
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+		open $(HTML_DIR)/index.html; \
+	elif [ "$(shell uname)" = "Linux" ]; then \
+		xdg-open $(HTML_DIR)/index.html 2>/dev/null || firefox $(HTML_DIR)/index.html 2>/dev/null; \
+	fi
+
+view-epub: epub
+	@echo -e "$(BLUE)👁️  EPUB создан: $(EPUB_DIR)/book.epub$(NO_COLOR)"
+	@echo -e "$(YELLOW)Используйте программу для чтения EPUB для просмотра$(NO_COLOR)"
+
+# --------------------------------------------
+# СТАТИСТИКА МНОГОФОРМАТНОЙ ПУБЛИКАЦИИ
+# --------------------------------------------
+
+tei-stats:
+	@echo -e "$(BLUE)📊 Статистика TEI публикации:$(NO_COLOR)"
+	@echo -e "  Исходных MD файлов: $(words $(SRC_MD))"
+	@if [ -f "$(TEI_XML)" ]; then \
+		echo -e "  Размер TEI XML: $(shell du -h $(TEI_XML) 2>/dev/null | cut -f1)"; \
+	fi
+	@if [ -f "$(HTML_DIR)/index.html" ]; then \
+		echo -e "  Размер HTML: $(shell du -h $(HTML_DIR)/index.html 2>/dev/null | cut -f1)"; \
+	fi
+	@if [ -f "$(EPUB_DIR)/book.epub" ]; then \
+		echo -e "  Размер EPUB: $(shell du -h $(EPUB_DIR)/book.epub 2>/dev/null | cut -f1)"; \
+	fi
+	@if [ -f "$(DOCX_DIR)/book.docx" ]; then \
+		echo -e "  Размер DOCX: $(shell du -h $(DOCX_DIR)/book.docx 2>/dev/null | cut -f1)"; \
+	fi
+
+# --------------------------------------------
+# ОБНОВЛЕНИЕ СПРАВКИ
+# --------------------------------------------
+
+.PHONY: tei validate-tei html latex-from-tei pdf-from-tei epub docx \
+        all-formats clean-tei clean-formats clean-all \
+        check-tei-deps view-html view-epub tei-stats \
+        tei-dir html-dir latex-dir epub-dir docx-dir build-dirs
