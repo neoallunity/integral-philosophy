@@ -1,0 +1,420 @@
+\doxysection{format\+\_\+converter.\+Format\+Converter Class Reference}
+\hypertarget{classformat__converter_1_1_format_converter}{}\label{classformat__converter_1_1_format_converter}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+
+
+Collaboration diagram for format\+\_\+converter.\+Format\+Converter\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classformat__converter_1_1_format_converter_a5ffec64918a196c70c6258b4253c57cd}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\mbox{[}Path\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_a600a43c2e4e4599312aef1a0712b8d07}{work\+\_\+dir}}=None)
+\item 
+Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_a76b326609ac0a7c41b01b266834ef15b}{detect\+\_\+format}} (self, Path file\+\_\+path)
+\item 
+Tuple\mbox{[}bool, Path\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_ab543241bfd728ca99f29fa540b19a87c}{convert}} (self, Path input\+\_\+file, str output\+\_\+format, Optional\mbox{[}Path\mbox{]} output\+\_\+file=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+Optional\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_ac1b360c9e47acc0a13f81f4d4f95207f}{convert\+\_\+to\+\_\+ast}} (self, Path input\+\_\+file)
+\item 
+bool \mbox{\hyperlink{classformat__converter_1_1_format_converter_a9a034a620b0f1a3c22318b768f077372}{convert\+\_\+from\+\_\+ast}} (self, Dict ast\+\_\+data, str output\+\_\+format, Path output\+\_\+file)
+\item 
+Dict\mbox{[}Path, Tuple\mbox{[}bool, Path\mbox{]}\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_a4a18617d39dcb0136f052df54a5c222b}{batch\+\_\+convert}} (self, List\mbox{[}Path\mbox{]} input\+\_\+files, str output\+\_\+format)
+\item 
+Dict\mbox{[}str, Tuple\mbox{[}bool, Path\mbox{]}\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_acf84916abbd733bdbc96c74e27c313ed}{create\+\_\+conversion\+\_\+chain}} (self, Path input\+\_\+file, List\mbox{[}str\mbox{]} output\+\_\+formats)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_af085bcddfb279329d88c175f760985a6}{compare\+\_\+conversions}} (self, Path original\+\_\+file, Dict\mbox{[}str, Path\mbox{]} conversions)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_adcda42f69e62b8f0444d65f2874c1398}{create\+\_\+format\+\_\+matrix}} (self, Path input\+\_\+file)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classformat__converter_1_1_format_converter_a600a43c2e4e4599312aef1a0712b8d07}{work\+\_\+dir}} = work\+\_\+dir or Path("{}format\+\_\+conversion"{})
+\item 
+\mbox{\hyperlink{classformat__converter_1_1_format_converter_ac5b58b62e4be1c32fac36d6fe53ab42a}{pandoc\+\_\+available}} = shutil.\+which("{}pandoc"{}) is not None
+\item 
+tuple \mbox{\hyperlink{classformat__converter_1_1_format_converter_a900af06cc3f0227031e624a1aecd6259}{pandoc\+\_\+version}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classformat__converter_1_1_format_converter_addf5b571a8d3d3fe3ca01c2312e44819}{SUPPORTED\+\_\+\+FORMATS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classformat__converter_1_1_format_converter_a3470a3083c1426181e85b023bf42ae7c}{\+\_\+check\+\_\+dependencies}} (self)
+\item 
+Optional\mbox{[}str\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_a0c13ec891ef88bcf9d8901bed3350182}{\+\_\+get\+\_\+pandoc\+\_\+version}} (self)
+\item 
+bool \mbox{\hyperlink{classformat__converter_1_1_format_converter_a1e45074aee5188f3265b4eb281d6d362}{\+\_\+convert\+\_\+with\+\_\+pandoc}} (self, Path input\+\_\+file, str input\+\_\+format, Path output\+\_\+file, str output\+\_\+format, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+float \mbox{\hyperlink{classformat__converter_1_1_format_converter_a6b4b7e3d7b88cf3c5699d333410cb6c3}{\+\_\+calculate\+\_\+text\+\_\+similarity}} (self, str text1, str text2)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_a7c0ef4182fdc03bda653269e7fc01cff}{\+\_\+compare\+\_\+structure}} (self, Path file1, Path file2)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classformat__converter_1_1_format_converter_affd6ff90fd816881bfd814e66de52168}{\+\_\+extract\+\_\+headings}} (self, Path file\+\_\+path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Multi-format markup converter with bidirectional support\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00023}{23}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classformat__converter_1_1_format_converter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classformat__converter_1_1_format_converter_a5ffec64918a196c70c6258b4253c57cd}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a5ffec64918a196c70c6258b4253c57cd} 
+format\+\_\+converter.\+Format\+Converter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\mbox{[}Path\mbox{]} }]{work\+\_\+dir}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00041}{41}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classformat__converter_1_1_format_converter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classformat__converter_1_1_format_converter_a6b4b7e3d7b88cf3c5699d333410cb6c3}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_calculate\_text\_similarity@{\_calculate\_text\_similarity}}
+\index{\_calculate\_text\_similarity@{\_calculate\_text\_similarity}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_calculate\_text\_similarity()}{\_calculate\_text\_similarity()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a6b4b7e3d7b88cf3c5699d333410cb6c3} 
+ float format\+\_\+converter.\+Format\+Converter.\+\_\+calculate\+\_\+text\+\_\+similarity (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text1}{, }\item[{str}]{text2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Calculate simple text similarity (can be enhanced)\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00359}{359}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00315}{compare\+\_\+conversions()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classformat__converter_1_1_format_converter_a3470a3083c1426181e85b023bf42ae7c}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_check\_dependencies@{\_check\_dependencies}}
+\index{\_check\_dependencies@{\_check\_dependencies}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_check\_dependencies()}{\_check\_dependencies()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a3470a3083c1426181e85b023bf42ae7c} 
+ None format\+\_\+converter.\+Format\+Converter.\+\_\+check\+\_\+dependencies (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Check if required tools are available\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00048}{48}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_a7c0ef4182fdc03bda653269e7fc01cff}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_compare\_structure@{\_compare\_structure}}
+\index{\_compare\_structure@{\_compare\_structure}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_compare\_structure()}{\_compare\_structure()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a7c0ef4182fdc03bda653269e7fc01cff} 
+ Dict\mbox{[}str, Any\mbox{]} format\+\_\+converter.\+Format\+Converter.\+\_\+compare\+\_\+structure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file1}{, }\item[{Path}]{file2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Compare structure of two files\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00391}{391}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00417}{\+\_\+extract\+\_\+headings()}}, and \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00315}{compare\+\_\+conversions()}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classformat__converter_1_1_format_converter_a1e45074aee5188f3265b4eb281d6d362}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_convert\_with\_pandoc@{\_convert\_with\_pandoc}}
+\index{\_convert\_with\_pandoc@{\_convert\_with\_pandoc}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_convert\_with\_pandoc()}{\_convert\_with\_pandoc()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a1e45074aee5188f3265b4eb281d6d362} 
+ bool format\+\_\+converter.\+Format\+Converter.\+\_\+convert\+\_\+with\+\_\+pandoc (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{input\+\_\+file}{, }\item[{str}]{input\+\_\+format}{, }\item[{Path}]{output\+\_\+file}{, }\item[{str}]{output\+\_\+format}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert using Pandoc\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00133}{133}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, and \mbox{\hyperlink{format__converter_8py_source_l00042}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classformat__converter_1_1_format_converter_affd6ff90fd816881bfd814e66de52168}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_extract\_headings@{\_extract\_headings}}
+\index{\_extract\_headings@{\_extract\_headings}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_extract\_headings()}{\_extract\_headings()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_affd6ff90fd816881bfd814e66de52168} 
+ List\mbox{[}str\mbox{]} format\+\_\+converter.\+Format\+Converter.\+\_\+extract\+\_\+headings (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract headings from file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00417}{417}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00391}{\+\_\+compare\+\_\+structure()}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classformat__converter_1_1_format_converter_a0c13ec891ef88bcf9d8901bed3350182}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!\_get\_pandoc\_version@{\_get\_pandoc\_version}}
+\index{\_get\_pandoc\_version@{\_get\_pandoc\_version}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{\_get\_pandoc\_version()}{\_get\_pandoc\_version()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a0c13ec891ef88bcf9d8901bed3350182} 
+ Optional\mbox{[}str\mbox{]} format\+\_\+converter.\+Format\+Converter.\+\_\+get\+\_\+pandoc\+\_\+version (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get Pandoc version\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00064}{64}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_a4a18617d39dcb0136f052df54a5c222b}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!batch\_convert@{batch\_convert}}
+\index{batch\_convert@{batch\_convert}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{batch\_convert()}{batch\_convert()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a4a18617d39dcb0136f052df54a5c222b} 
+ Dict\mbox{[}Path, Tuple\mbox{[}bool, Path\mbox{]}\mbox{]} format\+\_\+converter.\+Format\+Converter.\+batch\+\_\+convert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\mbox{[}Path\mbox{]}}]{input\+\_\+files}{, }\item[{str     }]{output\+\_\+format}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert multiple files to specified format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00278}{278}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+\Hypertarget{classformat__converter_1_1_format_converter_af085bcddfb279329d88c175f760985a6}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!compare\_conversions@{compare\_conversions}}
+\index{compare\_conversions@{compare\_conversions}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{compare\_conversions()}{compare\_conversions()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_af085bcddfb279329d88c175f760985a6} 
+ Dict\mbox{[}str, Any\mbox{]} format\+\_\+converter.\+Format\+Converter.\+compare\+\_\+conversions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{original\+\_\+file}{, }\item[{Dict\mbox{[}str, Path\mbox{]}     }]{conversions}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Compare different conversion results\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00313}{313}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00359}{\+\_\+calculate\+\_\+text\+\_\+similarity()}}, and \mbox{\hyperlink{format__converter_8py_source_l00391}{\+\_\+compare\+\_\+structure()}}.
+
+Here is the call graph for this function\+:
+% FIG 8
+\Hypertarget{classformat__converter_1_1_format_converter_ab543241bfd728ca99f29fa540b19a87c}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!convert@{convert}}
+\index{convert@{convert}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_ab543241bfd728ca99f29fa540b19a87c} 
+ Tuple\mbox{[}bool, Path\mbox{]} format\+\_\+converter.\+Format\+Converter.\+convert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{input\+\_\+file}{, }\item[{str}]{output\+\_\+format}{, }\item[{Optional\mbox{[}Path\mbox{]} }]{output\+\_\+file}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert file to specified format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00086}{86}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00140}{\+\_\+convert\+\_\+with\+\_\+pandoc()}}, \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}, \mbox{\hyperlink{format__converter_8py_source_l00050}{pandoc\+\_\+available}}, \mbox{\hyperlink{format__converter_8py_source_l00027}{SUPPORTED\+\_\+\+FORMATS}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, and \mbox{\hyperlink{format__converter_8py_source_l00042}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00280}{batch\+\_\+convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00293}{create\+\_\+conversion\+\_\+chain()}}, and \mbox{\hyperlink{format__converter_8py_source_l00479}{create\+\_\+format\+\_\+matrix()}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classformat__converter_1_1_format_converter_a9a034a620b0f1a3c22318b768f077372}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!convert\_from\_ast@{convert\_from\_ast}}
+\index{convert\_from\_ast@{convert\_from\_ast}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{convert\_from\_ast()}{convert\_from\_ast()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a9a034a620b0f1a3c22318b768f077372} 
+ bool format\+\_\+converter.\+Format\+Converter.\+convert\+\_\+from\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{ast\+\_\+data}{, }\item[{str}]{output\+\_\+format}{, }\item[{Path     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert from Pandoc AST to specified format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00231}{231}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00050}{pandoc\+\_\+available}}, \mbox{\hyperlink{format__converter_8py_source_l00027}{SUPPORTED\+\_\+\+FORMATS}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, and \mbox{\hyperlink{format__converter_8py_source_l00042}{work\+\_\+dir}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_ac1b360c9e47acc0a13f81f4d4f95207f}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!convert\_to\_ast@{convert\_to\_ast}}
+\index{convert\_to\_ast@{convert\_to\_ast}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{convert\_to\_ast()}{convert\_to\_ast()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_ac1b360c9e47acc0a13f81f4d4f95207f} 
+ Optional\mbox{[}Dict\mbox{]} format\+\_\+converter.\+Format\+Converter.\+convert\+\_\+to\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{input\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert file to Pandoc JSON AST\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00196}{196}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}, \mbox{\hyperlink{format__converter_8py_source_l00050}{pandoc\+\_\+available}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, and \mbox{\hyperlink{format__converter_8py_source_l00042}{work\+\_\+dir}}.
+
+Here is the call graph for this function\+:
+% FIG 11
+\Hypertarget{classformat__converter_1_1_format_converter_acf84916abbd733bdbc96c74e27c313ed}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!create\_conversion\_chain@{create\_conversion\_chain}}
+\index{create\_conversion\_chain@{create\_conversion\_chain}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{create\_conversion\_chain()}{create\_conversion\_chain()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_acf84916abbd733bdbc96c74e27c313ed} 
+ Dict\mbox{[}str, Tuple\mbox{[}bool, Path\mbox{]}\mbox{]} format\+\_\+converter.\+Format\+Converter.\+create\+\_\+conversion\+\_\+chain (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{input\+\_\+file}{, }\item[{List\mbox{[}str\mbox{]}     }]{output\+\_\+formats}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert input file through chain of formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00291}{291}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+\Hypertarget{classformat__converter_1_1_format_converter_adcda42f69e62b8f0444d65f2874c1398}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!create\_format\_matrix@{create\_format\_matrix}}
+\index{create\_format\_matrix@{create\_format\_matrix}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{create\_format\_matrix()}{create\_format\_matrix()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_adcda42f69e62b8f0444d65f2874c1398} 
+ Dict\mbox{[}str, Any\mbox{]} format\+\_\+converter.\+Format\+Converter.\+create\+\_\+format\+\_\+matrix (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{input\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create conversion matrix for all supported formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00479}{479}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}, and \mbox{\hyperlink{format__converter_8py_source_l00027}{SUPPORTED\+\_\+\+FORMATS}}.
+
+Here is the call graph for this function\+:
+% FIG 13
+\Hypertarget{classformat__converter_1_1_format_converter_a76b326609ac0a7c41b01b266834ef15b}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!detect\_format@{detect\_format}}
+\index{detect\_format@{detect\_format}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{detect\_format()}{detect\_format()}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a76b326609ac0a7c41b01b266834ef15b} 
+ Optional\mbox{[}str\mbox{]} format\+\_\+converter.\+Format\+Converter.\+detect\+\_\+format (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Detect format from file extension\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00076}{76}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{format__converter_8py_source_l00027}{SUPPORTED\+\_\+\+FORMATS}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00391}{\+\_\+compare\+\_\+structure()}}, \mbox{\hyperlink{format__converter_8py_source_l00417}{\+\_\+extract\+\_\+headings()}}, \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00196}{convert\+\_\+to\+\_\+ast()}}, and \mbox{\hyperlink{format__converter_8py_source_l00479}{create\+\_\+format\+\_\+matrix()}}.
+
+Here is the caller graph for this function\+:
+% FIG 14
+
+
+\label{doc-variable-members}
+\Hypertarget{classformat__converter_1_1_format_converter_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classformat__converter_1_1_format_converter_ac5b58b62e4be1c32fac36d6fe53ab42a}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!pandoc\_available@{pandoc\_available}}
+\index{pandoc\_available@{pandoc\_available}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{pandoc\_available}{pandoc\_available}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_ac5b58b62e4be1c32fac36d6fe53ab42a} 
+format\+\_\+converter.\+Format\+Converter.\+pandoc\+\_\+available = shutil.\+which("{}pandoc"{}) is not None}
+
+
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00050}{50}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00233}{convert\+\_\+from\+\_\+ast()}}, and \mbox{\hyperlink{format__converter_8py_source_l00196}{convert\+\_\+to\+\_\+ast()}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_a900af06cc3f0227031e624a1aecd6259}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!pandoc\_version@{pandoc\_version}}
+\index{pandoc\_version@{pandoc\_version}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{pandoc\_version}{pandoc\_version}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a900af06cc3f0227031e624a1aecd6259} 
+tuple format\+\_\+converter.\+Format\+Converter.\+pandoc\+\_\+version}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.\_get\_pandoc\_version()\ \textcolor{keywordflow}{if}\ self.pandoc\_available\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00051}{51}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_addf5b571a8d3d3fe3ca01c2312e44819}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!SUPPORTED\_FORMATS@{SUPPORTED\_FORMATS}}
+\index{SUPPORTED\_FORMATS@{SUPPORTED\_FORMATS}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{SUPPORTED\_FORMATS}{SUPPORTED\_FORMATS}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_addf5b571a8d3d3fe3ca01c2312e44819} 
+dict format\+\_\+converter.\+Format\+Converter.\+SUPPORTED\+\_\+\+FORMATS\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}markdown"{}}:\ [\textcolor{stringliteral}{"{}md"{}},\ \textcolor{stringliteral}{"{}markdown"{}},\ \textcolor{stringliteral}{"{}mdown"{}},\ \textcolor{stringliteral}{"{}mkd"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}org"{}}:\ [\textcolor{stringliteral}{"{}org"{}},\ \textcolor{stringliteral}{"{}orgmode"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}asciidoc"{}}:\ [\textcolor{stringliteral}{"{}adoc"{}},\ \textcolor{stringliteral}{"{}asciidoc"{}},\ \textcolor{stringliteral}{"{}asc"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rst"{}}:\ [\textcolor{stringliteral}{"{}rst"{}},\ \textcolor{stringliteral}{"{}rest"{}},\ \textcolor{stringliteral}{"{}restructuredtext"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}typst"{}}:\ [\textcolor{stringliteral}{"{}typst"{}},\ \textcolor{stringliteral}{"{}typ"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}html"{}}:\ [\textcolor{stringliteral}{"{}html"{}},\ \textcolor{stringliteral}{"{}htm"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}latex"{}}:\ [\textcolor{stringliteral}{"{}tex"{}},\ \textcolor{stringliteral}{"{}latex"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}tei"{}}:\ [\textcolor{stringliteral}{"{}xml"{}},\ \textcolor{stringliteral}{"{}tei"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}docbook"{}}:\ [\textcolor{stringliteral}{"{}dbk"{}},\ \textcolor{stringliteral}{"{}docbook"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}jats"{}}:\ [\textcolor{stringliteral}{"{}jats"{}}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}json"{}}:\ [\textcolor{stringliteral}{"{}json"{}}],\ \ \textcolor{comment}{\#\ For\ Pandoc\ AST}}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00027}{27}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00233}{convert\+\_\+from\+\_\+ast()}}, \mbox{\hyperlink{format__converter_8py_source_l00479}{create\+\_\+format\+\_\+matrix()}}, and \mbox{\hyperlink{format__converter_8py_source_l00076}{detect\+\_\+format()}}.
+
+\Hypertarget{classformat__converter_1_1_format_converter_a600a43c2e4e4599312aef1a0712b8d07}\index{format\_converter.FormatConverter@{format\_converter.FormatConverter}!work\_dir@{work\_dir}}
+\index{work\_dir@{work\_dir}!format\_converter.FormatConverter@{format\_converter.FormatConverter}}
+\doxysubsubsection{\texorpdfstring{work\_dir}{work\_dir}}
+{\footnotesize\ttfamily \label{classformat__converter_1_1_format_converter_a600a43c2e4e4599312aef1a0712b8d07} 
+format\+\_\+converter.\+Format\+Converter.\+work\+\_\+dir = work\+\_\+dir or Path("{}format\+\_\+conversion"{})}
+
+
+
+Definition at line \mbox{\hyperlink{format__converter_8py_source_l00042}{42}} of file \mbox{\hyperlink{format__converter_8py_source}{format\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+compare\+\_\+html\+\_\+files()}}, \mbox{\hyperlink{format__converter_8py_source_l00140}{\+\_\+convert\+\_\+with\+\_\+pandoc()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00052}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}, \mbox{\hyperlink{format__converter_8py_source_l00092}{convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00233}{convert\+\_\+from\+\_\+ast()}}, \mbox{\hyperlink{format__converter_8py_source_l00196}{convert\+\_\+to\+\_\+ast()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+html\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+tei\+\_\+to\+\_\+html()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{format__converter_8py}{format\+\_\+converter.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dd/dc0/classast__to__uml_1_1_u_m_l_node" kind="class" language="Python" prot="public">
+    <compoundname>ast_to_uml::UMLNode</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="dd/dc0/classast__to__uml_1_1_u_m_l_node_1ad788aa499fd221a8f40a628a4021e57b" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str ast_to_uml.UMLNode::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>ast_to_uml.UMLNode.type</qualifiedname>
+        <initializer>=  &quot;component&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="44" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="44" bodyend="-1"/>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" compoundref="d9/dc7/markdowntex__parser_8py" startline="64" endline="73">markdowntex_parser.ASTNode.to_dict</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="dd/dc0/classast__to__uml_1_1_u_m_l_node_1ac6c5ed6617af6d38e6c606f9f0d91a77" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>Optional ast_to_uml.UMLNode::style</definition>
+        <argsstring></argsstring>
+        <name>style</name>
+        <qualifiedname>ast_to_uml.UMLNode.style</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="45" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/dc0/classast__to__uml_1_1_u_m_l_node_1a72c17029ddd09633771418643ceea6e2" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>Optional ast_to_uml.UMLNode::metadata</definition>
+        <argsstring></argsstring>
+        <name>metadata</name>
+        <qualifiedname>ast_to_uml.UMLNode.metadata</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="46" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>UML node representation</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ast_to_uml.UMLNode</label>
+        <link refid="dd/dc0/classast__to__uml_1_1_u_m_l_node"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="39" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="39" bodyend="49"/>
+    <listofallmembers>
+      <member refid="dd/dc0/classast__to__uml_1_1_u_m_l_node_1a72c17029ddd09633771418643ceea6e2" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLNode</scope><name>metadata</name></member>
+      <member refid="dd/dc0/classast__to__uml_1_1_u_m_l_node_1ac6c5ed6617af6d38e6c606f9f0d91a77" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLNode</scope><name>style</name></member>
+      <member refid="dd/dc0/classast__to__uml_1_1_u_m_l_node_1ad788aa499fd221a8f40a628a4021e57b" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLNode</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

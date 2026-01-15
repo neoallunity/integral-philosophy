@@ -1,0 +1,622 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральное Сообщество - Библиотека Документов\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/library.shtml\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:46:17\\n\\n---\\n\\n## Сборник материалов и документов\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Показать:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Плоский\n                         Изысканный\n                         Табличный"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Сортировать:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Имени\n                         Дате модификации\n                         Размеру\n                         Описанию"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Порядок:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "возрастанию\n                         убыванию"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Версии:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "в нормальном порядке\n                         в порядке версий"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Фильтры:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "![[ICO]](/icons/blank.gif)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=N;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Name"
+            }
+          ]
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=S;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Size"
+            }
+          ]
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=D;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Description"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "[![[DIR]](/icons/folder.gif)](%d0%9f%d1%80%d0%b5%d0%bf%d1%80%d0%b8%d0%bd%d1%82%d1%8b/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9f%d1%80%d0%b5%d0%bf%d1%80%d0%b8%d0%bd%d1%82%d1%8b/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Препринты/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Научные препринты по интегральной физике и философии\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b5%d0%ba%d1%86%d0%b8%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b5%d0%ba%d1%86%d0%b8%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лекции/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Каталог лекций\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%ad%d1%82%d0%b8%d0%ba%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%ad%d1%82%d0%b8%d0%ba%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Этики/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Разработка этических принципов интегрального мировоззрения\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%bf%d1%80%d0%b0%d0%b2%d0%b0/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%bf%d1%80%d0%b0%d0%b2%d0%b0/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Философия права/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Правовые аспекты интегрального общества\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%a1%d0%bb%d0%be%d0%b2%d0%b0/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%a1%d0%bb%d0%be%d0%b2%d0%b0/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Философия Слова/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Исследование языка как основы философского знания\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%b7%d0%b8%d0%ba%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%b7%d0%b8%d0%ba%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Физики/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Новая парадигма целостного знания\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%9c%d0%b0%d1%82%d0%b5%d0%bc%d0%b0%d1%82%d0%b8%d0%ba%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%9c%d0%b0%d1%82%d0%b5%d0%bc%d0%b0%d1%82%d0%b8%d0%ba%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Математики/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Математические основы интегрального знания\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%98%d1%81%d1%82%d0%be%d1%80%d0%b8%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%98%d1%81%d1%82%d0%be%d1%80%d0%b8%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория Истории/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Интегральное понимание исторического процесса\n   [![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатории/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Лаборатории интегральной науки\n   [![[DIR]](/icons/folder.gif)](%d0%9a%d0%be%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9a%d0%be%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Конспекты/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Конспекты лекций\n   [![[DIR]](/icons/folder.gif)](%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Книги/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Монографии и учебные пособия по интегральной науке\n   [![[DIR]](/icons/folder.gif)](%d0%98%d0%bd%d1%81%d1%82%d0%b8%d1%82%d1%83%d1%82%20%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d0%b9%20%d0%bd%d0%b0%d1%83%d0%ba%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%98%d0%bd%d1%81%d1%82%d0%b8%d1%82%d1%83%d1%82%20%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d0%b9%20%d0%bd%d0%b0%d1%83%d0%ba%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Институт интегральной науки/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Материалы научных исследований и публикаций\n   [![[DIR]](/icons/folder.gif)](%d0%96%d1%83%d1%80%d0%bd%d0%b0%d0%bb%d1%8b/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%96%d1%83%d1%80%d0%bd%d0%b0%d0%bb%d1%8b/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журналы/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Архив научных журналов по интегральной науке\n   [![[DIR]](/icons/folder.gif)](%d0%94%d0%b8%d1%81%d0%ba%d1%83%d1%81%d1%81%d0%b8%d0%b8/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%94%d0%b8%d1%81%d0%ba%d1%83%d1%81%d1%81%d0%b8%d0%b8/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - Аудио записи\n   [![[   ]](/icons/unknown.gif)](%d0%a1%d0%be%d0%bb%d0%b8%d0%b4%d0%b0%d1%80%d0%bd%d0%be%d0%b5_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d0%ba%d0%b0%d0%ba_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%a1%d0%be%d0%bb%d0%b8%d0%b4%d0%b0%d1%80%d0%bd%d0%be%d0%b5_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d0%ba%d0%b0%d0%ba_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Солидарное_общество_как_общество_развития.docx"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "104KАнализ социальных структур в контексте интегральной философии\n   [![[   ]](/icons/layout.gif)](%d0%a0%d0%b0%d0%b7%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-12.pdf)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%a0%d0%b0%d0%b7%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-12.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Размышления-12.pdf"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "2.9MОТ ВСЕЕДИНСТВА К НЕОВСЕЕДИНСТВУ Озёрск 2011\n   [![[   ]](/icons/unknown.gif)](%d0%9d%d0%b0%20%d0%bf%d1%83%d1%82%d0%b8%20%d0%ba%20%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d1%83%20%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9d%d0%b0%20%d0%bf%d1%83%d1%82%d0%b8%20%d0%ba%20%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d1%83%20%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "На пути к обществу развития.docx"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 28KФилософские основы формирования интегрального общества"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "О коллекции документов\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Этот каталог содержит материалы по интегральной физике, философии и математике. \n                Документы представлены в формате PDF для удобного просмотра и скачивания.\n            \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "PDF\n                Учебные материалы\n                Интегральная физика\n                Философия"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Внесите свой вклад в библиотеку\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Если у вас есть материалы, которые могут быть интересны читателям нашей библиотеки, мы приглашаем вас поделиться ими с сообществом. Это могут быть статьи, книги, исследования или другие публикации, связанные с интегральным подходом.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "contribute.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                            Предложить материал\n                        "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "&lt;\\n"
+        }
+      ]
+    }
+  ]
+}

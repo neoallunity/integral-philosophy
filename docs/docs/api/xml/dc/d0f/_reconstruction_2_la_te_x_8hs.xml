@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dc/d0f/_reconstruction_2_la_te_x_8hs" kind="file" language="C++">
+    <compoundname>LaTeX.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>LambdaCase<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>reconstruction<sp/>from<sp/>files<sp/>to<sp/>Markdown+TeX</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Reconstruction.LaTeX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(<sp/>LaTeXReconstructor(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ReconstructionConfig(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>reconstructLaTeX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>extractSections</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>extractMathContent</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>extractMetadata</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Types</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Validation<sp/>(Validator(..),<sp/>makeWarning)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text.IO<sp/>as<sp/>TIO</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.Directory<sp/>(doesFileExist)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Monad.IO.Class<sp/>(MonadIO,<sp/>liftIO)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Monad<sp/>(when)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.List<sp/>(isPrefixOf,<sp/>isInfixOf)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>reconstructor</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>LaTeXReconstructor<sp/>=<sp/>LaTeXReconstructor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>lrConfig<sp/>::<sp/>!ReconstructionConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruction<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ReconstructionConfig<sp/>=<sp/>ReconstructionConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>rcPreserveMath<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>rcPreserveCitations<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>rcExtractAbstract<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>rcOutputFormat<sp/>::<sp/>!ContentType<sp/>--<sp/>Markdown<sp/>or<sp/>TEI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>rcLanguage<sp/>::<sp/>!Text<sp/>--<sp/>&quot;russian&quot;,<sp/>&quot;english&quot;,<sp/>&quot;both&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">instance<sp/>Validator<sp/>LaTeXReconstructor<sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validate<sp/>reconstructor<sp/>doc<sp/>=<sp/>liftIO<sp/>$<sp/>reconstructLaTeX<sp/>reconstructor<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorName<sp/>_<sp/>=<sp/>&quot;LaTeX<sp/>Reconstructor&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorType<sp/>_<sp/>=<sp/>LaTeX</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruct<sp/>LaTeX<sp/>document<sp/>to<sp/>Markdown+TeX</highlight></codeline>
+<codeline><highlight class="normal">reconstructLaTeX<sp/>::<sp/>LaTeXReconstructor<sp/>-&gt;<sp/>Document<sp/>-&gt;<sp/>IO<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">reconstructLaTeX<sp/>reconstructor<sp/>doc<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>content<sp/>=<sp/>reconstructDocument<sp/>reconstructor<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>errors<sp/>&lt;-<sp/>validateReconstructedContent<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pure<sp/>$<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>vrErrors<sp/>=<sp/>errors</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/>vrWarnings<sp/>=<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/>vrScore<sp/>=<sp/>QualityScore<sp/>95.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/>vrProcessingTime<sp/>=<sp/>0.1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruct<sp/>document<sp/>to<sp/>Markdown<sp/>format</highlight></codeline>
+<codeline><highlight class="normal">reconstructDocument<sp/>::<sp/>LaTeXReconstructor<sp/>-&gt;<sp/>Document<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">reconstructDocument<sp/>reconstructor<sp/>doc<sp/>=<sp/>T.unlines</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>&quot;#<sp/>&quot;<sp/>&lt;&gt;<sp/>docTitle<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;**&quot;<sp/>&lt;&gt;<sp/>docAuthor<sp/>doc<sp/>&lt;&gt;<sp/>&quot;**&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]<sp/>&lt;&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(if<sp/>rcExtractAbstract<sp/>(lrConfig<sp/>reconstructor)<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>then<sp/>&quot;\n##<sp/>Abstract\n\n&quot;<sp/>&lt;&gt;<sp/>docAbstract<sp/>doc<sp/>&lt;&gt;<sp/>&quot;\n\n&quot;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>else<sp/>&quot;&quot;)<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>T.unlines<sp/>(map<sp/>(reconstructSection<sp/>reconstructor)<sp/>(docSections<sp/>doc))<sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(if<sp/>rcPreserveMath<sp/>(lrConfig<sp/>reconstructor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>then<sp/>reconstructMathContent<sp/>(docMathExpressions<sp/>doc)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>else<sp/>&quot;&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruct<sp/>individual<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">reconstructSection<sp/>::<sp/>LaTeXReconstructor<sp/>-&gt;<sp/>Section<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">reconstructSection<sp/>_<sp/>sec<sp/>=<sp/>T.unlines</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>T.replicate<sp/>(secLevel<sp/>sec<sp/>+<sp/>1)<sp/>&quot;#&quot;<sp/>&lt;&gt;<sp/>&quot;<sp/>&quot;<sp/>&lt;&gt;<sp/>secTitle<sp/>sec</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secContent<sp/>sec</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]<sp/>&lt;&gt;<sp/>T.unlines<sp/>(map<sp/>(\s<sp/>-&gt;<sp/>reconstructSection<sp/>(LaTeXReconstructor<sp/>defaultConfig)<sp/>s)<sp/>(secSubsections<sp/>sec))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>defaultConfig<sp/>=<sp/>ReconstructionConfig<sp/>True<sp/>True<sp/>True<sp/>Markdown<sp/>&quot;english&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruct<sp/>mathematical<sp/>content</highlight></codeline>
+<codeline><highlight class="normal">reconstructMathContent<sp/>::<sp/>[MathExpression]<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">reconstructMathContent<sp/>[]<sp/>=<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal">reconstructMathContent<sp/>math<sp/>=<sp/>T.unlines</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>&quot;##<sp/>Mathematical<sp/>Content&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>T.unlines<sp/>$<sp/>map<sp/>reconstructMathExpr<sp/>math</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Reconstruct<sp/>individual<sp/>math<sp/>expression</highlight></codeline>
+<codeline><highlight class="normal">reconstructMathExpr<sp/>::<sp/>MathExpression<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">reconstructMathExpr<sp/>=<sp/>\case</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>InlineMath<sp/>expr<sp/>-&gt;<sp/>&quot;$&quot;<sp/>&lt;&gt;<sp/>expr<sp/>&lt;&gt;<sp/>&quot;$&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>DisplayMath<sp/>expr<sp/>-&gt;<sp/>&quot;$$\n&quot;<sp/>&lt;&gt;<sp/>expr<sp/>&lt;&gt;<sp/>&quot;\n$$&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Equation<sp/>expr<sp/>labels<sp/>-&gt;<sp/>&quot;\\[\n&quot;<sp/>&lt;&gt;<sp/>expr<sp/>&lt;&gt;<sp/>&quot;\n\\]&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validate<sp/>reconstructed<sp/>content</highlight></codeline>
+<codeline><highlight class="normal">validateReconstructedContent<sp/>::<sp/>Text<sp/>-&gt;<sp/>IO<sp/>[ValidationError]</highlight></codeline>
+<codeline><highlight class="normal">validateReconstructedContent<sp/>content<sp/>=<sp/>pure<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>makeWarning<sp/>&quot;reconstruction&quot;<sp/>&quot;LaTeX<sp/>content<sp/>reconstructed<sp/>to<sp/>Markdown&quot;<sp/>&quot;&quot;<sp/>0<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>T.null<sp/>content<sp/>||<sp/>T.length<sp/>content<sp/>&lt;<sp/>10</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>sections<sp/>from<sp/>LaTeX<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">extractSections<sp/>::<sp/>Text<sp/>-&gt;<sp/>[Section]</highlight></codeline>
+<codeline><highlight class="normal">extractSections<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>sectionLines<sp/>=<sp/>filter<sp/>(isSectionLine<sp/>.<sp/>T.unpack)<sp/>(T.lines<sp/>content)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>map<sp/>parseSectionLine<sp/>sectionLines</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Check<sp/>if<sp/>line<sp/>is<sp/>a<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">isSectionLine<sp/>::<sp/>String<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">isSectionLine<sp/>line<sp/>=<sp/>any<sp/>(`isPrefixOf`<sp/>line)<sp/>[&quot;\\section&quot;,<sp/>&quot;\\subsection&quot;,<sp/>&quot;\\subsubsection&quot;]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Parse<sp/>section<sp/>line</highlight></codeline>
+<codeline><highlight class="normal">parseSectionLine<sp/>::<sp/>Text<sp/>-&gt;<sp/>Section</highlight></codeline>
+<codeline><highlight class="normal">parseSectionLine<sp/>line<sp/>=<sp/>Section</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>secLevel<sp/>=<sp/>countSectionLevel<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secTitle<sp/>=<sp/>extractSectionTitle<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secContent<sp/>=<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secSubsections<sp/>=<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Count<sp/>section<sp/>level</highlight></codeline>
+<codeline><highlight class="normal">countSectionLevel<sp/>::<sp/>Text<sp/>-&gt;<sp/>Int</highlight></codeline>
+<codeline><highlight class="normal">countSectionLevel<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\section&quot;<sp/>`T.isPrefixOf`<sp/>line<sp/>=<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\subsection&quot;<sp/>`T.isPrefixOf`<sp/>line<sp/>=<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\subsubsection&quot;<sp/>`T.isPrefixOf`<sp/>line<sp/>=<sp/>3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>otherwise<sp/>=<sp/>0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>section<sp/>title</highlight></codeline>
+<codeline><highlight class="normal">extractSectionTitle<sp/>::<sp/>Text<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">extractSectionTitle<sp/>line<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;{&quot;<sp/>line<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>(_:title:_)<sp/>-&gt;<sp/>T.replace<sp/>&quot;}&quot;<sp/>&quot;&quot;<sp/>title</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>line</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>math<sp/>content<sp/>from<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">extractMathContent<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractMathContent<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>display<sp/>=<sp/>extractDisplayMath<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>inline<sp/>=<sp/>extractInlineMath<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>equations<sp/>=<sp/>extractEquations<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>display<sp/>++<sp/>inline<sp/>++<sp/>equations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>display<sp/>math</highlight></codeline>
+<codeline><highlight class="normal">extractDisplayMath<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractDisplayMath<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\\\[&quot;<sp/>content<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[_,<sp/>math,<sp/>rest]<sp/>-&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\\\]&quot;<sp/>math<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[expr,<sp/>_]<sp/>-&gt;<sp/>[DisplayMath<sp/>(T.strip<sp/>expr)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>inline<sp/>math</highlight></codeline>
+<codeline><highlight class="normal">extractInlineMath<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractInlineMath<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>parts<sp/>=<sp/>T.splitOn<sp/>&quot;$&quot;<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>case<sp/>length<sp/>parts<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>n<sp/>|<sp/>n<sp/>&gt;=<sp/>3<sp/>-&gt;<sp/>take<sp/>(n<sp/>`div`<sp/>2)<sp/>$<sp/>zipWith<sp/>(\p1<sp/>p2<sp/>-&gt;<sp/>InlineMath<sp/>p1)<sp/>parts<sp/>(drop<sp/>1<sp/>parts)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>equations</highlight></codeline>
+<codeline><highlight class="normal">extractEquations<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractEquations<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\begin{equation}&quot;<sp/>content<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[_,<sp/>rest]<sp/>-&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\end{equation}&quot;<sp/>rest<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[eq,<sp/>_]<sp/>-&gt;<sp/>[Equation<sp/>(T.strip<sp/>eq)<sp/>[]]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>metadata<sp/>from<sp/>LaTeX</highlight></codeline>
+<codeline><highlight class="normal">extractMetadata<sp/>::<sp/>Text<sp/>-&gt;<sp/>Metadata</highlight></codeline>
+<codeline><highlight class="normal">extractMetadata<sp/>content<sp/>=<sp/>Metadata</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>metaLanguage<sp/>=<sp/>detectLanguage<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCreationDate<sp/>=<sp/>Nothing</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaModificationDate<sp/>=<sp/>Nothing</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaWordCount<sp/>=<sp/>countWords<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCharCount<sp/>=<sp/>T.length<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCustomFields<sp/>=<sp/>mempty</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Detect<sp/>document<sp/>language</highlight></codeline>
+<codeline><highlight class="normal">detectLanguage<sp/>::<sp/>Text<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">detectLanguage<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\begin{english}&quot;<sp/>`T.isInfixOf`<sp/>content<sp/>=<sp/>&quot;english&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\begin{russian}&quot;<sp/>`T.isInfixOf`<sp/>content<sp/>=<sp/>&quot;russian&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>T.any<sp/>(\c<sp/>-&gt;<sp/>c<sp/>&gt;=<sp/>&apos;А&apos;<sp/>&amp;&amp;<sp/>c<sp/>&lt;=<sp/>&apos;я&apos;)<sp/>content<sp/>=<sp/>&quot;russian&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>otherwise<sp/>=<sp/>&quot;english&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Count<sp/>words<sp/>in<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">countWords<sp/>::<sp/>Text<sp/>-&gt;<sp/>Int</highlight></codeline>
+<codeline><highlight class="normal">countWords<sp/>=<sp/>length<sp/>.<sp/>T.words<sp/>.<sp/>T.replace<sp/>&quot;\\&quot;<sp/>&quot;<sp/>&quot;</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction/LaTeX.hs"/>
+  </compounddef>
+</doxygen>

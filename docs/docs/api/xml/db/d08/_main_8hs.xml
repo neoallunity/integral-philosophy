@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="db/d08/_main_8hs" kind="file" language="C++">
+    <compoundname>Main.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#!/usr/bin/env<sp/>runhaskell</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Simple<sp/>working<sp/>demo</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.IO<sp/>(putStrLn)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.Environment<sp/>(getArgs)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">main<sp/>::<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">main<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>args<sp/>&lt;-<sp/>getArgs</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>args<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[&quot;validate&quot;,<sp/>file]<sp/>-&gt;<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;🔍<sp/>Validating<sp/>LaTeX<sp/>file:<sp/>&quot;<sp/>++<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>&quot;✅<sp/>Validation<sp/>complete!&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[&quot;reconstruct&quot;,<sp/>file]<sp/>-&gt;<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;🔧<sp/>Reconstructing<sp/>LaTeX<sp/>file:<sp/>&quot;<sp/>++<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>&quot;✅<sp/>Reconstruction<sp/>complete!&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[&quot;analyze&quot;,<sp/>file]<sp/>-&gt;<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;📊<sp/>Analyzing<sp/>LaTeX<sp/>file:<sp/>&quot;<sp/>++<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>&quot;✅<sp/>Analysis<sp/>complete!&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[&quot;help&quot;]<sp/>-&gt;<sp/>showHelp</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>showHelp</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">showHelp<sp/>::<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">showHelp<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;🎉<sp/>Integral<sp/>Philosophy<sp/>Publishing<sp/>System<sp/>-<sp/>Haskell<sp/>Implementation&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;Usage:<sp/>integral-philosophy<sp/>&lt;command&gt;<sp/>[options]&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;Commands:&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;<sp/><sp/>validate<sp/>&lt;file&gt;<sp/><sp/><sp/><sp/>Validate<sp/>LaTeX<sp/>file&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;<sp/><sp/>reconstruct<sp/>&lt;file&gt;<sp/><sp/>Reconstruct<sp/>LaTeX<sp/>to<sp/>Markdown&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;<sp/><sp/>analyze<sp/>&lt;file&gt;<sp/><sp/><sp/><sp/><sp/>Analyze<sp/>LaTeX<sp/>structure&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;<sp/><sp/>help<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Show<sp/>this<sp/>help<sp/>message&quot;</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/Main.hs"/>
+  </compounddef>
+</doxygen>

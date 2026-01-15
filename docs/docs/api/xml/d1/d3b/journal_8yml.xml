@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d1/d3b/journal_8yml" kind="file" language="C++">
+    <compoundname>journal.yml</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>journal.yml</highlight></codeline>
+<codeline><highlight class="normal">issue:<sp/>15</highlight></codeline>
+<codeline><highlight class="normal">year:<sp/>2025</highlight></codeline>
+<codeline><highlight class="normal">foreword:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>author:<sp/>Моисеев<sp/>В.И.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>text:<sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Текст<sp/>предисловия...</highlight></codeline>
+<codeline><highlight class="normal">articles:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>author:<sp/>Иванов<sp/>И.И.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title:<sp/>Онтология<sp/>квантовой<sp/>запутанности</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>abstract:<sp/>...</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/journal.yml"/>
+  </compounddef>
+</doxygen>

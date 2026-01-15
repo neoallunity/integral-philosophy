@@ -1,0 +1,1 @@
+digraph site_structure {\n  rankdir=TB;\n  splines=ortho;\n  node [shape=box, style=rounded, fontname="Arial"];\n  edge [fontname="Arial", fontsize=10];\n\n  label = "Site Structure: Unknown Site";\n  labelloc = "t";\n\n\n}

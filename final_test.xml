@@ -1,0 +1,44 @@
+<div type="level1" xml:id="final-test-document">
+  <head>Final Test Document</head>
+  <p>This is a comprehensive test of the
+  <hi rendition="simple:bold">Integral Philosophy Publishing
+  System</hi>.</p>
+  <div type="level2" xml:id="features-tested">
+    <head>Features Tested</head>
+    <list type="unordered">
+      <item>
+        <p><hi rendition="simple:bold">Markdown parsing</hi> with inline
+        math: = mc^2$</p>
+      </item>
+      <item>
+        <p><hi rendition="simple:bold">Code blocks</hi>:</p>
+        <ab type='codeblock python'>
+print('Hello, World!')
+</ab>
+      </item>
+      <item>
+        <p><hi rendition="simple:bold">Tables</hi>: | Feature | Status |
+        |———|——–| | Markdown| ✅ | | LaTeX | ✅ |</p>
+      </item>
+    </list>
+  </div>
+  <div type="level2" xml:id="philosophical-content">
+    <head>Philosophical Content</head>
+    <p>According to <hi rendition="simple:italic">Plato</hi> in his
+    <hi rendition="simple:bold">Republic</hi>, the concept of justice is
+    central to the ideal state.</p>
+    <quote>
+      <p><quote>The unexamined life is not worth living.</quote> -
+      Socrates</p>
+    </quote>
+  </div>
+  <div type="level2" xml:id="mathematical-formulas">
+    <head>Mathematical Formulas</head>
+    <p>Display math: 2011973_0^{} e^{-x} dx = 12011973</p>
+  </div>
+  <div type="level2" xml:id="bibliography-test">
+    <head>Bibliography Test</head>
+    <p>As discussed by Einstein [einstein1905], the theory of relativity
+    revolutionized our understanding of space and time.</p>
+  </div>
+</div>

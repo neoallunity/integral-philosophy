@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "base_url": "https://example.com",
+    "total_pages": 3
+  },
+  "nodes": [
+    {
+      "id": "example_com",
+      "label": "example.com",
+      "type": "page",
+      "style": {
+        "color": "#757575",
+        "shape": "rectangle"
+      },
+      "metadata": {
+        "url": "https://example.com",
+        "filename": "",
+        "title": "example.com",
+        "description": "",
+        "language": "",
+        "word_count": 0,
+        "scraped_at": ""
+      }
+    },
+    {
+      "id": "example_com_about",
+      "label": "about",
+      "type": "information",
+      "style": {
+        "color": "#00BCD4",
+        "shape": "rounded"
+      },
+      "metadata": {
+        "url": "https://example.com/about",
+        "filename": "",
+        "title": "about",
+        "description": "",
+        "language": "",
+        "word_count": 0,
+        "scraped_at": ""
+      }
+    },
+    {
+      "id": "example_com_contact",
+      "label": "contact",
+      "type": "information",
+      "style": {
+        "color": "#00BCD4",
+        "shape": "rounded"
+      },
+      "metadata": {
+        "url": "https://example.com/contact",
+        "filename": "",
+        "title": "contact",
+        "description": "",
+        "language": "",
+        "word_count": 0,
+        "scraped_at": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "example_com",
+      "target": "example_com_about",
+      "label": "link",
+      "style": {
+        "color": "#1976D2",
+        "style": "dashed"
+      }
+    },
+    {
+      "source": "example_com",
+      "target": "example_com_contact",
+      "label": "link",
+      "style": {
+        "color": "#1976D2",
+        "style": "dashed"
+      }
+    },
+    {
+      "source": "example_com_about",
+      "target": "example_com",
+      "label": "link",
+      "style": {
+        "color": "#1976D2",
+        "style": "dashed"
+      }
+    },
+    {
+      "source": "example_com_contact",
+      "target": "example_com",
+      "label": "link",
+      "style": {
+        "color": "#1976D2",
+        "style": "dashed"
+      }
+    }
+  ],
+  "hierarchy": {
+    "root": [
+      "https://example.com",
+      "https://example.com/about",
+      "https://example.com/contact"
+    ],
+    "about": [
+      "https://example.com/about"
+    ],
+    "contact": [
+      "https://example.com/contact"
+    ]
+  },
+  "statistics": {
+    "total_pages": 3,
+    "total_links": 4,
+    "page_types": {
+      "page": 1,
+      "information": 2
+    },
+    "hierarchy_levels": 3,
+    "average_links_per_page": 1.3333333333333333
+  }
+}

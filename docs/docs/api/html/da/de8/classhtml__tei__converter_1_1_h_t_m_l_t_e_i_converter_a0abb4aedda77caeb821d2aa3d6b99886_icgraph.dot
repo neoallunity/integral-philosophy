@@ -1,0 +1,13 @@
+digraph "html_tei_converter.HTMLTEIConverter._generate_html_diff"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="html_tei_converter.HTMLTEIConverter.\l_generate_html_diff",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="html_tei_converter.HTMLTEIConverter.test\l_isomorphism",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter.html#a7d367bf315a5c19de81fa852bec09282",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="html_tei_converter.HTMLTEIConverter.batch\l_test_isomorphism",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter.html#add48d65f9b422f454ab226b866dca44c",tooltip=" "];
+}

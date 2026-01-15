@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="df/de2/cfg-glossary-index_8tex" kind="file" language="C++">
+    <compoundname>cfg-glossary-index.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-glossary-index.tex<sp/>—<sp/>глоссарии<sp/>и<sp/>указатели</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Глоссарии/сокращения/обозначения</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>(glossaries-extra<sp/>functionality<sp/>disabled<sp/>as<sp/>it<sp/>is<sp/>not<sp/>currently<sp/>used)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Указатели<sp/>(несколько)</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{imakeidx}</highlight></codeline>
+<codeline><highlight class="normal">\makeindex[name=subject,title={Предметный<sp/>указатель}]</highlight></codeline>
+<codeline><highlight class="normal">\makeindex[name=names,title={Именной<sp/>указатель}]</highlight></codeline>
+<codeline><highlight class="normal">\makeindex[name=geo,title={Географический<sp/>указатель}]</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-glossary-index.tex"/>
+  </compounddef>
+</doxygen>

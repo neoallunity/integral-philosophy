@@ -1,0 +1,16 @@
+/home/domini/src/Magazine/Magazine/haskell-project/integral-philosophy.cabal:
+  hash: 382b4d03cebe19769f8f935df15faaf3b0c9993934df9cecab1566dc47b69b50
+/home/domini/src/Magazine/Magazine/haskell-project/package.yaml:
+  hash: 364ce0acd8b319a82e01dee03c2f098de70c539d19bae5baef8c2e955dd4146e
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Prelude.hs:
+  hash: a7bcb1529a9ff1c6dc9fb99903251b2deb15c29e0e29b27c4e48a0365090e83f
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction/LaTeX.hs:
+  hash: 7ae590079ef86bba46d47aed528a19330e37b16a5568036ec67f8850cb411cc0
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Types.hs:
+  hash: c83b87e8e9340242cb17de8b3b501cf91c6a4d0364baa891bf0649182fabdfbe
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Utils/Time.hs:
+  hash: 8979a04f79a57323fa34bcb8fc6fee307c5e4e28da2d65366d5005a7880e63c8
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation.hs:
+  hash: e5ce63e28cbe0ebccf2cc878be82574e478e116eb393b0fd507a6aedf9d079ff
+/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation/LaTeX.hs:
+  hash: b9e19f3cc156bce79c90fed4534a215a630d1309f4e5fa1212a4f3256ed9af04

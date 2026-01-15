@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d2/dc4/_validation_8hs" kind="file" language="C++">
+    <compoundname>Validation.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>LambdaCase<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Core<sp/>validation<sp/>framework</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Validation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(<sp/>--<sp/>*<sp/>Validation<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Validator(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Validation(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--<sp/>*<sp/>Core<sp/>validation<sp/>functions<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>validateDocument</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>validateMultiple</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>combineResults</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>calculateQualityScore</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--<sp/>*<sp/>Error<sp/>handling</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationError(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationSeverity(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationResult(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>makeError</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>makeWarning</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>makeInfo</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Types</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>IntegralPhilosophy.Utils.Time<sp/>as<sp/>TimeUtils</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Time<sp/>(getCurrentTime,<sp/>UTCTime,<sp/>diffUTCTime)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Monad.IO.Class<sp/>(MonadIO,<sp/>liftIO)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.DeepSeq<sp/>(NFData,<sp/>rnf)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validation<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>Validator<sp/>a<sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validate<sp/>::<sp/>MonadIO<sp/>m<sp/>=&gt;<sp/>a<sp/>-&gt;<sp/>Document<sp/>-&gt;<sp/>m<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorName<sp/>::<sp/>a<sp/>-&gt;<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorType<sp/>::<sp/>a<sp/>-&gt;<sp/>ContentType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validation<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Validation<sp/>=<sp/>Validation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>valConfig<sp/>::<sp/>!ValidationConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>valContext<sp/>::<sp/>!ProcessingContext</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>valStartTime<sp/>::<sp/>!UTCTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validate<sp/>a<sp/>single<sp/>document<sp/>with<sp/>a<sp/>specific<sp/>validator</highlight></codeline>
+<codeline><highlight class="normal">validateDocument<sp/>::<sp/>(MonadIO<sp/>m,<sp/>NFData<sp/>a,<sp/>Validator<sp/>a)<sp/>=&gt;<sp/>a<sp/>-&gt;<sp/>Document<sp/>-&gt;<sp/>m<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">validateDocument<sp/>validator<sp/>doc<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>startTime<sp/>&lt;-<sp/>liftIO<sp/>getCurrentTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>result<sp/>&lt;-<sp/>validate<sp/>validator<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>endTime<sp/>&lt;-<sp/>liftIO<sp/>getCurrentTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pure<sp/>$<sp/>result</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/>vrProcessingTime<sp/>=<sp/>calculateTime<sp/>startTime<sp/>endTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validate<sp/>multiple<sp/>documents<sp/>with<sp/>multiple<sp/>validators</highlight></codeline>
+<codeline><highlight class="normal">validateMultiple<sp/>::<sp/>(MonadIO<sp/>m,<sp/>NFData<sp/>a,<sp/>Validator<sp/>a)<sp/>=&gt;<sp/>[a]<sp/>-&gt;<sp/>[Document]<sp/>-&gt;<sp/>m<sp/>[ValidationResult]</highlight></codeline>
+<codeline><highlight class="normal">validateMultiple<sp/>validators<sp/>documents<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>results<sp/>&lt;-<sp/>mapM<sp/>(\doc<sp/>-&gt;<sp/>mapM<sp/>(`validateDocument`<sp/>doc)<sp/>validators)<sp/>documents</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pure<sp/>$<sp/>concat<sp/>results</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Combine<sp/>multiple<sp/>validation<sp/>results</highlight></codeline>
+<codeline><highlight class="normal">combineResults<sp/>::<sp/>[ValidationResult]<sp/>-&gt;<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">combineResults<sp/>[]<sp/>=<sp/>ValidationResult<sp/>[]<sp/>[]<sp/>(QualityScore<sp/>100.0)<sp/>0.0</highlight></codeline>
+<codeline><highlight class="normal">combineResults<sp/>results<sp/>=<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>vrErrors<sp/>=<sp/>concatMap<sp/>vrErrors<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrWarnings<sp/>=<sp/>concatMap<sp/>vrWarnings<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrScore<sp/>=<sp/>calculateQualityScore<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrProcessingTime<sp/>=<sp/>sum<sp/>$<sp/>map<sp/>vrProcessingTime<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Calculate<sp/>quality<sp/>score<sp/>from<sp/>validation<sp/>results</highlight></codeline>
+<codeline><highlight class="normal">calculateQualityScore<sp/>::<sp/>[ValidationResult]<sp/>-&gt;<sp/>QualityScore</highlight></codeline>
+<codeline><highlight class="normal">calculateQualityScore<sp/>[]<sp/>=<sp/>QualityScore<sp/>100.0</highlight></codeline>
+<codeline><highlight class="normal">calculateQualityScore<sp/>results<sp/>=<sp/>QualityScore<sp/>$<sp/>max<sp/>0<sp/>$<sp/>100.0<sp/>-<sp/>errorPenalty<sp/>-<sp/>warningPenalty</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>totalErrors<sp/>=<sp/>sum<sp/>$<sp/>length<sp/>.<sp/>vrErrors<sp/>&lt;$&gt;<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>totalWarnings<sp/>=<sp/>sum<sp/>$<sp/>length<sp/>.<sp/>vrWarnings<sp/>&lt;$&gt;<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>errorPenalty<sp/>=<sp/>fromIntegral<sp/>totalErrors<sp/>*<sp/>10.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>warningPenalty<sp/>=<sp/>fromIntegral<sp/>totalWarnings<sp/>*<sp/>2.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Calculate<sp/>time<sp/>difference<sp/>(local<sp/>version<sp/>to<sp/>avoid<sp/>conflicts)</highlight></codeline>
+<codeline><highlight class="normal">calculateTime<sp/>::<sp/>UTCTime<sp/>-&gt;<sp/>UTCTime<sp/>-&gt;<sp/>Double</highlight></codeline>
+<codeline><highlight class="normal">calculateTime<sp/>start<sp/>end<sp/>=<sp/>realToFrac<sp/>$<sp/>diffUTCTime<sp/>end<sp/>start</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Error<sp/>constructors</highlight></codeline>
+<codeline><highlight class="normal">makeError<sp/>::<sp/>ValidationSeverity<sp/>-&gt;<sp/>Text<sp/>-&gt;<sp/>Text<sp/>-&gt;<sp/>FilePath<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>ValidationError</highlight></codeline>
+<codeline><highlight class="normal">makeError<sp/>=<sp/>ValidationError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">makeWarning<sp/>::<sp/>Text<sp/>-&gt;<sp/>Text<sp/>-&gt;<sp/>FilePath<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>ValidationError</highlight></codeline>
+<codeline><highlight class="normal">makeWarning<sp/>=<sp/>ValidationError<sp/>Warning</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">makeInfo<sp/>::<sp/>Text<sp/>-&gt;<sp/>Text<sp/>-&gt;<sp/>FilePath<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>Int<sp/>-&gt;<sp/>ValidationError<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">makeInfo<sp/>=<sp/>ValidationError<sp/>Info</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation.hs"/>
+  </compounddef>
+</doxygen>

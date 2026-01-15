@@ -1,0 +1,1292 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральное сообщество - Проекты\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/projects.shtml#math-philosophy\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:45:57\\n\\n---\\n\\n["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ещё"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Проекты сообщества\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Неовсеединство\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Современное развитие философии всеединства с использованием математических и логических методов. Направление стремится к созданию строгой и универсальной философской системы.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Развитие идей В.С. Соловьёва и С.Л. Франка"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Применение современных математических методов"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Синтез рационального и духовного познания"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "neovseedinstvo.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Изучить  →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегралика\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральный подход к познанию, объединяющий различные методологии и области знания в единую систему понимания реальности.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интеграция научного и философского знания"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Холистический подход к исследованию"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Междисциплинарная методология"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "integralika.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Подробнее →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Единое знание\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Проект синтеза всех областей знания в единую непротиворечивую систему, основанную на принципах интегральной философии.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Объединение науки, философии и духовности"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Создание универсальной теории познания"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Преодоление фрагментации знания"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "edinoe-znanie.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Исследовать →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральная медицина\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Целостный подход к здоровью человека, объединяющий достижения современной медицины с традиционными методами лечения и духовными практиками.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Синтез западной и восточной медицины"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Учет духовного измерения здоровья"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Персонализированный подход"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "integralnaja-medicina.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Узнать больше →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Математизация философии\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Применение математических методов для решения классических философских проблем и создания строгих логических систем.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Формализация философских концепций"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Развитие логических систем"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Количественные методы в гуманитарных науках"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "matematizacija-filosofii.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Исследовать →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Проблема сознание-тело\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральный подход к решению классической философской проблемы взаимосвязи ментального и физического.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Преодоление дуализма и редукционизма"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральная теория сознания"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Практические применения в медицине"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "problema-soznanie-telo.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Изучить →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Методы развития личности\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Методы преобразования личности\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Комплексные подходы к развитию и трансформации человеческой личности на основе интегральных принципов.\n                    \\n\\n\n                    - \n                            КР-психология\\n- \n                            Интегральные практики развития\\n- \n                            Методы синтеза противоположностей\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "metody-preobrazovanija-lichnosti.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Изучить методы →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Уровни развития личности\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Структурированная модель этапов развития человеческого сознания и духовного роста.\n                    \\n\\n\n                    - \n                            Иерархия уровней сознания\\n- \n                            Критерии духовного развития\\n- \n                            Практические рекомендации\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "urovni-razvitija-lichnosti.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Изучить уровни →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Присоединяйтесь к проектам\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Станьте частью интегрального сообщества и участвуйте в развитии новых направлений философии и науки\n                \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Институт науки\n                    "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Форум сообщества\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "image",
+          "attributes": {
+            "alt": "Логотип Интегрального сообщества",
+            "src": "https://allunity.ru/img/logo.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Консолидация всех конструктивных сил на основе принципов интегральной философии.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основные разделы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ресурсы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Контакты\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://u0173845:Allunity1!!@webstat.allunity.ru/index.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Интегральное сообщество  ©  2015-2025"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\\n\\n"
+        }
+      ]
+    }
+  ]
+}

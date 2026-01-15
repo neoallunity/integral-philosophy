@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="df/dae/namespaceextract__bibliography" kind="namespace" language="Python">
+    <compoundname>extract_bibliography</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1ae756c30899a4afc25a7306194305d3c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.extract_citations_from_latex</definition>
+        <argsstring>(latex_file)</argsstring>
+        <name>extract_citations_from_latex</name>
+        <qualifiedname>extract_bibliography.extract_citations_from_latex</qualifiedname>
+        <param>
+          <type>latex_file</type>
+          <defname>latex_file</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract all citation keys from a LaTeX file.
+
+Args:
+    latex_file (Path): Path to the LaTeX file
+
+Returns:
+    set: Set of citation keys found in the file
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="16" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="16" bodyend="65"/>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1a02e817bb7c1bea3d92058625f8d932fb" compoundref="d4/dea/extract__bibliography_8py" startline="178" endline="238">process_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1a8157a0bf8db7d2f97c82cacc05534d70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.find_context_info</definition>
+        <argsstring>(latex_file, author_name)</argsstring>
+        <name>find_context_info</name>
+        <qualifiedname>extract_bibliography.find_context_info</qualifiedname>
+        <param>
+          <type>latex_file</type>
+          <defname>latex_file</defname>
+        </param>
+        <param>
+          <type>author_name</type>
+          <defname>author_name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Find context information for an author in the text.
+
+Args:
+    latex_file (Path): Path to the LaTeX file
+    author_name (str): Author name to search for
+
+Returns:
+    dict: Context information including year, title, etc.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="66" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="66" bodyend="114"/>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1af4f9f5e90e68762492bcacade6c9b5f0" compoundref="d4/dea/extract__bibliography_8py" startline="115" endline="177">create_bibtex_entry</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1af4f9f5e90e68762492bcacade6c9b5f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.create_bibtex_entry</definition>
+        <argsstring>(citation_key, latex_file)</argsstring>
+        <name>create_bibtex_entry</name>
+        <qualifiedname>extract_bibliography.create_bibtex_entry</qualifiedname>
+        <param>
+          <type>citation_key</type>
+          <defname>citation_key</defname>
+        </param>
+        <param>
+          <type>latex_file</type>
+          <defname>latex_file</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a BibTeX entry for a citation based on context analysis.
+
+Args:
+    citation_key (str): The citation key
+    latex_file (Path): Path to the LaTeX file
+
+Returns:
+    str: BibTeX entry or None if not enough information
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="115" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="115" bodyend="177"/>
+        <references refid="df/dae/namespaceextract__bibliography_1a8157a0bf8db7d2f97c82cacc05534d70" compoundref="d4/dea/extract__bibliography_8py" startline="66" endline="114">find_context_info</references>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1a02e817bb7c1bea3d92058625f8d932fb" compoundref="d4/dea/extract__bibliography_8py" startline="178" endline="238">process_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1a02e817bb7c1bea3d92058625f8d932fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.process_article</definition>
+        <argsstring>(article_dir)</argsstring>
+        <name>process_article</name>
+        <qualifiedname>extract_bibliography.process_article</qualifiedname>
+        <param>
+          <type>article_dir</type>
+          <defname>article_dir</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Process a single article and generate its bibliography file.
+
+Args:
+    article_dir (Path): Path to the article directory
+
+Returns:
+    int: Number of citations processed
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="178" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="178" bodyend="238"/>
+        <references refid="df/dae/namespaceextract__bibliography_1af4f9f5e90e68762492bcacade6c9b5f0" compoundref="d4/dea/extract__bibliography_8py" startline="115" endline="177">create_bibtex_entry</references>
+        <references refid="df/dae/namespaceextract__bibliography_1ae756c30899a4afc25a7306194305d3c4" compoundref="d4/dea/extract__bibliography_8py" startline="16" endline="65">extract_citations_from_latex</references>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1a7e605d5e6f91c5bd22a412fe298adc9b" compoundref="d4/dea/extract__bibliography_8py" startline="283" endline="315">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1ac5acfb9f990161ac49d7ba2f3f446b72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.update_master_bibliography</definition>
+        <argsstring>()</argsstring>
+        <name>update_master_bibliography</name>
+        <qualifiedname>extract_bibliography.update_master_bibliography</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Update the master bibliography from all individual article bibliographies.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="239" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="239" bodyend="282"/>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1a7e605d5e6f91c5bd22a412fe298adc9b" compoundref="d4/dea/extract__bibliography_8py" startline="283" endline="315">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="df/dae/namespaceextract__bibliography_1a7e605d5e6f91c5bd22a412fe298adc9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>extract_bibliography.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>extract_bibliography.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function to handle command line arguments and run extraction.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="283" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" bodystart="283" bodyend="315"/>
+        <references refid="df/dae/namespaceextract__bibliography_1a7e605d5e6f91c5bd22a412fe298adc9b" compoundref="d4/dea/extract__bibliography_8py" startline="283" endline="315">main</references>
+        <references refid="df/dae/namespaceextract__bibliography_1a02e817bb7c1bea3d92058625f8d932fb" compoundref="d4/dea/extract__bibliography_8py" startline="178" endline="238">process_article</references>
+        <references refid="df/dae/namespaceextract__bibliography_1ac5acfb9f990161ac49d7ba2f3f446b72" compoundref="d4/dea/extract__bibliography_8py" startline="239" endline="282">update_master_bibliography</references>
+        <referencedby refid="df/dae/namespaceextract__bibliography_1a7e605d5e6f91c5bd22a412fe298adc9b" compoundref="d4/dea/extract__bibliography_8py" startline="283" endline="315">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Bibliography Extractor for Integral Philosophy Publishing System
+
+This script extracts citations from LaTeX files and generates bibliography files.
+It can extract citations from all articles and create individual .bib files for each article.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/extract_bibliography.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

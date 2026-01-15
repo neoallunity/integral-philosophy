@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/d57/namespacetest__basic" kind="namespace" language="Python">
+    <compoundname>test_basic</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d7/d57/namespacetest__basic_1a735da0cbf1dd4db1e47fad62762ce354" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_basic.test_latex_compilation</definition>
+        <argsstring>()</argsstring>
+        <name>test_latex_compilation</name>
+        <qualifiedname>test_basic.test_latex_compilation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Тест базовой LaTeX компиляции.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" line="13" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" bodystart="13" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/d57/namespacetest__basic_1a379b18f28381575becac4769e23aaf7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_basic.test_makefile</definition>
+        <argsstring>()</argsstring>
+        <name>test_makefile</name>
+        <qualifiedname>test_basic.test_makefile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Тест Makefile.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" line="65" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" bodystart="65" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/d57/namespacetest__basic_1a6050ac19ac585b6e384b38facc047c5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_basic.test_project_structure</definition>
+        <argsstring>()</argsstring>
+        <name>test_project_structure</name>
+        <qualifiedname>test_basic.test_project_structure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Тест структуры проекта.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" line="90" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" bodystart="90" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/d57/namespacetest__basic_1a54e98f2e1a994bf913089df457973465" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_basic.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>test_basic.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Запуск всех тестов.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" line="120" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" bodystart="120" bodyend="156"/>
+        <references refid="d7/d57/namespacetest__basic_1a54e98f2e1a994bf913089df457973465" compoundref="d8/ddf/test__basic_8py" startline="120" endline="156">main</references>
+        <referencedby refid="d7/d57/namespacetest__basic_1a54e98f2e1a994bf913089df457973465" compoundref="d8/ddf/test__basic_8py" startline="120" endline="156">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Базовый тест LaTeX-журнала без pytest.
+Проверяет, что структура проекта корректна и LaTeX компилируется.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/test_basic.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

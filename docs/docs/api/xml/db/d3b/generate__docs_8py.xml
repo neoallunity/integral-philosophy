@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="db/d3b/generate__docs_8py" kind="file" language="Python">
+    <compoundname>generate_docs.py</compoundname>
+    <innernamespace refid="d5/d50/namespacegenerate__docs">generate_docs</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="d5/d50/namespacegenerate__docs" refkind="compound"><highlight class="comment">#!/usr/bin/env<sp/>python3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">#<sp/>API<sp/>Documentation<sp/>Generator<sp/>for<sp/>Integral<sp/>Philosophy<sp/>Publishing<sp/>System</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">#<sp/>=================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>os</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>sys</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>subprocess</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>argparse</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pathlib<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Path</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" kindref="member">run_command</ref>(cmd,<sp/>description=&quot;&quot;):</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Run<sp/>a<sp/>command<sp/>with<sp/>error<sp/>handling.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;🔧<sp/>{description}...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cmd,<sp/>shell=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>check=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.stdout:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(result.stdout)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>subprocess.CalledProcessError<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;❌<sp/>Error:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>e.stderr:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Error<sp/>output:<sp/>{e.stderr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" kindref="member">generate_api_docs</ref>():</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Generate<sp/>API<sp/>documentation<sp/>using<sp/>Doxygen.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;🚀<sp/>Generating<sp/>API<sp/>documentation...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Check<sp/>if<sp/>Doxygen<sp/>is<sp/>installed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/><ref refid="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" kindref="member">run_command</ref>(</highlight><highlight class="stringliteral">&quot;doxygen<sp/>--version&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Checking<sp/>Doxygen<sp/>installation&quot;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;❌<sp/>Doxygen<sp/>not<sp/>found.<sp/>Please<sp/>install<sp/>Doxygen:&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>Ubuntu/Debian:<sp/>sudo<sp/>apt-get<sp/>install<sp/>doxygen&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>macOS:<sp/>brew<sp/>install<sp/>doxygen&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>pip:<sp/>pip<sp/>install<sp/>doxygen&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Run<sp/>Doxygen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" kindref="member">run_command</ref>(</highlight><highlight class="stringliteral">&quot;doxygen<sp/>Doxyfile&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Generating<sp/>API<sp/>documentation&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="d5/d50/namespacegenerate__docs_1a4e16faeb0b5dce8fa495dd60242c0216" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d5/d50/namespacegenerate__docs_1a4e16faeb0b5dce8fa495dd60242c0216" kindref="member">generate_user_docs</ref>():</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Generate<sp/>user<sp/>documentation<sp/>from<sp/>markdown<sp/>files.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;📚<sp/>Generating<sp/>user<sp/>documentation...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>docs_dir<sp/>=<sp/>Path(</highlight><highlight class="stringliteral">&quot;docs/user&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>docs_dir.exists():</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>docs_dir.mkdir(parents=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Copy<sp/>README<sp/>to<sp/>user<sp/>docs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>readme_src<sp/>=<sp/>Path(</highlight><highlight class="stringliteral">&quot;docs/README.md&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>readme_src.exists():</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>readme_dst<sp/>=<sp/>docs_dir<sp/>/<sp/></highlight><highlight class="stringliteral">&quot;README.md&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>shutil</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shutil.copy2(readme_src,<sp/>readme_dst)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;✅<sp/>Copied<sp/>README<sp/>to<sp/>{readme_dst}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="d5/d50/namespacegenerate__docs_1ac6fb3586a7089ec0c784b73d6b7c32f4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d5/d50/namespacegenerate__docs_1ac6fb3586a7089ec0c784b73d6b7c32f4" kindref="member">generate_dev_docs</ref>():</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Generate<sp/>development<sp/>documentation.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;🛠️<sp/>Generating<sp/>development<sp/>documentation...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>dev_docs_dir<sp/>=<sp/>Path(</highlight><highlight class="stringliteral">&quot;docs/development&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>dev_docs_dir.exists():</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dev_docs_dir.mkdir(parents=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>development<sp/>guide</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>dev_guide<sp/>=<sp/>dev_docs_dir<sp/>/<sp/></highlight><highlight class="stringliteral">&quot;DEVELOPMENT.md&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>dev_content<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;#<sp/>Development<sp/>Guide</highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral">##<sp/>Build<sp/>Systems</highlight></codeline>
+<codeline lineno="78"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="79"><highlight class="stringliteral">This<sp/>project<sp/>supports<sp/>multiple<sp/>build<sp/>systems:</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral">###<sp/>SCons<sp/>(Recommended)</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral">```bash</highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral">./build-systems/scons/scons-helper<sp/>init</highlight></codeline>
+<codeline lineno="84"><highlight class="stringliteral">./build-systems/scons/scons-helper<sp/>build</highlight></codeline>
+<codeline lineno="85"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="86"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="87"><highlight class="stringliteral">###<sp/>CMake</highlight></codeline>
+<codeline lineno="88"><highlight class="stringliteral">```bash</highlight></codeline>
+<codeline lineno="89"><highlight class="stringliteral">mkdir<sp/>-p<sp/>cmake-build<sp/>&amp;&amp;<sp/>cd<sp/>cmake-build</highlight></codeline>
+<codeline lineno="90"><highlight class="stringliteral">cmake<sp/>../build-systems/cmake/</highlight></codeline>
+<codeline lineno="91"><highlight class="stringliteral">make</highlight></codeline>
+<codeline lineno="92"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral">###<sp/>Autotools</highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral">```bash</highlight></codeline>
+<codeline lineno="96"><highlight class="stringliteral">cd<sp/>build-systems/autotools/</highlight></codeline>
+<codeline lineno="97"><highlight class="stringliteral">./bootstrap</highlight></codeline>
+<codeline lineno="98"><highlight class="stringliteral">./configure</highlight></codeline>
+<codeline lineno="99"><highlight class="stringliteral">make</highlight></codeline>
+<codeline lineno="100"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="101"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="102"><highlight class="stringliteral">###<sp/>Make</highlight></codeline>
+<codeline lineno="103"><highlight class="stringliteral">```bash</highlight></codeline>
+<codeline lineno="104"><highlight class="stringliteral">make<sp/>-C<sp/>build-systems/make/</highlight></codeline>
+<codeline lineno="105"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="106"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="107"><highlight class="stringliteral">##<sp/>Project<sp/>Structure</highlight></codeline>
+<codeline lineno="108"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="109"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="110"><highlight class="stringliteral">Integral<sp/>Philosophy<sp/>Publishing<sp/>System/</highlight></codeline>
+<codeline lineno="111"><highlight class="stringliteral">├──<sp/>build-systems/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Build<sp/>system<sp/>configurations</highlight></codeline>
+<codeline lineno="112"><highlight class="stringliteral">│<sp/><sp/><sp/>├──<sp/>scons/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>SCons<sp/>build<sp/>system</highlight></codeline>
+<codeline lineno="113"><highlight class="stringliteral">│<sp/><sp/><sp/>├──<sp/>cmake/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>CMake<sp/>build<sp/>system</highlight></codeline>
+<codeline lineno="114"><highlight class="stringliteral">│<sp/><sp/><sp/>├──<sp/>autotools/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Autotools<sp/>build<sp/>system</highlight></codeline>
+<codeline lineno="115"><highlight class="stringliteral">│<sp/><sp/><sp/>└──<sp/>make/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Traditional<sp/>Make</highlight></codeline>
+<codeline lineno="116"><highlight class="stringliteral">├──<sp/>haskell-project/<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Haskell<sp/>source<sp/>code</highlight></codeline>
+<codeline lineno="117"><highlight class="stringliteral">├──<sp/>scripts/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Utility<sp/>scripts</highlight></codeline>
+<codeline lineno="118"><highlight class="stringliteral">├──<sp/>config/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Configuration<sp/>files</highlight></codeline>
+<codeline lineno="119"><highlight class="stringliteral">├──<sp/>examples/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Example<sp/>outputs</highlight></codeline>
+<codeline lineno="120"><highlight class="stringliteral">├──<sp/>docs/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Documentation</highlight></codeline>
+<codeline lineno="121"><highlight class="stringliteral">│<sp/><sp/><sp/>├──<sp/>api/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>API<sp/>documentation<sp/>(Doxygen)</highlight></codeline>
+<codeline lineno="122"><highlight class="stringliteral">│<sp/><sp/><sp/>├──<sp/>user/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>User<sp/>documentation</highlight></codeline>
+<codeline lineno="123"><highlight class="stringliteral">│<sp/><sp/><sp/>└──<sp/>development/<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Development<sp/>docs</highlight></codeline>
+<codeline lineno="124"><highlight class="stringliteral">├──<sp/>tests/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Test<sp/>files</highlight></codeline>
+<codeline lineno="125"><highlight class="stringliteral">└──<sp/>legacy/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Old/deprecated<sp/>files</highlight></codeline>
+<codeline lineno="126"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="127"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="128"><highlight class="stringliteral">##<sp/>Contributing</highlight></codeline>
+<codeline lineno="129"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="130"><highlight class="stringliteral">1.<sp/>Fork<sp/>the<sp/>repository</highlight></codeline>
+<codeline lineno="131"><highlight class="stringliteral">2.<sp/>Create<sp/>a<sp/>feature<sp/>branch</highlight></codeline>
+<codeline lineno="132"><highlight class="stringliteral">3.<sp/>Make<sp/>your<sp/>changes</highlight></codeline>
+<codeline lineno="133"><highlight class="stringliteral">4.<sp/>Test<sp/>with<sp/>all<sp/>build<sp/>systems</highlight></codeline>
+<codeline lineno="134"><highlight class="stringliteral">5.<sp/>Submit<sp/>a<sp/>pull<sp/>request</highlight></codeline>
+<codeline lineno="135"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="136"><highlight class="stringliteral">##<sp/>Testing</highlight></codeline>
+<codeline lineno="137"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="138"><highlight class="stringliteral">```bash</highlight></codeline>
+<codeline lineno="139"><highlight class="stringliteral">#<sp/>Run<sp/>basic<sp/>tests</highlight></codeline>
+<codeline lineno="140"><highlight class="stringliteral">./scripts/test_basic.py</highlight></codeline>
+<codeline lineno="141"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="142"><highlight class="stringliteral">#<sp/>Run<sp/>validation<sp/>tests</highlight></codeline>
+<codeline lineno="143"><highlight class="stringliteral">./scripts/test_validator_structure.py</highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral">#<sp/>Run<sp/>with<sp/>specific<sp/>build<sp/>system</highlight></codeline>
+<codeline lineno="146"><highlight class="stringliteral">./build-systems/scons/scons-helper<sp/>test</highlight></codeline>
+<codeline lineno="147"><highlight class="stringliteral">```</highlight></codeline>
+<codeline lineno="148"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(dev_guide,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(dev_content)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;✅<sp/>Created<sp/>development<sp/>guide:<sp/>{dev_guide}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" kindref="member">main</ref>():</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Main<sp/>function.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>parser<sp/>=<sp/>argparse.ArgumentParser(</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>description=</highlight><highlight class="stringliteral">&quot;Generate<sp/>documentation<sp/>for<sp/>Integral<sp/>Philosophy<sp/>Publishing<sp/>System&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>formatter_class=argparse.RawDescriptionHelpFormatter,</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;--api&quot;</highlight><highlight class="normal">,<sp/>action=</highlight><highlight class="stringliteral">&quot;store_true&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Generate<sp/>API<sp/>documentation<sp/>(Doxygen)&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;--user&quot;</highlight><highlight class="normal">,<sp/>action=</highlight><highlight class="stringliteral">&quot;store_true&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Generate<sp/>user<sp/>documentation&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;--dev&quot;</highlight><highlight class="normal">,<sp/>action=</highlight><highlight class="stringliteral">&quot;store_true&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Generate<sp/>development<sp/>documentation&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight><highlight class="stringliteral">&quot;--all&quot;</highlight><highlight class="normal">,<sp/>action=</highlight><highlight class="stringliteral">&quot;store_true&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Generate<sp/>all<sp/>documentation&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>args<sp/>=<sp/>parser.parse_args()</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Default<sp/>to<sp/>all<sp/>if<sp/>no<sp/>specific<sp/>option<sp/>given</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>any([args.api,<sp/>args.user,<sp/>args.dev]):</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>args.all<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>success<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>args.all<sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>args.api:</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success<sp/>&amp;=<sp/><ref refid="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" kindref="member">generate_api_docs</ref>()</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>args.all<sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>args.user:</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success<sp/>&amp;=<sp/><ref refid="d5/d50/namespacegenerate__docs_1a4e16faeb0b5dce8fa495dd60242c0216" kindref="member">generate_user_docs</ref>()</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>args.all<sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>args.dev:</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success<sp/>&amp;=<sp/><ref refid="d5/d50/namespacegenerate__docs_1ac6fb3586a7089ec0c784b73d6b7c32f4" kindref="member">generate_dev_docs</ref>()</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>success:</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;\n✅<sp/>Documentation<sp/>generation<sp/>completed!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;📖<sp/>API<sp/>docs:<sp/>docs/api/html/index.html&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;📚<sp/>User<sp/>docs:<sp/>docs/user/&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;🛠️<sp/>Development<sp/>docs:<sp/>docs/development/&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;\n❌<sp/>Documentation<sp/>generation<sp/>failed!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sys.exit(1)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>__name__<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;__main__&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" kindref="member">main</ref>()</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py"/>
+  </compounddef>
+</doxygen>

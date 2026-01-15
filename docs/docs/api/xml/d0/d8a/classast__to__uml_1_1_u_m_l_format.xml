@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d0/d8a/classast__to__uml_1_1_u_m_l_format" kind="class" language="Python" prot="public">
+    <compoundname>ast_to_uml::UMLFormat</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Enum</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d0/d8a/classast__to__uml_1_1_u_m_l_format_1addc2d37ea8ffb321eb2ef13c5e05d6d0" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str ast_to_uml.UMLFormat::PLANTUML</definition>
+        <argsstring></argsstring>
+        <name>PLANTUML</name>
+        <qualifiedname>ast_to_uml.UMLFormat.PLANTUML</qualifiedname>
+        <initializer>=  &quot;plantuml&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="32" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d8a/classast__to__uml_1_1_u_m_l_format_1ab223cb87987802d1f46f180cd0dc72d7" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str ast_to_uml.UMLFormat::MERMAID</definition>
+        <argsstring></argsstring>
+        <name>MERMAID</name>
+        <qualifiedname>ast_to_uml.UMLFormat.MERMAID</qualifiedname>
+        <initializer>=  &quot;mermaid&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="33" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d8a/classast__to__uml_1_1_u_m_l_format_1a7a99366f275adbcfe44b24154f4ca7f5" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str ast_to_uml.UMLFormat::GRAPHVIZ</definition>
+        <argsstring></argsstring>
+        <name>GRAPHVIZ</name>
+        <qualifiedname>ast_to_uml.UMLFormat.GRAPHVIZ</qualifiedname>
+        <initializer>=  &quot;graphviz&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="34" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d8a/classast__to__uml_1_1_u_m_l_format_1a24d2432131a916871ac06d2940561715" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str ast_to_uml.UMLFormat::DOT</definition>
+        <argsstring></argsstring>
+        <name>DOT</name>
+        <qualifiedname>ast_to_uml.UMLFormat.DOT</qualifiedname>
+        <initializer>=  &quot;dot&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="35" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Supported UML output formats</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Enum</label>
+      </node>
+      <node id="1">
+        <label>ast_to_uml.UMLFormat</label>
+        <link refid="d0/d8a/classast__to__uml_1_1_u_m_l_format"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Enum</label>
+      </node>
+      <node id="1">
+        <label>ast_to_uml.UMLFormat</label>
+        <link refid="d0/d8a/classast__to__uml_1_1_u_m_l_format"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="29" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="29" bodyend="38"/>
+    <listofallmembers>
+      <member refid="d0/d8a/classast__to__uml_1_1_u_m_l_format_1a24d2432131a916871ac06d2940561715" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLFormat</scope><name>DOT</name></member>
+      <member refid="d0/d8a/classast__to__uml_1_1_u_m_l_format_1a7a99366f275adbcfe44b24154f4ca7f5" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLFormat</scope><name>GRAPHVIZ</name></member>
+      <member refid="d0/d8a/classast__to__uml_1_1_u_m_l_format_1ab223cb87987802d1f46f180cd0dc72d7" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLFormat</scope><name>MERMAID</name></member>
+      <member refid="d0/d8a/classast__to__uml_1_1_u_m_l_format_1addc2d37ea8ffb321eb2ef13c5e05d6d0" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLFormat</scope><name>PLANTUML</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

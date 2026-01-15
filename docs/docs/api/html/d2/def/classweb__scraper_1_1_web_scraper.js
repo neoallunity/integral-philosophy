@@ -1,0 +1,25 @@
+var classweb__scraper_1_1_web_scraper =
+[
+    [ "__init__", "d2/def/classweb__scraper_1_1_web_scraper.html#a39c2c5e13b549d2b7229691107f3b6a1", null ],
+    [ "convert_list", "d2/def/classweb__scraper_1_1_web_scraper.html#a3471a7d82fdd2efa9e1e317442b1e13d", null ],
+    [ "extract_content", "d2/def/classweb__scraper_1_1_web_scraper.html#a3dcd2c70bc5ba44b80576be0070b1223", null ],
+    [ "extract_links", "d2/def/classweb__scraper_1_1_web_scraper.html#a9689a553425972e77b47d9ecdd6d1e66", null ],
+    [ "generate_sitemap", "d2/def/classweb__scraper_1_1_web_scraper.html#a43304f2ec429c7ddc77d36b32f22fe38", null ],
+    [ "get_main_content", "d2/def/classweb__scraper_1_1_web_scraper.html#aaa732c935ac89c9bca7607c80678ccdd", null ],
+    [ "html_to_markdowntex", "d2/def/classweb__scraper_1_1_web_scraper.html#a8db79f575531968a486fffbc206333de", null ],
+    [ "is_same_domain", "d2/def/classweb__scraper_1_1_web_scraper.html#a05e5d1a42e04699a214e5e687a987c5f", null ],
+    [ "recursive_scrape", "d2/def/classweb__scraper_1_1_web_scraper.html#a7f8dd721e6bacc2ad218ec3f85f4ac89", null ],
+    [ "save_page", "d2/def/classweb__scraper_1_1_web_scraper.html#a8a3b688d0cfff4f93354489d8148d4c8", null ],
+    [ "scrape_page", "d2/def/classweb__scraper_1_1_web_scraper.html#af74048f0169f66cda2631a5943823e4b", null ],
+    [ "setup_driver", "d2/def/classweb__scraper_1_1_web_scraper.html#a696b63a4219cd1cdd1512632b6e10e87", null ],
+    [ "wait_for_page_load", "d2/def/classweb__scraper_1_1_web_scraper.html#a5baadfc576f884edef2714f27909751e", null ],
+    [ "base_url", "d2/def/classweb__scraper_1_1_web_scraper.html#a340d761f186dd38b6bed88926ecddb6a", null ],
+    [ "delay", "d2/def/classweb__scraper_1_1_web_scraper.html#a2e7108d8b94f55867c9700921f417a51", null ],
+    [ "domain", "d2/def/classweb__scraper_1_1_web_scraper.html#a16e19e0916e0eb3d87092deea44473db", null ],
+    [ "downloaded_urls", "d2/def/classweb__scraper_1_1_web_scraper.html#a48bcdbc4a8dd14f1421f1581240967eb", null ],
+    [ "driver", "d2/def/classweb__scraper_1_1_web_scraper.html#af8b2fc7da4f872e87b9be53852100a19", null ],
+    [ "failed_urls", "d2/def/classweb__scraper_1_1_web_scraper.html#a7c99b120cc550cc01fb248f1b039219a", null ],
+    [ "output_dir", "d2/def/classweb__scraper_1_1_web_scraper.html#a909719d4addf0915961e3443e55db68b", null ],
+    [ "site_ast", "d2/def/classweb__scraper_1_1_web_scraper.html#ac98acee073f252c8bd04c39e99e3e1df", null ],
+    [ "visited_urls", "d2/def/classweb__scraper_1_1_web_scraper.html#a71af544b87c3c71183beea8fce3dc008", null ]
+];

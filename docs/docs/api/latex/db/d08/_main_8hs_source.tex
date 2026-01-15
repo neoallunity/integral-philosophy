@@ -1,0 +1,39 @@
+\doxysection{Main.\+hs}
+\hypertarget{_main_8hs_source}{}\label{_main_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/Main.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/Main.hs}}
+\mbox{\hyperlink{_main_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00001}00001\ \#!/usr/bin/env\ runhaskell}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00003}00003\ -\/-\/\ |\ Simple\ working\ demo}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00004}00004\ import\ System.IO\ (putStrLn)}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00005}00005\ import\ System.Environment\ (getArgs)}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00007}00007\ main\ ::\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00008}00008\ main\ =\ do}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00009}00009\ \ \ args\ <-\/\ getArgs}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00010}00010\ \ \ case\ args\ of}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00011}00011\ \ \ \ \ ["{}validate"{},\ file]\ -\/>\ do}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00012}00012\ \ \ \ \ \ \ putStrLn\ \$\ "{}🔍\ Validating\ LaTeX\ file:\ "{}\ ++\ file}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00013}00013\ \ \ \ \ \ \ putStrLn\ "{}✅\ Validation\ complete!"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00014}00014\ \ \ \ \ ["{}reconstruct"{},\ file]\ -\/>\ do}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00015}00015\ \ \ \ \ \ \ putStrLn\ \$\ "{}🔧\ Reconstructing\ LaTeX\ file:\ "{}\ ++\ file}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00016}00016\ \ \ \ \ \ \ putStrLn\ "{}✅\ Reconstruction\ complete!"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00017}00017\ \ \ \ \ ["{}analyze"{},\ file]\ -\/>\ do}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00018}00018\ \ \ \ \ \ \ putStrLn\ \$\ "{}📊\ Analyzing\ LaTeX\ file:\ "{}\ ++\ file}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00019}00019\ \ \ \ \ \ \ putStrLn\ "{}✅\ Analysis\ complete!"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00020}00020\ \ \ \ \ ["{}help"{}]\ -\/>\ showHelp}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00021}00021\ \ \ \ \ \_\ -\/>\ showHelp}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00023}00023\ showHelp\ ::\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00024}00024\ showHelp\ =\ do}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00025}00025\ \ \ putStrLn\ "{}🎉\ Integral\ Philosophy\ Publishing\ System\ -\/\ Haskell\ Implementation"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00026}00026\ \ \ putStrLn\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00027}00027\ \ \ putStrLn\ "{}Usage:\ integral-\/philosophy\ <command>\ [options]"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00028}00028\ \ \ putStrLn\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00029}00029\ \ \ putStrLn\ "{}Commands:"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00030}00030\ \ \ putStrLn\ "{}\ \ validate\ <file>\ \ \ \ Validate\ LaTeX\ file"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00031}00031\ \ \ putStrLn\ "{}\ \ reconstruct\ <file>\ \ Reconstruct\ LaTeX\ to\ Markdown"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00032}00032\ \ \ putStrLn\ "{}\ \ analyze\ <file>\ \ \ \ \ Analyze\ LaTeX\ structure"{}}
+\DoxyCodeLine{\Hypertarget{_main_8hs_source_l00033}00033\ \ \ putStrLn\ "{}\ \ help\ \ \ \ \ \ \ \ \ \ \ \ \ \ Show\ this\ help\ message"{}}
+
+\end{DoxyCode}

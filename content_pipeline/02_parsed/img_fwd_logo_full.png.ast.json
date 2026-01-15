@@ -1,0 +1,67 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "logo_full.png (1031×1346)\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/img/fwd/logo_full.png\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " en\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:46:38\\n\\n---\\n\\n\\n"
+        }
+      ]
+    }
+  ]
+}

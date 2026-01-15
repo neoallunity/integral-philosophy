@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/da1/namespaceverify__all__validators" kind="namespace" language="Python">
+    <compoundname>verify_all_validators</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="d5/da1/namespaceverify__all__validators_1ace43de927b151c46eea45bd0780688ac" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>verify_all_validators.success</definition>
+        <argsstring></argsstring>
+        <name>success</name>
+        <qualifiedname>verify_all_validators.success</qualifiedname>
+        <initializer>=  <ref refid="d5/da1/namespaceverify__all__validators_1ab40f789d775eacfe7ead8941d69ac458" kindref="member">test_all_validators</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/verify_all_validators.py" line="67" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/verify_all_validators.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d5/da1/namespaceverify__all__validators_1ab40f789d775eacfe7ead8941d69ac458" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>verify_all_validators.test_all_validators</definition>
+        <argsstring>()</argsstring>
+        <name>test_all_validators</name>
+        <qualifiedname>verify_all_validators.test_all_validators</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test all validators by importing them directly.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/verify_all_validators.py" line="7" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/verify_all_validators.py" bodystart="7" bodyend="65"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Final verification script for all validators without import dependencies.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/verify_all_validators.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

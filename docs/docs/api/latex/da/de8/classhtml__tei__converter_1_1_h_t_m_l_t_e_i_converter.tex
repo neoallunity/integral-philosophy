@@ -1,0 +1,378 @@
+\doxysection{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter Class Reference}
+\hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter}{}\label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+
+
+Collaboration diagram for html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a00fd922703396e06d55758234072eb22}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\mbox{[}Path\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_abf7d9e04be2c6e87c81daeaf6f93a069}{work\+\_\+dir}}=None)
+\item 
+\mbox{\hyperlink{classhtml__tei__converter_1_1_conversion_result}{Conversion\+Result}} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7bbbc9d9f440ec34c2be309bbddf3248}{html\+\_\+to\+\_\+tei}} (self, Path html\+\_\+file)
+\item 
+\mbox{\hyperlink{classhtml__tei__converter_1_1_conversion_result}{Conversion\+Result}} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a22159afc6d778f1dc898a3fcf70c8ade}{tei\+\_\+to\+\_\+html}} (self, Path tei\+\_\+file)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7d367bf315a5c19de81fa852bec09282}{test\+\_\+isomorphism}} (self, Path original\+\_\+html)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_add48d65f9b422f454ab226b866dca44c}{batch\+\_\+test\+\_\+isomorphism}} (self, List\mbox{[}Path\mbox{]} html\+\_\+files)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_abf7d9e04be2c6e87c81daeaf6f93a069}{work\+\_\+dir}} = work\+\_\+dir or Path("{}conversion\+\_\+workspace"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a3e1de7ac8b2f56c577b9e4e63d3b431a}{\+\_\+create\+\_\+xslt\+\_\+stylesheets}} (self)
+\item 
+str \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a1e2744cd24e192dac4ee7fb780d1f1ba}{\+\_\+calculate\+\_\+checksum}} (self, Path file\+\_\+path)
+\item 
+Dict\mbox{[}str, int\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af68f39784d81254818032762fccc52f2}{\+\_\+count\+\_\+tei\+\_\+elements}} (self, Path tei\+\_\+file)
+\item 
+Dict\mbox{[}str, int\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a834a4c81492c0a13486d5ac300b66d55}{\+\_\+count\+\_\+html\+\_\+elements}} (self, Path html\+\_\+file)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af7dd1b17c6a07e871dfca72baf92adae}{\+\_\+compare\+\_\+html\+\_\+files}} (self, Path original, Path final)
+\item 
+str \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a5c366dad87c63d19a281ffb4ca3e1783}{\+\_\+clean\+\_\+html\+\_\+with\+\_\+tidy}} (self, Path html\+\_\+file)
+\item 
+int \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a4393948823911d8df8ed38544ca0a731}{\+\_\+xpath\+\_\+count}} (self, Path file\+\_\+path, str xpath)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a8863908c8303f4f4672cf2b6207e9d04}{\+\_\+xpath\+\_\+text}} (self, Path file\+\_\+path, str xpath)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7e6a9a257d6a35579ba52fcadb804866}{\+\_\+xpath\+\_\+links}} (self, Path file\+\_\+path)
+\item 
+bool \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_adbc26c7b93670e13a863721bf12c56b4}{\+\_\+is\+\_\+isomorphic}} (self, Dict\mbox{[}str, Any\mbox{]} comparison)
+\item 
+str \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a0abb4aedda77caeb821d2aa3d6b99886}{\+\_\+generate\+\_\+html\+\_\+diff}} (self, Path original, Path final)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Bidirectional HTML ↔ TEI converter with validation\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00036}{36}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a00fd922703396e06d55758234072eb22}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a00fd922703396e06d55758234072eb22} 
+html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\mbox{[}Path\mbox{]} }]{work\+\_\+dir}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00039}{39}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a1e2744cd24e192dac4ee7fb780d1f1ba}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_calculate\_checksum@{\_calculate\_checksum}}
+\index{\_calculate\_checksum@{\_calculate\_checksum}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_calculate\_checksum()}{\_calculate\_checksum()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a1e2744cd24e192dac4ee7fb780d1f1ba} 
+ str html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+calculate\+\_\+checksum (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Calculate SHA-256 checksum of file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00626}{626}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{tei\+\_\+to\+\_\+html()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a5c366dad87c63d19a281ffb4ca3e1783}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_clean\_html\_with\_tidy@{\_clean\_html\_with\_tidy}}
+\index{\_clean\_html\_with\_tidy@{\_clean\_html\_with\_tidy}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_clean\_html\_with\_tidy()}{\_clean\_html\_with\_tidy()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a5c366dad87c63d19a281ffb4ca3e1783} 
+ str html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+clean\+\_\+html\+\_\+with\+\_\+tidy (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{html\+\_\+file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Clean HTML with tidy\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00733}{733}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af7dd1b17c6a07e871dfca72baf92adae}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_compare\_html\_files@{\_compare\_html\_files}}
+\index{\_compare\_html\_files@{\_compare\_html\_files}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_compare\_html\_files()}{\_compare\_html\_files()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af7dd1b17c6a07e871dfca72baf92adae} 
+ Dict\mbox{[}str, Any\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+compare\+\_\+html\+\_\+files (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{original}{, }\item[{Path}]{final}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Compare two HTML files for structure and content preservation\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{684}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{html__tei__converter_8py_source_l00626}{\+\_\+calculate\+\_\+checksum()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00733}{\+\_\+clean\+\_\+html\+\_\+with\+\_\+tidy()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00459}{content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+xpath\+\_\+count()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00744}{\+\_\+xpath\+\_\+count()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00777}{\+\_\+xpath\+\_\+links()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00760}{\+\_\+xpath\+\_\+text()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, \mbox{\hyperlink{format__converter_8py_source_l00042}{format\+\_\+converter.\+Format\+Converter.\+work\+\_\+dir}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00040}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a834a4c81492c0a13486d5ac300b66d55}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_count\_html\_elements@{\_count\_html\_elements}}
+\index{\_count\_html\_elements@{\_count\_html\_elements}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_count\_html\_elements()}{\_count\_html\_elements()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a834a4c81492c0a13486d5ac300b66d55} 
+ Dict\mbox{[}str, int\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+count\+\_\+html\+\_\+elements (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{html\+\_\+file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Count HTML elements in file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00651}{651}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{tei\+\_\+to\+\_\+html()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af68f39784d81254818032762fccc52f2}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_count\_tei\_elements@{\_count\_tei\_elements}}
+\index{\_count\_tei\_elements@{\_count\_tei\_elements}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_count\_tei\_elements()}{\_count\_tei\_elements()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_af68f39784d81254818032762fccc52f2} 
+ Dict\mbox{[}str, int\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+count\+\_\+tei\+\_\+elements (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{tei\+\_\+file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Count TEI elements in file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00634}{634}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+to\+\_\+tei()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a3e1de7ac8b2f56c577b9e4e63d3b431a}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_create\_xslt\_stylesheets@{\_create\_xslt\_stylesheets}}
+\index{\_create\_xslt\_stylesheets@{\_create\_xslt\_stylesheets}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_create\_xslt\_stylesheets()}{\_create\_xslt\_stylesheets()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a3e1de7ac8b2f56c577b9e4e63d3b431a} 
+ None html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+create\+\_\+xslt\+\_\+stylesheets (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create XSLT stylesheets for HTML ↔ TEI conversion\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00052}{52}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, \mbox{\hyperlink{format__converter_8py_source_l00042}{format\+\_\+converter.\+Format\+Converter.\+work\+\_\+dir}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00040}{work\+\_\+dir}}.
+
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a0abb4aedda77caeb821d2aa3d6b99886}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_generate\_html\_diff@{\_generate\_html\_diff}}
+\index{\_generate\_html\_diff@{\_generate\_html\_diff}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_generate\_html\_diff()}{\_generate\_html\_diff()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a0abb4aedda77caeb821d2aa3d6b99886} 
+ str html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+generate\+\_\+html\+\_\+diff (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{original}{, }\item[{Path}]{final}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Generate diff between HTML files\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00808}{808}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_adbc26c7b93670e13a863721bf12c56b4}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_is\_isomorphic@{\_is\_isomorphic}}
+\index{\_is\_isomorphic@{\_is\_isomorphic}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_is\_isomorphic()}{\_is\_isomorphic()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_adbc26c7b93670e13a863721bf12c56b4} 
+ bool html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+is\+\_\+isomorphic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{comparison}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Determine if conversion preserves structure (isomorphism)\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00795}{795}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a4393948823911d8df8ed38544ca0a731}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_xpath\_count@{\_xpath\_count}}
+\index{\_xpath\_count@{\_xpath\_count}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_xpath\_count()}{\_xpath\_count()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a4393948823911d8df8ed38544ca0a731} 
+ int html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+xpath\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{, }\item[{str}]{xpath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get XPath count from file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00744}{744}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7e6a9a257d6a35579ba52fcadb804866}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_xpath\_links@{\_xpath\_links}}
+\index{\_xpath\_links@{\_xpath\_links}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_xpath\_links()}{\_xpath\_links()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7e6a9a257d6a35579ba52fcadb804866} 
+ List\mbox{[}str\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+xpath\+\_\+links (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract all href attributes from links\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00777}{777}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}.
+
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a8863908c8303f4f4672cf2b6207e9d04}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!\_xpath\_text@{\_xpath\_text}}
+\index{\_xpath\_text@{\_xpath\_text}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{\_xpath\_text()}{\_xpath\_text()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a8863908c8303f4f4672cf2b6207e9d04} 
+ List\mbox{[}str\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+xpath\+\_\+text (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{file\+\_\+path}{, }\item[{str}]{xpath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get XPath text content from file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00760}{760}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_add48d65f9b422f454ab226b866dca44c}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!batch\_test\_isomorphism@{batch\_test\_isomorphism}}
+\index{batch\_test\_isomorphism@{batch\_test\_isomorphism}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{batch\_test\_isomorphism()}{batch\_test\_isomorphism()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_add48d65f9b422f454ab226b866dca44c} 
+ Dict\mbox{[}str, Any\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+batch\+\_\+test\+\_\+isomorphism (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\mbox{[}Path\mbox{]}}]{html\+\_\+files}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test isomorphism for multiple HTML files\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00822}{822}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7bbbc9d9f440ec34c2be309bbddf3248}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!html\_to\_tei@{html\_to\_tei}}
+\index{html\_to\_tei@{html\_to\_tei}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{html\_to\_tei()}{html\_to\_tei()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7bbbc9d9f440ec34c2be309bbddf3248} 
+ \mbox{\hyperlink{classhtml__tei__converter_1_1_conversion_result}{Conversion\+Result}} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+html\+\_\+to\+\_\+tei (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{html\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert HTML to TEI using tidy + XSLT\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{474}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{html__tei__converter_8py_source_l00626}{\+\_\+calculate\+\_\+checksum()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00634}{\+\_\+count\+\_\+tei\+\_\+elements()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, \mbox{\hyperlink{format__converter_8py_source_l00042}{format\+\_\+converter.\+Format\+Converter.\+work\+\_\+dir}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00040}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the call graph for this function\+:
+% FIG 13
+Here is the caller graph for this function\+:
+% FIG 14
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a22159afc6d778f1dc898a3fcf70c8ade}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!tei\_to\_html@{tei\_to\_html}}
+\index{tei\_to\_html@{tei\_to\_html}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{tei\_to\_html()}{tei\_to\_html()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a22159afc6d778f1dc898a3fcf70c8ade} 
+ \mbox{\hyperlink{classhtml__tei__converter_1_1_conversion_result}{Conversion\+Result}} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+tei\+\_\+to\+\_\+html (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{tei\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert TEI to HTML using XSLT\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{535}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{html__tei__converter_8py_source_l00626}{\+\_\+calculate\+\_\+checksum()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00651}{\+\_\+count\+\_\+html\+\_\+elements()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00047}{content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir}}, \mbox{\hyperlink{format__converter_8py_source_l00042}{format\+\_\+converter.\+Format\+Converter.\+work\+\_\+dir}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00040}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{test\+\_\+isomorphism()}}.
+
+Here is the call graph for this function\+:
+% FIG 15
+Here is the caller graph for this function\+:
+% FIG 16
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7d367bf315a5c19de81fa852bec09282}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!test\_isomorphism@{test\_isomorphism}}
+\index{test\_isomorphism@{test\_isomorphism}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{test\_isomorphism()}{test\_isomorphism()}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_a7d367bf315a5c19de81fa852bec09282} 
+ Dict\mbox{[}str, Any\mbox{]} html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+test\+\_\+isomorphism (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{original\+\_\+html}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test HTML → TEI → HTML isomorphism\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00578}{578}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+References \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00808}{\+\_\+generate\+\_\+html\+\_\+diff()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00795}{\+\_\+is\+\_\+isomorphic()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{tei\+\_\+to\+\_\+html()}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00822}{batch\+\_\+test\+\_\+isomorphism()}}.
+
+Here is the call graph for this function\+:
+% FIG 17
+Here is the caller graph for this function\+:
+% FIG 18
+
+
+\label{doc-variable-members}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_abf7d9e04be2c6e87c81daeaf6f93a069}\index{html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}!work\_dir@{work\_dir}}
+\index{work\_dir@{work\_dir}!html\_tei\_converter.HTMLTEIConverter@{html\_tei\_converter.HTMLTEIConverter}}
+\doxysubsubsection{\texorpdfstring{work\_dir}{work\_dir}}
+{\footnotesize\ttfamily \label{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_abf7d9e04be2c6e87c81daeaf6f93a069} 
+html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+work\+\_\+dir = work\+\_\+dir or Path("{}conversion\+\_\+workspace"{})}
+
+
+
+Definition at line \mbox{\hyperlink{html__tei__converter_8py_source_l00040}{40}} of file \mbox{\hyperlink{html__tei__converter_8py_source}{html\+\_\+tei\+\_\+converter.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{\+\_\+compare\+\_\+html\+\_\+files()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00052}{\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{tei\+\_\+to\+\_\+html()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{html__tei__converter_8py}{html\+\_\+tei\+\_\+converter.\+py}}\end{DoxyCompactItemize}

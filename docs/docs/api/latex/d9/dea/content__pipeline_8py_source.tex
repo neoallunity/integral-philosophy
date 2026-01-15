@@ -1,0 +1,611 @@
+\doxysection{content\+\_\+pipeline.\+py}
+\hypertarget{content__pipeline_8py_source}{}\label{content__pipeline_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/content\_pipeline.py@{/home/domini/src/Magazine/Magazine/scripts/content\_pipeline.py}}
+\mbox{\hyperlink{content__pipeline_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00001}\mbox{\hyperlink{namespacecontent__pipeline}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00003}00003\ \textcolor{stringliteral}{Master\ Content\ Pipeline\ Controller}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00004}00004\ \textcolor{stringliteral}{Orchestrates\ the\ complete\ conversion\ pipeline:}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00005}00005\ \textcolor{stringliteral}{Website\ →\ HTML\ →\ TEI\ →\ Multiple\ Formats\ (HTML,\ LaTeX,\ PDF,\ EPUB,\ DOCX)}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00006}00006\ \textcolor{stringliteral}{With\ UML\ visualization\ and\ isomorphism\ testing}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00007}00007\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00009}00009\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00010}00010\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00011}00011\ \textcolor{keyword}{import}\ subprocess}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00012}00012\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00013}00013\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00014}00014\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00015}00015\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List,\ Optional,\ Union,\ Any}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00016}00016\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00018}00018\ \textcolor{comment}{\#\ Import\ pipeline\ components}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00019}00019\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{from}\ web\_scraper\ \textcolor{keyword}{import}\ WebScraper}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{from}\ markdowntex\_parser\ \textcolor{keyword}{import}\ MarkdownTeXParser}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00022}00022\ \ \ \ \ \textcolor{keyword}{from}\ ast\_to\_uml\ \textcolor{keyword}{import}\ ASTToUMLTransformer}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{from}\ tei\_generator\ \textcolor{keyword}{import}\ TEIGenerator}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{from}\ xslt\_transformer\ \textcolor{keyword}{import}\ XSLTTransformer}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{from}\ html\_tei\_converter\ \textcolor{keyword}{import}\ HTMLTEIConverter}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00026}00026\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{from}\ scripts.web\_scraper\ \textcolor{keyword}{import}\ WebScraper}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{from}\ scripts.markdowntex\_parser\ \textcolor{keyword}{import}\ MarkdownTeXParser}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{from}\ scripts.ast\_to\_uml\ \textcolor{keyword}{import}\ ASTToUMLTransformer}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{from}\ scripts.tei\_generator\ \textcolor{keyword}{import}\ TEIGenerator}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{from}\ scripts.xslt\_transformer\ \textcolor{keyword}{import}\ XSLTTransformer}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{from}\ scripts.html\_tei\_converter\ \textcolor{keyword}{import}\ HTMLTEIConverter}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00034}00034\ \textcolor{comment}{\#\ Set\ up\ logging}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00035}00035\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00036}\mbox{\hyperlink{namespacecontent__pipeline_aab86245c35007f68ee94fa54d864aeac}{00036}}\ \ \ \ \ level=logging.INFO,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00037}\mbox{\hyperlink{namespacecontent__pipeline_a735d7e39fd408506bb01f182b9490801}{00037}}\ \ \ \ \ format=\textcolor{stringliteral}{"{}\%(asctime)s\ -\/\ \%(name)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00038}\mbox{\hyperlink{namespacecontent__pipeline_ad26945629502a21bb721cbeea8cca8e7}{00038}}\ \ \ \ \ handlers=[logging.FileHandler(\textcolor{stringliteral}{"{}pipeline.log"{}}),\ logging.StreamHandler(sys.stdout)],}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00039}00039\ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00040}\mbox{\hyperlink{namespacecontent__pipeline_aa0d1476134b04774fcf7c94b381a7ab4}{00040}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00043}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline}{00043}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline}{ContentPipeline}}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00044}00044\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Master\ content\ transformation\ pipeline"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00046}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0793985ccef14ba186a29f0380bb5159}{00046}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0793985ccef14ba186a29f0380bb5159}{\_\_init\_\_}}(self,\ work\_dir:\ Path\ =\ Path(\textcolor{stringliteral}{"{}content\_pipeline"{}})):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00047}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{00047}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ =\ work\_dir}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}.mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ subdirectories}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00051}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{00051}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}01\_scraped"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parsed"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}02\_parsed"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uml"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}03\_uml"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}tei"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}04\_tei"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}transformed"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}05\_transformed"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}validation"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}06\_validation"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}reports"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}\ /\ \textcolor{stringliteral}{"{}reports"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ dir\_path\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}.values():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ dir\_path.mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Initialize\ pipeline\ components}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00065}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}{00065}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}{scraper}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00066}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}{00066}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}{parser}}\ =\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{MarkdownTeXParser}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00067}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}{00067}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}{uml\_transformer}}\ =\ \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer}{ASTToUMLTransformer}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00068}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}{00068}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}{tei\_generator}}\ =\ \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{TEIGenerator}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00069}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5}{00069}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5}{xslt\_transformer}}\ =\ \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer}{XSLTTransformer}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00070}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb}{00070}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb}{html\_tei\_converter}}\ =\ \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter}{HTMLTEIConverter}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Pipeline\ results}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00073}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{00073}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}start\_time"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}end\_time"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}duration"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stages"{}}:\ \{\},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00081}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a8c63e7b58a8f99983357aa6687d1db8b}{00081}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a8c63e7b58a8f99983357aa6687d1db8b}{process\_website}}(self,\ url:\ str,\ max\_pages:\ int\ =\ 100)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Process\ complete\ website\ through\ the\ pipeline"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Starting\ pipeline\ for:\ \{url\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}start\_time"{}}]\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 1:\ Web\ Scraping}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4}{\_stage\_1\_scrape\_website}}(url,\ max\_pages):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 2:\ Content\ Parsing}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783}{\_stage\_2\_parse\_content}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 3:\ UML\ Generation}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8}{\_stage\_3\_generate\_uml}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 4:\ TEI\ Generation}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1}{\_stage\_4\_generate\_tei}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 5:\ Multi-\/format\ Transformation}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06}{\_stage\_5\_transform\_formats}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stage\ 6:\ Validation\ \&\ Testing}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995}{\_stage\_6\_validate\_pipeline}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Complete\ pipeline}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}end\_time"{}}]\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}duration"{}}]\ =\ (}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}end\_time"{}}]\ -\/\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}start\_time"{}}]}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}success"{}}]\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Pipeline\ completed\ successfully\ in\ \{self.results['duration']:.2f\}\ seconds"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Pipeline\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}error"{}}]\ =\ str(e)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}end\_time"{}}]\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}duration"{}}]\ =\ (}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}end\_time"{}}]\ -\/\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}start\_time"{}}]}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00132}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4}{00132}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4}{\_stage\_1\_scrape\_website}}(self,\ url:\ str,\ max\_pages:\ int)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 1:\ Scrape\ website\ content"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 1:\ Web\ Scraping\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}{scraper}}\ =\ \mbox{\hyperlink{classweb__scraper_1_1_web_scraper}{WebScraper}}(url,\ str(self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}scraped"{}}]))}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}{scraper}}.recursive\_scrape(max\_pages=max\_pages)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ results}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}scraped"{}}]\ /\ \textcolor{stringliteral}{"{}site\_ast.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ site\_ast\_file.exists():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(\textcolor{stringliteral}{"{}Site\ AST\ not\ generated"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Load\ and\ store\ results}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(site\_ast\_file,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}scraping"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pages\_downloaded"{}}:\ site\_ast[\textcolor{stringliteral}{"{}metadata"{}}][\textcolor{stringliteral}{"{}total\_pages"{}}],}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}failed\_pages"{}}:\ site\_ast[\textcolor{stringliteral}{"{}metadata"{}}].get(\textcolor{stringliteral}{"{}failed\_pages"{}},\ 0),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped\_at"{}}:\ site\_ast[\textcolor{stringliteral}{"{}metadata"{}}][\textcolor{stringliteral}{"{}scraped\_at"{}}],}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Scraped\ \{site\_ast['metadata']['total\_pages']\}\ pages"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Scraping\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}scraping"{}}]\ =\ \{\textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00165}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783}{00165}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783}{\_stage\_2\_parse\_content}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 2:\ Parse\ MarkdownTeX\ content\ to\ AST"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 2:\ Content\ Parsing\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ pages\_dir\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}scraped"{}}]\ /\ \textcolor{stringliteral}{"{}pages"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_pages\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ total\_files\ =\ 0}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ successful\_parses\ =\ 0}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ md\_file\ \textcolor{keywordflow}{in}\ pages\_dir.glob(\textcolor{stringliteral}{"{}*.md"{}}):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_files\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Read\ markdown\ content}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(md\_file,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ f.read()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ to\ AST}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ast\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}{parser}}.parse(content)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ AST}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ast\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}parsed"{}}]\ /\ f\textcolor{stringliteral}{"{}\{md\_file.stem\}.ast.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}{parser}}.save\_ast(ast,\ ast\_file)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ metadata}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata\_file\ =\ pages\_dir\ /\ f\textcolor{stringliteral}{"{}\{md\_file.stem\}.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ metadata\_file.exists():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(metadata\_file,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_pages[str(md\_file.relative\_to(pages\_dir))]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ast\_file"{}}:\ str(ast\_file.relative\_to(self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}})),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ metadata,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}content\_length"{}}:\ len(content),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ successful\_parses\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Failed\ to\ parse\ \{md\_file\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ parsed\ content\ summary}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ summary\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}parsed"{}}]\ /\ \textcolor{stringliteral}{"{}parsed\_summary.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(summary\_file,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(parsed\_pages,\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}parsing"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_files"{}}:\ total\_files,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}successful\_parses"{}}:\ successful\_parses,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parse\_rate"{}}:\ successful\_parses\ /\ total\_files\ \textcolor{keywordflow}{if}\ total\_files\ >\ 0\ \textcolor{keywordflow}{else}\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Parsed\ \{successful\_parses\}/\{total\_files\}\ files\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Parsing\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}parsing"{}}]\ =\ \{\textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00229}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8}{00229}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8}{\_stage\_3\_generate\_uml}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 3:\ Generate\ UML\ diagrams\ from\ site\ structure"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 3:\ UML\ Generation\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Load\ site\ AST}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}scraped"{}}]\ /\ \textcolor{stringliteral}{"{}site\_ast.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(site\_ast\_file,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Transform\ to\ UML}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ uml\_data\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}{uml\_transformer}}.transform\_site\_ast(site\_ast)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ all\ UML\ formats}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}{uml\_transformer}}.generate\_all\_formats(uml\_data,\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}uml"{}}])}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ UML\ data}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ uml\_data\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}uml"{}}]\ /\ \textcolor{stringliteral}{"{}uml\_data.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(uml\_data\_file,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(uml\_data,\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}uml"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}nodes"{}}:\ len(uml\_data[\textcolor{stringliteral}{"{}nodes"{}}]),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}edges"{}}:\ len(uml\_data[\textcolor{stringliteral}{"{}edges"{}}]),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}formats\_generated"{}}:\ [\textcolor{stringliteral}{"{}plantuml"{}},\ \textcolor{stringliteral}{"{}mermaid"{}},\ \textcolor{stringliteral}{"{}graphviz"{}}],}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Generated\ UML\ with\ \{len(uml\_data['nodes'])\}\ nodes\ and\ \{len(uml\_data['edges'])\}\ edges"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}UML\ generation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}uml"{}}]\ =\ \{\textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00267}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1}{00267}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1}{\_stage\_4\_generate\_tei}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 4:\ Generate\ canonical\ TEI\ XML\ format"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 4:\ TEI\ Generation\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Load\ site\ AST}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}scraped"{}}]\ /\ \textcolor{stringliteral}{"{}site\_ast.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(site\_ast\_file,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ site\_ast\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ TEI\ XML}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ tei\_xml\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}{tei\_generator}}.generate\_tei\_document(site\_ast)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ TEI\ document}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ tei\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}tei"{}}]\ /\ \textcolor{stringliteral}{"{}site\_document.xml"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}{tei\_generator}}.save\_tei\_document(tei\_xml,\ tei\_file)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Validate\ TEI\ XML}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ validation\_result\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7}{\_validate\_xml}}(tei\_file)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}tei"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}tei\_file"{}}:\ str(tei\_file.relative\_to(self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}})),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}file\_size"{}}:\ tei\_file.stat().st\_size,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}validation"{}}:\ validation\_result,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Generated\ TEI\ XML:\ \{tei\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}TEI\ generation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}tei"{}}]\ =\ \{\textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00302}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06}{00302}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06}{\_stage\_5\_transform\_formats}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 5:\ Transform\ TEI\ to\ multiple\ output\ formats"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 5:\ Multi-\/format\ Transformation\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ tei\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}tei"{}}]\ /\ \textcolor{stringliteral}{"{}site\_document.xml"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Transform\ to\ all\ formats}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5}{xslt\_transformer}}.transform\_all\_formats(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tei\_file,\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}transformed"{}}]}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ format-\/specific\ reports}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ format\_details\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ format\_name,\ success\ \textcolor{keywordflow}{in}\ results.items():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_details[format\_name]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ success,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}file\_exists"{}}:\ (}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}transformed"{}}]\ /\ f\textcolor{stringliteral}{"{}document.\{format\_name\}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).exists(),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ successful\_formats\ =\ sum(1\ \textcolor{keywordflow}{for}\ success\ \textcolor{keywordflow}{in}\ results.values()\ \textcolor{keywordflow}{if}\ success)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}transformation"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ successful\_formats\ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}formats"{}}:\ format\_details,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}successful\_formats"{}}:\ successful\_formats,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_formats"{}}:\ len(results),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Transformed\ to\ \{successful\_formats\}/\{len(results)\}\ formats\ successfully"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ successful\_formats\ >\ 0}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Transformation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}transformation"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}error"{}}:\ str(e),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00346}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995}{00346}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995}{\_stage\_6\_validate\_pipeline}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stage\ 6:\ Validate\ pipeline\ and\ test\ isomorphism"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ Stage\ 6:\ Validation\ \&\ Testing\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ HTML\ ↔\ TEI\ isomorphism}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}transformed"{}}]\ /\ \textcolor{stringliteral}{"{}document.html"{}}).exists():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ html\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}transformed"{}}]\ /\ \textcolor{stringliteral}{"{}document.html"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isomorphism\_result\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb}{html\_tei\_converter}}.test\_isomorphism(html\_file)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results[\textcolor{stringliteral}{"{}html\_tei\_isomorphism"{}}]\ =\ isomorphism\_result}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Validate\ TEI\ structure}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ tei\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}tei"{}}]\ /\ \textcolor{stringliteral}{"{}site\_document.xml"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ tei\_file.exists():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tei\_validation\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959}{\_validate\_tei\_structure}}(tei\_file)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results[\textcolor{stringliteral}{"{}tei\_structure"{}}]\ =\ tei\_validation}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ format\ consistency}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ format\_consistency\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799}{\_check\_format\_consistency}}()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results[\textcolor{stringliteral}{"{}format\_consistency"{}}]\ =\ format\_consistency}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ pipeline\ summary}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}validation"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ len(validation\_results)\ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}results"{}}:\ validation\_results,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Validation\ completed\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Validation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}[\textcolor{stringliteral}{"{}stages"{}}][\textcolor{stringliteral}{"{}validation"{}}]\ =\ \{\textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00383}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7}{00383}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7}{\_validate\_xml}}(self,\ xml\_file:\ Path)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Validate\ XML\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{stringliteral}{"{}xmllint"{}},\ \textcolor{stringliteral}{"{}-\/-\/noout"{}},\ str(xml\_file)],\ capture\_output=\textcolor{keyword}{True},\ text=\textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}valid"{}}:\ result.returncode\ ==\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}error"{}}:\ result.stderr\ \textcolor{keywordflow}{if}\ result.returncode\ !=\ 0\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ FileNotFoundError:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}valid"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ \textcolor{stringliteral}{"{}xmllint\ not\ found"{}}\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}valid"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00399}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959}{00399}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959}{\_validate\_tei\_structure}}(self,\ tei\_file:\ Path)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Validate\ TEI\ structure"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ for\ required\ TEI\ elements}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ checks\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}has\_tei\_header"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(tei\_file,\ \textcolor{stringliteral}{"{}count(//tei:teiHeader)"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}has\_text"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(tei\_file,\ \textcolor{stringliteral}{"{}count(//tei:text)"{}})\ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}has\_body"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(tei\_file,\ \textcolor{stringliteral}{"{}count(//tei:body)"{}})\ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}has\_pages"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tei\_file,\ \textcolor{stringliteral}{'count(//tei:div[@type="{}page"{}])'}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ >\ 0,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}valid"{}}:\ all(checks.values()),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}checks"{}}:\ checks,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_divs"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(tei\_file,\ \textcolor{stringliteral}{"{}count(//tei:div)"{}}),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00419}00419\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}valid"{}}:\ \textcolor{keyword}{False},\ \textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00423}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799}{00423}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799}{\_check\_format\_consistency}}(self)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ consistency\ across\ generated\ formats"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ consistency\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00426}00426\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ all\ expected\ files\ exist}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ expected\_files\ =\ [}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}document.html"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}document.tex"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}document.pdf"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}document.epub"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}document.docx"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ existing\_files\ =\ []}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00437}00437\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ filename\ \textcolor{keywordflow}{in}\ expected\_files:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_path\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}transformed"{}}]\ /\ filename}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exists\ =\ file\_path.exists()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ consistency[filename]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}exists"{}}:\ exists,}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}size"{}}:\ file\_path.stat().st\_size\ \textcolor{keywordflow}{if}\ exists\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ exists:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ existing\_files.append(filename)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00447}00447\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ consistency[\textcolor{stringliteral}{"{}summary"{}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_formats"{}}:\ len(expected\_files),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}existing\_formats"{}}:\ len(existing\_files),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}generation\_rate"{}}:\ len(existing\_files)\ /\ len(expected\_files),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ consistency}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00455}00455\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}error"{}}:\ str(e)\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00459}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{00459}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\_xpath\_count}}(self,\ xml\_file:\ Path,\ xpath:\ str)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ XPath\ count\ from\ XML\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{stringliteral}{"{}xmllint"{}},\ \textcolor{stringliteral}{"{}-\/-\/xpath"{}},\ xpath,\ str(xml\_file)],}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ capture\_output=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env=\{\textcolor{stringliteral}{"{}LC\_ALL"{}}:\ \textcolor{stringliteral}{"{}C"{}}\},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.returncode\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ int(result.stdout.strip())}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00476}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0022330788a94f1dc45862a61b3f93df}{00476}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0022330788a94f1dc45862a61b3f93df}{generate\_report}}(self)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ comprehensive\ pipeline\ report"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ report\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pipeline\_info"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}version"{}}:\ \textcolor{stringliteral}{"{}1.0.0"{}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}timestamp"{}}:\ time.strftime(\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}}),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}work\_directory"{}}:\ str(self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\_dir}}),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}results"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}},}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}directory\_structure"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11}{\_get\_directory\_structure}}(),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}recommendations"{}}:\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e}{\_generate\_recommendations}}(),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ report}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ report\_file\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}[\textcolor{stringliteral}{"{}reports"{}}]\ /\ f\textcolor{stringliteral}{"{}pipeline\_report\_\{int(time.time())\}.json"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(report\_file,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(report,\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00494}00494\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Pipeline\ report\ saved\ to:\ \{report\_file\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ report}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00496}00496\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00497}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11}{00497}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11}{\_get\_directory\_structure}}(self)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ directory\ structure\ and\ file\ counts"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ structure\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00500}00500\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00501}00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ name,\ path\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}.items():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ path.exists():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files\ =\ list(path.rglob(\textcolor{stringliteral}{"{}*"{}}))}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ structure[name]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}path"{}}:\ str(path),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_files"{}}:\ len([f\ \textcolor{keywordflow}{for}\ f\ \textcolor{keywordflow}{in}\ files\ \textcolor{keywordflow}{if}\ f.is\_file()]),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}directories"{}}:\ len([f\ \textcolor{keywordflow}{for}\ f\ \textcolor{keywordflow}{in}\ files\ \textcolor{keywordflow}{if}\ f.is\_dir()]),}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ structure[name]\ =\ \{\textcolor{stringliteral}{"{}path"{}}:\ str(path),\ \textcolor{stringliteral}{"{}exists"{}}:\ \textcolor{keyword}{False}\}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ structure}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00513}00513\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00514}\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e}{00514}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e}{\_generate\_recommendations}}(self)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ recommendations\ based\ on\ pipeline\ results"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ recommendations\ =\ []}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00517}00517\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}.get(\textcolor{stringliteral}{"{}success"{}},\ \textcolor{keyword}{False}):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ recommendations.append(\textcolor{stringliteral}{"{}Pipeline\ failed\ -\/\ check\ error\ messages\ in\ results"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ each\ stage}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ stage\_name,\ stage\_result\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}.get(\textcolor{stringliteral}{"{}stages"{}},\ \{\}).items():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ stage\_result.get(\textcolor{stringliteral}{"{}success"{}},\ \textcolor{keyword}{False}):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recommendations.append(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Stage\ \{stage\_name\}\ failed\ -\/\ review\ error\ details"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ success\ rates}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ parsing\_result\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}.get(\textcolor{stringliteral}{"{}stages"{}},\ \{\}).get(\textcolor{stringliteral}{"{}parsing"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ parsing\_result.get(\textcolor{stringliteral}{"{}parse\_rate"{}},\ 1.0)\ <\ 0.9:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ recommendations.append(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Consider\ improving\ content\ parsing\ -\/\ success\ rate\ <\ 90\%"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ transformation\_result\ =\ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}.get(\textcolor{stringliteral}{"{}stages"{}},\ \{\}).get(\textcolor{stringliteral}{"{}transformation"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00536}00536\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ transformation\_result.get(\textcolor{stringliteral}{"{}successful\_formats"{}},\ 0)\ <\ 4:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ recommendations.append(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Some\ format\ transformations\ failed\ -\/\ check\ dependencies"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00540}00540\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ validation\_result\ =\ (}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}.get(\textcolor{stringliteral}{"{}stages"{}},\ \{\}).get(\textcolor{stringliteral}{"{}validation"{}},\ \{\}).get(\textcolor{stringliteral}{"{}results"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}html\_tei\_isomorphism"{}}\ \textcolor{keywordflow}{in}\ validation\_result:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ validation\_result[\textcolor{stringliteral}{"{}html\_tei\_isomorphism"{}}].get(\textcolor{stringliteral}{"{}isomorphic"{}},\ \textcolor{keyword}{False}):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recommendations.append(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}HTML\ ↔\ TEI\ isomorphism\ test\ failed\ -\/\ review\ transformation\ logic"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00549}00549\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ recommendations}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00551}00551\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00553}\mbox{\hyperlink{namespacecontent__pipeline_a36b50cad109352b0bddf470d0e8ab50d}{00553}}\ \textcolor{keyword}{async\ def\ }\mbox{\hyperlink{namespacecontent__pipeline_a36b50cad109352b0bddf470d0e8ab50d}{main}}():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00554}00554\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ pipeline\ execution"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00555}00555\ \ \ \ \ \textcolor{keyword}{import}\ argparse}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00556}00556\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00557}00557\ \ \ \ \ parser\ =\ argparse.ArgumentParser(description=\textcolor{stringliteral}{"{}Master\ Content\ Pipeline"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00558}00558\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}url"{}},\ help=\textcolor{stringliteral}{"{}Website\ URL\ to\ process"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00559}00559\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/o"{}},\ \textcolor{stringliteral}{"{}-\/-\/output"{}},\ default=\textcolor{stringliteral}{"{}content\_pipeline"{}},\ help=\textcolor{stringliteral}{"{}Output\ directory"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00561}00561\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00562}00562\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/p"{}},\ \textcolor{stringliteral}{"{}-\/-\/pages"{}},\ type=int,\ default=100,\ help=\textcolor{stringliteral}{"{}Maximum\ pages\ to\ scrape"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00564}00564\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00565}00565\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00566}00566\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/report-\/only"{}},\ action=\textcolor{stringliteral}{"{}store\_true"{}},\ help=\textcolor{stringliteral}{"{}Generate\ report\ only"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00567}00567\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00568}00568\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00569}00569\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00571}00571\ \ \ \ \ \textcolor{comment}{\#\ Initialize\ pipeline}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00572}00572\ \ \ \ \ pipeline\ =\ \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline}{ContentPipeline}}(Path(args.output))}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00573}00573\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00574}00574\ \ \ \ \ \textcolor{keywordflow}{if}\ args.report\_only:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00575}00575\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ existing\ report}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ report\ =\ pipeline.generate\_report()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00577}00577\ \ \ \ \ \ \ \ \ print(json.dumps(report,\ indent=2))}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00578}00578\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00579}00579\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00580}00580\ \ \ \ \ \textcolor{comment}{\#\ Execute\ pipeline}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00581}00581\ \ \ \ \ success\ =\ await\ pipeline.process\_website(args.url,\ args.pages)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00582}00582\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00583}00583\ \ \ \ \ \textcolor{comment}{\#\ Generate\ final\ report}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00584}00584\ \ \ \ \ report\ =\ pipeline.generate\_report()}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00585}00585\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00586}00586\ \ \ \ \ \textcolor{comment}{\#\ Print\ summary}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00587}00587\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n===\ Pipeline\ Summary\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00588}00588\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Success:\ \{report['results']['success']\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00589}00589\ \ \ \ \ \textcolor{keywordflow}{if}\ report[\textcolor{stringliteral}{"{}results"{}}][\textcolor{stringliteral}{"{}duration"{}}]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00590}00590\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Duration:\ \{report['results']['duration']:.2f\}\ seconds"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00592}00592\ \ \ \ \ \textcolor{keywordflow}{for}\ stage,\ result\ \textcolor{keywordflow}{in}\ report[\textcolor{stringliteral}{"{}results"{}}].get(\textcolor{stringliteral}{"{}stages"{}},\ \{\}).items():}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00593}00593\ \ \ \ \ \ \ \ \ status\ =\ \textcolor{stringliteral}{"{}✅"{}}\ \textcolor{keywordflow}{if}\ result.get(\textcolor{stringliteral}{"{}success"{}},\ \textcolor{keyword}{False})\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}❌"{}}}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00594}00594\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{status\}\ \{stage.title()\}:\ \{result.get('success',\ False)\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00595}00595\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00596}00596\ \ \ \ \ \textcolor{keywordflow}{if}\ report.get(\textcolor{stringliteral}{"{}recommendations"{}}):}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00597}00597\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n===\ Recommendations\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00598}00598\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ rec\ \textcolor{keywordflow}{in}\ report[\textcolor{stringliteral}{"{}recommendations"{}}]:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}•\ \{rec\}"{}})}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00601}00601\ \ \ \ \ sys.exit(0\ \textcolor{keywordflow}{if}\ success\ \textcolor{keywordflow}{else}\ 1)}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00602}00602\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00603}00603\ }
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00604}00604\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{content__pipeline_8py_source_l00605}00605\ \ \ \ \ asyncio.run(\mbox{\hyperlink{namespacecontent__pipeline_a36b50cad109352b0bddf470d0e8ab50d}{main}}())}
+
+\end{DoxyCode}

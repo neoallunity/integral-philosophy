@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/d2d/_time_8hs" kind="file" language="C++">
+    <compoundname>Time.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">--<sp/>|<sp/>Time<sp/>calculation<sp/>utilities<sp/>for<sp/>academic<sp/>publishing</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Utils.Time</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(<sp/>calculateTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Time<sp/>(UTCTime,<sp/>diffUTCTime)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Calculate<sp/>time<sp/>difference<sp/>between<sp/>two<sp/>UTCTime<sp/>values</highlight></codeline>
+<codeline><highlight class="normal">calculateTime<sp/>::<sp/>UTCTime<sp/>-&gt;<sp/>UTCTime<sp/>-&gt;<sp/>Double</highlight></codeline>
+<codeline><highlight class="normal">calculateTime<sp/>start<sp/>end<sp/>=<sp/>realToFrac<sp/>$<sp/>diffUTCTime<sp/>end<sp/>start</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Utils/Time.hs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="db/de9/main_8tex" kind="file" language="C++">
+    <compoundname>main.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ЖУРНАЛ<sp/>&quot;ИНТЕГРАЛЬНАЯ<sp/>ФИЛОСОФИЯ&quot;</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Основной<sp/>файл<sp/>для<sp/>выпуска<sp/>журнала</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>!TEX<sp/>program<sp/>=<sp/>lualatex</highlight></codeline>
+<codeline><highlight class="normal">\documentclass[12pt,a4paper]{book}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Пакеты,<sp/>стили,<sp/>метаданные<sp/>и<sp/>пользовательские<sp/>окружения</highlight></codeline>
+<codeline><highlight class="normal">\input{preamble}<sp/>%<sp/>Temporarily<sp/>commented<sp/>out<sp/>for<sp/>biblatex<sp/>isolation<sp/>test</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Настройки<sp/>классов<sp/>(локальные)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>\usepackage{biblatex}<sp/>%<sp/>Moved<sp/>to<sp/>preamble.tex<sp/>to<sp/>ensure<sp/>correct<sp/>loading<sp/>order</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>СПИСОК<sp/>СТАТЕЙ<sp/>ВЫПУСКА</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>НАЧАЛО<sp/>ДОКУМЕНТА</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">\begin{document}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\addarticle{moiseev}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{safonov}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{smolyanova}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{podzolkova}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{krasheninnikov}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{bukharov}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{lugowska}</highlight></codeline>
+<codeline><highlight class="normal">\addarticle{holkin}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Титульная<sp/>страница</highlight></codeline>
+<codeline><highlight class="normal">\input{chapters/00-titlepage}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Предварительные<sp/>материалы</highlight></codeline>
+<codeline><highlight class="normal">\frontmatter</highlight></codeline>
+<codeline><highlight class="normal">\input{frontmatter/editorial-info}</highlight></codeline>
+<codeline><highlight class="normal">\input{frontmatter/preface-ru}</highlight></codeline>
+<codeline><highlight class="normal">\input{frontmatter/preface-en}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Оглавление</highlight></codeline>
+<codeline><highlight class="normal">\input{frontmatter/toc}</highlight></codeline>
+<codeline><highlight class="normal">\clearpage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Основные<sp/>статьи</highlight></codeline>
+<codeline><highlight class="normal">\mainmatter</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Английские<sp/>аннотации<sp/>статей</highlight></codeline>
+<codeline><highlight class="normal">\printallabstracts</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Русские<sp/>версии<sp/>статей</highlight></codeline>
+<codeline><highlight class="normal">\printallarticles</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Заключительные<sp/>материалы</highlight></codeline>
+<codeline><highlight class="normal">\backmatter</highlight></codeline>
+<codeline><highlight class="normal">\input{backmatter/authors}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Библиография</highlight></codeline>
+<codeline><highlight class="normal">\printbibliography[heading=bibintoc,title={Список<sp/>литературы}]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\end{document}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/main.tex"/>
+  </compounddef>
+</doxygen>

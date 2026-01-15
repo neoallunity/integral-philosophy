@@ -1,0 +1,96 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Школа интегральной философии - Интегральное сообщество\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/school.shtml\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:45:23\\n\\n---\\n\\n## Школы в разработке\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Мы работаем над созданием образовательных программ по интегральной философии.\n                \\n\\n\n                "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://allunity.ru/DOCS/Лекции/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                    Лекции\n                "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n"
+        }
+      ]
+    }
+  ]
+}

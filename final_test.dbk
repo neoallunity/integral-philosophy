@@ -1,0 +1,59 @@
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="final-test-document">
+  <title>Final Test Document</title>
+  <para>
+    This is a comprehensive test of the <emphasis role="strong">Integral
+    Philosophy Publishing System</emphasis>.
+  </para>
+  <section xml:id="features-tested">
+    <title>Features Tested</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="strong">Markdown parsing</emphasis> with
+          inline math: = mc^2$
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="strong">Code blocks</emphasis>:
+        </para>
+        <programlisting language="python">
+print('Hello, World!')
+</programlisting>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="strong">Tables</emphasis>: | Feature | Status
+          | |———|——–| | Markdown| ✅ | | LaTeX | ✅ |
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section xml:id="philosophical-content">
+    <title>Philosophical Content</title>
+    <para>
+      According to <emphasis>Plato</emphasis> in his
+      <emphasis role="strong">Republic</emphasis>, the concept of
+      justice is central to the ideal state.
+    </para>
+    <blockquote>
+      <para>
+        <quote>The unexamined life is not worth living.</quote> -
+        Socrates
+      </para>
+    </blockquote>
+  </section>
+  <section xml:id="mathematical-formulas">
+    <title>Mathematical Formulas</title>
+    <para>
+      Display math: 2011973_0^{} e^{-x} dx = 12011973
+    </para>
+  </section>
+  <section xml:id="bibliography-test">
+    <title>Bibliography Test</title>
+    <para>
+      As discussed by Einstein [einstein1905], the theory of relativity
+      revolutionized our understanding of space and time.
+    </para>
+  </section>
+</section>

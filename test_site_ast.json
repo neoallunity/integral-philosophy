@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "base_url": "https://example.com",
+    "total_pages": 3
+  },
+  "pages": {
+    "https://example.com": {
+      "title": "Home Page",
+      "links": ["https://example.com/about", "https://example.com/contact"]
+    },
+    "https://example.com/about": {
+      "title": "About Page", 
+      "links": ["https://example.com"]
+    },
+    "https://example.com/contact": {
+      "title": "Contact Page",
+      "links": ["https://example.com"]
+    }
+  }
+}

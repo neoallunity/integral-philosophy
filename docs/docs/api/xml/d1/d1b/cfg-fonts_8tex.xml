@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d1/d1b/cfg-fonts_8tex" kind="file" language="C++">
+    <compoundname>cfg-fonts.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-fonts.tex<sp/>—<sp/>шрифты<sp/>и<sp/>языки</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>cfg/cfg-fonts.tex<sp/>—<sp/>единая<sp/>конфигурация<sp/>шрифтов<sp/>(для<sp/>LuaLaTeX)</highlight></codeline>
+<codeline><highlight class="normal">\ProvidesFile{cfg-fonts.tex}[2025/12/15<sp/>Journal<sp/>font<sp/>config]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Если<sp/>используем<sp/>LuaLaTeX<sp/>—<sp/>fontspec<sp/>+<sp/>polyglossia</highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{ifluatex}</highlight></codeline>
+<codeline><highlight class="normal">\ifluatex</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\RequirePackage{fontspec}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\RequirePackage{polyglossia}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\setmainlanguage{russian}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\setotherlanguage{english}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>---<sp/>serif<sp/>(main)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\setmainfont{Linux<sp/>Libertine<sp/>O}[Ligatures=TeX,Scale=MatchLowercase]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>---<sp/>sans</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\setsansfont{Linux<sp/>Biolinum<sp/>O}[Scale=MatchLowercase]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>---<sp/>mono</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\setmonofont{Linux<sp/>Libertine<sp/>Mono<sp/>O}[Scale=MatchLowercase]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>---<sp/>math<sp/>font<sp/>(если<sp/>есть<sp/>специальный<sp/>math-шрифт)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>\setmathfont{Latin<sp/>Modern<sp/>Math}<sp/>%<sp/>Moved<sp/>from<sp/>preamble.tex</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>%<sp/>Явные<sp/>семейства<sp/>для<sp/>кириллицы<sp/>(fallbacks)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\newfontfamily\cyrillicfont{Linux<sp/>Libertine<sp/>O}[Script=Cyrillic]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\newfontfamily\cyrillicfontsf{Linux<sp/>Biolinum<sp/>O}[Script=Cyrillic]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\newfontfamily\cyrillicfonttt{Linux<sp/>Libertine<sp/>Mono<sp/>O}[Scale=MatchLowercase]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>\else</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>%<sp/>fallback<sp/>для<sp/>pdfLaTeX<sp/>/<sp/>XeLaTeX<sp/>без<sp/>fontspec</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\RequirePackage[T2A]{fontenc}</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\RequirePackage[utf8]{inputenc}</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\RequirePackage[russian,english]{babel}</highlight></codeline>
+<codeline><highlight class="normal">\fi</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-fonts.tex"/>
+  </compounddef>
+</doxygen>

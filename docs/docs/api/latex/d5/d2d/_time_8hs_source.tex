@@ -1,0 +1,16 @@
+\doxysection{Time.\+hs}
+\hypertarget{_time_8hs_source}{}\label{_time_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Utils/Time.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Utils/Time.hs}}
+\mbox{\hyperlink{_time_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00001}00001\ -\/-\/\ |\ Time\ calculation\ utilities\ for\ academic\ publishing}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00002}00002\ module\ IntegralPhilosophy.Utils.Time}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00003}00003\ \ \ (\ calculateTime}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00004}00004\ \ \ )\ where}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00006}00006\ import\ Data.Time\ (UTCTime,\ diffUTCTime)}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00008}00008\ -\/-\/\ |\ Calculate\ time\ difference\ between\ two\ UTCTime\ values}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00009}00009\ calculateTime\ ::\ UTCTime\ -\/>\ UTCTime\ -\/>\ Double}
+\DoxyCodeLine{\Hypertarget{_time_8hs_source_l00010}00010\ calculateTime\ start\ end\ =\ realToFrac\ \$\ diffUTCTime\ end\ start}
+
+\end{DoxyCode}

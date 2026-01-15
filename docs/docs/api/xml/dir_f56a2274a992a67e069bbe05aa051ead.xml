@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_f56a2274a992a67e069bbe05aa051ead" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction</compoundname>
+    <innerfile refid="dc/d0f/_reconstruction_2_la_te_x_8hs">LaTeX.hs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,91 @@
+# Performance Test Configuration
+# Used by the performance test runner to customize test execution
+
+# Test execution settings
+execution:
+  timeout_seconds: 1800  # 30 minutes per test file
+  parallel_execution: false  # Disable parallel for memory testing
+  cleanup_after_test: true
+  generate_reports: true
+
+# Performance thresholds (can override test-specific thresholds)
+thresholds:
+  load_testing:
+    max_response_time_p95: 5.0  # seconds
+    max_response_time_p99: 10.0  # seconds
+    min_throughput_rps: 10  # requests per second
+    max_error_rate: 0.05  # 5%
+    max_cpu_usage: 80.0  # percent
+    max_memory_increase: 200.0  # MB
+  
+  benchmark_testing:
+    max_time_per_kb_conversion: 0.01  # seconds per KB
+    max_time_per_kb_processing: 0.005  # seconds per KB
+    min_throughput_mb_per_sec: 10  # MB/s
+    max_memory_per_mb_input: 50  # MB per MB of input
+  
+  stress_testing:
+    max_memory_mb: 2048  # 2GB
+    max_cpu_percent: 95  # percent
+    max_response_time: 30.0  # seconds
+    min_success_rate: 0.70  # 70%
+    max_timeout_rate: 0.20  # 20%
+    recovery_time_seconds: 60  # recovery within 1 minute
+  
+  memory_profiling:
+    max_memory_leak_mb: 50  # MB
+    max_memory_growth_mb: 100  # MB
+    max_gc_pause_ms: 100  # milliseconds
+    min_gc_efficiency: 0.7  # 70%
+    max_component_memory_mb: 200  # MB
+
+# Test data configuration
+test_data:
+  small_file_kb: 1
+  medium_file_kb: 10
+  large_file_kb: 100
+  xlarge_file_kb: 1000
+  
+  concurrent_users:
+    light_load: 10
+    medium_load: 25
+    heavy_load: 50
+    stress_load: 100
+  
+  document_sizes_mb:
+    small: 1
+    medium: 10
+    large: 50
+    xlarge: 100
+    xxlarge: 500
+
+# Reporting configuration
+reporting:
+  output_directory: "test_results/performance"
+  generate_json: true
+  generate_markdown: true
+  include_system_info: true
+  include_recommendations: true
+  
+# CI/CD specific settings
+ci:
+  reduced_test_durations: true
+  shorter_stress_tests: true
+  smaller_test_files: true
+  max_test_duration_seconds: 600  # 10 minutes total for CI
+  
+# Environment-specific overrides
+development:
+  verbose_logging: true
+  debug_mode: true
+  save_detailed_logs: true
+
+production:
+  strict_thresholds: true
+  fail_on_warnings: false
+  generate_baseline: true
+
+testing:
+  mock_external_services: true
+  use_test_data: true
+  enable_detailed_metrics: true

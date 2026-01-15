@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+# SConscript for Haskell sources
+# ===============================
+
+import os
+import glob
+
+# Get the environment from parent
+Import('env')
+
+# Haskell source configuration
+haskell_src_dir = env['HASKELL_PROJECT_DIR'] + '/src'
+
+# Find all Haskell source files
+haskell_sources = []
+if os.path.exists(haskell_src_dir):
+    for root, dirs, files in os.walk(haskell_src_dir):
+        for file in files:
+            if file.endswith('.hs'):
+                haskell_sources.append(os.path.join(root, file))
+
+print(f"🔍 Found {len(haskell_sources)} Haskell source files")
+
+# Syntax check target for Haskell sources
+def haskell_syntax_check(target, source, env):
+    print("🔍 Checking Haskell syntax...")
+    for hs_file in haskell_sources:
+        print(f"  Checking {hs_file}")
+        check_cmd = f'{env["GHC"]} -Wall {env["GHC_FLAGS"]} -c {hs_file}'
+        result = env.Execute(check_cmd)
+        if result != 0:
+            print(f"❌ Syntax error in {hs_file}")
+            Exit(1)
+    print("✅ All Haskell files passed syntax check")
+
+syntax_check_target = env.Command('haskell_syntax_check', [], 
+                                 Action(haskell_syntax_check, 'Checking Haskell syntax'))
+
+# Build Haskell documentation
+def build_haddock_docs(target, source, env):
+    print("📚 Building Haskell documentation...")
+    doc_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} haddock'
+    result = env.Execute(doc_cmd)
+    if result == 0:
+        print("✅ Documentation built successfully")
+    else:
+        print("⚠️ Documentation build failed")
+    return result
+
+haddock_target = env.Command('haddock_docs', [], 
+                            Action(build_haddock_docs, 'Building Haddock documentation'))
+
+# Run Stack tests
+def run_stack_tests(target, source, env):
+    print("🧪 Running Stack tests...")
+    test_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} test'
+    result = env.Execute(test_cmd)
+    if result == 0:
+        print("✅ All tests passed")
+    else:
+        print("❌ Some tests failed")
+        Exit(1)
+    return result
+
+stack_test_target = env.Command('stack_test', [], 
+                               Action(run_stack_tests, 'Running Stack tests'))
+
+# Check Stack dependencies
+def check_stack_deps(target, source, env):
+    print("🔍 Checking Stack dependencies...")
+    check_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} solver'
+    result = env.Execute(check_cmd)
+    if result == 0:
+        print("✅ Dependencies are consistent")
+    else:
+        print("❌ Dependency resolution failed")
+        Exit(1)
+    return result
+
+deps_check_target = env.Command('deps_check', [], 
+                               Action(check_stack_deps, 'Checking dependencies'))
+
+# Update Stack dependencies
+def update_stack_deps(target, source, env):
+    print("⬆️ Updating Stack dependencies...")
+    update_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} update'
+    result = env.Execute(update_cmd)
+    if result == 0:
+        print("✅ Dependencies updated")
+    else:
+        print("❌ Dependency update failed")
+        Exit(1)
+    return result
+
+deps_update_target = env.Command('deps_update', [], 
+                                Action(update_stack_deps, 'Updating dependencies'))
+
+# Build profiling version
+def build_profiling(target, source, env):
+    print("📊 Building profiling version...")
+    profile_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} build --profile --library-profiling --executable-profiling'
+    result = env.Execute(profile_cmd)
+    if result == 0:
+        print("✅ Profiling version built")
+    else:
+        print("❌ Profiling build failed")
+        Exit(1)
+    return result
+
+profiling_target = env.Command('profiling_build', [], 
+                             Action(build_profiling, 'Building profiling version'))
+
+# Run benchmarks if available
+def run_benchmarks(target, source, env):
+    print("⏱️ Running benchmarks...")
+    benchmark_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} bench'
+    result = env.Execute(benchmark_cmd)
+    if result == 0:
+        print("✅ Benchmarks completed")
+    else:
+        print("⚠️ No benchmarks found or benchmarks failed")
+    return result
+
+benchmark_target = env.Command('benchmark', [], 
+                              Action(run_benchmarks, 'Running benchmarks'))
+
+# Clean Stack build artifacts
+def clean_stack(target, source, env):
+    print("🧹 Cleaning Stack build artifacts...")
+    clean_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} clean'
+    result = env.Execute(clean_cmd)
+    if result == 0:
+        print("✅ Clean completed")
+    else:
+        print("⚠️ Clean failed")
+    return result
+
+clean_stack_target = env.Command('clean_stack', [], 
+                                Action(clean_stack, 'Cleaning Stack artifacts'))
+
+# Aliases for this SConscript
+env.Alias('syntax-check', syntax_check_target)
+env.Alias('docs', haddock_target)
+env.Alias('stack-test', stack_test_target)
+env.Alias('check-deps', deps_check_target)
+env.Alias('update-deps', deps_update_target)
+env.Alias('profile', profiling_target)
+env.Alias('benchmark', benchmark_target)
+env.Alias('clean-stack', clean_stack_target)
+
+# Return targets for parent SConstruct
+Return([
+    'haskell_sources',
+    'syntax_check_target',
+    'haddock_target',
+    'stack_test_target',
+    'deps_check_target',
+    'deps_update_target',
+    'profiling_target',
+    'benchmark_target',
+    'clean_stack_target'
+])

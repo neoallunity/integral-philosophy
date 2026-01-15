@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/d5e/references_8bib" kind="file" language="C++">
+    <compoundname>references.bib</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>Добавляйте<sp/>источники<sp/>сюда<sp/>(BibLaTeX/Biber).</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Пример:</highlight></codeline>
+<codeline><highlight class="normal">%</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Заглушка,<sp/>чтобы<sp/>файл<sp/>.bib<sp/>гарантированно<sp/>был<sp/>валидным,<sp/>даже<sp/>если<sp/>все<sp/>записи<sp/>закомментированы.</highlight></codeline>
+<codeline><highlight class="normal">@misc{_placeholder_,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>title<sp/>=<sp/>{Placeholder<sp/>entry<sp/>(remove<sp/>me)}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@misc{NoTitle,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title<sp/>=<sp/>{{No<sp/>Title}}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{losev1990,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>author<sp/><sp/><sp/><sp/>=<sp/>{Лосев,<sp/>А.<sp/>Ф.},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>title<sp/><sp/><sp/><sp/><sp/>=<sp/>{История<sp/>античной<sp/>эстетики},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>year<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>{1990},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>publisher<sp/>=<sp/>{Искусство},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>location<sp/><sp/>=<sp/>{Москва}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@article{Mersini-Houghton2014Back-reactionII,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title<sp/>=<sp/>{{Back-reaction<sp/>of<sp/>the<sp/>Hawking<sp/>radiation<sp/>flux<sp/>on<sp/>a<sp/>gravitationally<sp/>collapsing<sp/>star<sp/>II}},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>year<sp/>=<sp/>{2014},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>author<sp/>=<sp/>{Mersini-Houghton,<sp/>Laura},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>month<sp/>=<sp/>{9},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>url<sp/>=<sp/>{http://arxiv.org/abs/1409.1837},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>arxivId<sp/>=<sp/>{1409.1837}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{EForth2015,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title<sp/>=<sp/>{{eForth<sp/>и<sp/>Zen<sp/>-<sp/>3-е<sp/>издание<sp/>2017:<sp/>с<sp/>32-битным<sp/>86eForth<sp/>v5.2<sp/>для<sp/>Visual<sp/>Studio<sp/>2015}},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>shorttitle<sp/>=<sp/>{eForth<sp/>и<sp/>Zen<sp/>-<sp/>3-е<sp/>издание<sp/>2017},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pages<sp/>=<sp/>{222},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>language<sp/>=<sp/>{Englisch}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@misc{ZoteroGuide,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title<sp/>=<sp/>{{Zotero<sp/>Quick<sp/>Start<sp/>Guide}},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>url<sp/>=<sp/>{http://zotero.org/support/quick_start_guide}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@misc{ZoteroDownloads,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>title<sp/>=<sp/>{{Zotero<sp/>|<sp/>Downloads}},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>url<sp/>=<sp/>{https://www.zotero.org/download/}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/references.bib"/>
+  </compounddef>
+</doxygen>

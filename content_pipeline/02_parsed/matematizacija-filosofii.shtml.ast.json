@@ -1,0 +1,439 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Математизация философии - Интегральное сообщество\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/matematizacija-filosofii.shtml\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:48:33\\n\\n---\\n\\n## Математизация философии\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проект «Математизация философии» ставит перед собою задачу развития системы логико-математических средств, в том числе создания новых математических структур, для выражения фундаментальных философско-метафизических понятий и теорий."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Тем самым предполагается, что философия исчерпала чисто вербальные (доструктурные) средства своего выражения, и дальнейшее существенное развитие теоретической философии возможно только средствами структурного языка математики и логики. Хотя процесс математизации философии имеет уже достаточную историю и сегодня особенно ярко выражается в рамках философской логики и аналитической философии, но все же – как представляется участникам проекта – созданные к настоящему моменту математические структуры не вполне выражают специфику и существенные определения именно философского знания и системы ее базовых концептов.\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Подобно тому как в геометрии фундаментальной является структура пространства, в арифметике – структура числа, для теоретической философии (метафизики) предполагается существование и возможность построения системы своих фундаментальных математических структур, которые до сих пор еще не сформулированы в официальной философско-структуралистской традиции. В проекте предполагается обсуждение фундаментальных метафизических структур и возможностей их выражения языком логики и математики.\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Теоретический задел проекта\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "К настоящему моменту существует некоторый теоретический задел участников проекта в области математизации философии. В первую очередь речь идет о создании следующих новых математических структур и логико-математических средств для выражения фундаментальных конструкций метафизики:\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "ordered": false
+      },
+      "content": [
+        {
+          "type": "list_item",
+          "attributes": {},
+          "content": [
+            {
+              "type": "emphasis",
+              "attributes": {},
+              "content": [
+                {
+                  "type": "text",
+                  "attributes": {},
+                  "content": "Формальная аксиоматическая теория «Проективно Модальная Онтология», в рамках которой может быть построена первая версия логики анализа и синтеза."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\\n- "
+            },
+            {
+              "type": "emphasis",
+              "attributes": {},
+              "content": [
+                {
+                  "type": "text",
+                  "attributes": {},
+                  "content": "Модели субъекта – так называемые «субъектные онтологии»."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\\n- "
+            },
+            {
+              "type": "emphasis",
+              "attributes": {},
+              "content": [
+                {
+                  "type": "text",
+                  "attributes": {},
+                  "content": "Логика антиномий, в том числе так называемая «теория L-противоречий»."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основные материалы, касающиеся названных четырех структур, на данный момент опубликованы в монографии Моисеев В.И. Логика открытого синтеза: в 2-х тт. Т.1. Структура. Природа. Душа. Кн.1-2. – СПб.: ИД «Мiръ», 2010, изданной при финансовой поддержке Российского государственного гуманитарного фонда (РГНФ, издательский проект № 09-03-16031д).\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://vyacheslav-moiseev.narod.ru/Logic_Synth/LOS_1_1.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                 Книга I том, часть №1\n                            "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://vyacheslav-moiseev.narod.ru/Logic_Synth/LOS_1_2.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                 Книга I том, часть №2\n                            "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://www.ozon.ru/context/detail/id/5527713/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                 Купить книгу\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Координатор проекта\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Материалы по теме проекта\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Монография В.И.Моисеева «Логика всеединства»\n                                ](http://vyacheslav-moiseev.narod.ru/Page2.htm)\n                                ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Монография В.И.Моисеева «Логика Добра. Нравственный логос Владимира Соловьева»\n                                ](http://vyacheslav-moiseev.narod.ru/Page3.htm)\n                                ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Статья В.И.Моисеева «Философия неовсеединства: идеи и перспективы»\n                                ](http://vyacheslav-moiseev.narod.ru/Neo-All-Unity/NeoAllUnity.doc)\n                                ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Глава «Проективно Модальная Онтология» из монографии «Логика открытого синтеза»\n                                ](http://vyacheslav-moiseev.narod.ru/Logics/PhilosLogics/PMO.doc)\n                                ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Статья «Как возможна теория антиномии?»\n                                ](http://vyacheslav-moiseev.narod.ru/Logics/PhilosLogics/Antinomy2.htm)\n                                ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Глава «Логика L-противоречий» из монографии «Логика открытого синтеза»\n                                ](http://vyacheslav-moiseev.narod.ru/Logics/PhilosLogics/LTheory.doc)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Дополнительные материалы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Видеолекции проф. В.И.Моисеева по логике всеединства\n                                    ](http://neoallunity.ru/1/index.php?option=com_content&amp;view=article&amp;id=40&amp;Itemid=100012)\n                                    ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Курс лекций по философии неовсеединства\n                                    ](http://neoallunity.ru/1/index.php?option=com_content&amp;view=article&amp;id=39&amp;Itemid=33)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Публикации С.А. Борчикова по проекту\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "ordered": true
+      },
+      "content": [
+        {
+          "type": "list_item",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Борчиков С.А. О понятии «атом рефлексии» // Философия математики: актуальные проблемы. Материалы международной научной конференции 15-10 March 2008. – М., Издатель Савин С.А., 2007.\\n\\n\\n2. Борчиков С.А. Спиноза и алефы // Размышления о… Вып. 11. Актуальная философия (от альфы до алефа). – М.: МАКС Пресс, 2008.\\n\\n\\n3. Борчиков С.А. Актуальная бесконечность как виртуал // Генезис категории виртуальная реальность. Материалы международной научной конференции (09 November 2008 г.). – Саранск: Тип. «Рузаевский печатник», 2008.\\n\\n\\n4. Борчиков С.А. Математика философии // Философия математики: актуальные проблемы. Тезисы Второй международной научной конференции; 28-22 February 2010 г. – М.: МАКС Пресс, 2009.\\n\\n\\n5. Борчиков С.А. Математическое обоснование начал онтологии (частично в сравнении с концепцией П.М. Колычева) // Современная онтология – IV: Проблемы метода. Материалы международной научной конференции (28-25 March 2011 г., Санкт-Петербург, Россия). Т.1. – СПб.: СПбГУИТМО, 2010.\\n\\n\\n"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

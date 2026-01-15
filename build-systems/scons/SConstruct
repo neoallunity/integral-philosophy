@@ -1,0 +1,338 @@
+#!/usr/bin/env python3
+# SConstruct file for Integral Philosophy Publishing System
+# ======================================================
+
+import os
+import sys
+import platform
+from pathlib import Path
+
+# Project information
+project_name = 'Integral Philosophy Publishing System'
+project_version = '0.1.0.0'
+project_description = 'Enterprise-grade validation and processing for academic publications'
+
+# Environment setup
+env = Environment(
+    tools=['default', 'textfile'],
+    PROJECT_NAME=project_name,
+    PROJECT_VERSION=project_version,
+    PROJECT_DESCRIPTION=project_description,
+)
+
+# Configuration variables
+vars = Variables()
+vars.AddVariables(
+    ('BUILD_DIR', 'Build directory', 'build'),
+    ('BIN_DIR', 'Binary directory', 'bin'),
+    ('HASKELL_PROJECT_DIR', 'Haskell project directory', '../../haskell-project'),
+    ('GHC', 'GHC compiler', 'ghc'),
+    ('STACK', 'Stack build tool', 'stack'),
+    ('GHC_FLAGS', 'GHC compilation flags', '-Wall -O2 -threaded'),
+    ('STACK_FLAGS', 'Stack build flags', ''),
+    ('TEST_FILE', 'Test LaTeX file', 'test.tex'),
+    BoolVariable('DEBUG', 'Enable debug build', False),
+    BoolVariable('OPTIMIZE', 'Enable optimization', True),
+    BoolVariable('VERBOSE', 'Verbose output', False),
+    BoolVariable('PROFILE', 'Enable profiling', False),
+)
+
+# Apply variables to environment
+vars.Update(env)
+
+# Helper functions
+def check_tool(env, tool):
+    """Check if a tool is available in the system."""
+    if not env.WhereIs(tool):
+        print(f"❌ Error: {tool} not found in PATH")
+        print(f"Please install {tool} and ensure it's in your PATH")
+        Exit(1)
+    return True
+
+def print_status(msg):
+    """Print status message with emoji."""
+    print(f"🔧 {msg}")
+
+def print_success(msg):
+    """Print success message with emoji."""
+    print(f"✅ {msg}")
+
+def print_info(msg):
+    """Print info message with emoji."""
+    print(f"ℹ️  {msg}")
+
+def print_warning(msg):
+    """Print warning message with emoji."""
+    print(f"⚠️  {msg}")
+
+# Custom builders
+def HaskellProgramBuilder(env, target, source):
+    """Custom builder for Haskell programs using Stack."""
+    print_status(f"Building {target[0]}...")
+    
+    # Build the project
+    build_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} build {env["STACK_FLAGS"]}'
+    env.Execute(build_cmd)
+    
+    # Copy the executable to target location
+    copy_commands = [
+        f'if [ -f {env["HASKELL_PROJECT_DIR"]}/.stack-work/install/x86_64-linux-tinfo6/*/9.4.8/bin/integral-philosophy ]; then cp {env["HASKELL_PROJECT_DIR"]}/.stack-work/install/x86_64-linux-tinfo6/*/9.4.8/bin/integral-philosophy ../{target[0]}; fi',
+        f'if [ -f {env["HASKELL_PROJECT_DIR"]}/.stack-work/dist/x86_64-linux-tinfo6/*/build/integral-philosophy/integral-philosophy ]; then cp {env["HASKELL_PROJECT_DIR"]}/.stack-work/dist/x86_64-linux-tinfo6/*/build/integral-philosophy/integral-philosophy ../{target[0]}; fi'
+    ]
+    
+    for cmd in copy_commands:
+        env.Execute(cmd)
+    
+    return target
+
+def HaskellTestBuilder(env, target, source):
+    """Custom builder for running Haskell tests."""
+    print_status("Running Haskell tests...")
+    program = str(source[0])
+    test_cmd = f'{program} help'
+    env.Execute(test_cmd)
+    return target
+
+def HaskellValidationBuilder(env, target, source):
+    """Custom builder for LaTeX validation."""
+    print_status("Validating LaTeX files...")
+    program = str(source[0])
+    test_file = env['TEST_FILE']
+    validate_cmd = f'{program} validate {test_file}'
+    env.Execute(validate_cmd)
+    return target
+
+def HaskellAnalysisBuilder(env, target, source):
+    """Custom builder for LaTeX analysis."""
+    print_status("Analyzing LaTeX files...")
+    program = str(source[0])
+    test_file = env['TEST_FILE']
+    analyze_cmd = f'{program} analyze {test_file}'
+    env.Execute(analyze_cmd)
+    return target
+
+def HaskellReconstructionBuilder(env, target, source):
+    """Custom builder for LaTeX reconstruction."""
+    print_status("Reconstructing LaTeX files...")
+    program = str(source[0])
+    test_file = env['TEST_FILE']
+    reconstruct_cmd = f'{program} reconstruct {test_file}'
+    env.Execute(reconstruct_cmd)
+    return target
+
+# Register custom builders
+env['BUILDERS']['HaskellProgram'] = Builder(action=HaskellProgramBuilder)
+env['BUILDERS']['HaskellTest'] = Builder(action=HaskellTestBuilder)
+env['BUILDERS']['HaskellValidation'] = Builder(action=HaskellValidationBuilder)
+env['BUILDERS']['HaskellAnalysis'] = Builder(action=HaskellAnalysisBuilder)
+env['BUILDERS']['HaskellReconstruction'] = Builder(action=HaskellReconstructionBuilder)
+
+# Configuration based on options
+if env['DEBUG']:
+    env.Replace(GHC_FLAGS='-Wall -debug -threaded')
+    env.Replace(STACK_FLAGS='--fast')
+    print_info("Debug build enabled")
+
+if env['OPTIMIZE']:
+    env.Replace(GHC_FLAGS=env['GHC_FLAGS'] + ' -O2')
+    print_info("Optimization enabled")
+
+if env['PROFILE']:
+    env.Replace(STACK_FLAGS=env['STACK_FLAGS'] + ' --profile --library-profiling --executable-profiling')
+    print_info("Profiling enabled")
+
+if env['VERBOSE']:
+    env.Replace(STACK_FLAGS=env['STACK_FLAGS'] + ' --verbose')
+
+# Create build directories
+env.Command([env['BUILD_DIR'], env['BIN_DIR']], [], 
+           [Action(f'mkdir -p {env["BUILD_DIR"]} {env["BIN_DIR"]}', 'Creating build directories')])
+
+# Main executable
+integral_philosophy = env.HaskellProgram(
+    target=f'{env["BIN_DIR"]}/integral-philosophy',
+    source=[],
+)
+
+# Test targets
+test_target = env.HaskellTest(
+    target='test_passed',
+    source=[integral_philosophy],
+)
+
+validation_target = env.HaskellValidation(
+    target='validation_passed',
+    source=[integral_philosophy],
+)
+
+analysis_target = env.HaskellAnalysis(
+    target='analysis_passed',
+    source=[integral_philosophy],
+)
+
+reconstruction_target = env.HaskellReconstruction(
+    target='reconstruction_passed',
+    source=[integral_philosophy],
+)
+
+# Dependencies target
+dependencies = env.Command('dependencies', [], [
+    Action(f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} install --dependencies-only', 
+           'Installing Haskell dependencies')
+])
+
+# Clean target
+env.Clean('.', [env['BUILD_DIR'], env['BIN_DIR'], '.sconsign.dblite'])
+
+# Help command
+def help_command(target, source, env):
+    print(f"""
+{project_name} v{project_version}
+{project_description}
+
+Available targets:
+  scons                        Build everything (default)
+  scons build                  Build the executable
+  scons test                   Run tests
+  scons validate               Validate LaTeX files
+  scons analyze                Analyze LaTeX files
+  scons reconstruct           Reconstruct LaTeX files
+  scons run                    Run the executable
+  scons demo                   Run demo
+  scons dependencies           Install dependencies
+  scons clean                  Clean build artifacts
+  scons help                   Show this help
+
+Build options:
+  DEBUG={env['DEBUG']}          Enable debug build (--debug=1)
+  OPTIMIZE={env['OPTIMIZE']}    Enable optimization (--optimize=1)
+  VERBOSE={env['VERBOSE']}      Verbose output (--verbose=1)
+  PROFILE={env['PROFILE']}      Enable profiling (--profile=1)
+
+Configuration:
+  BUILD_DIR={env['BUILD_DIR']}    Build directory
+  BIN_DIR={env['BIN_DIR']}        Binary directory
+  TEST_FILE={env['TEST_FILE']}    Test LaTeX file
+  GHC_FLAGS={env['GHC_FLAGS']}    GHC compilation flags
+  STACK_FLAGS={env['STACK_FLAGS']} Stack build flags
+
+Examples:
+  scons DEBUG=1               # Debug build
+  scons VERBOSE=1             # Verbose output
+  scons TEST_FILE=custom.tex  # Custom test file
+""")
+
+# Create a help command as a proper target
+help_target = env.Command('help_file', [], Action(help_command, 'Display help'))
+env.Alias('help', help_target)
+
+# Aliases
+env.Alias('all', integral_philosophy)
+env.Alias('build', integral_philosophy)
+env.Alias('test', test_target)
+env.Alias('validate', validation_target)
+env.Alias('analyze', analysis_target)
+env.Alias('reconstruct', reconstruction_target)
+env.Alias('run', integral_philosophy)
+env.Alias('demo', integral_philosophy)
+env.Alias('deps', dependencies)
+env.Alias('dev', [integral_philosophy, test_target])
+env.Alias('check', [test_target, validation_target, analysis_target, reconstruction_target])
+
+# Custom commands
+env.Command('run_executable', integral_philosophy, 
+           Action(f'{env["BIN_DIR"]}/integral-philosophy help', 'Running integral-philosophy'))
+
+env.Command('demo_executable', integral_philosophy,
+           [Action('echo "🎉 Haskell Integral Philosophy Publishing System Demo"', 'Starting demo'),
+            Action(f'{env["BIN_DIR"]}/integral-philosophy help', 'Running demo')])
+
+env.Command('version', [], Action(f'{env["GHC"]} --version', 'Show GHC version'))
+
+env.Command('info', [], [
+    Action('echo "=== Build Information ==="', 'Displaying build info'),
+    Action(f'echo "GHC: {env["GHC"]}"', ''),
+    Action(f'echo "Stack: {env["STACK"]}"', ''),
+    Action(f'echo "Build Dir: {env["BUILD_DIR"]}"', ''),
+    Action(f'echo "Bin Dir: {env["BIN_DIR"]}"', ''),
+    Action(f'echo "Haskell Project: {env["HASKELL_PROJECT_DIR"]}"', ''),
+    Action(f'echo "GHC Flags: {env["GHC_FLAGS"]}"', ''),
+    Action(f'echo "Stack Flags: {env["STACK_FLAGS"]}"', ''),
+    Action(f'echo "Test File: {env["TEST_FILE"]}"', ''),
+])
+
+env.Command('syntax_check', [], [
+    Action(f'cd {env["HASKELL_PROJECT_DIR"]} && find . -name "*.hs" -exec {env["GHC"]} -Wall {env["GHC_FLAGS"]} -c {{}} +', 
+           'Checking Haskell syntax')
+])
+
+# Aliases for custom commands
+env.Alias('run', 'run_executable')
+env.Alias('demo', 'demo_executable')
+env.Alias('show-version', 'version')
+env.Alias('build-info', 'info')
+env.Alias('syntax-check', 'syntax_check')
+
+# Pre-build checks
+def check_build_environment(target, source, env):
+    print_status("Checking build environment...")
+    
+    # Check required tools
+    check_tool(env, env['GHC'])
+    check_tool(env, env['STACK'])
+    
+    # Check Haskell project directory (relative to project root)
+    haskell_dir = env['HASKELL_PROJECT_DIR']
+    project_root_dir = os.path.dirname(os.path.dirname(os.path.abspath(os.getcwd())))
+    full_haskell_dir = os.path.join(project_root_dir, haskell_dir)
+    
+    if not os.path.exists(full_haskell_dir):
+        print(f"❌ Error: Haskell project directory not found: {full_haskell_dir}")
+        Exit(1)
+    
+    # Check required Stack files
+    package_yaml = os.path.join(full_haskell_dir, 'package.yaml')
+    stack_yaml = os.path.join(full_haskell_dir, 'stack.yaml')
+    
+    if not os.path.exists(package_yaml):
+        print(f"❌ Error: package.yaml not found in {full_haskell_dir}")
+        Exit(1)
+        
+    if not os.path.exists(stack_yaml):
+        print(f"❌ Error: stack.yaml not found in {full_haskell_dir}")
+        Exit(1)
+    
+    print_success("Build environment check passed")
+
+# Add pre-build check
+env.AddPreAction(integral_philosophy, Action(check_build_environment, 'Checking build environment'))
+
+# Create test file if it doesn't exist
+def create_test_file(target, source, env):
+    test_file = env['TEST_FILE']
+    if not os.path.exists(test_file):
+        print_status(f"Creating sample {test_file}...")
+        with open(test_file, 'w') as f:
+            f.write(r"""\documentclass{article}
+\title{Test Document}
+\author{Test Author}
+\begin{document}
+\maketitle
+This is a test LaTeX document for the Integral Philosophy Publishing System.
+\end{document}
+""")
+        print_success(f"Created {test_file}")
+
+env.Command('test_file', [], Action(create_test_file, 'Creating test file'))
+
+# Generate help on startup
+if not GetOption('clean'):
+    print(f"\n🚀 {project_name} v{project_version}")
+    print(f"📝 {project_description}")
+    print(f"🔧 Build directory: {env['BUILD_DIR']}")
+    print(f"📦 Binary directory: {env['BIN_DIR']}")
+    print(f"📚 Test file: {env['TEST_FILE']}")
+    print("\n💡 Use 'scons help' for available commands and options\n")
+
+# Default target
+Default(integral_philosophy)

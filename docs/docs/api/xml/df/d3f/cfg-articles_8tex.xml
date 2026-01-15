@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="df/d3f/cfg-articles_8tex" kind="file" language="C++">
+    <compoundname>cfg-articles.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-articles.tex<sp/>—<sp/>единый<sp/>шаблон<sp/>статьи<sp/>и<sp/>служебных<sp/>разделов</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\RequirePackage{xparse}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Статья:<sp/>автор<sp/>как<sp/>глава,<sp/>заголовок<sp/>как<sp/>ненумерованный<sp/>раздел,<sp/>запись<sp/>в<sp/>TOC<sp/>и<sp/>колонтитулы.</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Использование:</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\JournalArticle{Фамилия<sp/>И.О.}{Название<sp/>статьи}</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\JournalArticle}{m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\chapter{#1}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\section*{#2}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addcontentsline{toc}{section}{#2}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\markright{#2}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Русская<sp/>аннотация<sp/>+<sp/>ключевые<sp/>слова</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\RUAbstract{Текст...}{Ключевые<sp/>слова:<sp/>...}</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\RUAbstract}{m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.3cm}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textit{#2}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.7cm}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Английская<sp/>аннотация<sp/>+<sp/>keywords</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\ENAbstract{Text...}{Keywords:<sp/>...}</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\ENAbstract}{m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{EN}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.3cm}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textit{#2}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{EN}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.7cm}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Управление<sp/>списком<sp/>статей</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">\newif\ifprintabstract</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ExplSyntaxOn<sp/>%<sp/>Start<sp/>expl3<sp/>syntax<sp/>mode</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>---<sp/>Internal<sp/>variables<sp/>---</highlight></codeline>
+<codeline><highlight class="normal">\clist_new:N<sp/>\g_journal_articles_clist</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>---<sp/>Internal<sp/>functions<sp/>---</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Appends<sp/>an<sp/>article<sp/>identifier<sp/>to<sp/>the<sp/>global<sp/>list</highlight></codeline>
+<codeline><highlight class="normal">\cs_new_protected:Nn<sp/>\journal_add_article:n</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\clist_put_right:Nn<sp/>\g_journal_articles_clist<sp/>{#1}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Maps<sp/>through<sp/>the<sp/>article<sp/>list<sp/>and<sp/>inputs<sp/>the<sp/>main<sp/>file<sp/>for<sp/>each</highlight></codeline>
+<codeline><highlight class="normal">\cs_new_protected:Nn<sp/>\journal_print_articles:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\clist_map_inline:Nn<sp/>\g_journal_articles_clist<sp/>{<sp/>\input{articles/##1/main}<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>---<sp/>User-facing<sp/>commands<sp/>---</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Wrapper<sp/>for<sp/>adding<sp/>an<sp/>article</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\addarticle}{m}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\journal_add_article:n<sp/>{#1}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Sets<sp/>a<sp/>flag<sp/>and<sp/>prints<sp/>all<sp/>articles<sp/>(assuming<sp/>content<sp/>switches<sp/>on<sp/>the<sp/>flag)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\printallabstracts}{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\printabstracttrue</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\journal_print_articles:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Clears<sp/>a<sp/>flag<sp/>and<sp/>prints<sp/>all<sp/>articles<sp/>(assuming<sp/>content<sp/>switches<sp/>on<sp/>the<sp/>flag)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\printallarticles}{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\printabstractfalse</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\journal_print_articles:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ExplSyntaxOff<sp/>%<sp/>End<sp/>expl3<sp/>syntax<sp/>mode</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-articles.tex"/>
+  </compounddef>
+</doxygen>

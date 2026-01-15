@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d1/d5a/namespaceadvanced__reconstruction" kind="namespace" language="Python">
+    <compoundname>advanced_reconstruction</compoundname>
+    <innerclass refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor" prot="public">advanced_reconstruction::AdvancedTeXReconstructor</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="d1/d5a/namespaceadvanced__reconstruction_1a4c5dcff32af194d2d5f17e7b3fe6c0c5" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>advanced_reconstruction.summary</definition>
+        <argsstring></argsstring>
+        <name>summary</name>
+        <qualifiedname>advanced_reconstruction.summary</qualifiedname>
+        <initializer>=  {
+        &quot;total_articles&quot;: len(article_files),
+        &quot;articles_processed&quot;: [str(<ref refid="d1/d5a/namespaceadvanced__reconstruction_1a7a4daac3fb3d134b0e657b34c6112122" kindref="member">f</ref>) for <ref refid="d1/d5a/namespaceadvanced__reconstruction_1a7a4daac3fb3d134b0e657b34c6112122" kindref="member">f</ref> in article_files],
+        &quot;output_files&quot;: list(reconstructed_articles.keys()),
+        &quot;reconstruction_timestamp&quot;: str(Path().cwd())
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="381" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d5a/namespaceadvanced__reconstruction_1a35e0e9985edab241ae044ff52950ea64" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>advanced_reconstruction.encoding</definition>
+        <argsstring></argsstring>
+        <name>encoding</name>
+        <qualifiedname>advanced_reconstruction.encoding</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="388" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d5a/namespaceadvanced__reconstruction_1a7a4daac3fb3d134b0e657b34c6112122" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>advanced_reconstruction.f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <qualifiedname>advanced_reconstruction.f</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="389" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d5a/namespaceadvanced__reconstruction_1a290b16aa8dfd876d4c276f9b2839cc63" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>advanced_reconstruction.indent</definition>
+        <argsstring></argsstring>
+        <name>indent</name>
+        <qualifiedname>advanced_reconstruction.indent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="389" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d5a/namespaceadvanced__reconstruction_1aa37a48fc673cd80f1c16b8d00dcb2b09" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>advanced_reconstruction.ensure_ascii</definition>
+        <argsstring></argsstring>
+        <name>ensure_ascii</name>
+        <qualifiedname>advanced_reconstruction.ensure_ascii</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="389" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="389" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d1/d5a/namespaceadvanced__reconstruction_1a0cf6950cb3caf4a1a0026f84d9dff004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>advanced_reconstruction.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>advanced_reconstruction.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main reconstruction function.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="348" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="348" bodyend="380"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Advanced LaTeX to Markdown+TeX Reconstruction Tool
+Enhanced version with better content extraction and structure preservation.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

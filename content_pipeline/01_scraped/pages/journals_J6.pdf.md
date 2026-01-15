@@ -1,0 +1,1 @@
+# \n\n**URL:** http://allunity.ru/journals/J6.pdf\n\n**Language:** en\n\n**Scraped:** 2026-01-14 23:49:04\n\n---\n\n\n

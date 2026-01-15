@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="de/d30/cfg-typography_8tex" kind="file" language="C++">
+    <compoundname>cfg-typography.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-typography.tex<sp/>—<sp/>общая<sp/>типографика</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\usepackage[protrusion=true]{microtype}<sp/>%<sp/>Removed<sp/>expansion=true<sp/>due<sp/>to<sp/>xetex<sp/>conflict</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Абзацы</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{indentfirst}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\parindent}{1.25cm}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Аккуратные<sp/>переносы/переполнения</highlight></codeline>
+<codeline><highlight class="normal">\emergencystretch=2em</highlight></codeline>
+<codeline><highlight class="normal">\clubpenalty=10000</highlight></codeline>
+<codeline><highlight class="normal">\widowpenalty=10000</highlight></codeline>
+<codeline><highlight class="normal">\displaywidowpenalty=10000</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-typography.tex"/>
+  </compounddef>
+</doxygen>

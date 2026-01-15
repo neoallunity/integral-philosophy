@@ -1,0 +1,245 @@
+{
+  "api_responses": {
+    "health_check": {
+      "status": "healthy",
+      "timestamp": "2024-01-15T10:00:00Z",
+      "components_available": true,
+      "version": "1.0.0"
+    },
+    "api_info": {
+      "name": "Integral Philosophy Publishing System API",
+      "version": "1.0.0",
+      "description": "REST API for academic content processing pipeline",
+      "endpoints": {
+        "health": "/api/v1/health",
+        "convert": "/api/v1/convert",
+        "scrape": "/api/v1/scrape",
+        "tei": "/api/v1/tei",
+        "uml": "/api/v1/uml",
+        "pipeline": "/api/v1/pipeline",
+        "jobs": "/api/v1/jobs",
+        "job_status": "/api/v1/jobs/{job_id}"
+      },
+      "formats": {
+        "input": ["markdown", "html", "latex", "org", "asciidoc", "rst", "typst"],
+        "output": ["html", "latex", "org", "asciidoc", "rst", "typst", "tei", "pdf", "epub", "docx"]
+      }
+    },
+    "job_submitted": {
+      "job_id": "test-job-123",
+      "status": "submitted",
+      "message": "Conversion job submitted successfully"
+    },
+    "job_completed": {
+      "job_id": "test-job-123",
+      "job_type": "convert",
+      "status": "completed",
+      "progress": 100,
+      "result": {
+        "output_content": "<h1>Sample Document</h1><p>Converted content</p>",
+        "output_format": "html",
+        "file_size": 1024
+      },
+      "start_time": "2024-01-15T10:00:00Z",
+      "end_time": "2024-01-15T10:01:00Z"
+    },
+    "conversion_result": {
+      "output_content": "<h1>Sample Document</h1><p>Converted content</p>",
+      "output_format": "html",
+      "file_size": 1024
+    },
+    "scraping_result": {
+      "url": "https://example.com",
+      "pages_scraped": 5,
+      "scraping_data": {
+        "pages": [
+          {
+            "url": "https://example.com/page1",
+            "title": "Page 1",
+            "content": "Content of page 1",
+            "links": ["https://example.com/page2"]
+          }
+        ]
+      }
+    },
+    "tei_result": {
+      "tei_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<TEI>...</TEI>",
+      "tei_size": 2048,
+      "metadata": {
+        "title": "Test Document",
+        "author": "Test Author"
+      }
+    },
+    "uml_result": {
+      "uml_content": "@startuml\nParticipant1 -> Participant2: Message\n@enduml",
+      "uml_format": "plantuml",
+      "uml_size": 512
+    }
+  },
+  "sample_ast": {
+    "simple_document": {
+      "type": "document",
+      "title": "Simple Document",
+      "metadata": {
+        "author": "Test Author",
+        "date": "2024-01-01",
+        "language": "en"
+      },
+      "children": [
+        {
+          "type": "heading",
+          "level": 1,
+          "content": "Simple Document"
+        },
+        {
+          "type": "paragraph",
+          "content": "This is a simple markdown document for testing."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Section 1"
+        },
+        {
+          "type": "paragraph",
+          "content": "Some content here."
+        }
+      ]
+    },
+    "complex_document": {
+      "type": "document",
+      "title": "Complex Document",
+      "metadata": {
+        "author": "Test Author",
+        "date": "2024-01-15",
+        "language": "en",
+        "keywords": ["test", "complex", "document"]
+      },
+      "children": [
+        {
+          "type": "heading",
+          "level": 1,
+          "content": "Complex Document"
+        },
+        {
+          "type": "paragraph",
+          "content": "This is a complex document with multiple formatting elements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Code Examples"
+        },
+        {
+          "type": "code_block",
+          "language": "python",
+          "content": "def complex_function(param1, param2):\n    result = param1 + param2\n    return result"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            {"content": "List item 1"},
+            {"content": "List item 2"}
+          ]
+        }
+      ]
+    }
+  },
+  "validation_results": {
+    "valid_document": {
+      "valid": true,
+      "errors": [],
+      "warnings": [],
+      "score": 1.0,
+      "metadata": {
+        "structure_score": 1.0,
+        "content_score": 1.0,
+        "format_score": 1.0
+      }
+    },
+    "invalid_document": {
+      "valid": false,
+      "errors": [
+        {
+          "type": "structure_error",
+          "message": "Missing required title element",
+          "line": 1,
+          "severity": "error"
+        }
+      ],
+      "warnings": [
+        {
+          "type": "style_warning",
+          "message": "Inconsistent heading levels",
+          "line": 10,
+          "severity": "warning"
+        }
+      ],
+      "score": 0.65,
+      "metadata": {
+        "structure_score": 0.5,
+        "content_score": 0.8,
+        "format_score": 0.7
+      }
+    }
+  },
+  "web_responses": {
+    "index_page": "<!DOCTYPE html><html><head><title>Integral Philosophy Publishing System</title></head><body><h1>Welcome to Integral Philosophy Publishing System</h1></body></html>",
+    "convert_page": "<!DOCTYPE html><html><head><title>Format Converter</title></head><body><h1>Format Converter</h1><form>...</form></body></html>",
+    "scrape_page": "<!DOCTYPE html><html><head><title>Web Scraper</title></head><body><h1>Web Scraper</h1><form>...</form></body></html>",
+    "job_status_page": "<!DOCTYPE html><html><head><title>Job Status</title></head><body><h1>Job Status</h1><div id=\"job-status\">Processing...</div></body></html>"
+  },
+  "test_configurations": {
+    "converter_config": {
+      "input_format": "markdown",
+      "output_format": "html",
+      "preserve_metadata": true,
+      "process_links": true,
+      "handle_code_blocks": true,
+      "process_tables": true,
+      "preserve_images": false
+    },
+    "scraper_config": {
+      "max_pages": 10,
+      "timeout": 30,
+      "rate_limit": 1.0,
+      "respect_robots": true,
+      "user_agent": "Integral-Philosophy-Test/1.0",
+      "depth": 2,
+      "follow_links": true,
+      "extract_images": false,
+      "javascript_enabled": true
+    },
+    "validator_config": {
+      "strict_mode": false,
+      "check_structure": true,
+      "check_content": true,
+      "check_format": true,
+      "check_accessibility": true,
+      "validate_links": true,
+      "spell_check": true,
+      "grammar_check": false
+    },
+    "pipeline_config": {
+      "scraping": {
+        "depth": 2,
+        "max_pages": 5,
+        "timeout": 30,
+        "javascript_enabled": true
+      },
+      "processing": {
+        "generate_tei": true,
+        "generate_uml": true,
+        "validate_content": true,
+        "extract_metadata": true
+      },
+      "output": {
+        "formats": ["html", "tei"],
+        "directory": "output",
+        "preserve_structure": true,
+        "include_metadata": true
+      }
+    }
+  }
+}

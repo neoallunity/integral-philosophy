@@ -1,0 +1,1675 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Журнал «Интегральная философия» - Интегральное сообщество\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/journal.shtml\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:46:01\\n\\n---\\n\\n["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ещё"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "«Интегральная философия»\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "**\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://portal.issn.org/resource/ISSN/3034-6096"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ISSN"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "journals/IMG_4110.JPG"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "3034-6096"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                **"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "О журнале\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Научный журнал «Интегральная философия» предоставляет площадку для выражения своих позиций и теоретических разработок участникам Интегрального сообщества и другим авторам, разделяющим идеи интегральной философии.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основные сведения\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Контакты\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Текущий выпуск\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "15\n                            2025"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J15.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Опубликован\n                                "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Институт интегральной науки\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "В настоящий момент подготовлен и сборан материал для 15 выпуска журнала «Интегральная философия», посвящённого новому проекту «Институт интегральной науки».\n                            \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Институт интегральной науки\n                                Новые лаборатории\n                                Научные исследования"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Архив выпусков\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 15\n                            2025"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Институт интегральной науки\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 14\n                            2024"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Плерональные архетипы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 13\n                            2023"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Трансимманентная динамика\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 12\n                            2022"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Мирология\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J12.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                            Скачать PDF\n                        "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 11\n                                2021"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральная онтология\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J11.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 10\n                                2020"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Философия всеединства\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J10.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Альманах 9\n                                2019"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Поликвантовая теория\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://allunity.ru/journals/almanah/index.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 8\n                                2018"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральная логика\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J8.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 7\n                                2017"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Синтез и анализ\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J7.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 6\n                                2016"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Неовсеединство\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "http://allunity.ru/journals/J6.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                                Скачать PDF\n                            "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 5\n                                2015"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Философия религии\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 4\n                                2014"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Философия истории\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 3\n                                2013"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основания математики\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 2\n                                2012"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Логика и диалектика\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Выпуск 1\n                                2012"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основания интегральной философии\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Показать все выпуски"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Скрыть старые выпуски"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Редакционная коллегия\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "ВМ"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Моисеев В.И.\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Директор Института интегральной науки, д. филос. н., профессор\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "ЕЛ"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Луговская Е.Г.\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Руководитель лаборатории Философии слова, к.филол.н., доцент\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "НП"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Подзолкова Н.А.\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Руководитель лаборатории Интегральной этики, к.филос.н., доцент\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "function toggle(obj) {\n          var obj=document.getElementById(obj);\n                    if (obj.style.display == \"block\") obj.style.display = \"none\";\n                              else obj.style.display = \"block\";\n                              }"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\\n## Авторам\\n\\n\n                               \\n\\n\n                               ](javascript: void(0);)"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attributes": {
+        "ordered": false
+      },
+      "content": []
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Редколлегия журнала оставляет за собой право отклонять статьи, не соответствующие миссии журнала или достаточному профессиональному уровню.\n                            \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "**Прием статей:**\\n\n                                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "mailto:vimo@list.ru"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "vimo@list.ru"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\n                                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "mailto:neoallunityjournal@gmail.com"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "neoallunityjournal@gmail.com"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                                \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Требования к статьям\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "document.addEventListener('DOMContentLoaded', function() {\n            const showAllBtn = document.getElementById('show-all-issues');\n            const hideBtn = document.getElementById('hide-issues');\n            const hiddenIssues = document.querySelector('.hidden-issues');"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "showAllBtn.addEventListener('click', function() {\n                hiddenIssues.style.display = 'contents';\n                showAllBtn.style.display = 'none';\n                hideBtn.style.display = 'inline-block';"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "// Scroll to show the expanded content\n                setTimeout(() => {\n                    hiddenIssues.scrollIntoView({ behavior: 'smooth', block: 'nearest' });\n                }, 100);\n            });"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "hideBtn.addEventListener('click', function() {\n                hiddenIssues.style.display = 'none';\n                hideBtn.style.display = 'none';\n                showAllBtn.style.display = 'inline-block';"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "// Scroll back to the archive section\n                document.getElementById('journal-archive').scrollIntoView({ behavior: 'smooth', block: 'start' });\n            });\n        });"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "image",
+          "attributes": {
+            "alt": "Логотип Интегрального сообщества",
+            "src": "https://allunity.ru/img/logo.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Консолидация всех конструктивных сил на основе принципов интегральной философии.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основные разделы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ресурсы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Контакты\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://u0173845:Allunity1!!@webstat.allunity.ru/index.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Интегральное сообщество  ©  2015-2025"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\\n\\n"
+        }
+      ]
+    }
+  ]
+}

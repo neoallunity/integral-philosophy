@@ -1,0 +1,115 @@
+{
+  "pipeline_info": {
+    "version": "1.0.0",
+    "timestamp": "2026-01-14 23:51:29",
+    "work_directory": "content_pipeline"
+  },
+  "results": {
+    "start_time": 1768427094.6650674,
+    "end_time": null,
+    "duration": null,
+    "stages": {
+      "scraping": {
+        "success": true,
+        "pages_downloaded": 100,
+        "failed_pages": 0,
+        "scraped_at": "2026-01-14 23:44:54"
+      },
+      "parsing": {
+        "success": true,
+        "total_files": 55,
+        "successful_parses": 55,
+        "parse_rate": 1.0
+      },
+      "uml": {
+        "success": true,
+        "nodes": 100,
+        "edges": 657,
+        "formats_generated": [
+          "plantuml",
+          "mermaid",
+          "graphviz"
+        ]
+      },
+      "tei": {
+        "success": true,
+        "tei_file": "04_tei/site_document.xml",
+        "file_size": 705813,
+        "validation": {
+          "valid": true,
+          "error": null
+        }
+      },
+      "transformation": {
+        "success": false,
+        "formats": {
+          "html": {
+            "success": false,
+            "file_exists": false
+          },
+          "latex": {
+            "success": false,
+            "file_exists": false
+          },
+          "pdf": {
+            "success": false,
+            "file_exists": false
+          },
+          "epub": {
+            "success": false,
+            "file_exists": false
+          },
+          "docx": {
+            "success": false,
+            "file_exists": false
+          }
+        },
+        "successful_formats": 0,
+        "total_formats": 5
+      }
+    },
+    "success": false
+  },
+  "directory_structure": {
+    "scraped": {
+      "path": "content_pipeline/01_scraped",
+      "total_files": 111,
+      "directories": 3
+    },
+    "parsed": {
+      "path": "content_pipeline/02_parsed",
+      "total_files": 56,
+      "directories": 0
+    },
+    "uml": {
+      "path": "content_pipeline/03_uml",
+      "total_files": 4,
+      "directories": 0
+    },
+    "tei": {
+      "path": "content_pipeline/04_tei",
+      "total_files": 1,
+      "directories": 0
+    },
+    "transformed": {
+      "path": "content_pipeline/05_transformed",
+      "total_files": 0,
+      "directories": 0
+    },
+    "validation": {
+      "path": "content_pipeline/06_validation",
+      "total_files": 0,
+      "directories": 0
+    },
+    "reports": {
+      "path": "content_pipeline/reports",
+      "total_files": 1,
+      "directories": 0
+    }
+  },
+  "recommendations": [
+    "Pipeline failed - check error messages in results",
+    "Stage transformation failed - review error details",
+    "Some format transformations failed - check dependencies"
+  ]
+}

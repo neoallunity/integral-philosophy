@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/d1d/namespacesimple__validate" kind="namespace" language="Python">
+    <compoundname>simple_validate</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d7/d1d/namespacesimple__validate_1a427a9e54f25480f1d300576f8ca7341c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>simple_validate.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>simple_validate.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run simple LaTeX validation.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/simple_validate.py" line="17" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/simple_validate.py" bodystart="17" bodyend="101"/>
+        <references refid="d7/d1d/namespacesimple__validate_1a427a9e54f25480f1d300576f8ca7341c" compoundref="df/d56/simple__validate_8py" startline="17" endline="101">main</references>
+        <referencedby refid="d7/d1d/namespacesimple__validate_1a427a9e54f25480f1d300576f8ca7341c" compoundref="df/d56/simple__validate_8py" startline="17" endline="101">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Simple validation script for Integral Philosophy publication.
+Validates LaTeX files and generates basic quality report.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/simple_validate.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

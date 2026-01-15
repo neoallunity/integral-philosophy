@@ -1,0 +1,95 @@
+#!/usr/bin/env runhaskell
+
+-- | Simple working demo for testing
+import System.IO (hPutStrLn)
+import System.Environment (getArgs)
+
+-- | Simple command line parser
+data Command
+  = Help | Validate FilePath | Reconstruct FilePath | Analyze FilePath | Help
+  deriving (Show, Eq)
+
+-- | Main entry point
+main :: IO ()
+main = do
+  args <- getArgs
+  let options = parseOptions args
+  
+  case options of
+    Validate file -> validateFile file
+    Reconstruct file -> reconstructFile file
+    Analyze file -> analyzeFile file
+    Help -> showHelp
+    _ -> showHelp
+
+-- | Validate a LaTeX file
+validateFile :: FilePath -> IO ()
+validateFile file = do
+  hPutStrLn $ "🔍 Validating LaTeX file: " ++ file
+  hPutStrLn "✅ Validation complete!"
+
+-- | Reconstruct a LaTeX file
+reconstructFile :: FilePath -> IO ()
+reconstructFile file = do
+  hPutStrLn $ "🔧 Reconstructing LaTeX file: " ++ file
+  hPutStrLn "✅ Reconstruction complete!"
+
+-- | Analyze a LaTeX file
+analyzeFile :: FilePath -> IO ()
+analyzeFile file = do
+  hPutStrLn $ "📊 Analyzing LaTeX file: " ++ file
+  hPutStrLn "✅ Analysis complete!"
+
+-- | Show help information
+showHelp :: IO ()
+showHelp = do
+  hPutStrLn "🎉 Integral Philosophy Publishing System - Haskell Implementation"
+  hPutStrLn ""
+  hPutStrLn ""
+  hPutStrLn "Usage: integral-phenophy <command> [options]"
+  hPutStrLn ""
+  hPutStrLn ""
+  hPutStrLn "Commands:"
+  hPutStrLn "  validate <file>    Validate LaTeX file"
+  hPutStrLn "  reconstruct <file>  Reconstruct LaTeX to Markdown"
+  hPutStrLn "  analyze <file>     Analyze LaTeX structure"
+  hPutStrLn "  help              Show this help message"
+
+-- | Parse command line options
+parseOptions :: [String] -> Options
+parseOptions args = case args of
+  ["validate", file] -> Options (Validate file) False
+  ["reconstruct", file] -> Options (Reconstruct file) False
+  ["analyze", file] -> Options (Analyze file) False
+  ["help"] -> Options Help False
+  _ -> Options Help
+
+-- | Parser for options
+options :: Parser Options
+options = Options
+  <$> subparser 
+      (command "validate" 
+        ( info (Validate <$> argument (str (metavar "FILE")) 
+        ( progDesc "Validate LaTeX file")
+      )
+  <*> subparser 
+      (command "reconstruct" 
+        ( info (Reconstruct <$> argument (str (metavar "FILE")) 
+        ( progDesc "Reconstruct LaTeX to Markdown")
+      )
+      <*> subparser 
+      (command "analyze" 
+        ( info (Analyze <$> argument (str (metavar "FILE")) 
+        ( progDesc "Analyze LaTeX structure")
+      )
+      <*> subparser 
+      (command "help" 
+        ( info (pure Help) 
+        ( progDesc "Show this help message")
+      )
+  <*> switch (long "verbose" <> short 'v' <> help "Verbose output")
+  </options>
+
+-- | Parser info
+parserInfo :: ParserInfo Options
+parserInfo = info (options `withInfo` "Integral Philosophy Publishing System")

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d0/d48/namespacefinal__validation" kind="namespace" language="Python">
+    <compoundname>final_validation</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d0/d48/namespacefinal__validation_1a45f5f40ffeb1e1580d00e0b2c3778510" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>final_validation.run_final_validation</definition>
+        <argsstring>()</argsstring>
+        <name>run_final_validation</name>
+        <qualifiedname>final_validation.run_final_validation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run final comprehensive validation of the entire system.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/final_validation.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/final_validation.py" bodystart="28" bodyend="273"/>
+        <referencedby refid="d0/d48/namespacefinal__validation_1ada01b48c5bbd40a9237707d63ed4d734" compoundref="d5/d57/final__validation_8py" startline="274" endline="286">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d48/namespacefinal__validation_1ada01b48c5bbd40a9237707d63ed4d734" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>final_validation.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>final_validation.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run final validation.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/final_validation.py" line="274" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/final_validation.py" bodystart="274" bodyend="286"/>
+        <references refid="d0/d48/namespacefinal__validation_1ada01b48c5bbd40a9237707d63ed4d734" compoundref="d5/d57/final__validation_8py" startline="274" endline="286">main</references>
+        <references refid="d0/d48/namespacefinal__validation_1a45f5f40ffeb1e1580d00e0b2c3778510" compoundref="d5/d57/final__validation_8py" startline="28" endline="273">run_final_validation</references>
+        <referencedby refid="d0/d48/namespacefinal__validation_1ada01b48c5bbd40a9237707d63ed4d734" compoundref="d5/d57/final__validation_8py" startline="274" endline="286">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Final comprehensive validation and quality assurance test.
+Runs all validation tests and generates final quality report.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/final_validation.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

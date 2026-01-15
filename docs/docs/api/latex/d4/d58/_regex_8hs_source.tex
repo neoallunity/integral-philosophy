@@ -1,0 +1,26 @@
+\doxysection{Regex.\+hs}
+\hypertarget{_regex_8hs_source}{}\label{_regex_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Utils/Regex.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Utils/Regex.hs}}
+\mbox{\hyperlink{_regex_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00001}00001\ -\/-\/\ |\ Simple\ regex\ parsing\ utilities}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00002}00002\ module\ IntegralPhilosophy.Utils.Regex\ where}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00004}00004\ import\ qualified\ Data.Text\ as\ T}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00005}00005\ import\ Data.Foldable\ (any)}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00007}00007\ -\/-\/\ |\ Simple\ regex\ extraction\ (placeholder\ implementation)}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00008}00008\ extractRegex\ ::\ T.Text\ -\/>\ T.Text\ -\/>\ [T.Text]}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00009}00009\ extractRegex\ pattern\ text\ =\ }
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00010}00010\ \ \ let\ parts\ =\ T.splitOn\ pattern\ text}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00011}00011\ \ \ in\ case\ length\ parts\ of}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00012}00012\ \ \ \ \ 1\ -\/>\ []\ \ -\/-\/\ No\ matches\ found}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00013}00013\ \ \ \ \ 2\ -\/>\ [T.strip\ \$\ parts\ !!\ 1]\ \ -\/-\/\ Extract\ content\ between\ pattern}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00014}00014\ \ \ \ \ \_\ -\/>\ []\ \ -\/-\/\ Complex\ patterns\ not\ supported\ yet}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00016}00016\ -\/-\/\ |\ Check\ if\ text\ contains\ any\ LaTeX\ commands}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00017}00017\ hasInvalidCommands\ ::\ T.Text\ -\/>\ Bool}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00018}00018\ hasInvalidCommands\ text\ =\ }
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00019}00019\ \ \ let\ invalidCommands\ =\ ["{}\(\backslash\)\(\backslash\)"{},\ "{}\{"{},\ "{}\}"{},\ "{}["{},\ "{}]"{}]}
+\DoxyCodeLine{\Hypertarget{_regex_8hs_source_l00020}00020\ \ \ in\ any\ (`T.isInfixOf`\ text)\ (map\ T.pack\ invalidCommands)}
+
+\end{DoxyCode}

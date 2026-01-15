@@ -1,0 +1,10 @@
+{
+  "total_errors": 4,
+  "total_warnings": 5,
+  "files_checked": 5,
+  "quality_score": 89.0,
+  "recommendations": [
+    "Fix critical LaTeX syntax errors",
+    "Review and address LaTeX warnings"
+  ]
+}

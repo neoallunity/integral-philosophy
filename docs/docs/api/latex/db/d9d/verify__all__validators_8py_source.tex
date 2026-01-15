@@ -1,0 +1,74 @@
+\doxysection{verify\+\_\+all\+\_\+validators.\+py}
+\hypertarget{verify__all__validators_8py_source}{}\label{verify__all__validators_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/verify\_all\_validators.py@{/home/domini/src/Magazine/Magazine/scripts/verify\_all\_validators.py}}
+\mbox{\hyperlink{verify__all__validators_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00001}\mbox{\hyperlink{namespaceverify__all__validators}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00003}00003\ \textcolor{stringliteral}{Final\ verification\ script\ for\ all\ validators\ without\ import\ dependencies.}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00004}00004\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00007}\mbox{\hyperlink{namespaceverify__all__validators_ab40f789d775eacfe7ead8941d69ac458}{00007}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceverify__all__validators_ab40f789d775eacfe7ead8941d69ac458}{test\_all\_validators}}():}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00008}00008\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ all\ validators\ by\ importing\ them\ directly."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00009}00009\ \ \ \ \ print(\textcolor{stringliteral}{"{}🎯\ FINAL\ VERIFICATION:\ Testing\ All\ Extended\ Validators"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00011}00011\ \ \ \ \ core\_validators\ =\ [}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00012}00012\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}HTML5Validator"{}},\ \textcolor{stringliteral}{"{}validators.html\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00013}00013\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}CSSValidator"{}},\ \textcolor{stringliteral}{"{}validators.css\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00014}00014\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}JavaScriptValidator"{}},\ \textcolor{stringliteral}{"{}validators.javascript\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00015}00015\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}LaTeXValidator"{}},\ \textcolor{stringliteral}{"{}validators.latex\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}QualityReportGenerator"{}},\ \textcolor{stringliteral}{"{}validators.quality\_report"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00017}00017\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00019}00019\ \ \ \ \ extended\_validators\ =\ [}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00020}00020\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}EPUB3Validator"{}},\ \textcolor{stringliteral}{"{}validators.epub3\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PDFValidator"{}},\ \textcolor{stringliteral}{"{}validators.pdf\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00022}00022\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}DOCXValidator"{}},\ \textcolor{stringliteral}{"{}validators.docx\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}WCAG21AAValidator"{}},\ \textcolor{stringliteral}{"{}validators.wcag\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PerformanceBenchmark"{}},\ \textcolor{stringliteral}{"{}validators.performance\_benchmark"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}SecurityScanner"{}},\ \textcolor{stringliteral}{"{}validators.security\_scanner"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}QualityDashboard"{}},\ \textcolor{stringliteral}{"{}validators.quality\_dashboard"{}}),}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00027}00027\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00029}00029\ \ \ \ \ all\_validators\ =\ core\_validators\ +\ extended\_validators}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00031}00031\ \ \ \ \ successful\_imports\ =\ []}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00032}00032\ \ \ \ \ failed\_imports\ =\ []}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{for}\ validator\_name,\ module\_path\ \textcolor{keywordflow}{in}\ all\_validators:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ exec(f\textcolor{stringliteral}{"{}from\ \{module\_path\}\ import\ \{validator\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ successful\_imports.append(validator\_name)}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ \{validator\_name\}\ -\/\ OK"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ failed\_imports.append((validator\_name,\ str(e)))}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ \{validator\_name\}\ -\/\ FAILED:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00043}00043\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n📊\ SUMMARY:"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00044}00044\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Total\ validators:\ \{len(all\_validators)\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00045}00045\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Successful:\ \{len(successful\_imports)\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00046}00046\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Failed:\ \{len(failed\_imports)\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ failed\_imports:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n❌\ FAILED\ IMPORTS:"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ name,\ error\ \textcolor{keywordflow}{in}\ failed\_imports:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ \{name\}:\ \{error\}"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00054}00054\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n🎉\ SUCCESS:\ All\ \{len(successful\_imports)\}\ validators\ working!"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00055}00055\ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}📈\ System\ supports:\ HTML5,\ CSS,\ JavaScript,\ LaTeX,\ EPUB3,\ PDF,\ DOCX,\ WCAG\ 2.1\ AA"{}}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00057}00057\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00058}00058\ \ \ \ \ print(f\textcolor{stringliteral}{"{}🛡️\ Security:\ XSS/SQL/Path\ traversal/Cryptographic\ scanning"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00059}00059\ \ \ \ \ print(f\textcolor{stringliteral}{"{}⚡\ Performance:\ Benchmarking\ and\ optimization"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00060}00060\ \ \ \ \ print(f\textcolor{stringliteral}{"{}📊\ Quality:\ Real-\/time\ monitoring\ and\ dashboard"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00061}00061\ \ \ \ \ print(f\textcolor{stringliteral}{"{}🔢\ Batch:\ Scalable\ processing\ with\ error\ resilience"{}})}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00066}00066\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00067}\mbox{\hyperlink{namespaceverify__all__validators_ace43de927b151c46eea45bd0780688ac}{00067}}\ \ \ \ \ success\ =\ \mbox{\hyperlink{namespaceverify__all__validators_ab40f789d775eacfe7ead8941d69ac458}{test\_all\_validators}}()}
+\DoxyCodeLine{\Hypertarget{verify__all__validators_8py_source_l00068}00068\ \ \ \ \ exit(0\ \textcolor{keywordflow}{if}\ success\ \textcolor{keywordflow}{else}\ 1)}
+
+\end{DoxyCode}

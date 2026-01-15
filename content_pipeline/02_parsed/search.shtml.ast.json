@@ -1,0 +1,1165 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральное сообщество - Поиск\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/search.shtml\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:45:34\\n\\n---\\n\\n["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ещё"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                            "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/index.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Главная"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/news.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Новости"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/codex.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Кодекс"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/institute.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "ИИН"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/journal.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Журнал"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/forum.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Форум"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/library.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Библиотека"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/search.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                        Поиск\n                    "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/discussions.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Дискуссии"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/dictionary.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Словарь"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/emblem.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Эмблема"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/history.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "История"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/school.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Школы"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\n                    "
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "/projects.shtml"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Проекты"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Поиск по сайту\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".ya-page_js_yes .ya-site-form_inited_no { display: none; }(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0],e=d.documentElement;if((' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1){e.className+=' ya-page_js_yes';}s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Form.init()})})(window,document,'yandex_site_callbacks');"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Все разделы\n                        Кодекс\n                        Институт\n                        Журнал\n                        Новости\n                        Библиотека\n                        Проекты"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0];s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Results.init();})})(window,document,'yandex_site_callbacks');"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results\n{\n    color: #000000;\n    background: #FFFFFF;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-pager__current,\n#ya-site-results .b-serp-item__number\n{\n    color: #000000 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results\n{\n    font-family: Arial !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results :visited,\n#ya-site-results .b-pager :visited,\n#ya-site-results .b-foot__link:visited,\n#ya-site-results .b-copyright__link:visited\n{\n    color: #800080;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results a:link,\n#ya-site-results a:active,\n#ya-site-results .b-pseudo-link,\n#ya-site-results .b-head-tabs__link,\n#ya-site-results .b-head-tabs__link:link,\n#ya-site-results .b-head-tabs__link:visited,\n#ya-site-results .b-dropdown__list .b-pseudo-link,\n#ya-site-results .b-dropdowna__switcher .b-pseudo-link,\n.b-popupa .b-popupa__content .b-menu__item,\n#ya-site-results .b-foot__link:link,\n#ya-site-results .b-copyright__link:link,\n#ya-site-results .b-serp-item__mime,\n#ya-site-results .b-pager :link\n{\n    color: #0033FF;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results :link:hover,\n#ya-site-results :visited:hover,\n#ya-site-results .b-pseudo-link:hover\n{\n    color: #FF0000 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .l-page,\n#ya-site-results .b-bottom-wizard\n{\n    font-size: 13px;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-pager\n{\n    font-size: 1.25em;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__text,\n#ya-site-results .ad\n{\n    font-style: normal;\n    font-weight: normal;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__title-link,\n#ya-site-results .ad .ad-link\n{\n    font-style: normal;\n    font-weight: normal;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .ad .ad-link a\n{\n    font-weight: bold;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__title,\n#ya-site-results .ad .ad-link\n{\n    font-size: 16px;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__title-link:link,\n#ya-site-results .b-serp-item__title-link\n{\n    font-size: 1em;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__number\n{\n    font-size: 13px;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .ad .ad-link a\n{\n    font-size: 0.88em;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-url,\n#ya-site-results .b-direct .url,\n#ya-site-results .b-direct .url a:link,\n#ya-site-results .b-direct .url a:visited\n{\n    font-size: 13px;\n    font-style: normal;\n    font-weight: normal;\n    color: #329932;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-serp-item__links-link\n{\n    font-size: 13px;\n    font-style: normal;\n    font-weight: normal;\n    color: #000000 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-pager__inactive,\n#ya-site-results .b-serp-item__from,\n#ya-site-results .b-direct__head-link,\n#ya-site-results .b-image__title,\n#ya-site-results .b-video__title\n{\n    color: #000000 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-pager__current,\n#ya-site-results .b-pager__select\n{\n    background: #E0E0E0;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-foot,\n#ya-site-results .b-line\n{\n    border-top-color: #E0E0E0;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-dropdown__popup .b-dropdown__list,\n.b-popupa .b-popupa__content\n{\n    background-color: #FFFFFF;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-popupa .b-popupa__tail\n{\n    border-color: #E0E0E0 transparent;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-popupa .b-popupa__tail-i\n{\n    border-color: #FFFFFF transparent;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-popupa_direction_left.b-popupa_theme_ffffff .b-popupa__tail-i,\n.b-popupa_direction_right.b-popupa_theme_ffffff .b-popupa__tail-i\n{\n    border-color: transparent #FFFFFF;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-dropdowna__popup .b-menu_preset_vmenu .b-menu__separator\n{\n    border-color: #E0E0E0;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-list,\n.b-specification-list .b-pseudo-link,\n.b-specification-item__content label,\n.b-specification-item__content .b-link,\n.b-specification-list .b-specification-list__reset .b-link\n{\n    color: #000000 !important;\n    font-family: Arial;\n    font-size: 13px;\n    font-style: normal;\n    font-weight: normal;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content .b-calendar__title\n{\n    font-family: Arial;\n    color: #000000;\n    font-size: 13px;\n    font-style: normal;\n    font-weight: normal;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content .b-calendar-month__day_now_yes\n{\n    color: #E0E0E0;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content .b-calendar .b-pseudo-link\n{\n    color: #000000;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content\n{\n    font-family: Arial !important;\n    font-size: 13px;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content :visited\n{\n    color: #800080;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": ".b-specification-item__content .b-pseudo-link:hover,\n.b-specification-item__content :visited:hover\n{\n    color: #FF0000 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "#ya-site-results .b-popupa .b-popupa__tail-i\n{\n    background: #FFFFFF;\n    border-color: #E0E0E0 !important;\n}"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Результаты не найдены\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Популярные разделы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральный кодекс\n                        ](codex.shtml)\n                        ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Институт ИИН\n                        ](institute.shtml)\n                        ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Научный журнал\n                        ](journal.shtml)\n                        ["
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Библиотека\n                        ](library.shtml)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 3
+      },
+      "content": [
+        {
+          "type": "image",
+          "attributes": {
+            "alt": "Логотип Интегрального сообщества",
+            "src": "https://allunity.ru/img/logo.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Консолидация всех конструктивных сил на основе принципов интегральной философии.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Основные разделы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Ресурсы\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 4
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Контакты\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "https://u0173845:Allunity1!!@webstat.allunity.ru/index.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Интегральное сообщество  ©  2015-2025"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "\\n\\n\\n"
+        }
+      ]
+    }
+  ]
+}

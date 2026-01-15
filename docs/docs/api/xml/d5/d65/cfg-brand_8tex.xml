@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/d65/cfg-brand_8tex" kind="file" language="C++">
+    <compoundname>cfg-brand.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-brand.tex<sp/>—<sp/>айдентика<sp/>(цвета/толщины/переключатели)<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Цвета<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Color<sp/>definitions<sp/>moved<sp/>to<sp/>preamble.tex<sp/>(global)<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Геометрия/толщины<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalMarginX}{16mm}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalHeaderY}{-14mm}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalFooterH}{22mm}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalTitleFooterH}{34mm}<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalRuleThin}{0.5pt}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalRuleMed}{0.8pt}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalRuleBold}{1.2pt}<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Текстура<sp/>(диагональные<sp/>штрихи)<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalHatchStep}{1.1}<sp/>%<sp/>cm<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalHatchDx}{2.2cm}<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Переключатели<sp/>(using<sp/>etoolbox<sp/>toggles,<sp/>ensure<sp/>etoolbox<sp/>is<sp/>loaded<sp/>in<sp/>preamble)<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newtoggle{journaltexture}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\toggletrue{journaltexture}<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Удобный<sp/>хелпер<sp/>для<sp/>фона/оверлея:<sp/>печатаем<sp/>код<sp/>только<sp/>если<sp/>включен<sp/></highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\JournalIfTexture}[1]{\iftoggle{journaltexture}{#1}{}}<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-brand.tex"/>
+  </compounddef>
+</doxygen>

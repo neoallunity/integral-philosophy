@@ -1,0 +1,277 @@
+{
+  "neovseedinstvo.shtml.md": {
+    "ast_file": "02_parsed/neovseedinstvo.shtml.ast.json",
+    "metadata": {},
+    "content_length": 8632
+  },
+  "news.shtml.md": {
+    "ast_file": "02_parsed/news.shtml.ast.json",
+    "metadata": {},
+    "content_length": 652
+  },
+  "word.shtml.md": {
+    "ast_file": "02_parsed/word.shtml.ast.json",
+    "metadata": {},
+    "content_length": 8078
+  },
+  "DOCS_%d0%a1%d0%be%d0%bb%d0%b8%d0%b4%d0%b0%d1%80%d0%bd%d0%be%d0%b5_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d0%ba%d0%b0%d0%ba_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx.md": {
+    "ast_file": "02_parsed/DOCS_%d0%a1%d0%be%d0%bb%d0%b8%d0%b4%d0%b0%d1%80%d0%bd%d0%be%d0%b5_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d0%ba%d0%b0%d0%ba_%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d0%be_%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx.ast.json",
+    "metadata": {},
+    "content_length": 3848
+  },
+  "history.shtml.md": {
+    "ast_file": "02_parsed/history.shtml.ast.json",
+    "metadata": {},
+    "content_length": 393
+  },
+  "law.shtml.md": {
+    "ast_file": "02_parsed/law.shtml.ast.json",
+    "metadata": {},
+    "content_length": 6371
+  },
+  "DOCS.md": {
+    "ast_file": "02_parsed/DOCS.ast.json",
+    "metadata": {},
+    "content_length": 7848
+  },
+  "journal.shtml.md": {
+    "ast_file": "02_parsed/journal.shtml.ast.json",
+    "metadata": {},
+    "content_length": 30756
+  },
+  "dictionary.shtml.md": {
+    "ast_file": "02_parsed/dictionary.shtml.ast.json",
+    "metadata": {},
+    "content_length": 3810
+  },
+  "DOCS_%d0%98%d0%bd%d1%81%d1%82%d0%b8%d1%82%d1%83%d1%82%20%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d0%b9%20%d0%bd%d0%b0%d1%83%d0%ba%d0%b8.md": {
+    "ast_file": "02_parsed/DOCS_%d0%98%d0%bd%d1%81%d1%82%d0%b8%d1%82%d1%83%d1%82%20%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d0%b9%20%d0%bd%d0%b0%d1%83%d0%ba%d0%b8.ast.json",
+    "metadata": {},
+    "content_length": 4326
+  },
+  "DOCS_%d0%a0%d0%b0%d0%b7%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-12.pdf.md": {
+    "ast_file": "02_parsed/DOCS_%d0%a0%d0%b0%d0%b7%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-12.pdf.ast.json",
+    "metadata": {},
+    "content_length": 182
+  },
+  "hist.shtml.md": {
+    "ast_file": "02_parsed/hist.shtml.ast.json",
+    "metadata": {},
+    "content_length": 4349
+  },
+  "index.md": {
+    "ast_file": "02_parsed/index.ast.json",
+    "metadata": {},
+    "content_length": 10177
+  },
+  "DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%9c%d0%b0%d1%82%d0%b5%d0%bc%d0%b0%d1%82%d0%b8%d0%ba%d0%b8.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%9c%d0%b0%d1%82%d0%b5%d0%bc%d0%b0%d1%82%d0%b8%d0%ba%d0%b8.ast.json",
+    "metadata": {},
+    "content_length": 3806
+  },
+  "img_logo_original.jpg.md": {
+    "ast_file": "02_parsed/img_logo_original.jpg.ast.json",
+    "metadata": {},
+    "content_length": 154
+  },
+  "edinoe-znanie.shtml.md": {
+    "ast_file": "02_parsed/edinoe-znanie.shtml.ast.json",
+    "metadata": {},
+    "content_length": 7786
+  },
+  "institute.shtml.md": {
+    "ast_file": "02_parsed/institute.shtml.ast.json",
+    "metadata": {},
+    "content_length": 9916
+  },
+  "journals_J7.html.md": {
+    "ast_file": "02_parsed/journals_J7.html.ast.json",
+    "metadata": {},
+    "content_length": 177075
+  },
+  "journals_J11.pdf.md": {
+    "ast_file": "02_parsed/journals_J11.pdf.ast.json",
+    "metadata": {},
+    "content_length": 210
+  },
+  "journals_J6.pdf.md": {
+    "ast_file": "02_parsed/journals_J6.pdf.ast.json",
+    "metadata": {},
+    "content_length": 118
+  },
+  "index.shtml.md": {
+    "ast_file": "02_parsed/index.shtml.ast.json",
+    "metadata": {},
+    "content_length": 10189
+  },
+  "library.shtml.md": {
+    "ast_file": "02_parsed/library.shtml.ast.json",
+    "metadata": {},
+    "content_length": 7848
+  },
+  "journals_J6.html.md": {
+    "ast_file": "02_parsed/journals_J6.html.ast.json",
+    "metadata": {},
+    "content_length": 278576
+  },
+  "journals_J12.pdf.md": {
+    "ast_file": "02_parsed/journals_J12.pdf.ast.json",
+    "metadata": {},
+    "content_length": 210
+  },
+  "search.shtml.md": {
+    "ast_file": "02_parsed/search.shtml.ast.json",
+    "metadata": {},
+    "content_length": 10273
+  },
+  "journals_J10.pdf.md": {
+    "ast_file": "02_parsed/journals_J10.pdf.ast.json",
+    "metadata": {},
+    "content_length": 209
+  },
+  "matematizacija-filosofii.shtml.md": {
+    "ast_file": "02_parsed/matematizacija-filosofii.shtml.ast.json",
+    "metadata": {},
+    "content_length": 7784
+  },
+  "DOCS_%D0%94%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D0%B8%D0%B8.md": {
+    "ast_file": "02_parsed/DOCS_%D0%94%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D0%B8%D0%B8.ast.json",
+    "metadata": {},
+    "content_length": 5689
+  },
+  "DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%98%d1%81%d1%82%d0%be%d1%80%d0%b8%d0%b8.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%98%d1%81%d1%82%d0%be%d1%80%d0%b8%d0%b8.ast.json",
+    "metadata": {},
+    "content_length": 3703
+  },
+  "forum.shtml.md": {
+    "ast_file": "02_parsed/forum.shtml.ast.json",
+    "metadata": {},
+    "content_length": 379
+  },
+  "etics.shtml.md": {
+    "ast_file": "02_parsed/etics.shtml.ast.json",
+    "metadata": {},
+    "content_length": 11563
+  },
+  "DOCS_%d0%9a%d0%be%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9a%d0%be%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b.ast.json",
+    "metadata": {},
+    "content_length": 8628
+  },
+  "journals_J4.pdf.md": {
+    "ast_file": "02_parsed/journals_J4.pdf.ast.json",
+    "metadata": {},
+    "content_length": 118
+  },
+  "Towards_a_development_society.html.md": {
+    "ast_file": "02_parsed/Towards_a_development_society.html.ast.json",
+    "metadata": {},
+    "content_length": 18422
+  },
+  "manifest.shtml.md": {
+    "ast_file": "02_parsed/manifest.shtml.ast.json",
+    "metadata": {},
+    "content_length": 10101
+  },
+  "journals_J7.pdf.md": {
+    "ast_file": "02_parsed/journals_J7.pdf.ast.json",
+    "metadata": {},
+    "content_length": 118
+  },
+  "DOCS_%d0%9d%d0%b0%20%d0%bf%d1%83%d1%82%d0%b8%20%d0%ba%20%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d1%83%20%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9d%d0%b0%20%d0%bf%d1%83%d1%82%d0%b8%20%d0%ba%20%d0%be%d0%b1%d1%89%d0%b5%d1%81%d1%82%d0%b2%d1%83%20%d1%80%d0%b0%d0%b7%d0%b2%d0%b8%d1%82%d0%b8%d1%8f.docx.ast.json",
+    "metadata": {},
+    "content_length": 264
+  },
+  "journals_J13.pdf.md": {
+    "ast_file": "02_parsed/journals_J13.pdf.ast.json",
+    "metadata": {},
+    "content_length": 210
+  },
+  "integralnaja-medicina.shtml.md": {
+    "ast_file": "02_parsed/integralnaja-medicina.shtml.ast.json",
+    "metadata": {},
+    "content_length": 5866
+  },
+  "DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%bf%d1%80%d0%b0%d0%b2%d0%b0.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%bf%d1%80%d0%b0%d0%b2%d0%b0.ast.json",
+    "metadata": {},
+    "content_length": 3774
+  },
+  "journals_J15.pdf.md": {
+    "ast_file": "02_parsed/journals_J15.pdf.ast.json",
+    "metadata": {},
+    "content_length": 210
+  },
+  "emblem.shtml.md": {
+    "ast_file": "02_parsed/emblem.shtml.ast.json",
+    "metadata": {},
+    "content_length": 1451
+  },
+  "discussions.shtml.md": {
+    "ast_file": "02_parsed/discussions.shtml.ast.json",
+    "metadata": {},
+    "content_length": 424
+  },
+  "img_fwd_logo_full.png.md": {
+    "ast_file": "02_parsed/img_fwd_logo_full.png.ast.json",
+    "metadata": {},
+    "content_length": 150
+  },
+  "DOCS_%d0%9b%d0%b5%d0%ba%d1%86%d0%b8%d0%b8.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9b%d0%b5%d0%ba%d1%86%d0%b8%d0%b8.ast.json",
+    "metadata": {},
+    "content_length": 62873
+  },
+  "journals_J8.pdf.md": {
+    "ast_file": "02_parsed/journals_J8.pdf.ast.json",
+    "metadata": {},
+    "content_length": 207
+  },
+  "DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d0%b8.md": {
+    "ast_file": "02_parsed/DOCS_%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d0%b8.ast.json",
+    "metadata": {},
+    "content_length": 7213
+  },
+  "urovni-razvitija-lichnosti.shtml.md": {
+    "ast_file": "02_parsed/urovni-razvitija-lichnosti.shtml.ast.json",
+    "metadata": {},
+    "content_length": 7603
+  },
+  "journals_J14.pdf.md": {
+    "ast_file": "02_parsed/journals_J14.pdf.ast.json",
+    "metadata": {},
+    "content_length": 209
+  },
+  "projects.shtml.md": {
+    "ast_file": "02_parsed/projects.shtml.ast.json",
+    "metadata": {},
+    "content_length": 10897
+  },
+  "codex.shtml.md": {
+    "ast_file": "02_parsed/codex.shtml.ast.json",
+    "metadata": {},
+    "content_length": 4545
+  },
+  "math.shtml.md": {
+    "ast_file": "02_parsed/math.shtml.ast.json",
+    "metadata": {},
+    "content_length": 8749
+  },
+  "journals_IMG_4110.JPG.md": {
+    "ast_file": "02_parsed/journals_IMG_4110.JPG.ast.json",
+    "metadata": {},
+    "content_length": 148
+  },
+  "school.shtml.md": {
+    "ast_file": "02_parsed/school.shtml.ast.json",
+    "metadata": {},
+    "content_length": 428
+  },
+  "metody-preobrazovanija-lichnosti.shtml.md": {
+    "ast_file": "02_parsed/metody-preobrazovanija-lichnosti.shtml.ast.json",
+    "metadata": {},
+    "content_length": 4486
+  }
+}

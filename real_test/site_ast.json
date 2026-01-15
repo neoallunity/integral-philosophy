@@ -1,0 +1,1111 @@
+{
+  "pages": {
+    "https://philosophynow.org": {
+      "filename": "index.md",
+      "metadata": {
+        "url": "https://philosophynow.org/",
+        "title": "Philosophy Now | a magazine of ideas",
+        "description": "A magazine for everyone interested in ideas.",
+        "keywords": "philosophy,magazine",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 3,
+              "text": "Happiness"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Good Life Paradox"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Matthew Hammerton points out that a meaningful life and a life that goes well for you might not be the same thing."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Hedonic Treadmills in the Vale of Tears"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Michael Gracey looks at how philosophers have pursued happiness."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Good Life Paradox"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Matthew Hammerton points out that a meaningful life and a life that goes well for you might not be the same thing."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Deconstructing Happiness"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Abdullah Rayhan breaks down ‘happiness’ with Boethius, Kierkegaard & Montaigne."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Ancient Indian Wisdom for a Restless Age"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Jahnvi Borgohain looks at a variety of approaches to happiness."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Editorial: Happy Thoughts"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "by Rick Lewis"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "News: December 2025 / January 2026"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Plato translation unveiled • Prison TV drama takes philosophical turn • UNESCO creates ethics code for neurotech — News reports by Anja Steinbauer, Olivia Gill and Martin Cohen"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Peter Singer"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "The controversial Australian philosopher defends the right to choose to die on utilitarian grounds. Matt Qvortrup recently asked him about it."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Philosophy of William Blake"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Mark Vernon looks at the imaginative thinking of an imaginative artist."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Philosophy of Race"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Sailee Khurjekar argues that race is culturally constructed."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Evolution or Progress?"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Adam Neiblum asks what the difference is, and why it matters."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "What Women?"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Marcia Yudkin remembers almost choking at Cornell."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "What are the Proper Limits of Free Speech?"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Each answer below receives a random book. Apologies to the entrants not included."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Philosophy Shorts: Philosophers on Walking"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "by Matt Qvortrup"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Philosophical Haiku: Baruch Spinoza (1632-1677)"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "by Terence Green"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Islamic Philosophers: On Tyranny"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "AmirAli Maleki looks at tyranny from an Islamic perspective."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Art of Living: Marcus Aurelius’s Ten Commandments"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Massimo Pigliucci studies the Stoic Emperor’s to-do list."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "The Routledge Handbook of Philosophy of Friendship"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Elaine Coburn dips into different understandings of friendship."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Civic Solitude by Robert Talisse"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "John B. Min ponders temporarily stepping away from people for the sake of political understanding."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Wish You Were Here"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Ian Rizzo listens out for a philosophy of absence."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Medicine Wheel for the Planet by Jennifer Grenz"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Lucy Weir takes a wheel of healing for an intellectual spin."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Bilbo Theorizes About Wellbeing"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Eric Comerford overhears Bilbo and Gandalf discussing happiness."
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "“I’m Thinking”"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "by Dylan Skurka"
+            }
+          ],
+          "images": 37,
+          "links": 98,
+          "lists": 4,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:19",
+        "content_length": 16474
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/festival",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/Hedonic_Treadmills_in_the_Vale_of_Tears",
+        "https://philosophynow.org/issues/171/Hedonic_Treadmills_in_the_Vale_of_Tears",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/Deconstructing_Happiness",
+        "https://philosophynow.org/issues/171/Deconstructing_Happiness",
+        "https://philosophynow.org/issues/171/Ancient_Indian_Wisdom_for_a_Restless_Age",
+        "https://philosophynow.org/issues/171/Ancient_Indian_Wisdom_for_a_Restless_Age",
+        "https://philosophynow.org/categories/Themed_Articles/Happiness",
+        "https://philosophynow.org/issues/171/Happy_Thoughts",
+        "https://philosophynow.org/issues/171/Happy_Thoughts",
+        "https://philosophynow.org/issues/171/News_December_2025_January_2026",
+        "https://philosophynow.org/issues/171/News_December_2025_January_2026",
+        "https://philosophynow.org/issues/171/Peter_Singer",
+        "https://philosophynow.org/issues/171/Peter_Singer",
+        "https://philosophynow.org/issues/171/The_Philosophy_of_William_Blake",
+        "https://philosophynow.org/issues/171/The_Philosophy_of_William_Blake",
+        "https://philosophynow.org/issues/171/The_Philosophy_of_Race",
+        "https://philosophynow.org/issues/171/The_Philosophy_of_Race",
+        "https://philosophynow.org/issues/171/Evolution_or_Progress",
+        "https://philosophynow.org/issues/171/Evolution_or_Progress",
+        "https://philosophynow.org/issues/171/What_Women",
+        "https://philosophynow.org/issues/171/What_Women",
+        "https://philosophynow.org/issues/171/What_are_the_Proper_Limits_of_Free_Speech",
+        "https://philosophynow.org/issues/171/What_are_the_Proper_Limits_of_Free_Speech",
+        "https://philosophynow.org/categories/General_Articles",
+        "https://philosophynow.org/issues/171/Philosophers_on_Walking",
+        "https://philosophynow.org/issues/171/Philosophers_on_Walking",
+        "https://philosophynow.org/issues/171/Baruch_Spinoza_1632-1677",
+        "https://philosophynow.org/issues/171/Baruch_Spinoza_1632-1677",
+        "https://philosophynow.org/issues/171/On_Tyranny",
+        "https://philosophynow.org/issues/171/On_Tyranny",
+        "https://philosophynow.org/issues/171/Marcus_Aureliuss_Ten_Commandments",
+        "https://philosophynow.org/issues/171/Marcus_Aureliuss_Ten_Commandments",
+        "https://philosophynow.org/categories/Columns",
+        "https://philosophynow.org/issues/171/The_Routledge_Handbook_of_Philosophy_of_Friendship",
+        "https://philosophynow.org/issues/171/The_Routledge_Handbook_of_Philosophy_of_Friendship",
+        "https://philosophynow.org/issues/171/Civic_Solitude_by_Robert_Talisse",
+        "https://philosophynow.org/issues/171/Civic_Solitude_by_Robert_Talisse",
+        "https://philosophynow.org/issues/171/Wish_You_Were_Here",
+        "https://philosophynow.org/issues/171/Wish_You_Were_Here",
+        "https://philosophynow.org/issues/170/Medicine_Wheel_for_the_Planet_by_Jennifer_Grenz",
+        "https://philosophynow.org/issues/170/Medicine_Wheel_for_the_Planet_by_Jennifer_Grenz",
+        "https://philosophynow.org/categories/Reviews",
+        "https://philosophynow.org/issues/171/Bilbo_Theorizes_About_Wellbeing",
+        "https://philosophynow.org/issues/171/Bilbo_Theorizes_About_Wellbeing",
+        "https://philosophynow.org/issues/171/Im_Thinking",
+        "https://philosophynow.org/issues/171/Im_Thinking",
+        "https://philosophynow.org/categories/Fiction",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/45/The_Last_Messiah",
+        "https://philosophynow.org/issues/56/The_End_of_Suffering",
+        "https://philosophynow.org/issues/90/Plato_A_Theory_of_Forms",
+        "https://philosophynow.org/issues/64/Pop_Culture_An_Overview",
+        "https://philosophynow.org/issues/101/What_Is_Life",
+        "https://philosophynow.org/issues/171/On_Tyranny",
+        "https://philosophynow.org/issues/146/Against_Veganism",
+        "https://philosophynow.org/issues/171/Im_Thinking",
+        "https://philosophynow.org/issues/135/Cosmopolitanism_and_Immigration",
+        "https://philosophynow.org/issues/45/The_Last_Messiah",
+        "https://philosophynow.org/issues/155/How_Descartes_Inspired_Science",
+        "https://philosophynow.org/issues/161/Phil_Wittes_Cartoon",
+        "https://philosophynow.org/issues/149/Sour",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/issues/155/How_Descartes_Inspired_Science": {
+      "filename": "issues_155_How_Descartes_Inspired_Science.md",
+      "metadata": {
+        "url": "https://philosophynow.org/issues/155/How_Descartes_Inspired_Science",
+        "title": "How Descartes Inspired Science | Issue 155 | Philosophy Now",
+        "description": "Kanan Purkayastha has both general and special theories about how the master rationalist inspired modern empirical science.",
+        "keywords": "philosophy",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Descartes"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "How Descartes Inspired Science"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "Kanan Purkayastha has both general and special theories about how the master rationalist inspired modern empirical science."
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Sensing The Environment"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "The Anatomo-Clinical Method"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "The Divisibility of Atoms"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Motion"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Conclusions"
+            }
+          ],
+          "images": 21,
+          "links": 51,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:24",
+        "content_length": 18127
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/festival",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/155",
+        "https://philosophynow.org/issues/155",
+        "https://philosophynow.org/issues/2/The_Very_Real_Ghost_of_a_Demon",
+        "https://philosophynow.org/issues/42/Spooky_Stories",
+        "https://philosophynow.org/issues/41/The_Search_for_Extraterrestrial_Intelligence_by_David_Lamb",
+        "https://philosophynow.org/issues/59/Help_Wanted_Philosopher_required_to_sort_out_Reality",
+        "https://philosophynow.org/issues/63/Fieldnotes_From_The_Borderlands",
+        "https://philosophynow.org/issues/74/Evaluating_Scientific_Theories",
+        "https://philosophynow.org/issues/15/Is_Science_an_Ideology",
+        "https://philosophynow.org/issues/35/Taming_the_Skeptical_Dragon",
+        "https://philosophynow.org/issues/89/The_Beginning_of_Infinity_by_David_Deutsch",
+        "https://philosophynow.org/issues/132/Meditating_with_Descartes",
+        "https://philosophynow.org/tags/Descartes",
+        "https://philosophynow.org/tags/philosophy%20of%20science",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/issues/171/Im_Thinking": {
+      "filename": "issues_171_Im_Thinking.md",
+      "metadata": {
+        "url": "https://philosophynow.org/issues/171/Im_Thinking",
+        "title": "“I’m Thinking” | Issue 171 | Philosophy Now",
+        "description": "by Dylan Skurka",
+        "keywords": "philosophy",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Poetry"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "“I’m Thinking”"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "by Dylan Skurka"
+            }
+          ],
+          "images": 19,
+          "links": 48,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:29",
+        "content_length": 5338
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/festival",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/41/Dear_Socrates",
+        "https://philosophynow.org/issues/43/Richard_Rorty",
+        "https://philosophynow.org/issues/100/America_The_Philosophical_by_Carlin_Romano",
+        "https://philosophynow.org/issues/103/The_Philosophical_Library",
+        "https://philosophynow.org/issues/108/Music_in_Philosophy",
+        "https://philosophynow.org/issues/68/Rudolf_Steiner_An_Introduction_to_his_life_and_work_by_Gary_Lachman",
+        "https://philosophynow.org/issues/2/What_Is_This_Thing_Called_Philosophy",
+        "https://philosophynow.org/issues/16/Books_for_Beginners",
+        "https://philosophynow.org/issues/28/The_Dappled_World_A_Study_of_the_Boundaries_of_Science_by_Nancy_Cartwright",
+        "https://philosophynow.org/issues/35/The_Uses_and_Abuses_of_Philosophical_Biographies",
+        "https://philosophynow.org/tags/philosophers%20&%20philosophy",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/issues/171/Philosophers_on_Walking": {
+      "filename": "issues_171_Philosophers_on_Walking.md",
+      "metadata": {
+        "url": "https://philosophynow.org/issues/171/Philosophers_on_Walking",
+        "title": "Philosophers on Walking | Issue 171 | Philosophy Now",
+        "description": "by Matt Qvortrup",
+        "keywords": "philosophy",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Philosophy Shorts"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Philosophers on Walking"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "by Matt Qvortrup"
+            }
+          ],
+          "images": 20,
+          "links": 49,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:34",
+        "content_length": 8695
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/festival",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/41/Dear_Socrates",
+        "https://philosophynow.org/issues/43/Richard_Rorty",
+        "https://philosophynow.org/issues/100/America_The_Philosophical_by_Carlin_Romano",
+        "https://philosophynow.org/issues/103/The_Philosophical_Library",
+        "https://philosophynow.org/issues/108/Music_in_Philosophy",
+        "https://philosophynow.org/issues/68/Rudolf_Steiner_An_Introduction_to_his_life_and_work_by_Gary_Lachman",
+        "https://philosophynow.org/issues/2/What_Is_This_Thing_Called_Philosophy",
+        "https://philosophynow.org/issues/16/Books_for_Beginners",
+        "https://philosophynow.org/issues/28/The_Dappled_World_A_Study_of_the_Boundaries_of_Science_by_Nancy_Cartwright",
+        "https://philosophynow.org/issues/35/The_Uses_and_Abuses_of_Philosophical_Biographies",
+        "https://philosophynow.org/tags/philosophers%20&%20philosophy",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/festival": {
+      "filename": "festival.md",
+      "metadata": {
+        "url": "https://philosophynow.org/festival",
+        "title": "Philosophy Now Festival | Philosophy Now",
+        "description": "The Philosophy Now Festival",
+        "keywords": "festival",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "Philosophy Now Festival 2020"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "In association with the Conway Hall Ethical Society"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Festival Programme"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Venue"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Festival Events"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Participating Organisations"
+            },
+            {
+              "id": "festival_volunteers_needed",
+              "level": 2,
+              "text": "Festival Volunteers Needed!"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Past Festivals"
+            }
+          ],
+          "images": 14,
+          "links": 64,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:39",
+        "content_length": 10979
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/media/pdf/festival/Philosophy%20Now%20Festival%202020.pdf",
+        "https://philosophynow.org/media/pdf/festival/Philosophy%20Now%20Festival%202020.pdf",
+        "https://philosophynow.org/",
+        "https://philosophynow.org/festival/2018",
+        "https://philosophynow.org/festival/2015",
+        "https://philosophynow.org/festival/2013",
+        "https://philosophynow.org/festival/2011",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/categories/Fiction": {
+      "filename": "categories_Fiction.md",
+      "metadata": {
+        "url": "https://philosophynow.org/categories/Fiction",
+        "title": "Fiction | Categories | Philosophy Now",
+        "description": "Articles in category 'Fiction'.",
+        "keywords": "category,Fiction",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Categories"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Fiction"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Bilbo Theorizes About Wellbeing"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "“I’m Thinking”"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Anselm’s Proof"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "The Primates"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "The Epistemology Professor Losing it in Cincinnati"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Me, me, me?"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "It’s Just A Joke"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "René Descartes Loses His Phone"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Art the Redeemer"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "One More"
+            }
+          ],
+          "images": 10,
+          "links": 49,
+          "lists": 1,
+          "tables": 1
+        },
+        "scraped_at": "2026-01-15 02:58:44",
+        "content_length": 1703
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/issues/171/Bilbo_Theorizes_About_Wellbeing",
+        "https://philosophynow.org/issues/170/Anselms_Proof",
+        "https://philosophynow.org/issues/170/The_Primates",
+        "https://philosophynow.org/issues/169/The_Epistemology_Professor_Losing_it_in_Cincinnati",
+        "https://philosophynow.org/issues/169/Me_me_me",
+        "https://philosophynow.org/issues/168/Its_Just_A_Joke",
+        "https://philosophynow.org/issues/168/Rene_Descartes_Loses_His_Phone",
+        "https://philosophynow.org/issues/167/Art_the_Redeemer",
+        "https://philosophynow.org/issues/167/One_More",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/issues/171/Happy_Thoughts": {
+      "filename": "issues_171_Happy_Thoughts.md",
+      "metadata": {
+        "url": "https://philosophynow.org/issues/171/Happy_Thoughts",
+        "title": "Happy Thoughts | Issue 171 | Philosophy Now",
+        "description": "by Rick Lewis",
+        "keywords": "philosophy",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Editorial"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "Happy Thoughts"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "by Rick Lewis"
+            }
+          ],
+          "images": 20,
+          "links": 55,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:49",
+        "content_length": 10049
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/171/Peter_Singer",
+        "https://philosophynow.org/issues/171/Hedonic_Treadmills_in_the_Vale_of_Tears",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/Deconstructing_Happiness",
+        "https://philosophynow.org/issues/171/Ancient_Indian_Wisdom_for_a_Restless_Age",
+        "https://philosophynow.org/issues/171/The_Necessary_Ache",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/155/How_To_Live_A_Happy_Life_With_Seneca",
+        "https://philosophynow.org/issues/155/Guto_Dias_Cartoon",
+        "https://philosophynow.org/issues/167/Existential_Comics",
+        "https://philosophynow.org/issues/168/Perfect_Days",
+        "https://philosophynow.org/issues/171/Hedonic_Treadmills_in_the_Vale_of_Tears",
+        "https://philosophynow.org/issues/171/The_Good_Life_Paradox",
+        "https://philosophynow.org/issues/171/Deconstructing_Happiness",
+        "https://philosophynow.org/issues/147/Happiness_and_Meaning",
+        "https://philosophynow.org/issues/171/Ancient_Indian_Wisdom_for_a_Restless_Age",
+        "https://philosophynow.org/issues/147/Philosophers_on_Laughter",
+        "https://philosophynow.org/tags/happiness",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/issues/171/On_Tyranny": {
+      "filename": "issues_171_On_Tyranny.md",
+      "metadata": {
+        "url": "https://philosophynow.org/issues/171/On_Tyranny",
+        "title": "On Tyranny | Issue 171 | Philosophy Now",
+        "description": "AmirAli Maleki looks at tyranny from an Islamic perspective.",
+        "keywords": "philosophy",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 5,
+              "text": "Islamic Philosophers"
+            },
+            {
+              "id": "",
+              "level": 1,
+              "text": "On Tyranny"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "AmirAli Maleki looks at tyranny from an Islamic perspective."
+            }
+          ],
+          "images": 20,
+          "links": 53,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:53",
+        "content_length": 5906
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/authentication/in_request?redirect=/issues/171/On_Tyranny",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/171",
+        "https://philosophynow.org/issues/56/Fundamentals_Islamists_and_the_West",
+        "https://philosophynow.org/issues/43/Richard_Rortys_Pragmatic_Patriotism",
+        "https://philosophynow.org/issues/46/A_Ridiculously_Brief_Overview_of_Political_Philosophy",
+        "https://philosophynow.org/issues/55/Leo_Strauss_Tributes_And_Reflections",
+        "https://philosophynow.org/issues/60/Islamic_Rationalism",
+        "https://philosophynow.org/issues/110/Mill_Liberty_and_Euthanasia",
+        "https://philosophynow.org/issues/81/The_Paradoxes_of_Arthur_Balfour",
+        "https://philosophynow.org/issues/118/The_Absolute_In-Practice_Human_Right_Against_Torture",
+        "https://philosophynow.org/issues/37/Top_Marx",
+        "https://philosophynow.org/issues/94/Democracy_and_Tragedy",
+        "https://philosophynow.org/tags/Islamic%20philosophy",
+        "https://philosophynow.org/tags/political%20philosophy",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/authors",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/authors": {
+      "filename": "authors.md",
+      "metadata": {
+        "url": "https://philosophynow.org/authors",
+        "title": "For authors | Philosophy Now",
+        "description": "Notes for those interested in writing for the magazine.",
+        "keywords": "authors,writing",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "For Authors"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Articles"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "News"
+            }
+          ],
+          "images": 10,
+          "links": 28,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:58:58",
+        "content_length": 3941
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/events",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/terms"
+      ]
+    },
+    "https://philosophynow.org/events": {
+      "filename": "events.md",
+      "metadata": {
+        "url": "https://philosophynow.org/events",
+        "title": "Events | Philosophy Now",
+        "description": "Listing of lectures, debates, seminars, conferences, meetings in cafes or pubs and other philosophy events.",
+        "keywords": "philosophy,events,lectures,debates,seminars,conferences,meetings",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "Events"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Australia"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Canada"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Ireland"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "New Zealand"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "United Kingdom"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "United States"
+            }
+          ],
+          "images": 10,
+          "links": 35,
+          "lists": 1,
+          "tables": 0
+        },
+        "scraped_at": "2026-01-15 02:59:03",
+        "content_length": 1034
+      },
+      "links": [
+        "https://philosophynow.org/",
+        "https://philosophynow.org/issues",
+        "https://philosophynow.org/categories",
+        "https://philosophynow.org/tags",
+        "https://philosophynow.org/subscribe",
+        "https://philosophynow.org/shop",
+        "https://philosophynow.org/digital",
+        "https://philosophynow.org/podcasts",
+        "https://philosophynow.org/advertise",
+        "https://philosophynow.org/award",
+        "https://philosophynow.org/links",
+        "https://philosophynow.org/videos",
+        "https://philosophynow.org/stockists",
+        "https://philosophynow.org/account",
+        "https://philosophynow.org/rss",
+        "https://philosophynow.org/events/Australia",
+        "https://philosophynow.org/events/Canada",
+        "https://philosophynow.org/events/Ireland",
+        "https://philosophynow.org/events/New_Zealand",
+        "https://philosophynow.org/events/United_Kingdom",
+        "https://philosophynow.org/events/United_States",
+        "https://philosophynow.org/events/form",
+        "https://philosophynow.org/about",
+        "https://philosophynow.org/contact",
+        "https://philosophynow.org/terms"
+      ]
+    }
+  },
+  "links": {},
+  "metadata": {
+    "base_url": "https://philosophynow.org",
+    "domain": "philosophynow.org",
+    "scraped_at": "2026-01-15 02:58:13",
+    "total_pages": 10,
+    "failed_pages": 0
+  }
+}

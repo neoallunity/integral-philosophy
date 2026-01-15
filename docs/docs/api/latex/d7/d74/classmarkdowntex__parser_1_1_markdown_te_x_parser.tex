@@ -1,0 +1,559 @@
+\doxysection{markdowntex\+\_\+parser.\+Markdown\+Te\+XParser Class Reference}
+\hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser}{}\label{classmarkdowntex__parser_1_1_markdown_te_x_parser}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+
+
+Collaboration diagram for markdowntex\+\_\+parser.\+Markdown\+Te\+XParser\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a184efe96724f0865e096eef95c5c653b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a7d3d7b7523ac2e403a9d59fe2d78b24c}{parse}} (self, str markdown\+\_\+text)
+\item 
+Dict \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452}{ast\+\_\+to\+\_\+dict}} (self, \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} ast)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{dict\+\_\+to\+\_\+ast}} (self, Dict data)
+\item 
+None \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a02f123a7469bb7edbde08c0851e800c5}{save\+\_\+ast}} (self, \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} ast, Union\mbox{[}str, Path\mbox{]} filepath)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a17af9cb014b0fd9f33c2ae261683e974}{load\+\_\+ast}} (self, Union\mbox{[}str, Path\mbox{]} filepath)
+\item 
+List\mbox{[}Dict\mbox{[}str, str\mbox{]}\mbox{]} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adccfc09d454f5e23cdce8e02d948ba23}{extract\+\_\+links}} (self, \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} ast)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}
+\item 
+dict \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d}{tex\+\_\+patterns}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5}{\+\_\+extract\+\_\+metadata}} (self, str text)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93}{\+\_\+split\+\_\+into\+\_\+blocks}} (self, str text)
+\item 
+Union\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}, List\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}\mbox{]}, None\mbox{]} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b}{\+\_\+parse\+\_\+block}} (self, str block)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f}{\+\_\+parse\+\_\+math\+\_\+block}} (self, str text)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d}{\+\_\+parse\+\_\+code\+\_\+block}} (self, str text)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f}{\+\_\+parse\+\_\+tex\+\_\+block}} (self, str text, str tex\+\_\+type)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8}{\+\_\+parse\+\_\+list}} (self, str text)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f}{\+\_\+parse\+\_\+table}} (self, str text)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6}{\+\_\+parse\+\_\+quote}} (self, str text)
+\item 
+\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90}{\+\_\+parse\+\_\+paragraph}} (self, str text)
+\item 
+List\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}\mbox{]} \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\+\_\+parse\+\_\+inline}} (self, str text)
+\item 
+Dict \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{\+\_\+node\+\_\+to\+\_\+dict}} (self, \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} node)
+\item 
+str \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{\+\_\+extract\+\_\+text\+\_\+content}} (self, \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} node)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Parser for CommonMark with LaTeX extensions\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00074}{74}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a184efe96724f0865e096eef95c5c653b}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a184efe96724f0865e096eef95c5c653b} 
+markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00077}{77}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_extract\_metadata@{\_extract\_metadata}}
+\index{\_extract\_metadata@{\_extract\_metadata}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_extract\_metadata()}{\_extract\_metadata()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5} 
+ Optional\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+extract\+\_\+metadata (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract YAML-style metadata from the beginning of the text\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00146}{146}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{patterns}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00115}{parse()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_extract\_text\_content@{\_extract\_text\_content}}
+\index{\_extract\_text\_content@{\_extract\_text\_content}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_extract\_text\_content()}{\_extract\_text\_content()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c} 
+ str markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+extract\+\_\+text\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract plain text from a node\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00534}{534}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00311}{advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+text\+\_\+content()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00534}{\+\_\+extract\+\_\+text\+\_\+content()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00534}{\+\_\+extract\+\_\+text\+\_\+content()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00504}{extract\+\_\+links()}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_node\_to\_dict@{\_node\_to\_dict}}
+\index{\_node\_to\_dict@{\_node\_to\_dict}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_node\_to\_dict()}{\_node\_to\_dict()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b} 
+ Dict markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+node\+\_\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}}]{node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert node to dictionary recursively\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00449}{449}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00449}{\+\_\+node\+\_\+to\+\_\+dict()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00449}{\+\_\+node\+\_\+to\+\_\+dict()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00445}{ast\+\_\+to\+\_\+dict()}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_block@{\_parse\_block}}
+\index{\_parse\_block@{\_parse\_block}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_block()}{\_parse\_block()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b} 
+ Union\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}, List\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}\mbox{]}, None\mbox{]} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+block (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{block}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse a single block of content\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{223}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00279}{\+\_\+parse\+\_\+code\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00301}{\+\_\+parse\+\_\+list()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00272}{\+\_\+parse\+\_\+math\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00360}{\+\_\+parse\+\_\+paragraph()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00345}{\+\_\+parse\+\_\+quote()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00324}{\+\_\+parse\+\_\+table()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00293}{\+\_\+parse\+\_\+tex\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{patterns}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00101}{tex\+\_\+patterns}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00115}{parse()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_code\_block@{\_parse\_code\_block}}
+\index{\_parse\_code\_block@{\_parse\_code\_block}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_code\_block()}{\_parse\_code\_block()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+code\+\_\+block (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse code block\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00279}{279}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_inline@{\_parse\_inline}}
+\index{\_parse\_inline@{\_parse\_inline}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_inline()}{\_parse\_inline()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b} 
+ List\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}\mbox{]} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+inline (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse inline content\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{365}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{patterns}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00301}{\+\_\+parse\+\_\+list()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00360}{\+\_\+parse\+\_\+paragraph()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00345}{\+\_\+parse\+\_\+quote()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00324}{\+\_\+parse\+\_\+table()}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_list@{\_parse\_list}}
+\index{\_parse\_list@{\_parse\_list}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_list()}{\_parse\_list()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse list block\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00301}{301}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{patterns}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the call graph for this function\+:
+% FIG 11
+Here is the caller graph for this function\+:
+% FIG 12
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_math\_block@{\_parse\_math\_block}}
+\index{\_parse\_math\_block@{\_parse\_math\_block}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_math\_block()}{\_parse\_math\_block()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+math\+\_\+block (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse mathematical block\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00272}{272}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the caller graph for this function\+:
+% FIG 13
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_paragraph@{\_parse\_paragraph}}
+\index{\_parse\_paragraph@{\_parse\_paragraph}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_paragraph()}{\_parse\_paragraph()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+paragraph (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse paragraph\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00360}{360}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_quote@{\_parse\_quote}}
+\index{\_parse\_quote@{\_parse\_quote}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_quote()}{\_parse\_quote()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+quote (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse blockquote\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00345}{345}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the call graph for this function\+:
+% FIG 16
+Here is the caller graph for this function\+:
+% FIG 17
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_table@{\_parse\_table}}
+\index{\_parse\_table@{\_parse\_table}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_table()}{\_parse\_table()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse table block\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00324}{324}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the call graph for this function\+:
+% FIG 18
+Here is the caller graph for this function\+:
+% FIG 19
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_parse\_tex\_block@{\_parse\_tex\_block}}
+\index{\_parse\_tex\_block@{\_parse\_tex\_block}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_tex\_block()}{\_parse\_tex\_block()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+parse\+\_\+tex\+\_\+block (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{, }\item[{str}]{tex\+\_\+type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse TeX block\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00293}{293}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+Here is the caller graph for this function\+:
+% FIG 20
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!\_split\_into\_blocks@{\_split\_into\_blocks}}
+\index{\_split\_into\_blocks@{\_split\_into\_blocks}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{\_split\_into\_blocks()}{\_split\_into\_blocks()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93} 
+ List\mbox{[}str\mbox{]} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+split\+\_\+into\+\_\+blocks (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Split text into logical blocks\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00165}{165}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00115}{parse()}}.
+
+Here is the caller graph for this function\+:
+% FIG 21
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!ast\_to\_dict@{ast\_to\_dict}}
+\index{ast\_to\_dict@{ast\_to\_dict}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{ast\_to\_dict()}{ast\_to\_dict()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452} 
+ Dict markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+ast\+\_\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}}]{ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert AST to dictionary format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00445}{445}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00449}{\+\_\+node\+\_\+to\+\_\+dict()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00488}{save\+\_\+ast()}}.
+
+Here is the call graph for this function\+:
+% FIG 22
+Here is the caller graph for this function\+:
+% FIG 23
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!dict\_to\_ast@{dict\_to\_ast}}
+\index{dict\_to\_ast@{dict\_to\_ast}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{dict\_to\_ast()}{dict\_to\_ast()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+dict\+\_\+to\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert dictionary back to AST\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00468}{468}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00468}{dict\+\_\+to\+\_\+ast()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00468}{dict\+\_\+to\+\_\+ast()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00497}{load\+\_\+ast()}}.
+
+Here is the call graph for this function\+:
+% FIG 24
+Here is the caller graph for this function\+:
+% FIG 25
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_adccfc09d454f5e23cdce8e02d948ba23}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!extract\_links@{extract\_links}}
+\index{extract\_links@{extract\_links}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{extract\_links()}{extract\_links()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_adccfc09d454f5e23cdce8e02d948ba23} 
+ List\mbox{[}Dict\mbox{[}str, str\mbox{]}\mbox{]} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+extract\+\_\+links (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}}]{ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract all links from AST\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00504}{504}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00311}{advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+text\+\_\+content()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00534}{\+\_\+extract\+\_\+text\+\_\+content()}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{web\+\_\+scraper.\+Web\+Scraper.\+scrape\+\_\+page()}}.
+
+Here is the call graph for this function\+:
+% FIG 26
+Here is the caller graph for this function\+:
+% FIG 27
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a17af9cb014b0fd9f33c2ae261683e974}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!load\_ast@{load\_ast}}
+\index{load\_ast@{load\_ast}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{load\_ast()}{load\_ast()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a17af9cb014b0fd9f33c2ae261683e974} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+load\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{filepath}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Load AST from JSON file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00497}{497}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00468}{dict\+\_\+to\+\_\+ast()}}.
+
+Here is the call graph for this function\+:
+% FIG 28
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a7d3d7b7523ac2e403a9d59fe2d78b24c}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!parse@{parse}}
+\index{parse@{parse}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a7d3d7b7523ac2e403a9d59fe2d78b24c} 
+ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}} markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{markdown\+\_\+text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse MarkdownTeX text into AST\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00115}{115}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00146}{\+\_\+extract\+\_\+metadata()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00165}{\+\_\+split\+\_\+into\+\_\+blocks()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{patterns}}.
+
+Here is the call graph for this function\+:
+% FIG 29
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_a02f123a7469bb7edbde08c0851e800c5}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!save\_ast@{save\_ast}}
+\index{save\_ast@{save\_ast}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{save\_ast()}{save\_ast()}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_a02f123a7469bb7edbde08c0851e800c5} 
+ None markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+save\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}}]{ast}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{filepath}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Save AST to JSON file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00488}{488}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+References \mbox{\hyperlink{markdowntex__parser_8py_source_l00445}{ast\+\_\+to\+\_\+dict()}}.
+
+Here is the call graph for this function\+:
+% FIG 30
+
+
+\label{doc-variable-members}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!patterns@{patterns}}
+\index{patterns@{patterns}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{patterns}{patterns}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79} 
+dict markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+patterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}heading"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^(\#\{1,6\})\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}math\_block"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\$\(\backslash\)\$(.*?)\(\backslash\)\$\(\backslash\)\$"{}},\ re.DOTALL),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}inline\_math"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\$([\string^\$]+)\(\backslash\)\$"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}code\_block"{}}:\ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\string^\`{}\`{}\`{}(\(\backslash\)w+)?\(\backslash\)s*\(\backslash\)n(.*?)\(\backslash\)n\`{}\`{}\`{}"{}},\ re.MULTILINE\ |\ re.DOTALL}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}inline\_code"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\`{}([\string^\`{}]+)`"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}link"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)[([\string^\(\backslash\)]]+)\(\backslash\)]\(\backslash\)(([\string^)]+)\(\backslash\))"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}image"{}}:\ re.compile(\textcolor{stringliteral}{r"{}!\(\backslash\)[([\string^\(\backslash\)]]*)\(\backslash\)]\(\backslash\)(([\string^)]+)\(\backslash\))"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}emphasis"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)*([\string^*]+)\(\backslash\)*"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}strong"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)*\(\backslash\)*([\string^*]+)\(\backslash\)*\(\backslash\)*"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}list\_item"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)s*[-\/*+]\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ordered\_list\_item"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)s*\(\backslash\)d+\(\backslash\).\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}quote"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^>\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}table\_row"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)|(.+)\(\backslash\)|\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\string^-\/-\/-\/\(\backslash\)s*\(\backslash\)n(.*?)\(\backslash\)n-\/-\/-\/\(\backslash\)s*\(\backslash\)n"{}},\ re.MULTILINE\ |\ re.DOTALL}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00079}{79}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00146}{\+\_\+extract\+\_\+metadata()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00365}{\+\_\+parse\+\_\+inline()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00301}{\+\_\+parse\+\_\+list()}}, and \mbox{\hyperlink{markdowntex__parser_8py_source_l00115}{parse()}}.
+
+\Hypertarget{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d}\index{markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}!tex\_patterns@{tex\_patterns}}
+\index{tex\_patterns@{tex\_patterns}!markdowntex\_parser.MarkdownTeXParser@{markdowntex\_parser.MarkdownTeXParser}}
+\doxysubsubsection{\texorpdfstring{tex\_patterns}{tex\_patterns}}
+{\footnotesize\ttfamily \label{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d} 
+dict markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+tex\+\_\+patterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}equation"{}}:\ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{equation\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{equation\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}align"{}}:\ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{align\(\backslash\)*?\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{align\(\backslash\)*?\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}gather"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{gather\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{gather\(\backslash\)\}"{}},\ re.DOTALL),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}theorem"{}}:\ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{theorem\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{theorem\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}proof"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{proof\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{proof\(\backslash\)\}"{}},\ re.DOTALL),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{markdowntex__parser_8py_source_l00101}{101}} of file \mbox{\hyperlink{markdowntex__parser_8py_source}{markdowntex\+\_\+parser.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00223}{\+\_\+parse\+\_\+block()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{markdowntex__parser_8py}{markdowntex\+\_\+parser.\+py}}\end{DoxyCompactItemize}

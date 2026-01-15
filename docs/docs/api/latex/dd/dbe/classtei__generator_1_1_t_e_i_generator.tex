@@ -1,0 +1,236 @@
+\doxysection{tei\+\_\+generator.\+TEIGenerator Class Reference}
+\hypertarget{classtei__generator_1_1_t_e_i_generator}{}\label{classtei__generator_1_1_t_e_i_generator}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+
+
+Collaboration diagram for tei\+\_\+generator.\+TEIGenerator\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aebac647420f4c4adc4e94c0a25899500}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+Element \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb}{generate\+\_\+tei\+\_\+header}} (self, Dict\mbox{[}str, Any\mbox{]} site\+\_\+metadata)
+\item 
+Element \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494}{generate\+\_\+text\+\_\+body}} (self, Dict\mbox{[}str, Any\mbox{]} pages)
+\item 
+str \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a6cffaf2cda0037154d931564ee139b77}{generate\+\_\+tei\+\_\+document}} (self, Dict\mbox{[}str, Any\mbox{]} site\+\_\+ast)
+\item 
+None \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a0ce19e8690a182201774891901468d43}{save\+\_\+tei\+\_\+document}} (self, str tei\+\_\+xml, Union\mbox{[}str, Path\mbox{]} output\+\_\+path)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a}{tei\+\_\+ns}} = "{}http\+://www.\+tei-\/c.\+org/ns/1.\+0"{}
+\item 
+str \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726}{xml\+\_\+ns}} = "{}http\+://www.\+w3.\+org/XML/1998/namespace"{}
+\item 
+dict \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a12085212c364a9ca97b1cbd118c505ab}{ns\+\_\+map}} = \{"{}tei"{}\+: self.\+tei\+\_\+ns, "{}xml"{}\+: self.\+xml\+\_\+ns\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Element \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb}{\+\_\+convert\+\_\+page\+\_\+to\+\_\+tei\+\_\+div}} (self, str url, Dict\mbox{[}str, Any\mbox{]} page\+\_\+info)
+\item 
+Element \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\+\_\+convert\+\_\+ast\+\_\+to\+\_\+tei}} (self, Union\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}, Dict\mbox{]} ast\+\_\+node)
+\item 
+str \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe}{\+\_\+create\+\_\+page\+\_\+id}} (self, str url)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Generate TEI XML from AST and site data\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00024}{24}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_aebac647420f4c4adc4e94c0a25899500}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_aebac647420f4c4adc4e94c0a25899500} 
+tei\+\_\+generator.\+TEIGenerator.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00027}{27}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!\_convert\_ast\_to\_tei@{\_convert\_ast\_to\_tei}}
+\index{\_convert\_ast\_to\_tei@{\_convert\_ast\_to\_tei}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{\_convert\_ast\_to\_tei()}{\_convert\_ast\_to\_tei()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860} 
+ Element tei\+\_\+generator.\+TEIGenerator.\+\_\+convert\+\_\+ast\+\_\+to\+\_\+tei (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}, Dict\mbox{]}}]{ast\+\_\+node}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert AST node to TEI XML\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00236}{236}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+References \mbox{\hyperlink{tei__generator_8py_source_l00236}{\+\_\+convert\+\_\+ast\+\_\+to\+\_\+tei()}}.
+
+
+
+Referenced by \mbox{\hyperlink{tei__generator_8py_source_l00236}{\+\_\+convert\+\_\+ast\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{tei__generator_8py_source_l00146}{\+\_\+convert\+\_\+page\+\_\+to\+\_\+tei\+\_\+div()}}.
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!\_convert\_page\_to\_tei\_div@{\_convert\_page\_to\_tei\_div}}
+\index{\_convert\_page\_to\_tei\_div@{\_convert\_page\_to\_tei\_div}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{\_convert\_page\_to\_tei\_div()}{\_convert\_page\_to\_tei\_div()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb} 
+ Element tei\+\_\+generator.\+TEIGenerator.\+\_\+convert\+\_\+page\+\_\+to\+\_\+tei\+\_\+div (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{page\+\_\+info}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert a single page to TEI div\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00146}{146}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+References \mbox{\hyperlink{tei__generator_8py_source_l00236}{\+\_\+convert\+\_\+ast\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{tei__generator_8py_source_l00426}{\+\_\+create\+\_\+page\+\_\+id()}}.
+
+
+
+Referenced by \mbox{\hyperlink{tei__generator_8py_source_l00110}{generate\+\_\+text\+\_\+body()}}.
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!\_create\_page\_id@{\_create\_page\_id}}
+\index{\_create\_page\_id@{\_create\_page\_id}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{\_create\_page\_id()}{\_create\_page\_id()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe} 
+ str tei\+\_\+generator.\+TEIGenerator.\+\_\+create\+\_\+page\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create valid TEI XML ID from URL\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00426}{426}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{tei__generator_8py_source_l00146}{\+\_\+convert\+\_\+page\+\_\+to\+\_\+tei\+\_\+div()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a6cffaf2cda0037154d931564ee139b77}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!generate\_tei\_document@{generate\_tei\_document}}
+\index{generate\_tei\_document@{generate\_tei\_document}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_tei\_document()}{generate\_tei\_document()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a6cffaf2cda0037154d931564ee139b77} 
+ str tei\+\_\+generator.\+TEIGenerator.\+generate\+\_\+tei\+\_\+document (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{site\+\_\+ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate complete TEI XML document\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00434}{434}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+References \mbox{\hyperlink{tei__generator_8py_source_l00034}{generate\+\_\+tei\+\_\+header()}}, and \mbox{\hyperlink{tei__generator_8py_source_l00110}{generate\+\_\+text\+\_\+body()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!generate\_tei\_header@{generate\_tei\_header}}
+\index{generate\_tei\_header@{generate\_tei\_header}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_tei\_header()}{generate\_tei\_header()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb} 
+ Element tei\+\_\+generator.\+TEIGenerator.\+generate\+\_\+tei\+\_\+header (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{site\+\_\+metadata}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate TEI header with site metadata\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00034}{34}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{tei__generator_8py_source_l00434}{generate\+\_\+tei\+\_\+document()}}.
+
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!generate\_text\_body@{generate\_text\_body}}
+\index{generate\_text\_body@{generate\_text\_body}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_text\_body()}{generate\_text\_body()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494} 
+ Element tei\+\_\+generator.\+TEIGenerator.\+generate\+\_\+text\+\_\+body (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{pages}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate TEI text body from page content\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00110}{110}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+References \mbox{\hyperlink{tei__generator_8py_source_l00146}{\+\_\+convert\+\_\+page\+\_\+to\+\_\+tei\+\_\+div()}}.
+
+
+
+Referenced by \mbox{\hyperlink{tei__generator_8py_source_l00434}{generate\+\_\+tei\+\_\+document()}}.
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a0ce19e8690a182201774891901468d43}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!save\_tei\_document@{save\_tei\_document}}
+\index{save\_tei\_document@{save\_tei\_document}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{save\_tei\_document()}{save\_tei\_document()}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a0ce19e8690a182201774891901468d43} 
+ None tei\+\_\+generator.\+TEIGenerator.\+save\+\_\+tei\+\_\+document (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{tei\+\_\+xml}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{output\+\_\+path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Save TEI XML document to file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00494}{494}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a12085212c364a9ca97b1cbd118c505ab}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!ns\_map@{ns\_map}}
+\index{ns\_map@{ns\_map}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{ns\_map}{ns\_map}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a12085212c364a9ca97b1cbd118c505ab} 
+dict tei\+\_\+generator.\+TEIGenerator.\+ns\+\_\+map = \{"{}tei"{}\+: self.\+tei\+\_\+ns, "{}xml"{}\+: self.\+xml\+\_\+ns\}}
+
+
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00032}{32}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!tei\_ns@{tei\_ns}}
+\index{tei\_ns@{tei\_ns}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{tei\_ns}{tei\_ns}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a} 
+str tei\+\_\+generator.\+TEIGenerator.\+tei\+\_\+ns = "{}http\+://www.\+tei-\/c.\+org/ns/1.\+0"{}}
+
+
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00028}{28}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+\Hypertarget{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726}\index{tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}!xml\_ns@{xml\_ns}}
+\index{xml\_ns@{xml\_ns}!tei\_generator.TEIGenerator@{tei\_generator.TEIGenerator}}
+\doxysubsubsection{\texorpdfstring{xml\_ns}{xml\_ns}}
+{\footnotesize\ttfamily \label{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726} 
+str tei\+\_\+generator.\+TEIGenerator.\+xml\+\_\+ns = "{}http\+://www.\+w3.\+org/XML/1998/namespace"{}}
+
+
+
+Definition at line \mbox{\hyperlink{tei__generator_8py_source_l00029}{29}} of file \mbox{\hyperlink{tei__generator_8py_source}{tei\+\_\+generator.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{tei__generator_8py}{tei\+\_\+generator.\+py}}\end{DoxyCompactItemize}

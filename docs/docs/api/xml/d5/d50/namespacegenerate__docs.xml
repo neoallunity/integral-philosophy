@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/d50/namespacegenerate__docs" kind="namespace" language="Python">
+    <compoundname>generate_docs</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>generate_docs.run_command</definition>
+        <argsstring>(cmd, description=&quot;&quot;)</argsstring>
+        <name>run_command</name>
+        <qualifiedname>generate_docs.run_command</qualifiedname>
+        <param>
+          <type>cmd</type>
+          <defname>cmd</defname>
+        </param>
+        <param>
+          <type>description</type>
+          <defname>description</defname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run a command with error handling.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="12" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" bodystart="12" bodyend="28"/>
+        <referencedby refid="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" compoundref="db/d3b/generate__docs_8py" startline="29" endline="44">generate_api_docs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>generate_docs.generate_api_docs</definition>
+        <argsstring>()</argsstring>
+        <name>generate_api_docs</name>
+        <qualifiedname>generate_docs.generate_api_docs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate API documentation using Doxygen.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="29" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" bodystart="29" bodyend="44"/>
+        <references refid="d5/d50/namespacegenerate__docs_1ae3581cf59edef004f73e0ae49153dfc8" compoundref="db/d3b/generate__docs_8py" startline="12" endline="28">run_command</references>
+        <referencedby refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" compoundref="db/d3b/generate__docs_8py" startline="157" endline="201">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d50/namespacegenerate__docs_1a4e16faeb0b5dce8fa495dd60242c0216" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>generate_docs.generate_user_docs</definition>
+        <argsstring>()</argsstring>
+        <name>generate_user_docs</name>
+        <qualifiedname>generate_docs.generate_user_docs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate user documentation from markdown files.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="45" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" bodystart="45" bodyend="64"/>
+        <referencedby refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" compoundref="db/d3b/generate__docs_8py" startline="157" endline="201">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d50/namespacegenerate__docs_1ac6fb3586a7089ec0c784b73d6b7c32f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>generate_docs.generate_dev_docs</definition>
+        <argsstring>()</argsstring>
+        <name>generate_dev_docs</name>
+        <qualifiedname>generate_docs.generate_dev_docs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate development documentation.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="65" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" bodystart="65" bodyend="156"/>
+        <referencedby refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" compoundref="db/d3b/generate__docs_8py" startline="157" endline="201">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>generate_docs.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>generate_docs.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="157" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" bodystart="157" bodyend="201"/>
+        <references refid="d5/d50/namespacegenerate__docs_1a09d1575644d45e300d702814049c5f62" compoundref="db/d3b/generate__docs_8py" startline="29" endline="44">generate_api_docs</references>
+        <references refid="d5/d50/namespacegenerate__docs_1ac6fb3586a7089ec0c784b73d6b7c32f4" compoundref="db/d3b/generate__docs_8py" startline="65" endline="156">generate_dev_docs</references>
+        <references refid="d5/d50/namespacegenerate__docs_1a4e16faeb0b5dce8fa495dd60242c0216" compoundref="db/d3b/generate__docs_8py" startline="45" endline="64">generate_user_docs</references>
+        <references refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" compoundref="db/d3b/generate__docs_8py" startline="157" endline="201">main</references>
+        <referencedby refid="d5/d50/namespacegenerate__docs_1a7fe0214d2eee488ef3cd66bd71bbab7c" compoundref="db/d3b/generate__docs_8py" startline="157" endline="201">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/generate_docs.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

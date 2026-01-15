@@ -1,0 +1,491 @@
+\doxysection{web\+\_\+scraper.\+py}
+\hypertarget{web__scraper_8py_source}{}\label{web__scraper_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/web\_scraper.py@{/home/domini/src/Magazine/Magazine/scripts/web\_scraper.py}}
+\mbox{\hyperlink{web__scraper_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00001}\mbox{\hyperlink{namespaceweb__scraper}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00003}00003\ \textcolor{stringliteral}{Recursive\ Web\ Scraper\ with\ JavaScript\ Processing}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00004}00004\ \textcolor{stringliteral}{Downloads\ entire\ websites\ while\ preserving\ structure\ and\ links}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00005}00005\ \textcolor{stringliteral}{Converts\ content\ to\ MarkdownTeX\ format\ for\ further\ processing}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00008}00008\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00009}00009\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00010}00010\ \textcolor{keyword}{import}\ re}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00011}00011\ \textcolor{keyword}{import}\ urllib.parse}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00012}00012\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00013}00013\ \textcolor{keyword}{from}\ urllib.parse\ \textcolor{keyword}{import}\ urljoin,\ urlparse}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00014}00014\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Set,\ Dict,\ List,\ Optional}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00015}00015\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00016}00016\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00018}00018\ \textcolor{keyword}{from}\ selenium\ \textcolor{keyword}{import}\ webdriver}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00019}00019\ \textcolor{keyword}{from}\ selenium.webdriver.common.by\ \textcolor{keyword}{import}\ By}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00020}00020\ \textcolor{keyword}{from}\ selenium.webdriver.support.ui\ \textcolor{keyword}{import}\ WebDriverWait}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00021}00021\ \textcolor{keyword}{from}\ selenium.webdriver.support\ \textcolor{keyword}{import}\ expected\_conditions\ \textcolor{keyword}{as}\ EC}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00022}00022\ \textcolor{keyword}{from}\ selenium.webdriver.chrome.options\ \textcolor{keyword}{import}\ Options}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00023}00023\ \textcolor{keyword}{from}\ selenium.common.exceptions\ \textcolor{keyword}{import}\ TimeoutException,\ WebDriverException}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00024}00024\ \textcolor{keyword}{import}\ selenium.common.exceptions\ \textcolor{keyword}{as}\ sel\_exceptions}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00026}00026\ \textcolor{comment}{\#\ Set\ up\ logging}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00027}00027\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00028}\mbox{\hyperlink{namespaceweb__scraper_aa9cf18d7a5579406cda2165b7ca75490}{00028}}\ \ \ \ \ level=logging.INFO,\ format=\textcolor{stringliteral}{"{}\%(asctime)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00029}00029\ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00030}\mbox{\hyperlink{namespaceweb__scraper_aea268dafffd175f9775c78b73b4ffb4b}{00030}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00033}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper}{00033}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper}{WebScraper}}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00034}00034\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Recursive\ web\ scraper\ with\ JavaScript\ processing\ and\ MarkdownTeX\ output"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00036}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a39c2c5e13b549d2b7229691107f3b6a1}{00036}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a39c2c5e13b549d2b7229691107f3b6a1}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ self,\ base\_url:\ str,\ output\_dir:\ str\ =\ \textcolor{stringliteral}{"{}scraped\_content"{}},\ delay:\ float\ =\ 1.0}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00038}00038\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00039}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{00039}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\_url}}\ =\ base\_url}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00040}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}{00040}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}{domain}}\ =\ urlparse(base\_url).netloc}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00041}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{00041}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ =\ Path(output\_dir)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00042}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}{00042}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}{delay}}\ =\ delay}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00043}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{00043}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{visited\_urls}}:\ Set[str]\ =\ set()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00044}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{00044}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}}:\ Set[str]\ =\ set()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00045}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{00045}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\_urls}}:\ Set[str]\ =\ set()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00046}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{00046}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00047}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{00047}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pages"{}}:\ \{\},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}links"{}}:\ \{\},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}base\_url"{}}:\ base\_url,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}domain"{}}:\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}{domain}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped\_at"{}}:\ time.strftime(\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_pages"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ output\ directories}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}.mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ (self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}pages"{}}).mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ (self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}assets"{}}).mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ (self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}meta"{}}).mkdir(exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00064}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87}{00064}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87}{setup\_driver}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Initialize\ Chrome\ WebDriver\ with\ options"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ options\ =\ Options()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/headless"{}})\ \ \textcolor{comment}{\#\ Run\ in\ headless\ mode}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/no-\/sandbox"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/disable-\/dev-\/shm-\/usage"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/disable-\/gpu"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/window-\/size=1920,1080"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/user-\/agent=Mozilla/5.0\ (X11;\ Linux\ x86\_64)\ AppleWebKit/537.36"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Enable\ JavaScript}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ options.add\_argument(\textcolor{stringliteral}{"{}-\/-\/enable-\/javascript"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}\ =\ webdriver.Chrome(options=options)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.set\_page\_load\_timeout(30)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}WebDriver\ initialized\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Failed\ to\ initialize\ WebDriver:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00089}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e}{00089}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e}{wait\_for\_page\_load}}(self,\ timeout:\ int\ =\ 10)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Wait\ for\ page\ to\ fully\ load\ including\ JavaScript"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ DOM\ to\ be\ ready}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ WebDriverWait(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}},\ timeout).until(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}\ d:\ d.execute\_script(\textcolor{stringliteral}{"{}return\ document.readyState"{}})\ ==\ \textcolor{stringliteral}{"{}complete"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ additional\ JavaScript\ to\ execute}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ time.sleep(2)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ dynamic\ content\ if\ jQuery\ is\ present}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.execute\_script(\textcolor{stringliteral}{"{}return\ typeof\ jQuery\ !==\ 'undefined'"{}}):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WebDriverWait(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}},\ timeout).until(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}\ d:\ d.execute\_script(\textcolor{stringliteral}{"{}return\ jQuery.active\ ==\ 0"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ TimeoutException:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Page\ load\ timeout\ for\ \{self.driver.current\_url\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Error\ waiting\ for\ page\ load:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00118}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66}{00118}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66}{extract\_links}}(self)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ all\ links\ from\ current\ page"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ links\ =\ []}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Find\ all\ anchor\ elements}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ anchor\_elements\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.find\_elements(By.TAG\_NAME,\ \textcolor{stringliteral}{"{}a"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ anchor\ \textcolor{keywordflow}{in}\ anchor\_elements:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ href\ =\ anchor.get\_attribute(\textcolor{stringliteral}{"{}href"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ href\ \textcolor{keywordflow}{and}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f}{is\_same\_domain}}(href):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ relative\ URLs\ to\ absolute}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ absolute\_url\ =\ urljoin(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.current\_url,\ href)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ fragments\ and\ query\ parameters\ for\ uniqueness}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clean\_url\ =\ (}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ urlparse(absolute\_url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .\_replace(fragment=\textcolor{stringliteral}{"{}"{}},\ query=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .geturl()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ clean\_url\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{visited\_urls}}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ links.append(absolute\_url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Error\ processing\ link:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Error\ extracting\ links\ from\ \{self.driver.current\_url\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ links}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00152}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f}{00152}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f}{is\_same\_domain}}(self,\ url:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ URL\ belongs\ to\ the\ same\ domain"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\ =\ urlparse(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ parsed.netloc\ ==\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}{domain}}\ \textcolor{keywordflow}{or}\ parsed.netloc\ ==\ f\textcolor{stringliteral}{"{}www.\{self.domain\}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00160}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223}{00160}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223}{extract\_content}}(self)\ -\/>\ Dict:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ content\ from\ current\ page\ and\ convert\ to\ MarkdownTeX"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Execute\ JavaScript\ to\ get\ page\ information}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ page\_info\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.execute\_script(\textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00165}00165\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ \{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title:\ document.title,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00167}00167\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description:\ document.querySelector('meta[name="{}description"{}]')?.content\ ||\ '',}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00168}00168\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ keywords:\ document.querySelector('meta[name="{}keywords"{}]')?.content\ ||\ '',}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ language:\ document.documentElement.lang\ ||\ 'en',}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ author:\ document.querySelector('meta[name="{}author"{}]')?.content\ ||\ '',}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ canonical:\ document.querySelector('link[rel="{}canonical"{}]')?.href\ ||\ '',}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ structure:\ \{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ headings:\ Array.from(document.querySelectorAll('h1,\ h2,\ h3,\ h4,\ h5,\ h6')).map(h\ =>\ (\{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00174}00174\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ level:\ parseInt(h.tagName.substring(1)),}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00175}00175\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text:\ h.textContent.trim(),}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id:\ h.id\ ||\ ''}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00177}00177\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \})),}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00178}00178\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lists:\ document.querySelectorAll('ul,\ ol').length,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00179}00179\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tables:\ document.querySelectorAll('table').length,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00180}00180\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ images:\ document.querySelectorAll('img').length,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00181}00181\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ links:\ document.querySelectorAll('a').length}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00182}00182\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00183}00183\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00184}00184\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ "{}"{}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ main\ content}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ main\_content\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd}{get\_main\_content}}()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ to\ MarkdownTeX}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ markdowntex\_content\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de}{html\_to\_markdowntex}}(main\_content)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ metadata}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ metadata\ =\ \{}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}url"{}}:\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.current\_url,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}title"{}}:\ page\_info[\textcolor{stringliteral}{"{}title"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}description"{}}:\ page\_info[\textcolor{stringliteral}{"{}description"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}keywords"{}}:\ page\_info[\textcolor{stringliteral}{"{}keywords"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}language"{}}:\ page\_info[\textcolor{stringliteral}{"{}language"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}author"{}}:\ page\_info[\textcolor{stringliteral}{"{}author"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}canonical"{}}:\ page\_info[\textcolor{stringliteral}{"{}canonical"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}structure"{}}:\ page\_info[\textcolor{stringliteral}{"{}structure"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped\_at"{}}:\ time.strftime(\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}content\_length"{}}:\ len(markdowntex\_content),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ metadata,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}content"{}}:\ markdowntex\_content,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}raw\_html"{}}:\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.page\_source,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Error\ extracting\ content\ from\ \{self.driver.current\_url\}:\ \{e\}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00218}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd}{00218}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd}{get\_main\_content}}(self)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ main\ content\ from\ page"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Try\ to\ find\ main\ content\ areas}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ main\_selectors\ =\ [}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}main"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}article"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'[role="{}main"{}]'},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}.main-\/content"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#main"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}.content"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}.post-\/content"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}.entry-\/content"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ selector\ \textcolor{keywordflow}{in}\ main\_selectors:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.find\_element(By.CSS\_SELECTOR,\ selector)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ element.get\_attribute(\textcolor{stringliteral}{"{}outerHTML"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Fallback\ to\ body}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.find\_element(By.TAG\_NAME,\ \textcolor{stringliteral}{"{}body"{}}).get\_attribute(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}outerHTML"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Error\ getting\ main\ content:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.page\_source}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00249}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de}{00249}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de}{html\_to\_markdowntex}}(self,\ html\_content:\ str)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ HTML\ to\ MarkdownTeX\ preserving\ structure\ and\ links"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Basic\ HTML\ to\ Markdown\ conversion}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ is\ a\ simplified\ version\ -\/\ in\ production,\ use\ html2text\ or\ similar}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ and\ preserve\ inline\ LaTeX}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ tex\_patterns\ =\ [}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}\(\backslash\)\$\(\backslash\)\$([\string^\$]+)\(\backslash\)\$\(\backslash\)\$"{}},\ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\{equation\}\(\backslash\)1\(\backslash\)\(\backslash\)end\{equation\}"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}\(\backslash\)\$([\string^\$]+)\(\backslash\)\$"{}},\ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)(\(\backslash\)1\(\backslash\)\(\backslash\))"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{([\string^\}]+)\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{\(\backslash\)1\(\backslash\)\}"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}\ m:\ f\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)begin\{\{\{m.group(1)\}\}\}\{m.group(2)\}\(\backslash\)\(\backslash\)end\{\{\{m.group(1)\}\}\}"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ HTML\ structure}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ markdown\ =\ html\_content}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Preserve\ LaTeX}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ pattern,\ replacement\ \textcolor{keywordflow}{in}\ tex\_patterns:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ markdown\ =\ re.sub(pattern,\ replacement,\ markdown,\ flags=re.DOTALL)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ HTML\ to\ Markdown\ basic\ conversion}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ conversions\ =\ [}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}<h([1-\/6])[\string^>]*>(.*?)</h[1-\/6]>"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}\ m:\ f\textcolor{stringliteral}{"{}\{'\#'\ *\ int(m.group(1))\}\ \{m.group(2).strip()\}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<strong[\string^>]*>(.*?)</strong>"{}},\ \textcolor{stringliteral}{r"{}**\(\backslash\)1**"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<em[\string^>]*>(.*?)</em>"{}},\ \textcolor{stringliteral}{r"{}*\(\backslash\)1*"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<code[\string^>]*>(.*?)</code>"{}},\ \textcolor{stringliteral}{r"{}\`{}\(\backslash\)1\`{}"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r'<a[\string^>]*href="{}([\string^"{}]*)"{}[\string^>]*>(.*?)</a>'},\ \textcolor{stringliteral}{r"{}[\(\backslash\)2](\(\backslash\)1)"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r'<img[\string^>]*src="{}([\string^"{}]*)"{}[\string^>]*alt="{}([\string^"{}]*)"{}[\string^>]*>'},\ \textcolor{stringliteral}{r"{}![\(\backslash\)2](\(\backslash\)1)"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<p[\string^>]*>(.*?)</p>"{}},\ \textcolor{stringliteral}{r"{}\(\backslash\)1\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<br[\string^>]*>"{}},\ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)n"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<ul[\string^>]*>(.*?)</ul>"{}},\ \textcolor{keyword}{lambda}\ m:\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}{convert\_list}}(m.group(1),\ \textcolor{stringliteral}{"{}ul"{}})),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<ol[\string^>]*>(.*?)</ol>"{}},\ \textcolor{keyword}{lambda}\ m:\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}{convert\_list}}(m.group(1),\ \textcolor{stringliteral}{"{}ol"{}})),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{r"{}<li[\string^>]*>(.*?)</li>"{}},\ \textcolor{stringliteral}{r"{}-\/\ \(\backslash\)1\(\backslash\)\(\backslash\)n"{}}),}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ pattern,\ replacement\ \textcolor{keywordflow}{in}\ conversions:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ markdown\ =\ re.sub(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pattern,\ replacement,\ markdown,\ flags=re.DOTALL\ |\ re.IGNORECASE}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Clean\ up\ extra\ whitespace\ and\ HTML\ tags}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ markdown\ =\ re.sub(\textcolor{stringliteral}{r"{}<[\string^>]+>"{}},\ \textcolor{stringliteral}{"{}"{}},\ markdown)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ markdown\ =\ re.sub(\textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)s*\(\backslash\)\(\backslash\)n"{}},\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}},\ markdown)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ markdown\ =\ markdown.strip()\ +\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ markdown}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00302}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}{00302}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}{convert\_list}}(self,\ list\_html:\ str,\ list\_type:\ str)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ HTML\ lists\ to\ Markdown"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ items\ =\ re.findall(\textcolor{stringliteral}{r"{}<li[\string^>]*>(.*?)</li>"{}},\ list\_html,\ re.DOTALL\ |\ re.IGNORECASE)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ list\_type\ ==\ \textcolor{stringliteral}{"{}ol"{}}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n"{}}.join(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{i\ +\ 1\}.\ \{item.strip()\}"{}}\ \textcolor{keywordflow}{for}\ i,\ item\ \textcolor{keywordflow}{in}\ enumerate(items)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)n"{}}.join(f\textcolor{stringliteral}{"{}-\/\ \{item.strip()\}"{}}\ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ items)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00313}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8}{00313}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8}{save\_page}}(self,\ url:\ str,\ content:\ Dict)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Save\ page\ content\ to\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ filename\ from\ URL}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_url\ =\ urlparse(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ path\ =\ parsed\_url.path.strip(\textcolor{stringliteral}{"{}/"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ filename\ =\ path.replace(\textcolor{stringliteral}{"{}/"{}},\ \textcolor{stringliteral}{"{}\_"{}})\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}index"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ filename.endswith(\textcolor{stringliteral}{"{}.md"{}}):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ filename\ +=\ \textcolor{stringliteral}{"{}.md"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ file\_path\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}pages"{}}\ /\ filename}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ MarkdownTeX\ content}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(file\_path,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(f\textcolor{stringliteral}{"{}\#\ \{content['metadata']['title']\}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(f\textcolor{stringliteral}{"{}**URL:**\ \{url\}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(f\textcolor{stringliteral}{"{}**Language:**\ \{content['metadata']['language']\}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(f\textcolor{stringliteral}{"{}**Scraped:**\ \{content['metadata']['scraped\_at']\}\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(\textcolor{stringliteral}{"{}-\/-\/-\/\(\backslash\)\(\backslash\)n\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(content[\textcolor{stringliteral}{"{}content"{}}])}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ metadata}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ meta\_path\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}meta"{}}\ /\ f\textcolor{stringliteral}{"{}\{filename\}.json"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(meta\_path,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(content[\textcolor{stringliteral}{"{}metadata"{}}],\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ site\ AST}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}}[\textcolor{stringliteral}{"{}pages"{}}][url]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}filename"{}}:\ filename,}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ content[\textcolor{stringliteral}{"{}metadata"{}}],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}links"{}}:\ [],}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Saved:\ \{url\}\ -\/>\ \{file\_path\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Error\ saving\ page\ \{url\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00353}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b}{00353}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b}{scrape\_page}}(self,\ url:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Scrape\ a\ single\ page"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Scraping:\ \{url\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00357}00357\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Navigate\ to\ page}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.get(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ page\ to\ load}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e}{wait\_for\_page\_load}}():}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Page\ load\ timeout:\ \{url\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ delay\ to\ be\ respectful}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ time.sleep(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}{delay}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ content}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223}{extract\_content}}()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ content:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ page}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8}{save\_page}}(url,\ content):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}}.add(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ links\ for\ recursive\ scraping}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_links\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66}{extract\_links}}()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}}[\textcolor{stringliteral}{"{}pages"{}}][url][\textcolor{stringliteral}{"{}links"{}}]\ =\ new\_links}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ new\_links}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\_urls}}.add(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\_urls}}.add(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Error\ scraping\ \{url\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\_urls}}.add(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00392}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7f8dd721e6bacc2ad218ec3f85f4ac89}{00392}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7f8dd721e6bacc2ad218ec3f85f4ac89}{recursive\_scrape}}(self,\ max\_pages:\ int\ =\ 1000,\ max\_depth:\ int\ =\ 10)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Recursively\ scrape\ entire\ website"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87}{setup\_driver}}():}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Start\ with\ base\ URL}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ urls\_to\_scrape\ =\ [self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\_url}}]}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ current\_depth\ =\ 0}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ urls\_to\_scrape}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{and}\ current\_depth\ <\ max\_depth}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{and}\ len(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}})\ <\ max\_pages}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Depth\ \{current\_depth\},\ URLs\ to\ scrape:\ \{len(urls\_to\_scrape)\},\ Downloaded:\ \{len(self.downloaded\_urls)\}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_urls\_to\_scrape\ =\ []}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ url\ \textcolor{keywordflow}{in}\ urls\_to\_scrape:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ url\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{visited\_urls}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{and}\ len(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}})\ <\ max\_pages}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{visited\_urls}}.add(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_links\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b}{scrape\_page}}(url)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_urls\_to\_scrape.extend(new\_links)}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ urls\_to\_scrape\ =\ list(set(new\_urls\_to\_scrape))\ \ \textcolor{comment}{\#\ Remove\ duplicates}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_depth\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ site\ AST\ metadata}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}}[\textcolor{stringliteral}{"{}metadata"{}}][\textcolor{stringliteral}{"{}total\_pages"{}}]\ =\ len(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}}[\textcolor{stringliteral}{"{}metadata"{}}][\textcolor{stringliteral}{"{}failed\_pages"{}}]\ =\ len(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\_urls}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ site\ AST}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}site\_ast.json"{}},\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\_ast}},\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Scraping\ complete.\ Downloaded\ \{len(self.downloaded\_urls)\}\ pages,\ failed\ \{len(self.failed\_urls)\}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}}.quit()}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00440}00440\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00441}\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a43304f2ec429c7ddc77d36b32f22fe38}{00441}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a43304f2ec429c7ddc77d36b32f22fe38}{generate\_sitemap}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ sitemap\ of\ scraped\ pages"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ sitemap\_path\ =\ self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\_dir}}\ /\ \textcolor{stringliteral}{"{}sitemap.txt"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(sitemap\_path,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ url\ \textcolor{keywordflow}{in}\ sorted(self.\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\_urls}}):}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f.write(f\textcolor{stringliteral}{"{}\{url\}\(\backslash\)\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Sitemap\ saved\ to\ \{sitemap\_path\}"{}})}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00450}00450\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00452}\mbox{\hyperlink{namespaceweb__scraper_a99dd5178a985e50e1eb8c274d45bc2ce}{00452}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceweb__scraper_a99dd5178a985e50e1eb8c274d45bc2ce}{main}}():}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00453}00453\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ function\ to\ run\ the\ web\ scraper"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00454}00454\ \textcolor{stringliteral}{\ \ \ \ import\ argparse}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00455}00455\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00456}00456\ \textcolor{stringliteral}{\ \ \ \ parser\ =\ argparse.ArgumentParser(}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00457}00457\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ description="{}Recursive\ web\ scraper\ with\ MarkdownTeX\ output"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00458}00458\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00459}00459\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument("{}url"{},\ help="{}Base\ URL\ to\ scrape"{})}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00460}00460\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument(}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00461}00461\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}-\/o"{},\ "{}-\/-\/output"{},\ default="{}scraped\_content"{},\ help="{}Output\ directory"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00462}00462\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00463}00463\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument(}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00464}00464\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}-\/d"{},}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00465}00465\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}-\/-\/delay"{},}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00466}00466\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ type=float,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00467}00467\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ default=1.0,}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00468}00468\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ help="{}Delay\ between\ requests\ (seconds)"{},}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00469}00469\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00470}00470\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument(}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00471}00471\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}-\/m"{},\ "{}-\/-\/max-\/pages"{},\ type=int,\ default=1000,\ help="{}Maximum\ pages\ to\ scrape"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00472}00472\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00473}00473\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument(}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00474}00474\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}-\/-\/max-\/depth"{},\ type=int,\ default=10,\ help="{}Maximum\ depth\ to\ scrape"{}}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00475}00475\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00476}00476\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00477}00477\ \textcolor{stringliteral}{\ \ \ \ args\ =\ parser.parse\_args()}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00478}00478\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00479}00479\ \textcolor{stringliteral}{\ \ \ \ scraper\ =\ WebScraper(args.url,\ args.output,\ args.delay)}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00480}00480\ \textcolor{stringliteral}{\ \ \ \ scraper.recursive\_scrape(args.max\_pages,\ args.max\_depth)}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00481}00481\ \textcolor{stringliteral}{\ \ \ \ scraper.generate\_sitemap()}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00482}00482\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00483}00483\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00484}00484\ \textcolor{stringliteral}{if\ \_\_name\_\_\ ==\ "{}\_\_main\_\_"{}:}}
+\DoxyCodeLine{\Hypertarget{web__scraper_8py_source_l00485}00485\ \textcolor{stringliteral}{\ \ \ \ main()}}
+
+\end{DoxyCode}

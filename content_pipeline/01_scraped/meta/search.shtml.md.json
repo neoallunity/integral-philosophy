@@ -1,0 +1,54 @@
+{
+  "url": "https://allunity.ru/search.shtml",
+  "title": "Интегральное сообщество - Поиск",
+  "description": "Поиск Интегрального сообщества",
+  "keywords": "интегральное сообщество, поиск, книги, статьи, интегральная философия",
+  "language": "ru",
+  "author": "Интегральное сообщество",
+  "canonical": "https://allunity.ru/search.shtml",
+  "structure": {
+    "headings": [
+      {
+        "id": "",
+        "level": 1,
+        "text": "Поиск по сайту"
+      },
+      {
+        "id": "",
+        "level": 3,
+        "text": "Результаты не найдены"
+      },
+      {
+        "id": "",
+        "level": 3,
+        "text": "Популярные разделы"
+      },
+      {
+        "id": "",
+        "level": 3,
+        "text": "Интегральное сообщество"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Основные разделы"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Ресурсы"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Контакты"
+      }
+    ],
+    "images": 2,
+    "links": 43,
+    "lists": 4,
+    "tables": 3
+  },
+  "scraped_at": "2026-01-14 23:45:34",
+  "content_length": 10128
+}

@@ -1,0 +1,585 @@
+{
+  "pages": {
+    "https://plato.stanford.edu/entries/descartes-epistemology/": {
+      "filename": "entries_descartes-epistemology.md",
+      "metadata": {
+        "url": "https://plato.stanford.edu/entries/descartes-epistemology/",
+        "title": "Descartes’ Epistemology (Stanford Encyclopedia of Philosophy)",
+        "description": "",
+        "keywords": "",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "Descartes’ Epistemology"
+            },
+            {
+              "id": "ConcKnow",
+              "level": 2,
+              "text": "1. Conception of Knowledge"
+            },
+            {
+              "id": "AnalPerfKnow",
+              "level": 3,
+              "text": "1.1 Analysis of Perfect Knowledge"
+            },
+            {
+              "id": "InteJust",
+              "level": 3,
+              "text": "1.2 Internalism and Justification"
+            },
+            {
+              "id": "MethAppr",
+              "level": 3,
+              "text": "1.3 Methodist Approach"
+            },
+            {
+              "id": "InnaIdea",
+              "level": 3,
+              "text": "1.4 Innate Ideas"
+            },
+            {
+              "id": "MethFounDoub",
+              "level": 2,
+              "text": "2. The Methods: Foundationalism and Doubt"
+            },
+            {
+              "id": "Foun",
+              "level": 3,
+              "text": "2.1 Foundationalism"
+            },
+            {
+              "id": "MethDoub",
+              "level": 3,
+              "text": "2.2 Method of Doubt"
+            },
+            {
+              "id": "FirsMediDoubArgu",
+              "level": 2,
+              "text": "3. First Meditation Doubting Arguments"
+            },
+            {
+              "id": "DreaDoub",
+              "level": 3,
+              "text": "3.1 Dreaming Doubts"
+            },
+            {
+              "id": "EvilGeniDoub",
+              "level": 3,
+              "text": "3.2 Evil Genius Doubt"
+            },
+            {
+              "id": "CogiDoub",
+              "level": 2,
+              "text": "4. The Cogito and Doubt"
+            },
+            {
+              "id": "CogiErgoSum",
+              "level": 3,
+              "text": "4.1 Cogito Ergo Sum"
+            },
+            {
+              "id": "DoesCogiCounAtheAvaiPerfKnow",
+              "level": 3,
+              "text": "4.2 Does the Cogito count as (Atheist-Available) Perfect Knowledge?"
+            },
+            {
+              "id": "HowIndiDoubCleaDistPerc",
+              "level": 3,
+              "text": "4.3 How Indirectly to Doubt Clear and Distinct Perception"
+            },
+            {
+              "id": "CaDRuleRoadPerfKnow",
+              "level": 2,
+              "text": "5. C&D Rule and the Road to Perfect Knowledge"
+            },
+            {
+              "id": "ClarDistProvTrutRule",
+              "level": 3,
+              "text": "5.1 Clarity and Distinctness as a Provisional Truth Rule"
+            },
+            {
+              "id": "StraForConsProoMoviForw",
+              "level": 3,
+              "text": "5.2 Strategy for Constructive Proofs \nMoving Forward"
+            },
+            {
+              "id": "FourMediProoCaDRule",
+              "level": 3,
+              "text": "5.3 Fourth Meditation Proof of the C&D Rule"
+            },
+            {
+              "id": "PerfKnowCircTrut",
+              "level": 2,
+              "text": "6. Perfect Knowledge, Circularity, and Truth"
+            },
+            {
+              "id": "CartCirc",
+              "level": 3,
+              "text": "6.1 The Cartesian Circle"
+            },
+            {
+              "id": "SelfEvidGodInte",
+              "level": 3,
+              "text": "6.2 Self-Evident God Interpretation"
+            },
+            {
+              "id": "AnotCartCirc",
+              "level": 3,
+              "text": "6.3 Another Cartesian Circle?"
+            },
+            {
+              "id": "TrutCondPerfKnow",
+              "level": 3,
+              "text": "6.4 Is Truth a Condition of Perfect Knowledge?"
+            },
+            {
+              "id": "ProvExteMateWorl",
+              "level": 2,
+              "text": "7. Proving an External Material World"
+            },
+            {
+              "id": "CaseForExteCausSens",
+              "level": 3,
+              "text": "7.1 Case for the Externality\nof the Causes of Sensation"
+            },
+            {
+              "id": "CaseForMateCausSens",
+              "level": 3,
+              "text": "7.2 Case for the Materiality\nof the Causes of Sensation"
+            },
+            {
+              "id": "PerfKnowBeinAwak",
+              "level": 2,
+              "text": "8. Perfect Knowledge of Being Awake"
+            },
+            {
+              "id": "SelfKnow",
+              "level": 2,
+              "text": "9. Self-Knowledge"
+            },
+            {
+              "id": "MindBettKnowThanBody",
+              "level": 3,
+              "text": "9.1 That Mind is Better-Known than Body"
+            },
+            {
+              "id": "WhetWePerfKnowOurOwnMind",
+              "level": 3,
+              "text": "9.2 Whether We Perfectly Know Our Own Minds"
+            },
+            {
+              "id": "Bib",
+              "level": 2,
+              "text": "Bibliography"
+            },
+            {
+              "id": "PrimSour",
+              "level": 3,
+              "text": "Primary Sources"
+            },
+            {
+              "id": "SecoSour",
+              "level": 3,
+              "text": "Secondary Sources"
+            },
+            {
+              "id": "Aca",
+              "level": 2,
+              "text": "Academic Tools"
+            },
+            {
+              "id": "Oth",
+              "level": 2,
+              "text": "Other Internet Resources"
+            },
+            {
+              "id": "Rel",
+              "level": 2,
+              "text": "Related Entries"
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "Acknowledgments"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Browse"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "About"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Support SEP"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Mirror Sites"
+            }
+          ],
+          "images": 5,
+          "links": 139,
+          "lists": 25,
+          "tables": 2
+        },
+        "scraped_at": "2026-01-15 03:00:06",
+        "content_length": 210828
+      },
+      "links": [
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology",
+        "https://plato.stanford.edu/entries/descartes/",
+        "https://plato.stanford.edu/archives/fall2017/entries/descartes-ideas/",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology",
+        "https://plato.stanford.edu/entries/apriori/",
+        "https://plato.stanford.edu/entries/certainty/",
+        "https://plato.stanford.edu/entries/descartes/",
+        "https://plato.stanford.edu/entries/descartes-method/",
+        "https://plato.stanford.edu/entries/descartes-modal/",
+        "https://plato.stanford.edu/entries/descartes-ontological/",
+        "https://plato.stanford.edu/entries/descartes-ideas/",
+        "https://plato.stanford.edu/entries/gassendi/",
+        "https://plato.stanford.edu/entries/idealism/",
+        "https://plato.stanford.edu/entries/innateness-history/",
+        "https://plato.stanford.edu/entries/justep-foundational/",
+        "https://plato.stanford.edu/entries/knowledge-analysis/",
+        "https://plato.stanford.edu/entries/moral-particularism/",
+        "https://plato.stanford.edu/entries/original-position/",
+        "https://plato.stanford.edu/entries/perception-episprob/",
+        "https://plato.stanford.edu/entries/qualities-prim-sec/",
+        "https://plato.stanford.edu/entries/rationalism-empiricism/",
+        "https://plato.stanford.edu/entries/realism/",
+        "https://plato.stanford.edu/entries/reasoning-defeasible/",
+        "https://plato.stanford.edu/entries/sense-data/",
+        "https://plato.stanford.edu/entries/skepticism/",
+        "https://plato.stanford.edu/entries/truth/",
+        "https://plato.stanford.edu/info.html#c",
+        "https://plato.stanford.edu/fundraising/",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/accessibility.html",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/",
+        "https://plato.stanford.edu/info.html#c"
+      ]
+    },
+    "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology": {
+      "filename": "cgi-bin_encyclopedia_archinfo.cgi.md",
+      "metadata": {
+        "url": "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology",
+        "title": "Author and Citation Information for \"Descartes’ Epistemology\"",
+        "description": "",
+        "keywords": "",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "Author and Citation Information for \"Descartes’ Epistemology\""
+            },
+            {
+              "id": "",
+              "level": 3,
+              "text": "BibTeX Citation String (Current Version in Winter 2023 Archive)"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Browse"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "About"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Support SEP"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Mirror Sites"
+            }
+          ],
+          "images": 1,
+          "links": 57,
+          "lists": 10,
+          "tables": 1
+        },
+        "scraped_at": "2026-01-15 03:00:12",
+        "content_length": 6641
+      },
+      "links": [
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology#",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology#",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=descartes-epistemology#",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/entries/descartes-epistemology",
+        "https://plato.stanford.edu/archives/win2023/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/spr2019/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/win2016/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/win2014/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/fall2010/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/sum2010/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/fall2008/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/sum2005/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/fall2000/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/fall1999/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/spr1998/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/archives/win1997/entries/descartes-epistemology/",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/accessibility.html",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/",
+        "https://plato.stanford.edu/info.html#c"
+      ]
+    },
+    "https://plato.stanford.edu/entries/moral-particularism/": {
+      "filename": "entries_moral-particularism.md",
+      "metadata": {
+        "url": "https://plato.stanford.edu/entries/moral-particularism/",
+        "title": "Moral Particularism (Stanford Encyclopedia of Philosophy)",
+        "description": "",
+        "keywords": "",
+        "language": "en",
+        "author": "",
+        "canonical": "",
+        "structure": {
+          "headings": [
+            {
+              "id": "",
+              "level": 1,
+              "text": "Moral Particularism"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "1. Two Conceptions of Moral Principles"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "2. What the Particularist Does Not Believe"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "3. What the Particularist Believes"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "4. Problems for Absolute Principles"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "5. Problems for Contributory Principles"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "6. The Generalists’ Reply"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "7. Do Particularism and Generalism Differ in Practice or Only in Theory?"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "8. Problems for Particularism"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Bibliography"
+            },
+            {
+              "id": "Aca",
+              "level": 2,
+              "text": "Academic Tools"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Other Internet Resources"
+            },
+            {
+              "id": "",
+              "level": 2,
+              "text": "Related Entries"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Browse"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "About"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Support SEP"
+            },
+            {
+              "id": "",
+              "level": 4,
+              "text": "Mirror Sites"
+            }
+          ],
+          "images": 5,
+          "links": 94,
+          "lists": 11,
+          "tables": 1
+        },
+        "scraped_at": "2026-01-15 03:00:17",
+        "content_length": 58261
+      },
+      "links": [
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/index.html",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=moral-particularism",
+        "https://plato.stanford.edu/entries/moral-particularism-generalism/",
+        "https://plato.stanford.edu/entries/moral-particularism-generalism/",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=moral-particularism",
+        "https://plato.stanford.edu/entries/mencius/",
+        "https://plato.stanford.edu/entries/moral-epistemology/",
+        "https://plato.stanford.edu/entries/moral-motivation/",
+        "https://plato.stanford.edu/entries/moral-particularism-generalism/",
+        "https://plato.stanford.edu/entries/moral-realism/",
+        "https://plato.stanford.edu/entries/moral-relativism/",
+        "https://plato.stanford.edu/entries/moral-responsibility/",
+        "https://plato.stanford.edu/entries/practical-reason/",
+        "https://plato.stanford.edu/entries/reasoning-moral/",
+        "https://plato.stanford.edu/entries/reasons-just-vs-expl/",
+        "https://plato.stanford.edu/info.html#c",
+        "https://plato.stanford.edu/fundraising/",
+        "https://plato.stanford.edu/contents.html",
+        "https://plato.stanford.edu/new.html",
+        "https://plato.stanford.edu/cgi-bin/encyclopedia/random",
+        "https://plato.stanford.edu/published.html",
+        "https://plato.stanford.edu/archives/",
+        "https://plato.stanford.edu/info.html",
+        "https://plato.stanford.edu/about.html",
+        "https://plato.stanford.edu/board.html",
+        "https://plato.stanford.edu/cite.html",
+        "https://plato.stanford.edu/special-characters.html",
+        "https://plato.stanford.edu/tools/",
+        "https://plato.stanford.edu/accessibility.html",
+        "https://plato.stanford.edu/contact.html",
+        "https://plato.stanford.edu/support/",
+        "https://plato.stanford.edu/support/friends.html",
+        "https://plato.stanford.edu/support/donate.html",
+        "https://plato.stanford.edu/support/sepia.html",
+        "https://plato.stanford.edu/",
+        "https://plato.stanford.edu/info.html#c"
+      ]
+    }
+  },
+  "links": {},
+  "metadata": {
+    "base_url": "https://plato.stanford.edu/entries/descartes-epistemology/",
+    "domain": "plato.stanford.edu",
+    "scraped_at": "2026-01-15 02:59:58",
+    "total_pages": 3,
+    "failed_pages": 0
+  }
+}

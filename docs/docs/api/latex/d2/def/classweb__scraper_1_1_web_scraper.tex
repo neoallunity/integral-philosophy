@@ -1,0 +1,480 @@
+\doxysection{web\+\_\+scraper.\+Web\+Scraper Class Reference}
+\hypertarget{classweb__scraper_1_1_web_scraper}{}\label{classweb__scraper_1_1_web_scraper}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+
+
+Collaboration diagram for web\+\_\+scraper.\+Web\+Scraper\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a39c2c5e13b549d2b7229691107f3b6a1}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\+\_\+url}}, str \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\+\_\+dir}}="{}scraped\+\_\+content"{}, float \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}{delay}}=1.\+0)
+\item 
+bool \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87}{setup\+\_\+driver}} (self)
+\item 
+bool \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e}{wait\+\_\+for\+\_\+page\+\_\+load}} (self, int timeout=10)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66}{extract\+\_\+links}} (self)
+\item 
+bool \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f}{is\+\_\+same\+\_\+domain}} (self, str url)
+\item 
+Dict \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223}{extract\+\_\+content}} (self)
+\item 
+str \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd}{get\+\_\+main\+\_\+content}} (self)
+\item 
+str \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de}{html\+\_\+to\+\_\+markdowntex}} (self, str html\+\_\+content)
+\item 
+str \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}{convert\+\_\+list}} (self, str list\+\_\+html, str list\+\_\+type)
+\item 
+bool \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8}{save\+\_\+page}} (self, str url, Dict content)
+\item 
+bool \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b}{scrape\+\_\+page}} (self, str url)
+\item 
+None \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7f8dd721e6bacc2ad218ec3f85f4ac89}{recursive\+\_\+scrape}} (self, int max\+\_\+pages=1000, int max\+\_\+depth=10)
+\item 
+None \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a43304f2ec429c7ddc77d36b32f22fe38}{generate\+\_\+sitemap}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\+\_\+url}} = base\+\_\+url
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}{domain}} = urlparse(\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\+\_\+url}}).netloc
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}{output\+\_\+dir}} = Path(output\+\_\+dir)
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}{delay}} = delay
+\item 
+Set\mbox{[}str\mbox{]} \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}{visited\+\_\+urls}} = set()
+\item 
+Set\mbox{[}str\mbox{]} \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}{downloaded\+\_\+urls}} = set()
+\item 
+Set\mbox{[}str\mbox{]} \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}{failed\+\_\+urls}} = set()
+\item 
+\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}{driver}} = None
+\item 
+dict \mbox{\hyperlink{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}{site\+\_\+ast}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Recursive web scraper with JavaScript processing and MarkdownTeX output\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00033}{33}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classweb__scraper_1_1_web_scraper_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classweb__scraper_1_1_web_scraper_a39c2c5e13b549d2b7229691107f3b6a1}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a39c2c5e13b549d2b7229691107f3b6a1} 
+web\+\_\+scraper.\+Web\+Scraper.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{base\+\_\+url}{, }\item[{str }]{output\+\_\+dir}{ = {\ttfamily "{}scraped\+\_\+content"{}}, }\item[{float }]{delay}{ = {\ttfamily 1.0}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00036}{36}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classweb__scraper_1_1_web_scraper_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!convert\_list@{convert\_list}}
+\index{convert\_list@{convert\_list}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{convert\_list()}{convert\_list()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a3471a7d82fdd2efa9e1e317442b1e13d} 
+ str web\+\_\+scraper.\+Web\+Scraper.\+convert\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{list\+\_\+html}{, }\item[{str}]{list\+\_\+type}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert HTML lists to Markdown\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00302}{302}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00249}{html\+\_\+to\+\_\+markdowntex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!extract\_content@{extract\_content}}
+\index{extract\_content@{extract\_content}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{extract\_content()}{extract\_content()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a3dcd2c70bc5ba44b80576be0070b1223} 
+ Dict web\+\_\+scraper.\+Web\+Scraper.\+extract\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract content from current page and convert to MarkdownTeX\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00160}{160}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}, \mbox{\hyperlink{web__scraper_8py_source_l00218}{get\+\_\+main\+\_\+content()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00249}{html\+\_\+to\+\_\+markdowntex()}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!extract\_links@{extract\_links}}
+\index{extract\_links@{extract\_links}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{extract\_links()}{extract\_links()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a9689a553425972e77b47d9ecdd6d1e66} 
+ List\mbox{[}str\mbox{]} web\+\_\+scraper.\+Web\+Scraper.\+extract\+\_\+links (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract all links from current page\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00118}{118}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}, \mbox{\hyperlink{web__scraper_8py_source_l00152}{is\+\_\+same\+\_\+domain()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00043}{visited\+\_\+urls}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classweb__scraper_1_1_web_scraper_a43304f2ec429c7ddc77d36b32f22fe38}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!generate\_sitemap@{generate\_sitemap}}
+\index{generate\_sitemap@{generate\_sitemap}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{generate\_sitemap()}{generate\_sitemap()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a43304f2ec429c7ddc77d36b32f22fe38} 
+ None web\+\_\+scraper.\+Web\+Scraper.\+generate\+\_\+sitemap (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate sitemap of scraped pages\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00441}{441}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00044}{downloaded\+\_\+urls}}, and \mbox{\hyperlink{web__scraper_8py_source_l00041}{output\+\_\+dir}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!get\_main\_content@{get\_main\_content}}
+\index{get\_main\_content@{get\_main\_content}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{get\_main\_content()}{get\_main\_content()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_aaa732c935ac89c9bca7607c80678ccdd} 
+ str web\+\_\+scraper.\+Web\+Scraper.\+get\+\_\+main\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract main content from page\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00218}{218}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00160}{extract\+\_\+content()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!html\_to\_markdowntex@{html\_to\_markdowntex}}
+\index{html\_to\_markdowntex@{html\_to\_markdowntex}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{html\_to\_markdowntex()}{html\_to\_markdowntex()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a8db79f575531968a486fffbc206333de} 
+ str web\+\_\+scraper.\+Web\+Scraper.\+html\+\_\+to\+\_\+markdowntex (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{html\+\_\+content}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert HTML to MarkdownTeX preserving structure and links\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00249}{249}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00302}{convert\+\_\+list()}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00160}{extract\+\_\+content()}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!is\_same\_domain@{is\_same\_domain}}
+\index{is\_same\_domain@{is\_same\_domain}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{is\_same\_domain()}{is\_same\_domain()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a05e5d1a42e04699a214e5e687a987c5f} 
+ bool web\+\_\+scraper.\+Web\+Scraper.\+is\+\_\+same\+\_\+domain (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if URL belongs to the same domain\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00152}{152}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00040}{domain}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00118}{extract\+\_\+links()}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classweb__scraper_1_1_web_scraper_a7f8dd721e6bacc2ad218ec3f85f4ac89}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!recursive\_scrape@{recursive\_scrape}}
+\index{recursive\_scrape@{recursive\_scrape}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{recursive\_scrape()}{recursive\_scrape()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a7f8dd721e6bacc2ad218ec3f85f4ac89} 
+ None web\+\_\+scraper.\+Web\+Scraper.\+recursive\+\_\+scrape (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+pages}{ = {\ttfamily 1000}, }\item[{int }]{max\+\_\+depth}{ = {\ttfamily 10}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Recursively scrape entire website\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00392}{392}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00039}{base\+\_\+url}}, \mbox{\hyperlink{web__scraper_8py_source_l00044}{downloaded\+\_\+urls}}, \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}, \mbox{\hyperlink{web__scraper_8py_source_l00045}{failed\+\_\+urls}}, \mbox{\hyperlink{web__scraper_8py_source_l00041}{output\+\_\+dir}}, \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}, \mbox{\hyperlink{web__scraper_8py_source_l00064}{setup\+\_\+driver()}}, \mbox{\hyperlink{web__scraper_8py_source_l00047}{site\+\_\+ast}}, and \mbox{\hyperlink{web__scraper_8py_source_l00043}{visited\+\_\+urls}}.
+
+Here is the call graph for this function\+:
+% FIG 10
+\Hypertarget{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!save\_page@{save\_page}}
+\index{save\_page@{save\_page}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{save\_page()}{save\_page()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a8a3b688d0cfff4f93354489d8148d4c8} 
+ bool web\+\_\+scraper.\+Web\+Scraper.\+save\+\_\+page (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{Dict}]{content}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Save page content to file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00313}{313}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00041}{output\+\_\+dir}}, and \mbox{\hyperlink{web__scraper_8py_source_l00047}{site\+\_\+ast}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!scrape\_page@{scrape\_page}}
+\index{scrape\_page@{scrape\_page}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{scrape\_page()}{scrape\_page()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_af74048f0169f66cda2631a5943823e4b} 
+ bool web\+\_\+scraper.\+Web\+Scraper.\+scrape\+\_\+page (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Scrape a single page\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00353}{353}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00042}{delay}}, \mbox{\hyperlink{web__scraper_8py_source_l00044}{downloaded\+\_\+urls}}, \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}, \mbox{\hyperlink{web__scraper_8py_source_l00160}{extract\+\_\+content()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00504}{markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+extract\+\_\+links()}}, \mbox{\hyperlink{web__scraper_8py_source_l00118}{extract\+\_\+links()}}, \mbox{\hyperlink{web__scraper_8py_source_l00045}{failed\+\_\+urls}}, \mbox{\hyperlink{web__scraper_8py_source_l00313}{save\+\_\+page()}}, \mbox{\hyperlink{web__scraper_8py_source_l00047}{site\+\_\+ast}}, and \mbox{\hyperlink{web__scraper_8py_source_l00089}{wait\+\_\+for\+\_\+page\+\_\+load()}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\Hypertarget{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!setup\_driver@{setup\_driver}}
+\index{setup\_driver@{setup\_driver}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{setup\_driver()}{setup\_driver()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a696b63a4219cd1cdd1512632b6e10e87} 
+ bool web\+\_\+scraper.\+Web\+Scraper.\+setup\+\_\+driver (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize Chrome WebDriver with options\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00064}{64}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}.
+
+Here is the caller graph for this function\+:
+% FIG 14
+\Hypertarget{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!wait\_for\_page\_load@{wait\_for\_page\_load}}
+\index{wait\_for\_page\_load@{wait\_for\_page\_load}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_page\_load()}{wait\_for\_page\_load()}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a5baadfc576f884edef2714f27909751e} 
+ bool web\+\_\+scraper.\+Web\+Scraper.\+wait\+\_\+for\+\_\+page\+\_\+load (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{timeout}{ = {\ttfamily 10}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait for page to fully load including JavaScript\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00089}{89}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+References \mbox{\hyperlink{web__scraper_8py_source_l00046}{driver}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+Here is the caller graph for this function\+:
+% FIG 15
+
+
+\label{doc-variable-members}
+\Hypertarget{classweb__scraper_1_1_web_scraper_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!base\_url@{base\_url}}
+\index{base\_url@{base\_url}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{base\_url}{base\_url}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a} 
+web\+\_\+scraper.\+Web\+Scraper.\+base\+\_\+url = base\+\_\+url}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00039}{39}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!delay@{delay}}
+\index{delay@{delay}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{delay}{delay}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a2e7108d8b94f55867c9700921f417a51} 
+web\+\_\+scraper.\+Web\+Scraper.\+delay = delay}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00042}{42}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!domain@{domain}}
+\index{domain@{domain}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{domain}{domain}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a16e19e0916e0eb3d87092deea44473db} 
+web\+\_\+scraper.\+Web\+Scraper.\+domain = urlparse(\mbox{\hyperlink{classweb__scraper_1_1_web_scraper_a340d761f186dd38b6bed88926ecddb6a}{base\+\_\+url}}).netloc}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00040}{40}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00152}{is\+\_\+same\+\_\+domain()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!downloaded\_urls@{downloaded\_urls}}
+\index{downloaded\_urls@{downloaded\_urls}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{downloaded\_urls}{downloaded\_urls}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a48bcdbc4a8dd14f1421f1581240967eb} 
+web\+\_\+scraper.\+Web\+Scraper.\+downloaded\+\_\+urls = set()}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00044}{44}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00441}{generate\+\_\+sitemap()}}, \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!driver@{driver}}
+\index{driver@{driver}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{driver}{driver}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_af8b2fc7da4f872e87b9be53852100a19} 
+web\+\_\+scraper.\+Web\+Scraper.\+driver = None}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00046}{46}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00160}{extract\+\_\+content()}}, \mbox{\hyperlink{web__scraper_8py_source_l00118}{extract\+\_\+links()}}, \mbox{\hyperlink{web__scraper_8py_source_l00218}{get\+\_\+main\+\_\+content()}}, \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}, \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}, \mbox{\hyperlink{web__scraper_8py_source_l00064}{setup\+\_\+driver()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00089}{wait\+\_\+for\+\_\+page\+\_\+load()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!failed\_urls@{failed\_urls}}
+\index{failed\_urls@{failed\_urls}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{failed\_urls}{failed\_urls}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a7c99b120cc550cc01fb248f1b039219a} 
+Set\mbox{[}str\mbox{]} web\+\_\+scraper.\+Web\+Scraper.\+failed\+\_\+urls = set()}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00045}{45}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!output\_dir@{output\_dir}}
+\index{output\_dir@{output\_dir}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{output\_dir}{output\_dir}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a909719d4addf0915961e3443e55db68b} 
+web\+\_\+scraper.\+Web\+Scraper.\+output\+\_\+dir = Path(output\+\_\+dir)}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00041}{41}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00441}{generate\+\_\+sitemap()}}, \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00313}{save\+\_\+page()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!site\_ast@{site\_ast}}
+\index{site\_ast@{site\_ast}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{site\_ast}{site\_ast}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_ac98acee073f252c8bd04c39e99e3e1df} 
+web\+\_\+scraper.\+Web\+Scraper.\+site\+\_\+ast}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pages"{}}:\ \{\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}links"{}}:\ \{\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}base\_url"{}}:\ base\_url,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}domain"{}}:\ self.domain,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped\_at"{}}:\ time.strftime(\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_pages"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00047}{47}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}, \mbox{\hyperlink{web__scraper_8py_source_l00313}{save\+\_\+page()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00353}{scrape\+\_\+page()}}.
+
+\Hypertarget{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008}\index{web\_scraper.WebScraper@{web\_scraper.WebScraper}!visited\_urls@{visited\_urls}}
+\index{visited\_urls@{visited\_urls}!web\_scraper.WebScraper@{web\_scraper.WebScraper}}
+\doxysubsubsection{\texorpdfstring{visited\_urls}{visited\_urls}}
+{\footnotesize\ttfamily \label{classweb__scraper_1_1_web_scraper_a71af544b87c3c71183beea8fce3dc008} 
+Set\mbox{[}str\mbox{]} web\+\_\+scraper.\+Web\+Scraper.\+visited\+\_\+urls = set()}
+
+
+
+Definition at line \mbox{\hyperlink{web__scraper_8py_source_l00043}{43}} of file \mbox{\hyperlink{web__scraper_8py_source}{web\+\_\+scraper.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{web__scraper_8py_source_l00118}{extract\+\_\+links()}}, and \mbox{\hyperlink{web__scraper_8py_source_l00392}{recursive\+\_\+scrape()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{web__scraper_8py}{web\+\_\+scraper.\+py}}\end{DoxyCompactItemize}

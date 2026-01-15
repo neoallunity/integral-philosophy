@@ -1,0 +1,12 @@
+digraph "/home/domini/src/Magazine/Magazine/haskell-project/src/Tools"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_fb29f1ca4573980d85c888a1e25ae613 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="src", fontname=FreeSans.ttf,fontsize=10 style="filled,dashed", URL="dir_fb29f1ca4573980d85c888a1e25ae613.html",tooltip=""]
+  dir_f8a3365de196da2ff5b0c5d3d1b56938 [label="Tools", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_f8a3365de196da2ff5b0c5d3d1b56938.html",tooltip=""];
+  }
+}

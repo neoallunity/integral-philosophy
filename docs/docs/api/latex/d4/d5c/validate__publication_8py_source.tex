@@ -1,0 +1,265 @@
+\doxysection{validate\+\_\+publication.\+py}
+\hypertarget{validate__publication_8py_source}{}\label{validate__publication_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/validate\_publication.py@{/home/domini/src/Magazine/Magazine/scripts/validate\_publication.py}}
+\mbox{\hyperlink{validate__publication_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00001}\mbox{\hyperlink{namespacevalidate__publication}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00003}00003\ \textcolor{stringliteral}{Integration\ script\ for\ validation\ system\ with\ Integral\ Philosophy\ publishing\ pipeline.}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00004}00004\ \textcolor{stringliteral}{Demonstrates\ end-\/to-\/end\ validation\ of\ publication\ outputs.}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00008}00008\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00009}00009\ \textcolor{keyword}{import}\ tempfile}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00010}00010\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00011}00011\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00013}00013\ \textcolor{comment}{\#\ Add\ project\ root\ to\ path}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00014}00014\ sys.path.insert(0,\ os.path.dirname(os.path.dirname(os.path.abspath(\_\_file\_\_))))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00016}00016\ \textcolor{keyword}{from}\ validators\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00017}00017\ \ \ \ \ HTML5Validator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00018}00018\ \ \ \ \ CSSValidator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00019}00019\ \ \ \ \ JavaScriptValidator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00020}00020\ \ \ \ \ LaTeXValidator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00021}00021\ \ \ \ \ ContentIntegrityValidator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00022}00022\ \ \ \ \ QualityReportGenerator,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00023}00023\ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00026}\mbox{\hyperlink{namespacevalidate__publication_a3bdf69a07ef5aabe1ddd500e95136490}{00026}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacevalidate__publication_a3bdf69a07ef5aabe1ddd500e95136490}{validate\_publication\_outputs}}():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00027}00027\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Validate\ typical\ publication\ outputs\ from\ the\ Integral\ Philosophy\ system."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00029}00029\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Validating\ Integral\ Philosophy\ Publication\ Outputs...\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00031}00031\ \ \ \ \ \textcolor{comment}{\#\ Define\ output\ directories\ to\ validate}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00032}00032\ \ \ \ \ output\_dirs\ =\ \{}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}html"{}}:\ Path(\textcolor{stringliteral}{"{}out/html"{}}),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pdf"{}}:\ Path(\textcolor{stringliteral}{"{}out/pdf"{}}),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}epub"{}}:\ Path(\textcolor{stringliteral}{"{}out/epub"{}}),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}docx"{}}:\ Path(\textcolor{stringliteral}{"{}out/docx"{}}),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00039}00039\ \ \ \ \ validators\ =\ \{}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}html"{}}:\ HTML5Validator(),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}css"{}}:\ CSSValidator(),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}js"{}}:\ JavaScriptValidator(),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}latex"{}}:\ LaTeXValidator(),}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00046}00046\ \ \ \ \ results\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00048}00048\ \ \ \ \ \textcolor{comment}{\#\ Validate\ HTML\ outputs}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{if}\ output\_dirs[\textcolor{stringliteral}{"{}html"{}}].exists():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}📄\ Validating\ HTML\ outputs..."{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ html\_files\ =\ list(output\_dirs[\textcolor{stringliteral}{"{}html"{}}].glob(\textcolor{stringliteral}{"{}**/*.html"{}}))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ css\_files\ =\ list(output\_dirs[\textcolor{stringliteral}{"{}html"{}}].glob(\textcolor{stringliteral}{"{}**/*.css"{}}))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ js\_files\ =\ list(output\_dirs[\textcolor{stringliteral}{"{}html"{}}].glob(\textcolor{stringliteral}{"{}**/*.js"{}}))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ html\_results\ =\ []}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ html\_file\ \textcolor{keywordflow}{in}\ html\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ validators[\textcolor{stringliteral}{"{}html"{}}].validate(html\_file)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ html\_results.append(result)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ \{html\_file.name\}:\ \{result.error\_count\}\ errors,\ \{result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ css\_results\ =\ []}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ css\_file\ \textcolor{keywordflow}{in}\ css\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ validators[\textcolor{stringliteral}{"{}css"{}}].validate(css\_file)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ css\_results.append(result)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ \{css\_file.name\}:\ \{result.error\_count\}\ errors,\ \{result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ js\_results\ =\ []}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ js\_file\ \textcolor{keywordflow}{in}\ js\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ validators[\textcolor{stringliteral}{"{}js"{}}].validate(js\_file)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ js\_results.append(result)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ \{js\_file.name\}:\ \{result.error\_count\}\ errors,\ \{result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{"{}html"{}}]\ =\ html\_results}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{"{}css"{}}]\ =\ css\_results}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{"{}js"{}}]\ =\ js\_results}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00083}00083\ \ \ \ \ \textcolor{comment}{\#\ Validate\ LaTeX\ sources}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00084}00084\ \ \ \ \ tex\_files\ =\ list(Path(\textcolor{stringliteral}{"{}."{}}).glob(\textcolor{stringliteral}{"{}**/*.tex"{}}))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{if}\ tex\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n📝\ Validating\ LaTeX\ sources..."{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ latex\_results\ =\ []}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ tex\_file\ \textcolor{keywordflow}{in}\ tex\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ any(skip\ \textcolor{keywordflow}{in}\ str(tex\_file)\ \textcolor{keywordflow}{for}\ skip\ \textcolor{keywordflow}{in}\ [\textcolor{stringliteral}{"{}tmp/"{}},\ \textcolor{stringliteral}{"{}out/"{}}]):}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ validators[\textcolor{stringliteral}{"{}latex"{}}].validate(tex\_file)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ latex\_results.append(result)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ \{tex\_file.name\}:\ \{result.error\_count\}\ errors,\ \{result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{"{}latex"{}}]\ =\ latex\_results}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00098}00098\ \ \ \ \ \textcolor{comment}{\#\ Content\ integrity\ validation}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00099}00099\ \ \ \ \ integrity\_formats\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00100}00100\ \ \ \ \ integrity\_result\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00102}00102\ \ \ \ \ \textcolor{comment}{\#\ Always\ collect\ files\ for\ integrity\ checking\ if\ available}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{if}\ output\_dirs[\textcolor{stringliteral}{"{}html"{}}].exists():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ html\_files\ =\ list(output\_dirs[\textcolor{stringliteral}{"{}html"{}}].glob(\textcolor{stringliteral}{"{}**/*.html"{}}))}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ html\_files:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ integrity\_formats[\textcolor{stringliteral}{"{}html"{}}]\ =\ html\_files[0]\ \ \textcolor{comment}{\#\ Use\ first\ HTML\ file}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00108}00108\ \ \ \ \ \textcolor{comment}{\#\ Add\ source\ LaTeX\ if\ available}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ Path(\textcolor{stringliteral}{"{}main.tex"{}}).exists():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ integrity\_formats[\textcolor{stringliteral}{"{}latex"{}}]\ =\ Path(\textcolor{stringliteral}{"{}main.tex"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00112}00112\ \ \ \ \ \textcolor{comment}{\#\ Run\ integrity\ validation\ if\ we\ have\ at\ least\ 2\ formats}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{if}\ len(integrity\_formats)\ >=\ 2:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n🔗\ Validating\ content\ integrity\ across\ formats..."{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ integrity\_validator\ =\ ContentIntegrityValidator()}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ integrity\_result\ =\ integrity\_validator.validate\_integrity\_across\_formats(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ integrity\_formats}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ results[\textcolor{stringliteral}{"{}integrity"{}}]\ =\ [integrity\_result]}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Content\ integrity:\ \{integrity\_result.error\_count\}\ errors,\ \{integrity\_result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Similarity\ scores:\ \{integrity\_result.stats.get('similarity\_scores',\ \{\})\}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ dummy\ integrity\ result\ if\ we\ don't\ have\ enough\ formats}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(integrity\_formats)\ ==\ 1:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\(\backslash\)n🔗\ Content\ integrity\ check\ skipped:\ only\ 1\ format\ available\ (\{list(integrity\_formats.keys())[0]\})"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00134}00134\ \ \ \ \ \textcolor{comment}{\#\ Generate\ quality\ report}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00135}00135\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n📊\ Generating\ quality\ report..."{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00137}00137\ \ \ \ \ \textcolor{comment}{\#\ Flatten\ all\ results\ for\ report\ generation}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00138}00138\ \ \ \ \ all\_validation\_results\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{for}\ format\_name,\ format\_results\ \textcolor{keywordflow}{in}\ results.items():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ format\_results:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ format\_name\ ==\ \textcolor{stringliteral}{"{}integrity"{}}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\_validation\_results[format\_name]\ =\ format\_results[0]}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Take\ worst\ result\ for\ each\ format\ as\ representative}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ worst\_result\ =\ max(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_results,\ key=\textcolor{keyword}{lambda}\ r:\ r.error\_count\ +\ r.warning\_count}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\_validation\_results[format\_name]\ =\ worst\_result}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{if}\ all\_validation\_results:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ generator\ =\ QualityReportGenerator()}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ report\ =\ generator.generate\_report(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ source\_files=[Path(\textcolor{stringliteral}{"{}main.tex"{}})],}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ output\_formats=integrity\_formats,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results=all\_validation\_results,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ processing\_time=5.0,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Only\ try\ to\ access\ integrity\_result\ if\ it\ exists}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(integrity\_formats)\ >=\ 2:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ integrity\_result\ =\ all\_validation\_results.get(\textcolor{stringliteral}{"{}integrity"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ integrity\_result:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error\_count\ =\ len(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [e\ \textcolor{keywordflow}{for}\ e\ \textcolor{keywordflow}{in}\ integrity\_result.errors\ \textcolor{keywordflow}{if}\ e.severity\ ==\ \textcolor{stringliteral}{"{}error"{}}]}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ warning\_count\ =\ len(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [e\ \textcolor{keywordflow}{for}\ e\ \textcolor{keywordflow}{in}\ integrity\_result.errors\ \textcolor{keywordflow}{if}\ e.severity\ ==\ \textcolor{stringliteral}{"{}warning"{}}]}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stats\ =\ integrity\_result.stats\ \textcolor{keywordflow}{or}\ \{\}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Content\ integrity:\ \{error\_count\}\ errors,\ \{warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ Similarity\ scores:\ \{stats.get('similarity\_scores',\ \{\})\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00175}00175\ \ \ \ \ \textcolor{comment}{\#\ Generate\ quality\ report}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00176}00176\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n📊\ Generating\ quality\ report..."{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00178}00178\ \ \ \ \ \textcolor{comment}{\#\ Flatten\ all\ results\ for\ report\ generation}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00179}00179\ \ \ \ \ all\_validation\_results\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{for}\ format\_name,\ format\_results\ \textcolor{keywordflow}{in}\ results.items():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ format\_results:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ format\_name\ ==\ \textcolor{stringliteral}{"{}integrity"{}}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\_validation\_results[format\_name]\ =\ format\_results[0]}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Take\ the\ worst\ result\ for\ each\ format\ as\ representative}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ worst\_result\ =\ max(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format\_results,\ key=\textcolor{keyword}{lambda}\ r:\ r.error\_count\ +\ r.warning\_count}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ all\_validation\_results[format\_name]\ =\ worst\_result}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{if}\ all\_validation\_results:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ generator\ =\ QualityReportGenerator()}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ report\ =\ generator.generate\_report(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ source\_files=[Path(\textcolor{stringliteral}{"{}main.tex"{}})],}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ output\_formats=\{}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k:\ v}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k,\ v\ \textcolor{keywordflow}{in}\ integrity\_formats.items()}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ k\ \textcolor{keywordflow}{in}\ all\_validation\_results}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ validation\_results=all\_validation\_results,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ processing\_time=5.0,}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Overall\ quality\ score:\ \{report.quality\_metrics.overall\_score:.1f\}/100"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ Format\ scores:\ \{report.quality\_metrics.format\_scores\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ Integrity\ score:\ \{report.quality\_metrics.integrity\_score:.1f\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Accessibility\ score:\ \{report.quality\_metrics.accessibility\_score:.1f\}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ Standards\ compliance:\ \{report.quality\_metrics.standards\_compliance:.1f\}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ Recommendations:\ \{len(report.recommendations)\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ reports}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ report\_dir\ =\ Path(\textcolor{stringliteral}{"{}out/validation\_reports"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ report\_dir.mkdir(parents=\textcolor{keyword}{True},\ exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ json\_report\ =\ report\_dir\ /\ \textcolor{stringliteral}{"{}quality\_report.json"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ html\_report\ =\ report\_dir\ /\ \textcolor{stringliteral}{"{}quality\_report.html"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ markdown\_report\ =\ report\_dir\ /\ \textcolor{stringliteral}{"{}quality\_report.md"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ generator.save\_report(report,\ json\_report,\ \textcolor{stringliteral}{"{}json"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ generator.save\_report(report,\ html\_report,\ \textcolor{stringliteral}{"{}html"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ generator.save\_report(report,\ markdown\_report,\ \textcolor{stringliteral}{"{}markdown"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ Reports\ saved\ to:\ \{report\_dir\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Summary\ of\ key\ recommendations}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ report.recommendations:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n🎯\ Key\ Recommendations:"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ rec\ \textcolor{keywordflow}{in}\ report.recommendations[:5]:\ \ \textcolor{comment}{\#\ Show\ top\ 5}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ \ \ •\ \{rec\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00237}00237\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00240}\mbox{\hyperlink{namespacevalidate__publication_a69239b6d997be8a3fd69f59f6fd02dce}{00240}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacevalidate__publication_a69239b6d997be8a3fd69f59f6fd02dce}{main}}():}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00241}00241\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ publication\ validation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00242}00242\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Integral\ Philosophy\ Publication\ Validation\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00244}00244\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ success\ =\ \mbox{\hyperlink{namespacevalidate__publication_a3bdf69a07ef5aabe1ddd500e95136490}{validate\_publication\_outputs}}()}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Publication\ validation\ completed\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}📈\ Quality\ reports\ are\ available\ in\ out/validation\_reports/"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00253}00253\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n❌\ Publication\ validation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00258}00258\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{validate__publication_8py_source_l00259}00259\ \ \ \ \ exit(\mbox{\hyperlink{namespacevalidate__publication_a69239b6d997be8a3fd69f59f6fd02dce}{main}}())}
+
+\end{DoxyCode}

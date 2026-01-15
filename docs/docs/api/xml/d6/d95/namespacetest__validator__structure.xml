@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d6/d95/namespacetest__validator__structure" kind="namespace" language="Python">
+    <compoundname>test_validator_structure</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d6/d95/namespacetest__validator__structure_1a885f16ea777b44f586831ef240e22f9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_validator_structure.test_all_validator_imports</definition>
+        <argsstring>()</argsstring>
+        <name>test_all_validator_imports</name>
+        <qualifiedname>test_validator_structure.test_all_validator_imports</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test that all validators can be imported successfully.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" line="14" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" bodystart="14" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d95/namespacetest__validator__structure_1ad75861f7ccae44c5aceede50b0b84323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_validator_structure.test_validator_instantiation</definition>
+        <argsstring>()</argsstring>
+        <name>test_validator_instantiation</name>
+        <qualifiedname>test_validator_structure.test_validator_instantiation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test that all validators can be instantiated.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" line="59" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" bodystart="59" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d95/namespacetest__validator__structure_1a976535d4a17c94f7fbe230f20bdc08ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_validator_structure.test_validator_interfaces</definition>
+        <argsstring>()</argsstring>
+        <name>test_validator_interfaces</name>
+        <qualifiedname>test_validator_structure.test_validator_interfaces</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test validator interfaces are correct.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" line="119" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" bodystart="119" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d95/namespacetest__validator__structure_1aaf54e7cbaa801780e6747914603f4733" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_validator_structure.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>test_validator_structure.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run simplified validator tests.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" line="149" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" bodystart="149" bodyend="188"/>
+        <references refid="d6/d95/namespacetest__validator__structure_1aaf54e7cbaa801780e6747914603f4733" compoundref="d7/d1a/test__validator__structure_8py" startline="149" endline="188">main</references>
+        <referencedby refid="d6/d95/namespacetest__validator__structure_1aaf54e7cbaa801780e6747914603f4733" compoundref="d7/d1a/test__validator__structure_8py" startline="149" endline="188">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Simple test for validator imports without problematic dependencies.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/test_validator_structure.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

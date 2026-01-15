@@ -1,0 +1,499 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer" kind="class" language="Python" prot="public">
+    <compoundname>latex_to_markdown::TeXAnalyzer</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ae022fba749977fbf7b44102ce31c59dd" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict latex_to_markdown.TeXAnalyzer::content_map</definition>
+        <argsstring></argsstring>
+        <name>content_map</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.content_map</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="19" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a82964a3820f001d8f8ff19ca6d4e746f" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict latex_to_markdown.TeXAnalyzer::structure_map</definition>
+        <argsstring></argsstring>
+        <name>structure_map</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.structure_map</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="20" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad2d103835ebf1267f400bf3a66a52deb" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict latex_to_markdown.TeXAnalyzer::math_content</definition>
+        <argsstring></argsstring>
+        <name>math_content</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.math_content</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="21" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a70ec0b8dc8646ef02f76c7a8007a7bd6" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict latex_to_markdown.TeXAnalyzer::metadata</definition>
+        <argsstring></argsstring>
+        <name>metadata</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.metadata</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="22" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a0644d0e02148f39f55d0bec1a501a3dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>latex_to_markdown.TeXAnalyzer.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="18" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="18" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict latex_to_markdown.TeXAnalyzer.analyze_file</definition>
+        <argsstring>(self, Path filepath)</argsstring>
+        <name>analyze_file</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.analyze_file</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Analyze individual LaTeX file.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="24" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="24" bodyend="50"/>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a83af51a85e897c4e2d29dd1e3706337a" compoundref="db/de9/latex__to__markdown_8py" startline="191" endline="207">latex_to_markdown.TeXAnalyzer._analyze_structure</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5f1811b52c69cda798bee2c908dfdb6b" compoundref="db/de9/latex__to__markdown_8py" startline="51" endline="74">latex_to_markdown.TeXAnalyzer._classify_file</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aaa3d19b11d0baa27bf21ab3286ef1376" compoundref="db/de9/latex__to__markdown_8py" startline="171" endline="190">latex_to_markdown.TeXAnalyzer._detect_languages</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aed3d96c97ac91acc6e1b47b411069a03" compoundref="db/de9/latex__to__markdown_8py" startline="133" endline="143">latex_to_markdown.TeXAnalyzer._extract_citations</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af02a871f54c9937acc78314f0dd14b02" compoundref="db/de9/latex__to__markdown_8py" startline="154" endline="170">latex_to_markdown.TeXAnalyzer._extract_figures</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a11307dd50b5393911d82a45b6a8902b9" compoundref="db/de9/latex__to__markdown_8py" startline="93" endline="132">latex_to_markdown.TeXAnalyzer._extract_math</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a2a1f2a14112731f0a8f8f1ce854416e9" compoundref="db/de9/latex__to__markdown_8py" startline="75" endline="92">latex_to_markdown.TeXAnalyzer._extract_sections</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5204a0659c38741f08056fa41e7fb655" compoundref="db/de9/latex__to__markdown_8py" startline="144" endline="153">latex_to_markdown.TeXAnalyzer._extract_tables</references>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>reconstruct_markdown_tex</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct markdown+TeX from analysis.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="208" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="208" bodyend="225"/>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af759a89d4369e84f67dfb8170a7a8537" compoundref="db/de9/latex__to__markdown_8py" startline="226" endline="280">latex_to_markdown.TeXAnalyzer._reconstruct_article</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aca966b1b7a9b262b1bdd907af52a3262" compoundref="db/de9/latex__to__markdown_8py" startline="281" endline="291">latex_to_markdown.TeXAnalyzer._reconstruct_config</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1afe356b0706b8dabd043d4c67c8c7c02a" compoundref="db/de9/latex__to__markdown_8py" startline="292" endline="297">latex_to_markdown.TeXAnalyzer._reconstruct_frontmatter</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a54a5f8fa643956c6a533d7cb42b9507c" compoundref="db/de9/latex__to__markdown_8py" startline="315" endline="319">latex_to_markdown.TeXAnalyzer._reconstruct_generic</references>
+        <references refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aea86b8d2116b2ce019b7eb0c9247a8ea" compoundref="db/de9/latex__to__markdown_8py" startline="298" endline="314">latex_to_markdown.TeXAnalyzer._reconstruct_main</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5f1811b52c69cda798bee2c908dfdb6b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._classify_file</definition>
+        <argsstring>(self, Path filepath, str content)</argsstring>
+        <name>_classify_file</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._classify_file</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>filepath</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Classify file type based on path and content.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="51" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="51" bodyend="74"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a2a1f2a14112731f0a8f8f1ce854416e9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] latex_to_markdown.TeXAnalyzer._extract_sections</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_sections</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._extract_sections</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract section hierarchy.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="75" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="75" bodyend="92"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a11307dd50b5393911d82a45b6a8902b9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] latex_to_markdown.TeXAnalyzer._extract_math</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_math</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._extract_math</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract mathematical content.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="93" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="93" bodyend="132"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aed3d96c97ac91acc6e1b47b411069a03" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] latex_to_markdown.TeXAnalyzer._extract_citations</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_citations</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._extract_citations</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract bibliographic citations.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="133" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="133" bodyend="143"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5204a0659c38741f08056fa41e7fb655" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] latex_to_markdown.TeXAnalyzer._extract_tables</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_tables</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._extract_tables</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract table structures.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="144" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="144" bodyend="153"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af02a871f54c9937acc78314f0dd14b02" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] latex_to_markdown.TeXAnalyzer._extract_figures</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_figures</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._extract_figures</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract figure references.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="154" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="154" bodyend="170"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aaa3d19b11d0baa27bf21ab3286ef1376" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] latex_to_markdown.TeXAnalyzer._detect_languages</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_detect_languages</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._detect_languages</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Detect content languages.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="171" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="171" bodyend="190"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a83af51a85e897c4e2d29dd1e3706337a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict latex_to_markdown.TeXAnalyzer._analyze_structure</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_analyze_structure</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._analyze_structure</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Analyze document structure.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="191" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="191" bodyend="207"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" compoundref="db/de9/latex__to__markdown_8py" startline="24" endline="50">latex_to_markdown.TeXAnalyzer.analyze_file</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af759a89d4369e84f67dfb8170a7a8537" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._reconstruct_article</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>_reconstruct_article</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._reconstruct_article</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct article content as markdown+TeX.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="226" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="226" bodyend="280"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" compoundref="db/de9/latex__to__markdown_8py" startline="208" endline="225">latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aca966b1b7a9b262b1bdd907af52a3262" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._reconstruct_config</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>_reconstruct_config</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._reconstruct_config</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct configuration as commented LaTeX.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="281" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="281" bodyend="291"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" compoundref="db/de9/latex__to__markdown_8py" startline="208" endline="225">latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1afe356b0706b8dabd043d4c67c8c7c02a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._reconstruct_frontmatter</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>_reconstruct_frontmatter</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._reconstruct_frontmatter</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct frontmatter content.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="292" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="292" bodyend="297"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" compoundref="db/de9/latex__to__markdown_8py" startline="208" endline="225">latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aea86b8d2116b2ce019b7eb0c9247a8ea" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._reconstruct_main</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>_reconstruct_main</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._reconstruct_main</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct main document structure.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="298" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="298" bodyend="314"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" compoundref="db/de9/latex__to__markdown_8py" startline="208" endline="225">latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a54a5f8fa643956c6a533d7cb42b9507c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str latex_to_markdown.TeXAnalyzer._reconstruct_generic</definition>
+        <argsstring>(self, Dict analysis)</argsstring>
+        <name>_reconstruct_generic</name>
+        <qualifiedname>latex_to_markdown.TeXAnalyzer._reconstruct_generic</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>analysis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generic reconstruction for other file types.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="315" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="315" bodyend="319"/>
+        <referencedby refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" compoundref="db/de9/latex__to__markdown_8py" startline="208" endline="225">latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Analyzes LaTeX files and reconstructs markdown+TeX source.</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>latex_to_markdown.TeXAnalyzer</label>
+        <link refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="15" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="15" bodyend="319"/>
+    <listofallmembers>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a0644d0e02148f39f55d0bec1a501a3dc" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>__init__</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a83af51a85e897c4e2d29dd1e3706337a" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_analyze_structure</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5f1811b52c69cda798bee2c908dfdb6b" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_classify_file</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aaa3d19b11d0baa27bf21ab3286ef1376" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_detect_languages</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aed3d96c97ac91acc6e1b47b411069a03" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_extract_citations</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af02a871f54c9937acc78314f0dd14b02" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_extract_figures</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a11307dd50b5393911d82a45b6a8902b9" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_extract_math</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a2a1f2a14112731f0a8f8f1ce854416e9" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_extract_sections</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a5204a0659c38741f08056fa41e7fb655" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_extract_tables</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1af759a89d4369e84f67dfb8170a7a8537" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_reconstruct_article</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aca966b1b7a9b262b1bdd907af52a3262" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_reconstruct_config</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1afe356b0706b8dabd043d4c67c8c7c02a" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_reconstruct_frontmatter</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a54a5f8fa643956c6a533d7cb42b9507c" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_reconstruct_generic</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1aea86b8d2116b2ce019b7eb0c9247a8ea" prot="protected" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>_reconstruct_main</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad0b85901fc05ba8ff4cd1e0fc127ab25" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>analyze_file</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ae022fba749977fbf7b44102ce31c59dd" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>content_map</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1ad2d103835ebf1267f400bf3a66a52deb" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>math_content</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a70ec0b8dc8646ef02f76c7a8007a7bd6" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>metadata</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a19707a655b9ed39d3029401eda5066f6" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>reconstruct_markdown_tex</name></member>
+      <member refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer_1a82964a3820f001d8f8ff19ca6d4e746f" prot="public" virt="non-virtual"><scope>latex_to_markdown::TeXAnalyzer</scope><name>structure_map</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

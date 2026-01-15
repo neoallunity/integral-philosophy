@@ -1,0 +1,35 @@
+# Lugowska H. PROJECTIVE-MODAL ONTOLOGY OF V. SOLOVYOV'S IMAGE IN D.S. MEREZHKOVSKY'S CRITICAL ESSAY "THE SILENT PROPHET": AN APPLICATION OF FORMAL APPARATUS TO LITERARY-CRITICAL DISCOURSE
+**Unknown Author**
+
+## English Abstract
+
+% Lugowska H. - English abstract
+ This article proposes an application of the projective-modal ontology (PMO) framework—a formal philosophical apparatus developed by V.I. Moiseev for examining the structural relationship between essence (modus), manifestation (mode), and constraining conditions (models)—to the analysis of existential portrayal as a critical method in D.S. Merezhkovsky's literary-critical discourse. Specifically, the study reconstructs Merezhkovsky's characterisation of Vladimir Solovyov in the critical essay "The Silent Prophet" (1908) through the systematic application of PMO's formal apparatus, demonstrating how existential portrayal functions as a disciplined procedure of projective variation of a subject's fundamental nature across a multiplicity of ontological, temporal, and epistemological models.
+ The projective-modal ontology, whilst originally developed for philosophical-logical inquiry, provides a metalanguage capable of formalising the conceptual structures underlying literary criticism. The PMO framework operates through a seven-place predicate establishing relationships between: a modus (the source or generator of being—in this case, Solovyov's fundamental gnostic-contemplative nature); modes (particular manifestations or aspects of that source); models (limiting conditions under which modes do or do not emerge); projectors and surjectors (operations of restriction and expansion); and contexts of determination.
+ Critically, the concept of proper models—the set of conditions upon which a modus is capable of generating modes—proves essential: a modus cannot generate authentic modes on all conceivable conditions. For instance, a revolutionary pragmatist model lies entirely outside Solovyov's ontological capacity, rendering any attempt to project his essence onto such a model structurally impossible rather than merely improbable.
+ The study identifies Solovyov's base modus as immanently gnostic and contemplative, rather than a neutral subject oscillating between contemplation and action. This fundamental characterisation renders the revolutionary pragmatist model improper—incapable of generating authentic modes. Through systematic textual analysis, the investigation reveals three proper temporal models upon which Solovyov's authentic modes emerge: (1) the past, generating the mode of "restorer" and secret Slavophile; (2) the present, generating the mode of "conservator" and supporter of collapsing structures; and (3) an eschatological future, generating the mode of "eschatologist" and herald of apocalyptic catastrophe. Conversely, attempts to project Solovyov onto models of revolutionary action produce not legitimate modes but social masks—in particular, the artificial persona of the philosophical systematist composed of "ten volumes" of rigorous argumentation, a pseudo-mode bearing all markers of inauthenticity through its excessive smoothness and polish.
+ The article formalises Merezhkovsky's critical method as an asymmetrical conflict between two second-order modes: (1) the hidden prophet—ontologically true yet epistemologically inaccessible, incapable of articulation within public discourse; and (2) the public philosopher—discursively expressed yet ontologically false, a mere mask concealing the authentic prophetic truth. This generates the fundamental ontological aporia structuring Solovyov's tragedy: the authentic prophetic mode remains structurally inexpressible within the model of public philosophical discourse, whilst anything expressed through such discourse fails to capture the prophetic truth. The concept of "quiet eddy" (omut) is reinterpreted not as an actual synthesis of opposites but as an eschatological limit—a fusion achievable only in finite time, perpetually deferred beyond historical reality. Solovyov, according to Merezhkovsky's interpretation, exists before the attainment of such synthesis, dying before unity is achieved.
+ The tragedy of the "silent prophet" is formalised as an ontological aporia arising from three structural impossibilities: (1) a fundamental mismatch between the modus required by historical epoch (pragmatist activist) and the actual modus of the subject (gnostic contemplative); (2) blockage of the projector operation, rendering revolutionary action a structural impossibility rather than a moral choice; and (3) fission of authentic and inauthentic modes, whereby the only possible public expression necessarily betrays the underlying truth. The muteness of prophecy emerges as a limit function: as one approaches absolute prophetic truth, the capacity for expression approaches zero. Absolute authenticity correlates with absolute inexpressibility.
+ The investigation demonstrates the heuristic potential of PMO for formalising existential portrayal as a critical method. Through coordination of PMO structures with linguistic-rhetorical analysis, the study reveals that Merezhkovsky's critical procedure is isomorphic to ancient dialectical method—a systematic procedure of projective variation capable of precise formal representation. The formal apparatus provides a metalanguage unifying macro-logical structures (associative-semantic fields and conceptual networks identified through philological analysis) with micro-logical structures (specific rhetorical devices and textual markers). This coordination permits rigorous diagnosis of the ontological nature of Solovyov's tragedy as portrayed by Merezhkovsky, transforming intuitive literary criticism into a formally specifiable procedure.
+ The study concludes that PMO-based formalisation yields five principal findings: (1) identification of the base modus as immanently gnostic, rendering pragmatic revolution an improper model; (2) reconstruction of temporal architecture through three proper models generating authentic modes; (3) reconceptualisation of the "quiet eddy" as an eschatological limit-transition; (4) formalisation of prophetic muteness as an ontological aporia; and (5) diagnosis of three types of ontological aporias structuring Solovyov's tragic characterisation. The article thus establishes PMO as a productive framework for literary-critical analysis, extending its application beyond its original philosophical domain to encompass the formal structures underlying existential portrayal in twentieth-century critical discourse.
+ Projective-modal ontology, V.S. Solovyov, D.S. Merezhkovsky, existential portrayal, mode-modus-model, gnosticism-pragmatism, temporality, tragedy of muteness, formalisation of critical method, ontological aporia, silent prophet, twentieth-century Russian literary criticism
+
+## Mathematical Content
+
+$\alpha$
+
+$\alpha$
+
+$\exists$
+
+$\notin$
+
+$\exists$
+
+$\cap$
+
+$\varnothing$
+
+---
+*Source: articles/lugowska/main.tex*
+*Type: academic_article*

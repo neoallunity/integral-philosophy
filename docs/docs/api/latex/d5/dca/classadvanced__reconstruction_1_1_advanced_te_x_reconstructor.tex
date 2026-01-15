@@ -1,0 +1,294 @@
+\doxysection{advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor Class Reference}
+\hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor}{}\label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+
+
+Collaboration diagram for advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_abd1a72c0b74dab3bf7bf65a8db040647}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+Dict \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a4e601a4d143d3e1637c61757ab596df8}{extract\+\_\+full\+\_\+content}} (self, Path filepath)
+\item 
+str \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a00b0808f83caee8a0a609e3670767319}{reconstruct\+\_\+to\+\_\+markdown}} (self, Dict article\+\_\+data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a620851a75c8b961c1b4859c77c11a46f}{content\+\_\+cache}} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Dict \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a3236ab83013ca486b6376c9705235c4b}{\+\_\+parse\+\_\+conditional\+\_\+article}} (self, str content, Path filepath)
+\item 
+Dict \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ac9f28e9a1ffe293798a631a612e7c05d}{\+\_\+parse\+\_\+standard\+\_\+article}} (self, str content, Path filepath)
+\item 
+str \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a9e099fcc6fb5cacdd5fa7e042f1a17d6}{\+\_\+extract\+\_\+title}} (self, str content)
+\item 
+str \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a579fc70d9be92509597b47b40a5a260c}{\+\_\+extract\+\_\+author}} (self, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a779e48cc8b36817b347556418278e40f}{\+\_\+extract\+\_\+all\+\_\+sections}} (self, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_aedf322d91d53eeee56d6cc2850f07ec2}{\+\_\+extract\+\_\+math\+\_\+content}} (self, str content)
+\item 
+Dict \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a55b49a421b0d9a9233a9c47ad49de3b2}{\+\_\+extract\+\_\+keywords}} (self, str content)
+\item 
+str \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ade1fd52412a735cda520e4dd2f5d8536}{\+\_\+clean\+\_\+latex}} (self, str text)
+\item 
+str \mbox{\hyperlink{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a54e918af940215c3a180104ce350256d}{\+\_\+extract\+\_\+text\+\_\+content}} (self, str latex\+\_\+text)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Advanced reconstruction tool with better content parsing.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00015}{15}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_abd1a72c0b74dab3bf7bf65a8db040647}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_abd1a72c0b74dab3bf7bf65a8db040647} 
+advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00018}{18}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ade1fd52412a735cda520e4dd2f5d8536}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_clean\_latex@{\_clean\_latex}}
+\index{\_clean\_latex@{\_clean\_latex}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_clean\_latex()}{\_clean\_latex()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ade1fd52412a735cda520e4dd2f5d8536} 
+ str advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+clean\+\_\+latex (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Clean LaTeX commands while preserving structure.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00199}{199}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00311}{\+\_\+extract\+\_\+text\+\_\+content()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a779e48cc8b36817b347556418278e40f}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_all\_sections@{\_extract\_all\_sections}}
+\index{\_extract\_all\_sections@{\_extract\_all\_sections}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_all\_sections()}{\_extract\_all\_sections()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a779e48cc8b36817b347556418278e40f} 
+ List\mbox{[}Dict\mbox{]} advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+all\+\_\+sections (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract all sections with hierarchy.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00121}{121}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a579fc70d9be92509597b47b40a5a260c}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_author@{\_extract\_author}}
+\index{\_extract\_author@{\_extract\_author}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_author()}{\_extract\_author()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a579fc70d9be92509597b47b40a5a260c} 
+ str advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+author (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract author name.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00105}{105}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a55b49a421b0d9a9233a9c47ad49de3b2}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_keywords@{\_extract\_keywords}}
+\index{\_extract\_keywords@{\_extract\_keywords}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_keywords()}{\_extract\_keywords()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a55b49a421b0d9a9233a9c47ad49de3b2} 
+ Dict advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+keywords (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract keywords in multiple languages.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00181}{181}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_aedf322d91d53eeee56d6cc2850f07ec2}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_math\_content@{\_extract\_math\_content}}
+\index{\_extract\_math\_content@{\_extract\_math\_content}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_math\_content()}{\_extract\_math\_content()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_aedf322d91d53eeee56d6cc2850f07ec2} 
+ List\mbox{[}Dict\mbox{]} advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+math\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract mathematical expressions.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00153}{153}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a54e918af940215c3a180104ce350256d}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_text\_content@{\_extract\_text\_content}}
+\index{\_extract\_text\_content@{\_extract\_text\_content}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_text\_content()}{\_extract\_text\_content()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a54e918af940215c3a180104ce350256d} 
+ str advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+text\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{latex\+\_\+text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract readable text from LaTeX content.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00311}{311}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00199}{\+\_\+clean\+\_\+latex()}}.
+
+
+
+Referenced by \mbox{\hyperlink{markdowntex__parser_8py_source_l00534}{markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+\_\+extract\+\_\+text\+\_\+content()}}, \mbox{\hyperlink{markdowntex__parser_8py_source_l00504}{markdowntex\+\_\+parser.\+Markdown\+Te\+XParser.\+extract\+\_\+links()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00216}{reconstruct\+\_\+to\+\_\+markdown()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a9e099fcc6fb5cacdd5fa7e042f1a17d6}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_extract\_title@{\_extract\_title}}
+\index{\_extract\_title@{\_extract\_title}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_extract\_title()}{\_extract\_title()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a9e099fcc6fb5cacdd5fa7e042f1a17d6} 
+ str advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+extract\+\_\+title (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract article title.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00085}{85}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a3236ab83013ca486b6376c9705235c4b}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_parse\_conditional\_article@{\_parse\_conditional\_article}}
+\index{\_parse\_conditional\_article@{\_parse\_conditional\_article}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_parse\_conditional\_article()}{\_parse\_conditional\_article()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a3236ab83013ca486b6376c9705235c4b} 
+ Dict advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+parse\+\_\+conditional\+\_\+article (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{, }\item[{Path}]{filepath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse articles with conditional content (English/Russian).\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{39}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00199}{\+\_\+clean\+\_\+latex()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00121}{\+\_\+extract\+\_\+all\+\_\+sections()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00105}{\+\_\+extract\+\_\+author()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00181}{\+\_\+extract\+\_\+keywords()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00153}{\+\_\+extract\+\_\+math\+\_\+content()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00085}{\+\_\+extract\+\_\+title()}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00021}{extract\+\_\+full\+\_\+content()}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ac9f28e9a1ffe293798a631a612e7c05d}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!\_parse\_standard\_article@{\_parse\_standard\_article}}
+\index{\_parse\_standard\_article@{\_parse\_standard\_article}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{\_parse\_standard\_article()}{\_parse\_standard\_article()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_ac9f28e9a1ffe293798a631a612e7c05d} 
+ Dict advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+\_\+parse\+\_\+standard\+\_\+article (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{, }\item[{Path}]{filepath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse standard LaTeX articles.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{72}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00199}{\+\_\+clean\+\_\+latex()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00121}{\+\_\+extract\+\_\+all\+\_\+sections()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00105}{\+\_\+extract\+\_\+author()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00181}{\+\_\+extract\+\_\+keywords()}}, \mbox{\hyperlink{advanced__reconstruction_8py_source_l00153}{\+\_\+extract\+\_\+math\+\_\+content()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00085}{\+\_\+extract\+\_\+title()}}.
+
+
+
+Referenced by \mbox{\hyperlink{advanced__reconstruction_8py_source_l00021}{extract\+\_\+full\+\_\+content()}}.
+
+Here is the call graph for this function\+:
+% FIG 11
+Here is the caller graph for this function\+:
+% FIG 12
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a4e601a4d143d3e1637c61757ab596df8}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!extract\_full\_content@{extract\_full\_content}}
+\index{extract\_full\_content@{extract\_full\_content}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{extract\_full\_content()}{extract\_full\_content()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a4e601a4d143d3e1637c61757ab596df8} 
+ Dict advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+extract\+\_\+full\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{filepath}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract and reconstruct full content from article files.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00021}{21}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00039}{\+\_\+parse\+\_\+conditional\+\_\+article()}}, and \mbox{\hyperlink{advanced__reconstruction_8py_source_l00072}{\+\_\+parse\+\_\+standard\+\_\+article()}}.
+
+Here is the call graph for this function\+:
+% FIG 13
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a00b0808f83caee8a0a609e3670767319}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!reconstruct\_to\_markdown@{reconstruct\_to\_markdown}}
+\index{reconstruct\_to\_markdown@{reconstruct\_to\_markdown}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{reconstruct\_to\_markdown()}{reconstruct\_to\_markdown()}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a00b0808f83caee8a0a609e3670767319} 
+ str advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+reconstruct\+\_\+to\+\_\+markdown (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{article\+\_\+data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reconstruct article data to comprehensive markdown.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00216}{216}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+References \mbox{\hyperlink{advanced__reconstruction_8py_source_l00311}{\+\_\+extract\+\_\+text\+\_\+content()}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+\label{doc-variable-members}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a620851a75c8b961c1b4859c77c11a46f}\index{advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}!content\_cache@{content\_cache}}
+\index{content\_cache@{content\_cache}!advanced\_reconstruction.AdvancedTeXReconstructor@{advanced\_reconstruction.AdvancedTeXReconstructor}}
+\doxysubsubsection{\texorpdfstring{content\_cache}{content\_cache}}
+{\footnotesize\ttfamily \label{classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_a620851a75c8b961c1b4859c77c11a46f} 
+dict advanced\+\_\+reconstruction.\+Advanced\+Te\+XReconstructor.\+content\+\_\+cache = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{advanced__reconstruction_8py_source_l00019}{19}} of file \mbox{\hyperlink{advanced__reconstruction_8py_source}{advanced\+\_\+reconstruction.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{advanced__reconstruction_8py}{advanced\+\_\+reconstruction.\+py}}\end{DoxyCompactItemize}

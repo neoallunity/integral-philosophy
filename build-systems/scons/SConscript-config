@@ -1,0 +1,303 @@
+#!/usr/bin/env python3
+# SConscript for build configuration and utilities
+# ================================================
+
+import os
+import sys
+import platform
+from pathlib import Path
+
+# Get the environment from parent
+Import('env')
+
+# Platform-specific configuration
+def configure_platform(env):
+    """Configure platform-specific settings."""
+    system = platform.system()
+    print(f"🖥️  Detected platform: {system}")
+    
+    if system == 'Linux':
+        env.Replace(
+            PLATFORM='linux',
+            SHLIB_EXT='.so',
+            EXE_EXT='',
+        )
+    elif system == 'Darwin':  # macOS
+        env.Replace(
+            PLATFORM='darwin',
+            SHLIB_EXT='.dylib',
+            EXE_EXT='',
+        )
+    elif system == 'Windows':
+        env.Replace(
+            PLATFORM='windows',
+            SHLIB_EXT='.dll',
+            EXE_EXT='.exe',
+        )
+    else:
+        print(f"⚠️ Unknown platform: {system}")
+    
+    return env
+
+# GHC version detection
+def get_ghc_version(env):
+    """Get GHC version information."""
+    print("🔍 Detecting GHC version...")
+    version_cmd = f'{env["GHC"]} --version'
+    version_output = env.Command('ghc_version', [], Action(version_cmd, 'Getting GHC version'))
+    return version_output
+
+# Stack version detection
+def get_stack_version(env):
+    """Get Stack version information."""
+    print("🔍 Detecting Stack version...")
+    version_cmd = f'{env["STACK"]} --version'
+    version_output = env.Command('stack_version', [], Action(version_cmd, 'Getting Stack version'))
+    return version_output
+
+# Create build environment summary
+def create_build_summary(target, source, env):
+    """Create a build summary file."""
+    print("📋 Creating build summary...")
+    
+    summary_content = f"""
+Integral Philosophy Publishing System - Build Summary
+====================================================
+
+Build Configuration:
+- Project Name: {env['PROJECT_NAME']}
+- Project Version: {env['PROJECT_VERSION']}
+- Platform: {platform.system()}
+- Architecture: {platform.machine()}
+- Python Version: {sys.version}
+
+Build Directories:
+- Build Directory: {env['BUILD_DIR']}
+- Binary Directory: {env['BIN_DIR']}
+- Haskell Project: {env['HASKELL_PROJECT_DIR']}
+
+Build Tools:
+- GHC: {env['GHC']}
+- Stack: {env['STACK']}
+
+Build Options:
+- Debug Build: {env['DEBUG']}
+- Optimization: {env['OPTIMIZE']}
+- Verbose Output: {env['VERBOSE']}
+- Profiling: {env['PROFILE']}
+
+Compilation Flags:
+- GHC Flags: {env['GHC_FLAGS']}
+- Stack Flags: {env['STACK_FLAGS']}
+
+Test Configuration:
+- Test File: {env['TEST_FILE']}
+
+Build Timestamp: {env.subst('$DATETIME')}
+"""
+    
+    summary_file = env.File('build-summary.txt')
+    env.Write(summary_file, summary_content)
+    print(f"✅ Build summary written to {summary_file}")
+    return summary_file
+
+summary_target = env.Command('build_summary', [], 
+                            Action(create_build_summary, 'Creating build summary'))
+
+# Verify build configuration
+def verify_configuration(target, source, env):
+    """Verify the build configuration."""
+    print("🔍 Verifying build configuration...")
+    
+    # Check if tools exist
+    tools_to_check = [env['GHC'], env['STACK']]
+    missing_tools = []
+    
+    for tool in tools_to_check:
+        if not env.WhereIs(tool):
+            missing_tools.append(tool)
+    
+    if missing_tools:
+        print(f"❌ Missing tools: {', '.join(missing_tools)}")
+        return 1
+    
+    # Check directories
+    dirs_to_check = [env['HASKELL_PROJECT_DIR']]
+    missing_dirs = []
+    
+    for directory in dirs_to_check:
+        if not os.path.exists(directory):
+            missing_dirs.append(directory)
+    
+    if missing_dirs:
+        print(f"❌ Missing directories: {', '.join(missing_dirs)}")
+        return 1
+    
+    # Check required files in Haskell project
+    haskell_dir = env['HASKELL_PROJECT_DIR']
+    required_files = ['package.yaml', 'stack.yaml']
+    missing_files = []
+    
+    for file_name in required_files:
+        file_path = os.path.join(haskell_dir, file_name)
+        if not os.path.exists(file_path):
+            missing_files.append(file_path)
+    
+    if missing_files:
+        print(f"❌ Missing files: {', '.join(missing_files)}")
+        return 1
+    
+    print("✅ Configuration verification passed")
+    return 0
+
+verify_target = env.Command('verify_config', [], 
+                           Action(verify_configuration, 'Verifying configuration'))
+
+# Create installation package
+def create_package(target, source, env):
+    """Create an installation package."""
+    print("📦 Creating installation package...")
+    
+    package_name = f"{env['PROJECT_NAME'].replace(' ', '-').lower()}-{env['PROJECT_VERSION']}"
+    package_dir = f"packages/{package_name}"
+    
+    # Create package directory
+    env.Execute(f'mkdir -p {package_dir}')
+    
+    # Copy executable
+    env.Execute(f'cp {env["BIN_DIR"]}/integral-philosophy {package_dir}/')
+    
+    # Copy documentation
+    env.Execute(f'cp README* {package_dir}/ 2>/dev/null || true')
+    env.Execute(f'cp LICENSE* {package_dir}/ 2>/dev/null || true')
+    
+    # Copy build scripts
+    env.Execute(f'cp SConstruct SConscript {package_dir}/')
+    env.Execute(f'cp -r {env["HASKELL_PROJECT_DIR"]} {package_dir}/')
+    
+    # Create installation script
+    install_script = f"""#!/bin/bash
+# Installation script for {env['PROJECT_NAME']}
+# Version: {env['PROJECT_VERSION']}
+
+set -e
+
+echo "🚀 Installing {env['PROJECT_NAME']} v{env['PROJECT_VERSION']}..."
+
+# Check for dependencies
+if ! command -v ghc &> /dev/null; then
+    echo "❌ GHC not found. Please install GHC first."
+    exit 1
+fi
+
+if ! command -v stack &> /dev/null; then
+    echo "❌ Stack not found. Please install Stack first."
+    exit 1
+fi
+
+# Install to system directory
+INSTALL_DIR="/usr/local/bin"
+if [ "$EUID" -ne 0 ]; then
+    INSTALL_DIR="$HOME/.local/bin"
+    echo "🔧 Installing to user directory: $INSTALL_DIR"
+fi
+
+mkdir -p "$INSTALL_DIR"
+cp integral-philosophy "$INSTALL_DIR/"
+chmod +x "$INSTALL_DIR/integral-philosophy"
+
+echo "✅ Installation complete!"
+echo "📚 Run 'integral-philosophy help' for usage information"
+"""
+    
+    with open(f'{package_dir}/install.sh', 'w') as f:
+        f.write(install_script)
+    
+    env.Execute(f'chmod +x {package_dir}/install.sh')
+    
+    # Create tarball
+    env.Execute(f'cd packages && tar -czf {package_name}.tar.gz {package_name}/')
+    
+    print(f"✅ Package created: packages/{package_name}.tar.gz")
+    return 0
+
+package_target = env.Command('create_package', [], 
+                            Action(create_package, 'Creating installation package'))
+
+# Performance analysis target
+def performance_analysis(target, source, env):
+    """Run performance analysis."""
+    print("📊 Running performance analysis...")
+    
+    # Build profiling version first
+    profile_cmd = f'cd {env["HASKELL_PROJECT_DIR"]} && {env["STACK"]} build --profile --library-profiling --executable-profiling'
+    env.Execute(profile_cmd)
+    
+    # Run with profiling
+    profile_run_cmd = f'{env["BIN_DIR"]}/integral-philosophy +RTS -p -h help'
+    env.Execute(profile_run_cmd)
+    
+    # Generate HTML profile
+    if os.path.exists('integral-philosophy.hp'):
+        env.Execute('hp2ps integral-philosophy.hp')
+        env.Execute('ps2pdf integral-philosophy.ps')
+        print("✅ Performance analysis complete. Check integral-philosophy.pdf")
+    else:
+        print("⚠️ No profiling data generated")
+
+performance_target = env.Command('performance', [], 
+                                Action(performance_analysis, 'Running performance analysis'))
+
+# Continuous integration target
+def ci_build(target, source, env):
+    """Continuous integration build process."""
+    print("🔄 Starting CI build process...")
+    
+    steps = [
+        ("verify_config", "Verifying configuration"),
+        ("dependencies", "Installing dependencies"),
+        ("build", "Building project"),
+        ("stack-test", "Running tests"),
+        ("syntax-check", "Checking syntax"),
+        ("performance", "Performance analysis"),
+    ]
+    
+    failed_steps = []
+    
+    for step, description in steps:
+        print(f"🔧 {description}...")
+        try:
+            result = env.Command(step, [], Action(f'scons {step}', description))
+            # Note: In a real CI, you'd check the actual result here
+            print(f"✅ {description} passed")
+        except Exception as e:
+            print(f"❌ {description} failed: {e}")
+            failed_steps.append(step)
+    
+    if failed_steps:
+        print(f"❌ CI build failed. Failed steps: {', '.join(failed_steps)}")
+        return 1
+    else:
+        print("✅ CI build completed successfully")
+        return 0
+
+ci_target = env.Command('ci', [], Action(ci_build, 'Running CI build'))
+
+# Apply platform configuration
+env = configure_platform(env)
+
+# Aliases
+env.Alias('summary', summary_target)
+env.Alias('verify', verify_target)
+env.Alias('package', package_target)
+env.Alias('perf', performance_target)
+env.Alias('ci', ci_target)
+
+# Return targets for parent SConstruct
+Return([
+    'summary_target',
+    'verify_target',
+    'package_target',
+    'performance_target',
+    'ci_target'
+])

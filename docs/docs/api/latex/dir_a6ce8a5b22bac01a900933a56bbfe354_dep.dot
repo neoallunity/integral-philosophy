@@ -1,0 +1,12 @@
+digraph "/home/domini/src/Magazine/Magazine/config/cfg"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_9f351d46ce3cc29445a41dc3a31e6919 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="config", fontname=FreeSans.ttf,fontsize=10 style="filled,dashed", URL="dir_9f351d46ce3cc29445a41dc3a31e6919.html",tooltip=""]
+  dir_a6ce8a5b22bac01a900933a56bbfe354 [label="cfg", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_a6ce8a5b22bac01a900933a56bbfe354.html",tooltip=""];
+  }
+}

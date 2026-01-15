@@ -1,0 +1,57 @@
+\doxysection{cfg-\/structure.tex}
+\hypertarget{cfg-structure_8tex_source}{}\label{cfg-structure_8tex_source}\index{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/structure.tex@{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/structure.tex}}
+\mbox{\hyperlink{cfg-structure_8tex}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00001}00001\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00002}00002\ \%\ cfg-\/structure.tex\ —\ структура,\ заголовки,\ оглавление}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00003}00003\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00005}00005\ \%\ Определение\ длин\ для\ линий\ в\ заголовках}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00006}00006\ \(\backslash\)newlength\{\(\backslash\)JournalSectionRuleW\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00007}00007\ \(\backslash\)setlength\{\(\backslash\)JournalSectionRuleW\}\{0.25\(\backslash\)textwidth\}\ \%\ Примерное\ значение}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00008}00008\ \(\backslash\)newlength\{\(\backslash\)JournalSectionRuleH\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00009}00009\ \(\backslash\)setlength\{\(\backslash\)JournalSectionRuleH\}\{0.9pt\}\ \%\ Примерное\ значение}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00011}00011\ \(\backslash\)newlength\{\(\backslash\)JournalSubsectionRuleW\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00012}00012\ \(\backslash\)setlength\{\(\backslash\)JournalSubsectionRuleW\}\{0.15\(\backslash\)textwidth\}\ \%\ Примерное\ значение}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00013}00013\ \(\backslash\)newlength\{\(\backslash\)JournalSubsectionRuleH\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00014}00014\ \(\backslash\)setlength\{\(\backslash\)JournalSubsectionRuleH\}\{0.7pt\}\ \%\ Примерное\ значение}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00016}00016\ \%\ Глубина\ нумерации/оглавления}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00017}00017\ \(\backslash\)setcounter\{secnumdepth\}\{3\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00018}00018\ \(\backslash\)setcounter\{tocdepth\}\{2\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00020}00020\ \%\ Заголовки}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00021}00021\ \(\backslash\)usepackage\{titlesec\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00022}00022\ \(\backslash\)usepackage\{tikz\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00024}00024\ \%\ Фирменный\ стиль\ для\ глав:\ крупный\ цветной\ номер\ +\ акцентная\ линия}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00025}00025\ \(\backslash\)titleformat\{\(\backslash\)chapter\}[display]}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00026}00026\ \ \ \{\(\backslash\)normalfont\(\backslash\)huge\(\backslash\)bfseries\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00027}00027\ \ \ \{\(\backslash\)begin\{tikzpicture\}[baseline=(n.base)]}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00028}00028\ \ \ \ \ \ \(\backslash\)node\ (n)\ [inner\ sep=0pt]\ \{\(\backslash\)textcolor\{JournalAccent2!85\}\{\(\backslash\)fontsize\{48\}\{48\}\(\backslash\)selectfont\(\backslash\)bfseries\(\backslash\)thechapter\}\};}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00029}00029\ \ \ \ \(\backslash\)end\{tikzpicture\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00030}00030\ \ \ \ \(\backslash\)hspace\{0.8em\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00031}00031\ \ \ \ \(\backslash\)textcolor\{JournalAccent!60\}\{\(\backslash\)rule\{0.45\(\backslash\)textwidth\}\{0.9pt\}\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00032}00032\ \ \ \{10pt\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00033}00033\ \ \ \{\(\backslash\)Huge\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00034}00034\ \(\backslash\)titleformat\{\(\backslash\)section\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00035}00035\ \ \ \{\(\backslash\)normalfont\(\backslash\)Large\(\backslash\)bfseries\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00036}00036\ \ \ \{\(\backslash\)textcolor\{JournalAccent2!75\}\{\(\backslash\)Large\(\backslash\)textbullet\}\(\backslash\)hspace\{0.6em\}\(\backslash\)textcolor\{JournalAccent!75\}\{\(\backslash\)rule\{\(\backslash\)JournalSectionRuleW\}\{\(\backslash\)JournalSectionRuleH\}\}\(\backslash\)hspace\{0.8em\}\(\backslash\)thesection\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00037}00037\ \ \ \{0.6em\}\{\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00038}00038\ \(\backslash\)titleformat\{\(\backslash\)subsection\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00039}00039\ \ \ \{\(\backslash\)normalfont\(\backslash\)large\(\backslash\)bfseries\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00040}00040\ \ \ \{\(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)rule\{\(\backslash\)JournalSubsectionRuleW\}\{\(\backslash\)JournalSubsectionRuleH\}\}\(\backslash\)hspace\{0.7em\}\(\backslash\)thesubsection\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00041}00041\ \ \ \{0.6em\}\{\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00042}00042\ \(\backslash\)titlespacing*\{\(\backslash\)chapter\}\{0pt\}\{0pt\}\{1.2\(\backslash\)baselineskip\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00043}00043\ \(\backslash\)titlespacing*\{\(\backslash\)section\}\{0pt\}\{1.0\(\backslash\)baselineskip\}\{0.5\(\backslash\)baselineskip\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00044}00044\ \(\backslash\)titlespacing*\{\(\backslash\)subsection\}\{0pt\}\{0.8\(\backslash\)baselineskip\}\{0.4\(\backslash\)baselineskip\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00046}00046\ \%\ Оглавление}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00047}00047\ \(\backslash\)usepackage\{tocloft\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00048}00048\ \(\backslash\)renewcommand\{\(\backslash\)cftchapfont\}\{\(\backslash\)bfseries\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00049}00049\ \(\backslash\)renewcommand\{\(\backslash\)cftsecfont\}\{\(\backslash\)normalfont\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00050}00050\ \(\backslash\)setlength\{\(\backslash\)cftbeforechapskip\}\{0.25\(\backslash\)baselineskip\}}
+\DoxyCodeLine{\Hypertarget{cfg-structure_8tex_source_l00051}00051\ \(\backslash\)setlength\{\(\backslash\)cftbeforesecskip\}\{0.10\(\backslash\)baselineskip\}}
+
+\end{DoxyCode}

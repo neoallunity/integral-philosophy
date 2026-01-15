@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d3/daa/namespacehtml__tei__converter" kind="namespace" language="Python">
+    <compoundname>html_tei_converter</compoundname>
+    <innerclass refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" prot="public">html_tei_converter::ConversionResult</innerclass>
+    <innerclass refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" prot="public">html_tei_converter::HTMLTEIConverter</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="d3/daa/namespacehtml__tei__converter_1a7deb30db43f52a8630e5c952c5d13b2e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>html_tei_converter.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>html_tei_converter.level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="19" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/daa/namespacehtml__tei__converter_1a27b9691250030042043340e8619b70f1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>html_tei_converter.INFO</definition>
+        <argsstring></argsstring>
+        <name>INFO</name>
+        <qualifiedname>html_tei_converter.INFO</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="19" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/daa/namespacehtml__tei__converter_1a00ef0a4194d79e7504089abfcee1aa4c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>html_tei_converter.format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>html_tei_converter.format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="19" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/daa/namespacehtml__tei__converter_1ac80aa9ded05cbef1701b6a1c3ccad9c3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>html_tei_converter.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>html_tei_converter.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="21" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>html_tei_converter.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>html_tei_converter.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function for testing</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="859" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="859" bodyend="922"/>
+        <references refid="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" compoundref="d7/dae/html__tei__converter_8py" startline="859" endline="922">main</references>
+        <referencedby refid="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" compoundref="d7/dae/html__tei__converter_8py" startline="859" endline="922">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Bidirectional HTML ↔ TEI Converter with Isomorphism Testing
+Supports HTML5 to TEI conversion and back for content preservation validation
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

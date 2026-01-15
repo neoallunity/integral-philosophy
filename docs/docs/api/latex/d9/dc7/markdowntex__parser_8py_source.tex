@@ -1,0 +1,597 @@
+\doxysection{markdowntex\+\_\+parser.\+py}
+\hypertarget{markdowntex__parser_8py_source}{}\label{markdowntex__parser_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/markdowntex\_parser.py@{/home/domini/src/Magazine/Magazine/scripts/markdowntex\_parser.py}}
+\mbox{\hyperlink{markdowntex__parser_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00001}\mbox{\hyperlink{namespacemarkdowntex__parser}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00003}00003\ \textcolor{stringliteral}{MarkdownTeX\ Parser\ with\ Link\ Preservation}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00004}00004\ \textcolor{stringliteral}{Handles\ CommonMark\ +\ Pandoc\ extensions\ with\ inline\ TeX\ support}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00005}00005\ \textcolor{stringliteral}{Converts\ between\ multiple\ formats\ while\ preserving\ structure\ and\ links}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00008}00008\ \textcolor{keyword}{import}\ re}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00009}00009\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00010}00010\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00011}00011\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List,\ Optional,\ Union,\ Any}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00012}00012\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ asdict}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00013}00013\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00014}00014\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00016}00016\ \textcolor{comment}{\#\ Set\ up\ logging}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00017}00017\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00018}\mbox{\hyperlink{namespacemarkdowntex__parser_a9cee2737e4bdc8aade3d5a34c2aefe00}{00018}}\ \ \ \ \ level=logging.INFO,\ format=\textcolor{stringliteral}{"{}\%(asctime)s\ -\/\ \%(levelname)s\ -\/\ \%(message)s"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00019}00019\ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00020}\mbox{\hyperlink{namespacemarkdowntex__parser_ad7228f18e09bf90ecf606dbb7d9b5eb6}{00020}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00023}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type}{00023}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type}{NodeType}}(Enum):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}AST\ node\ types\ for\ MarkdownTeX"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00026}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_adf8a85595062f1cf807cfb2db7ba2290}{00026}}\ \ \ \ \ DOCUMENT\ =\ \textcolor{stringliteral}{"{}document"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00027}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_addb75a548f2e6b79bc16798f93795702}{00027}}\ \ \ \ \ HEADING\ =\ \textcolor{stringliteral}{"{}heading"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00028}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a6ede1d2571b1a92ef442591aa196c43c}{00028}}\ \ \ \ \ PARAGRAPH\ =\ \textcolor{stringliteral}{"{}paragraph"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00029}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a304e3f7e4ac3b3e4c4521f9913e7dccf}{00029}}\ \ \ \ \ TEXT\ =\ \textcolor{stringliteral}{"{}text"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00030}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a243dfb2678aa02a5c832f3d58798c8dd}{00030}}\ \ \ \ \ LINK\ =\ \textcolor{stringliteral}{"{}link"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00031}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a846a5bfb6001ea1a81ada83cd3643942}{00031}}\ \ \ \ \ IMAGE\ =\ \textcolor{stringliteral}{"{}image"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00032}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a513146c97b6c3e29617bf95b19bc7df0}{00032}}\ \ \ \ \ CODE\_BLOCK\ =\ \textcolor{stringliteral}{"{}code\_block"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00033}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a5609e1839b19b2911ee504db1c97236a}{00033}}\ \ \ \ \ INLINE\_CODE\ =\ \textcolor{stringliteral}{"{}inline\_code"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00034}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a3449158e163fbe328386d20b4f1b6c4b}{00034}}\ \ \ \ \ MATH\_BLOCK\ =\ \textcolor{stringliteral}{"{}math\_block"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00035}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a2d676e1f697b6c99ff3322e1f7cb9cbd}{00035}}\ \ \ \ \ INLINE\_MATH\ =\ \textcolor{stringliteral}{"{}inline\_math"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00036}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a864b61489455df88dbf1a23aabce4349}{00036}}\ \ \ \ \ LIST\ =\ \textcolor{stringliteral}{"{}list"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00037}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a7e52ccad58f277f5f2cdd0703faf2f1d}{00037}}\ \ \ \ \ LIST\_ITEM\ =\ \textcolor{stringliteral}{"{}list\_item"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00038}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_af71decdc0cd131a585d30e4a0bd0a7b4}{00038}}\ \ \ \ \ TABLE\ =\ \textcolor{stringliteral}{"{}table"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00039}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_ae5a323a8980ffe9916b3bab0cd89d9b4}{00039}}\ \ \ \ \ TABLE\_ROW\ =\ \textcolor{stringliteral}{"{}table\_row"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00040}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_aa0a4a1ab31883c79445ad4a730ab3337}{00040}}\ \ \ \ \ TABLE\_CELL\ =\ \textcolor{stringliteral}{"{}table\_cell"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00041}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a057074647b98e4dd0eb75c968a3af218}{00041}}\ \ \ \ \ QUOTE\ =\ \textcolor{stringliteral}{"{}quote"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00042}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a9960f260a95524dd0a4cde9b649cc74a}{00042}}\ \ \ \ \ THEMATIC\_BREAK\ =\ \textcolor{stringliteral}{"{}thematic\_break"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00043}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_aeb32c6068d29cff2fe6dbf469e79d28b}{00043}}\ \ \ \ \ EMPHASIS\ =\ \textcolor{stringliteral}{"{}emphasis"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00044}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a9fcbe62173ea952937b1021f5fbc10bf}{00044}}\ \ \ \ \ STRONG\ =\ \textcolor{stringliteral}{"{}strong"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00045}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_ad2e2a041b7976a927798ac460429cd54}{00045}}\ \ \ \ \ RAW\_HTML\ =\ \textcolor{stringliteral}{"{}raw\_html"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00046}\mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type_a243525b12d0634a4f24974862db7cf82}{00046}}\ \ \ \ \ METADATA\ =\ \textcolor{stringliteral}{"{}metadata"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00049}00049\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00050}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{00050}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00051}00051\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Abstract\ Syntax\ Tree\ node\ for\ MarkdownTeX\ content"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00053}00053\ \ \ \ \ type:\ NodeType}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00054}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a964a08f14c33478290b5adac3f350999}{00054}}\ \ \ \ \ content:\ Optional[Union[str,\ List[\textcolor{stringliteral}{"{}ASTNode"{}}]]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00055}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a9372b518a30a174dcd82bc1f8ae41882}{00055}}\ \ \ \ \ attributes:\ Optional[Dict[str,\ Any]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00056}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_aca4dce41ed2a4d5c83973602f4c3dacc}{00056}}\ \ \ \ \ position:\ Optional[Dict[str,\ int]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00058}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a1a7af40c056c9ffc72bed77c660117c9}{00058}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a1a7af40c056c9ffc72bed77c660117c9}{\_\_post\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a9372b518a30a174dcd82bc1f8ae41882}{attributes}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a9372b518a30a174dcd82bc1f8ae41882}{attributes}}\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_aca4dce41ed2a4d5c83973602f4c3dacc}{position}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_aca4dce41ed2a4d5c83973602f4c3dacc}{position}}\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00064}\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a5ea4f32b4402e6a8d478de7ec2b5c549}{00064}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a5ea4f32b4402e6a8d478de7ec2b5c549}{to\_dict}}(self)\ -\/>\ Dict:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ node\ to\ dictionary\ representation"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type"{}}:\ self.type.value,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}content"{}}:\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a964a08f14c33478290b5adac3f350999}{content}},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}attributes"{}}:\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_a9372b518a30a174dcd82bc1f8ae41882}{attributes}},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}position"{}}:\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node_aca4dce41ed2a4d5c83973602f4c3dacc}{position}},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00074}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{00074}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{MarkdownTeXParser}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00075}00075\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parser\ for\ CommonMark\ with\ LaTeX\ extensions"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00077}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a184efe96724f0865e096eef95c5c653b}{00077}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a184efe96724f0865e096eef95c5c653b}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Regex\ patterns\ for\ parsing}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00079}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{00079}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}heading"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^(\#\{1,6\})\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}math\_block"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\$\(\backslash\)\$(.*?)\(\backslash\)\$\(\backslash\)\$"{}},\ re.DOTALL),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}inline\_math"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\$([\string^\$]+)\(\backslash\)\$"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}code\_block"{}}:\ re.compile(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\string^\`{}\`{}\`{}(\(\backslash\)w+)?\(\backslash\)s*\(\backslash\)n(.*?)\(\backslash\)n\`{}\`{}\`{}"{}},\ re.MULTILINE\ |\ re.DOTALL}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}inline\_code"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\`{}([\string^\`{}]+)`"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}link"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)[([\string^\(\backslash\)]]+)\(\backslash\)]\(\backslash\)(([\string^)]+)\(\backslash\))"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}image"{}}:\ re.compile(\textcolor{stringliteral}{r"{}!\(\backslash\)[([\string^\(\backslash\)]]*)\(\backslash\)]\(\backslash\)(([\string^)]+)\(\backslash\))"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}emphasis"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)*([\string^*]+)\(\backslash\)*"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}strong"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)*\(\backslash\)*([\string^*]+)\(\backslash\)*\(\backslash\)*"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}list\_item"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)s*[-\/*+]\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ordered\_list\_item"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)s*\(\backslash\)d+\(\backslash\).\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}quote"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^>\(\backslash\)s+(.+)\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}table\_row"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\string^\(\backslash\)|(.+)\(\backslash\)|\$"{}},\ re.MULTILINE),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ re.compile(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\string^-\/-\/-\/\(\backslash\)s*\(\backslash\)n(.*?)\(\backslash\)n-\/-\/-\/\(\backslash\)s*\(\backslash\)n"{}},\ re.MULTILINE\ |\ re.DOTALL}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ TeX\ block\ patterns}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00101}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d}{00101}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d}{tex\_patterns}}\ =\ \{}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}equation"{}}:\ re.compile(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{equation\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{equation\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}align"{}}:\ re.compile(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{align\(\backslash\)*?\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{align\(\backslash\)*?\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}gather"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{gather\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{gather\(\backslash\)\}"{}},\ re.DOTALL),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}theorem"{}}:\ re.compile(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{theorem\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{theorem\(\backslash\)\}"{}},\ re.DOTALL}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}proof"{}}:\ re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)\(\backslash\)begin\(\backslash\)\{proof\(\backslash\)\}(.*?)\(\backslash\)\(\backslash\)end\(\backslash\)\{proof\(\backslash\)\}"{}},\ re.DOTALL),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00115}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a7d3d7b7523ac2e403a9d59fe2d78b24c}{00115}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a7d3d7b7523ac2e403a9d59fe2d78b24c}{parse}}(self,\ markdown\_text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ MarkdownTeX\ text\ into\ AST"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ metadata\ first}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ metadata\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5}{\_extract\_metadata}}(markdown\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ metadata\ from\ content}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ metadata:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ content\_text\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}metadata"{}}].sub(\textcolor{stringliteral}{"{}"{}},\ markdown\_text).strip()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ content\_text\ =\ markdown\_text}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ document\ node}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ doc\_node\ =\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.DOCUMENT,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ content=[],}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ attributes=\{\textcolor{stringliteral}{"{}metadata"{}}:\ metadata\}\ \textcolor{keywordflow}{if}\ metadata\ \textcolor{keywordflow}{else}\ \{\},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ content\ blocks}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ blocks\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93}{\_split\_into\_blocks}}(content\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ block\ \textcolor{keywordflow}{in}\ blocks:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_block\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b}{\_parse\_block}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ parsed\_block:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(parsed\_block,\ list):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doc\_node.content.extend(parsed\_block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doc\_node.content.append(parsed\_block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ doc\_node}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00146}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5}{00146}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1d92ffeb5dd2a7dfe6b23aa9d819fce5}{\_extract\_metadata}}(self,\ text:\ str)\ -\/>\ Optional[Dict[str,\ Any]]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ YAML-\/style\ metadata\ from\ the\ beginning\ of\ the\ text"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ match\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}metadata"{}}].match(text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ match:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ yaml}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ yaml.safe\_load(match.group(1))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Fallback\ to\ simple\ key-\/value\ parsing}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lines\ =\ match.group(1).strip().split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ lines:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}:"{}}\ \textcolor{keywordflow}{in}\ line:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ key,\ value\ =\ line.split(\textcolor{stringliteral}{"{}:"{}},\ 1)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata[key.strip()]\ =\ value.strip()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ metadata}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00165}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93}{00165}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af351603772018ddeb670be149da1db93}{\_split\_into\_blocks}}(self,\ text:\ str)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Split\ text\ into\ logical\ blocks"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Handle\ different\ block\ types}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ blocks\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ in\_code\_block\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ in\_math\_block\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ code\_fence\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ lines\ =\ text.split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ lines:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ for\ code\ fence}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ line.strip().startswith(\textcolor{stringliteral}{"{}\`{}\`{}\`{}"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ in\_code\_block:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ current\_block.strip():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\_code\_block\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ code\_fence\ =\ line.strip()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ +=\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\_code\_block\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ code\_fence\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ for\ math\ block}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}\$\$"{}}\ \textcolor{keywordflow}{in}\ line\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ in\_math\_block:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ current\_block.strip():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\_math\_block\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ \textcolor{stringliteral}{"{}\$\$"{}}\ \textcolor{keywordflow}{in}\ line\ \textcolor{keywordflow}{and}\ in\_math\_block:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ +=\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ in\_math\_block\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ +=\ line\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Block\ separator\ for\ non-\/code/math\ content}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ in\_code\_block\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ in\_math\_block\ \textcolor{keywordflow}{and}\ line.strip()\ ==\ \textcolor{stringliteral}{"{}"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ current\_block.strip():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_block\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ remaining\ content}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ current\_block.strip():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ blocks.append(current\_block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [b\ \textcolor{keywordflow}{for}\ b\ \textcolor{keywordflow}{in}\ blocks\ \textcolor{keywordflow}{if}\ b.strip()]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00223}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b}{00223}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad6481bb763814145944dc8ab1f087e0b}{\_parse\_block}}(self,\ block:\ str)\ -\/>\ Union[ASTNode,\ List[ASTNode],\ \textcolor{keywordtype}{None}]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ a\ single\ block\ of\ content"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ block.strip():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Math\ block}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}\$\$"{}}\ \textcolor{keywordflow}{in}\ block:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f}{\_parse\_math\_block}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Code\ block}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ block.strip().startswith(\textcolor{stringliteral}{"{}\`{}\`{}\`{}"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d}{\_parse\_code\_block}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ TeX\ blocks}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ tex\_type,\ pattern\ \textcolor{keywordflow}{in}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad025a30820a590aa088969439e81490d}{tex\_patterns}}.items():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ pattern.match(block):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f}{\_parse\_tex\_block}}(block,\ tex\_type)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Heading}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ heading\_match\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}heading"{}}].match(block.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ heading\_match:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ level\ =\ len(heading\_match.group(1))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ heading\_match.group(2)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.HEADING,\ content=content,\ attributes=\{\textcolor{stringliteral}{"{}level"{}}:\ level\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ List}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}list\_item"{}}].match(block)\ \textcolor{keywordflow}{or}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ordered\_list\_item"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ ].match(block):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8}{\_parse\_list}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Table}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}|"{}}\ \textcolor{keywordflow}{in}\ block\ \textcolor{keywordflow}{and}\ block.strip().startswith(\textcolor{stringliteral}{"{}|"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f}{\_parse\_table}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Quote}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ block.strip().startswith(\textcolor{stringliteral}{"{}>"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6}{\_parse\_quote}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Thematic\ break}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ block.strip().replace(\textcolor{stringliteral}{"{}-\/"{}},\ \textcolor{stringliteral}{"{}"{}}).strip()\ ==\ \textcolor{stringliteral}{"{}"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.THEMATIC\_BREAK)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Paragraph\ (default)}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90}{\_parse\_paragraph}}(block)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00272}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f}{00272}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a310364583ef9dcce8b37acea7158a77f}{\_parse\_math\_block}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ mathematical\ block"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ content\ =\ text.strip(\textcolor{stringliteral}{"{}\$\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.MATH\_BLOCK,\ content=content,\ attributes=\{\textcolor{stringliteral}{"{}format"{}}:\ \textcolor{stringliteral}{"{}latex"{}}\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00279}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d}{00279}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ac5e7fb48e5515c291c0ad646bf36d14d}{\_parse\_code\_block}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ code\ block"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ lines\ =\ text.strip().split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ lines\ \textcolor{keywordflow}{and}\ lines[0].startswith(\textcolor{stringliteral}{"{}\`{}\`{}\`{}"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ lang\ =\ lines[0][3:].strip()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ code\ =\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}.join(lines[1:-\/1])}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ lang\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ code\ =\ text}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.CODE\_BLOCK,\ content=code,\ attributes=\{\textcolor{stringliteral}{"{}language"{}}:\ lang\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00293}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f}{00293}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a1dccf705974e31400680fd555543ff8f}{\_parse\_tex\_block}}(self,\ text:\ str,\ tex\_type:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ TeX\ block"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.MATH\_BLOCK,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ content=text,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ attributes=\{\textcolor{stringliteral}{"{}format"{}}:\ \textcolor{stringliteral}{"{}latex"{}},\ \textcolor{stringliteral}{"{}environment"{}}:\ tex\_type\},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00301}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8}{00301}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_af673dc64b3fdc200c9bbaa70675b44a8}{\_parse\_list}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ list\ block"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ lines\ =\ text.strip().split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ items\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ is\_ordered\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ lines:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ ordered\_match\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}ordered\_list\_item"{}}].match(line)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ unordered\_match\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}list\_item"{}}].match(line)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ordered\_match:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_ordered:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_ordered\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(ordered\_match.group(1))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ items.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.LIST\_ITEM,\ content=item\_content))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ unordered\_match:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(unordered\_match.group(1))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ items.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.LIST\_ITEM,\ content=item\_content))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.LIST,\ content=items,\ attributes=\{\textcolor{stringliteral}{"{}ordered"{}}:\ is\_ordered\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00324}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f}{00324}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a134dab5e7be71b2b7328373a5d5e496f}{\_parse\_table}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ table\ block"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ lines\ =\ [}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ line\ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ text.strip().split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})\ \textcolor{keywordflow}{if}\ line.strip().startswith(\textcolor{stringliteral}{"{}|"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ rows\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ lines:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ cells\ =\ [cell.strip()\ \textcolor{keywordflow}{for}\ cell\ \textcolor{keywordflow}{in}\ line.split(\textcolor{stringliteral}{"{}|"{}})[1:-\/1]]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ cell\_nodes\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ cell\ \textcolor{keywordflow}{in}\ cells:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cell\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(cell)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cell\_nodes.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.TABLE\_CELL,\ content=cell\_content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ rows.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.TABLE\_ROW,\ content=cell\_nodes))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.TABLE,\ content=rows)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00345}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6}{00345}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a96cab523fa46c74ecf910bebdf3529d6}{\_parse\_quote}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ blockquote"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ lines\ =\ text.strip().split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ quoted\_lines\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ line\ \textcolor{keywordflow}{in}\ lines:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ line.strip().startswith(\textcolor{stringliteral}{"{}>"{}}):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quoted\_text\ =\ line.strip()[1:].strip()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quoted\_lines.append(quoted\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ quote\_content\ =\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}.join(quoted\_lines)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ parsed\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(quote\_content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00357}00357\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.QUOTE,\ content=parsed\_content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00360}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90}{00360}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a5046ec657ededa55fdab20d89fecdc90}{\_parse\_paragraph}}(self,\ text:\ str)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ paragraph"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(text.strip())}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.PARAGRAPH,\ content=content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00365}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{00365}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(self,\ text:\ str)\ -\/>\ List[ASTNode]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ inline\ content"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ nodes\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ remaining\_text\ =\ text}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Process\ patterns\ in\ order\ of\ specificity}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ patterns\ =\ [}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}image"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}image"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}link"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}link"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}inline\_code"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}inline\_code"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}inline\_math"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}inline\_math"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}strong"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}strong"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}emphasis"{}},\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adc9a89095fb95d09a14c6a4fd4d1bf79}{patterns}}[\textcolor{stringliteral}{"{}emphasis"{}}]),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00378}00378\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ remaining\_text:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ match\_found\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ pattern\_name,\ pattern\ \textcolor{keywordflow}{in}\ patterns:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ match\ =\ pattern.search(remaining\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ match:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ text\ before\ match}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ match.start()\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text\_before\ =\ remaining\_text[:\ match.start()]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ text\_before:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.TEXT,\ content=text\_before)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ matched\ element}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}image"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alt,\ src\ =\ match.groups()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.IMAGE,\ attributes=\{\textcolor{stringliteral}{"{}alt"{}}:\ alt,\ \textcolor{stringliteral}{"{}src"{}}:\ src\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}link"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text,\ href\ =\ match.groups()}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.LINK,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content=link\_content,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attributes=\{\textcolor{stringliteral}{"{}href"{}}:\ href\},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}inline\_code"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ code\ =\ match.group(1)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.INLINE\_CODE,\ content=code))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}inline\_math"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ math\ =\ match.group(1)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type=NodeType.INLINE\_MATH,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content=math,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attributes=\{\textcolor{stringliteral}{"{}format"{}}:\ \textcolor{stringliteral}{"{}latex"{}}\},}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}strong"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strong\_text\ =\ match.group(1)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(strong\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.STRONG,\ content=content))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ pattern\_name\ ==\ \textcolor{stringliteral}{"{}emphasis"{}}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emphasis\_text\ =\ match.group(1)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a8a37f65ce8b9d482ec8e3994a2a7838b}{\_parse\_inline}}(emphasis\_text)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.EMPHASIS,\ content=content))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remaining\_text\ =\ remaining\_text[match.end()\ :]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ match\_found\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ match\_found:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ remaining\ text}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ remaining\_text:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodes.append(\mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(type=NodeType.TEXT,\ content=remaining\_text))}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00442}00442\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nodes}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00445}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452}{00445}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452}{ast\_to\_dict}}(self,\ ast:\ ASTNode)\ -\/>\ Dict:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ AST\ to\ dictionary\ format"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{\_node\_to\_dict}}(ast)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00449}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{00449}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{\_node\_to\_dict}}(self,\ node:\ ASTNode)\ -\/>\ Dict:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ node\ to\ dictionary\ recursively"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ result\ =\ \{\textcolor{stringliteral}{"{}type"{}}:\ node.type.value,\ \textcolor{stringliteral}{"{}attributes"{}}:\ node.attributes\}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00452}00452\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ node.content\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(node.content,\ str):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[\textcolor{stringliteral}{"{}content"{}}]\ =\ node.content}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(node.content,\ list):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[\textcolor{stringliteral}{"{}content"{}}]\ =\ [}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{\_node\_to\_dict}}(child)\ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ node.content}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(node.content,\ ASTNode):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[\textcolor{stringliteral}{"{}content"{}}]\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aea6dae992ba01f1fbab3ef2836162b3b}{\_node\_to\_dict}}(node.content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ node.position:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ result[\textcolor{stringliteral}{"{}position"{}}]\ =\ node.position}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00467}00467\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00468}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{00468}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{dict\_to\_ast}}(self,\ data:\ Dict)\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ dictionary\ back\ to\ AST"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ node\_type\ =\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type}{NodeType}}(data[\textcolor{stringliteral}{"{}type"{}}])}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ attributes\ =\ data.get(\textcolor{stringliteral}{"{}attributes"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ content\ =\ data.get(\textcolor{stringliteral}{"{}content"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_content\ =\ [self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{dict\_to\_ast}}(item)\ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ content]}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(content,\ dict):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_content\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{dict\_to\_ast}}(content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\_content\ =\ content}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_a_s_t_node}{ASTNode}}(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ type=node\_type,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ content=parsed\_content,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ attributes=attributes,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ position=data.get(\textcolor{stringliteral}{"{}position"{}},\ \{\}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00488}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a02f123a7469bb7edbde08c0851e800c5}{00488}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a02f123a7469bb7edbde08c0851e800c5}{save\_ast}}(self,\ ast:\ ASTNode,\ filepath:\ Union[str,\ Path])\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Save\ AST\ to\ JSON\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ ast\_dict\ =\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_aa9e54b452c828f1e4c040938a59f1452}{ast\_to\_dict}}(ast)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(filepath,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(ast\_dict,\ f,\ indent=2,\ ensure\_ascii=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00494}00494\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}AST\ saved\ to\ \{filepath\}"{}})}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00496}00496\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00497}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a17af9cb014b0fd9f33c2ae261683e974}{00497}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a17af9cb014b0fd9f33c2ae261683e974}{load\_ast}}(self,\ filepath:\ Union[str,\ Path])\ -\/>\ ASTNode:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Load\ AST\ from\ JSON\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(filepath,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ ast\_dict\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_a91d55926a2166379b736b17511051305}{dict\_to\_ast}}(ast\_dict)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00504}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adccfc09d454f5e23cdce8e02d948ba23}{00504}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_adccfc09d454f5e23cdce8e02d948ba23}{extract\_links}}(self,\ ast:\ ASTNode)\ -\/>\ List[Dict[str,\ str]]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00505}00505\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ all\ links\ from\ AST"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ links\ =\ []}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00507}00507\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }traverse(node):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ node.type\ ==\ NodeType.LINK:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ links.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}text"{}}:\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{\_extract\_text\_content}}(node),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}href"{}}:\ node.attributes.get(\textcolor{stringliteral}{"{}href"{}},\ \textcolor{stringliteral}{"{}"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node.type\ ==\ NodeType.IMAGE:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ links.append(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}text"{}}:\ node.attributes.get(\textcolor{stringliteral}{"{}alt"{}},\ \textcolor{stringliteral}{"{}"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}href"{}}:\ node.attributes.get(\textcolor{stringliteral}{"{}src"{}},\ \textcolor{stringliteral}{"{}"{}}),}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00523}00523\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Recursively\ process\ children}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(node.content,\ list):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ node.content:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traverse(child)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(node.content,\ ASTNode):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traverse(node.content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00531}00531\ \ \ \ \ \ \ \ \ traverse(ast)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ links}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00533}00533\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00534}\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{00534}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{\_extract\_text\_content}}(self,\ node:\ ASTNode)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Extract\ plain\ text\ from\ a\ node"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00536}00536\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ node.type\ ==\ NodeType.TEXT:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ node.content\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00538}00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node.type\ \textcolor{keywordflow}{in}\ [}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ NodeType.LINK,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ NodeType.IMAGE,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ NodeType.EMPHASIS,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ NodeType.STRONG,}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ ]:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(node.content,\ list):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}}.join(}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{\_extract\_text\_content}}(child)\ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ node.content}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(node.content,\ ASTNode):}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser_ad93f7bc15a5f00d1b4d294f0d701320c}{\_extract\_text\_content}}(node.content)}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ node.content\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00555}00555\ }
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00556}\mbox{\hyperlink{namespacemarkdowntex__parser_a8cc562261298534b45d5cb071b657fa2}{00556}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacemarkdowntex__parser_a8cc562261298534b45d5cb071b657fa2}{main}}():}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00557}00557\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ function\ for\ testing\ the\ parser"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00558}00558\ \textcolor{stringliteral}{\ \ \ \ import\ argparse}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00559}00559\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00560}00560\ \textcolor{stringliteral}{\ \ \ \ parser\ =\ argparse.ArgumentParser(}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00561}00561\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ description="{}MarkdownTeX\ Parser\ with\ link\ preservation"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00562}00562\ \textcolor{stringliteral}{\ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00563}00563\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument("{}input"{},\ help="{}Input\ MarkdownTeX\ file"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00564}00564\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument("{}-\/o"{},\ "{}-\/-\/output"{},\ help="{}Output\ JSON\ file\ for\ AST"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00565}00565\ \textcolor{stringliteral}{\ \ \ \ parser.add\_argument("{}-\/-\/links"{},\ action="{}store\_true"{},\ help="{}Extract\ links\ only"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00566}00566\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00567}00567\ \textcolor{stringliteral}{\ \ \ \ args\ =\ parser.parse\_args()}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00568}00568\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00569}00569\ \textcolor{stringliteral}{\ \ \ \ \#\ Read\ input\ file}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00570}00570\ \textcolor{stringliteral}{\ \ \ \ with\ open(args.input,\ "{}r"{},\ encoding="{}utf-\/8"{})\ as\ f:}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00571}00571\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ content\ =\ f.read()}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00572}00572\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00573}00573\ \textcolor{stringliteral}{\ \ \ \ \#\ Parse\ content}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00574}00574\ \textcolor{stringliteral}{\ \ \ \ parser\_instance\ =\ MarkdownTeXParser()}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00575}00575\ \textcolor{stringliteral}{\ \ \ \ ast\ =\ parser\_instance.parse(content)}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00576}00576\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00577}00577\ \textcolor{stringliteral}{\ \ \ \ if\ args.links:}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00578}00578\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Extract\ links}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00579}00579\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ links\ =\ parser\_instance.extract\_links(ast)}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00580}00580\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ print(f"{}Found\ \{len(links)\}\ links:"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00581}00581\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ for\ link\ in\ links:}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00582}00582\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ print(f"{}\ \ [\{link['text']\}](\{link['href']\})"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00583}00583\ \textcolor{stringliteral}{\ \ \ \ else:}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00584}00584\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \#\ Save\ AST}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00585}00585\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ output\_file\ =\ args.output\ or\ f"{}\{args.input\}.ast.json"{}}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00586}00586\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ parser\_instance.save\_ast(ast,\ output\_file)}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00587}00587\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ logger.info(f"{}AST\ saved\ to\ \{output\_file\}"{})}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00588}00588\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00589}00589\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00590}00590\ \textcolor{stringliteral}{if\ \_\_name\_\_\ ==\ "{}\_\_main\_\_"{}:}}
+\DoxyCodeLine{\Hypertarget{markdowntex__parser_8py_source_l00591}00591\ \textcolor{stringliteral}{\ \ \ \ main()}}
+
+\end{DoxyCode}

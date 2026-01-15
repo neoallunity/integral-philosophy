@@ -1,0 +1,1 @@
+@startuml\n!theme materia\nskinparam handwritten false\n\ntitle Site Structure: Unknown Site\n\n\n\nnote as stats\nSite Statistics:\nTotal Pages: 0\nTotal Links: 0\nHierarchy Levels: 0\nend note\n\n@enduml

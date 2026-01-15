@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEI PUBLIC "-//TEI P5//DTD//EN" "http://www.tei-c.org/release/xml/tei/custom/schema/dtd/tei.dtd">
+<ns0:TEI xmlns:ns0="http://www.tei-c.org/ns/1.0" xml:lang="en">
+  <ns0:teiHeader>
+    <ns0:fileDesc>
+      <ns0:titleStmt>
+        <ns0:title xml:lang="en" type="main">https://example.com</ns0:title>
+        <ns0:author>
+          <ns0:name>Web Scraper</ns0:name>
+        </ns0:author>
+        <ns0:publicationStmt>
+          <ns0:publisher>Integral Philosophy Publishing System</ns0:publisher>
+          <ns0:date when="2026-01-14" type="creation">2026-01-14</ns0:date>
+        </ns0:publicationStmt>
+        <ns0:sourceDesc>
+          <ns0:bibl>
+            <ns0:title>https://example.com</ns0:title>
+          </ns0:bibl>
+        </ns0:sourceDesc>
+      </ns0:titleStmt>
+    </ns0:fileDesc>
+    <ns0:profileDesc>
+      <ns0:langUsage>
+        <ns0:language ident="en">English</ns0:language>
+      </ns0:langUsage>
+      <ns0:encodingDesc>
+        <ns0:projectDesc>This document was automatically generated from web content using the Integral Philosophy Publishing System.</ns0:projectDesc>
+      </ns0:encodingDesc>
+    </ns0:profileDesc>
+    <ns0:revisionDesc>
+      <ns0:change when="2026-01-14T23:19:43.843893" who="#web_scraper">Initial TEI XML generation from scraped web content</ns0:change>
+    </ns0:revisionDesc>
+  </ns0:teiHeader>
+  <ns0:text>
+    <ns0:front>
+      <ns0:div type="contents">
+        <ns0:head>Table of Contents</ns0:head>
+        <ns0:div type="toc-entry">
+          <ns0:ref target="#https___example_com">https://example.com</ns0:ref>
+        </ns0:div>
+        <ns0:div type="toc-entry">
+          <ns0:ref target="#https___example_com_about">https://example.com/about</ns0:ref>
+        </ns0:div>
+        <ns0:div type="toc-entry">
+          <ns0:ref target="#https___example_com_contact">https://example.com/contact</ns0:ref>
+        </ns0:div>
+      </ns0:div>
+    </ns0:front>
+    <ns0:body>
+      <ns0:div type="page" xml:id="https___example_com">
+        <ns0:head>https://example.com</ns0:head>
+        <ns0:div type="links">
+          <ns0:head>Links</ns0:head>
+          <ns0:list type="bulleted">
+            <ns0:item>
+              <ns0:ref target="https://example.com/about">https://example.com/about</ns0:ref>
+            </ns0:item>
+            <ns0:item>
+              <ns0:ref target="https://example.com/contact">https://example.com/contact</ns0:ref>
+            </ns0:item>
+          </ns0:list>
+        </ns0:div>
+      </ns0:div>
+      <ns0:div type="page" xml:id="https___example_com_about">
+        <ns0:head>https://example.com/about</ns0:head>
+        <ns0:div type="links">
+          <ns0:head>Links</ns0:head>
+          <ns0:list type="bulleted">
+            <ns0:item>
+              <ns0:ref target="https://example.com">https://example.com</ns0:ref>
+            </ns0:item>
+          </ns0:list>
+        </ns0:div>
+      </ns0:div>
+      <ns0:div type="page" xml:id="https___example_com_contact">
+        <ns0:head>https://example.com/contact</ns0:head>
+        <ns0:div type="links">
+          <ns0:head>Links</ns0:head>
+          <ns0:list type="bulleted">
+            <ns0:item>
+              <ns0:ref target="https://example.com">https://example.com</ns0:ref>
+            </ns0:item>
+          </ns0:list>
+        </ns0:div>
+      </ns0:div>
+    </ns0:body>
+  </ns0:text>
+  <ns0:standOff>
+    <ns0:listBibl type="links"/>
+  </ns0:standOff>
+</ns0:TEI>

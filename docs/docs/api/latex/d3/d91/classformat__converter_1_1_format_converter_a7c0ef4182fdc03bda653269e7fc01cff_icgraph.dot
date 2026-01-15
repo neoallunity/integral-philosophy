@@ -1,0 +1,11 @@
+digraph "format_converter.FormatConverter._compare_structure"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="format_converter.FormatConverter.\l_compare_structure",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge2_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="format_converter.FormatConverter.compare\l_conversions",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d91/classformat__converter_1_1_format_converter.html#af085bcddfb279329d88c175f760985a6",tooltip=" "];
+}

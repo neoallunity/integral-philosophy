@@ -1,0 +1,427 @@
+\doxysection{ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer Class Reference}
+\hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer}{}\label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+
+
+Collaboration diagram for ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b9c9386767ce1ef16bf0896e2e665a7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a3534d6735846aae78bdf859a3a84bff6}{transform\+\_\+site\+\_\+ast}} (self, Dict\mbox{[}str, Any\mbox{]} site\+\_\+ast)
+\item 
+str \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_abe49bcc2982b23ed28a030aefcc00554}{generate\+\_\+plantuml}} (self, Dict\mbox{[}str, Any\mbox{]} uml\+\_\+data)
+\item 
+str \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_acb9eca814723ad702b257a759ad67bc5}{generate\+\_\+mermaid}} (self, Dict\mbox{[}str, Any\mbox{]} uml\+\_\+data)
+\item 
+str \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b17ab9cc473cb6214a9218893a86a0f}{generate\+\_\+graphviz}} (self, Dict\mbox{[}str, Any\mbox{]} uml\+\_\+data)
+\item 
+None \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a64186c220247b14aa76ceffc69e1a893}{generate\+\_\+all\+\_\+formats}} (self, Dict\mbox{[}str, Any\mbox{]} uml\+\_\+data, Path output\+\_\+dir)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ac1cd36f90cab0197ba6c80ecb7a253a4}{nodes}} = \{\}
+\item 
+list \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a21ad2ac333d011cabac3a4e623320a36}{edges}} = \mbox{[}$\,$\mbox{]}
+\item 
+dict \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0f3f6be36923283de9bc329eca0b89be}{site\+\_\+structure}} = \{\}
+\item 
+dict \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a5943e47c732e1b9670179696d755befb}{page\+\_\+hierarchy}} = \{\}
+\item 
+dict \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a6e69620e93401f645c783b82b39ca259}{link\+\_\+graph}} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0dfd2dea8573aaa1c55edd1c925b00de}{\+\_\+create\+\_\+page\+\_\+node}} (self, str url, Dict\mbox{[}str, Any\mbox{]} page\+\_\+info)
+\item 
+str \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad7fe8e53ab6f7e8be1291e9d5476c475}{\+\_\+classify\+\_\+page\+\_\+type}} (self, str url, Dict\mbox{[}str, Any\mbox{]} metadata)
+\item 
+Dict\mbox{[}str, str\mbox{]} \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a9f0c970b4e63f32d2007ea0d0786d976}{\+\_\+get\+\_\+page\+\_\+style}} (self, str page\+\_\+type)
+\item 
+None \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab87dba3e5942aeca94ee6c865e6327aa}{\+\_\+create\+\_\+link\+\_\+edges}} (self, Dict\mbox{[}str, Any\mbox{]} pages)
+\item 
+None \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4cc5b7aea5090bb69cead8de51385fb0}{\+\_\+create\+\_\+hierarchy}} (self, Dict\mbox{[}str, Any\mbox{]} pages)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ae00a4ef5a25ffb0d341776a95247887e}{\+\_\+calculate\+\_\+statistics}} (self)
+\item 
+str \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0b7e3f786a3c4ac9f8a67041c809ebcf}{\+\_\+sanitize\+\_\+id}} (self, str url)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab27179bffb18f8cb7529c9cec92fe741}{\+\_\+serialize\+\_\+nodes}} (self)
+\item 
+List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad79353bb9ce9c2559ac219249e6540a1}{\+\_\+serialize\+\_\+edges}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Transforms site AST into UML diagrams\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00059}{59}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b9c9386767ce1ef16bf0896e2e665a7}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b9c9386767ce1ef16bf0896e2e665a7} 
+ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00062}{62}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ae00a4ef5a25ffb0d341776a95247887e}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_calculate\_statistics@{\_calculate\_statistics}}
+\index{\_calculate\_statistics@{\_calculate\_statistics}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_calculate\_statistics()}{\_calculate\_statistics()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ae00a4ef5a25ffb0d341776a95247887e} 
+ Dict\mbox{[}str, Any\mbox{]} ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+calculate\+\_\+statistics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Calculate statistics about the site structure\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00231}{231}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00064}{edges}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00063}{nodes}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00066}{page\+\_\+hierarchy}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad7fe8e53ab6f7e8be1291e9d5476c475}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_classify\_page\_type@{\_classify\_page\_type}}
+\index{\_classify\_page\_type@{\_classify\_page\_type}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_classify\_page\_type()}{\_classify\_page\_type()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad7fe8e53ab6f7e8be1291e9d5476c475} 
+ str ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+classify\+\_\+page\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{metadata}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Classify page type based on URL and metadata\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00133}{133}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{\+\_\+create\+\_\+page\+\_\+node()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4cc5b7aea5090bb69cead8de51385fb0}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_create\_hierarchy@{\_create\_hierarchy}}
+\index{\_create\_hierarchy@{\_create\_hierarchy}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_hierarchy()}{\_create\_hierarchy()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4cc5b7aea5090bb69cead8de51385fb0} 
+ None ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+create\+\_\+hierarchy (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{pages}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create hierarchical structure from URL paths\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00199}{199}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00066}{page\+\_\+hierarchy}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab87dba3e5942aeca94ee6c865e6327aa}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_create\_link\_edges@{\_create\_link\_edges}}
+\index{\_create\_link\_edges@{\_create\_link\_edges}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_link\_edges()}{\_create\_link\_edges()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab87dba3e5942aeca94ee6c865e6327aa} 
+ None ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+create\+\_\+link\+\_\+edges (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{pages}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create edges representing links between pages\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00181}{181}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00250}{\+\_\+sanitize\+\_\+id()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00064}{edges}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0dfd2dea8573aaa1c55edd1c925b00de}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_create\_page\_node@{\_create\_page\_node}}
+\index{\_create\_page\_node@{\_create\_page\_node}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_page\_node()}{\_create\_page\_node()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0dfd2dea8573aaa1c55edd1c925b00de} 
+ None ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+create\+\_\+page\+\_\+node (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{page\+\_\+info}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create UML node for a page\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{94}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00133}{\+\_\+classify\+\_\+page\+\_\+type()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00167}{\+\_\+get\+\_\+page\+\_\+style()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00250}{\+\_\+sanitize\+\_\+id()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00063}{nodes}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a9f0c970b4e63f32d2007ea0d0786d976}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_get\_page\_style@{\_get\_page\_style}}
+\index{\_get\_page\_style@{\_get\_page\_style}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_get\_page\_style()}{\_get\_page\_style()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a9f0c970b4e63f32d2007ea0d0786d976} 
+ Dict\mbox{[}str, str\mbox{]} ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+get\+\_\+page\+\_\+style (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{page\+\_\+type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get styling for page type\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00167}{167}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{\+\_\+create\+\_\+page\+\_\+node()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00343}{generate\+\_\+mermaid()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0b7e3f786a3c4ac9f8a67041c809ebcf}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_sanitize\_id@{\_sanitize\_id}}
+\index{\_sanitize\_id@{\_sanitize\_id}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_sanitize\_id()}{\_sanitize\_id()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0b7e3f786a3c4ac9f8a67041c809ebcf} 
+ str ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+sanitize\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create a valid UML node ID from URL\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00250}{250}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00181}{\+\_\+create\+\_\+link\+\_\+edges()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{\+\_\+create\+\_\+page\+\_\+node()}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad79353bb9ce9c2559ac219249e6540a1}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_serialize\_edges@{\_serialize\_edges}}
+\index{\_serialize\_edges@{\_serialize\_edges}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_serialize\_edges()}{\_serialize\_edges()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ad79353bb9ce9c2559ac219249e6540a1} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+serialize\+\_\+edges (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Serialize edges to dictionary format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00275}{275}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00064}{edges}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab27179bffb18f8cb7529c9cec92fe741}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!\_serialize\_nodes@{\_serialize\_nodes}}
+\index{\_serialize\_nodes@{\_serialize\_nodes}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{\_serialize\_nodes()}{\_serialize\_nodes()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ab27179bffb18f8cb7529c9cec92fe741} 
+ List\mbox{[}Dict\mbox{[}str, Any\mbox{]}\mbox{]} ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+\_\+serialize\+\_\+nodes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Serialize nodes to dictionary format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00262}{262}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00063}{nodes}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a64186c220247b14aa76ceffc69e1a893}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!generate\_all\_formats@{generate\_all\_formats}}
+\index{generate\_all\_formats@{generate\_all\_formats}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{generate\_all\_formats()}{generate\_all\_formats()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a64186c220247b14aa76ceffc69e1a893} 
+ None ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+generate\+\_\+all\+\_\+formats (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{uml\+\_\+data}{, }\item[{Path}]{output\+\_\+dir}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate all supported UML formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00449}{449}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00388}{generate\+\_\+graphviz()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00343}{generate\+\_\+mermaid()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00287}{generate\+\_\+plantuml()}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b17ab9cc473cb6214a9218893a86a0f}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!generate\_graphviz@{generate\_graphviz}}
+\index{generate\_graphviz@{generate\_graphviz}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{generate\_graphviz()}{generate\_graphviz()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a4b17ab9cc473cb6214a9218893a86a0f} 
+ str ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+generate\+\_\+graphviz (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{uml\+\_\+data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate Graphviz DOT representation\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00388}{388}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00449}{generate\+\_\+all\+\_\+formats()}}.
+
+Here is the caller graph for this function\+:
+% FIG 13
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_acb9eca814723ad702b257a759ad67bc5}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!generate\_mermaid@{generate\_mermaid}}
+\index{generate\_mermaid@{generate\_mermaid}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{generate\_mermaid()}{generate\_mermaid()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_acb9eca814723ad702b257a759ad67bc5} 
+ str ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+generate\+\_\+mermaid (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{uml\+\_\+data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate Mermaid diagram\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00343}{343}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00167}{\+\_\+get\+\_\+page\+\_\+style()}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00449}{generate\+\_\+all\+\_\+formats()}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_abe49bcc2982b23ed28a030aefcc00554}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!generate\_plantuml@{generate\_plantuml}}
+\index{generate\_plantuml@{generate\_plantuml}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{generate\_plantuml()}{generate\_plantuml()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_abe49bcc2982b23ed28a030aefcc00554} 
+ str ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+generate\+\_\+plantuml (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{uml\+\_\+data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate PlantUML representation\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00287}{287}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00449}{generate\+\_\+all\+\_\+formats()}}.
+
+Here is the caller graph for this function\+:
+% FIG 16
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a3534d6735846aae78bdf859a3a84bff6}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!transform\_site\_ast@{transform\_site\_ast}}
+\index{transform\_site\_ast@{transform\_site\_ast}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_site\_ast()}{transform\_site\_ast()}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a3534d6735846aae78bdf859a3a84bff6} 
+ Dict\mbox{[}str, Any\mbox{]} ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+transform\+\_\+site\+\_\+ast (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\mbox{[}str, Any\mbox{]}}]{site\+\_\+ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform entire site AST to UML representation\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{69}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+References \mbox{\hyperlink{ast__to__uml_8py_source_l00231}{\+\_\+calculate\+\_\+statistics()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00199}{\+\_\+create\+\_\+hierarchy()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00181}{\+\_\+create\+\_\+link\+\_\+edges()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{\+\_\+create\+\_\+page\+\_\+node()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00275}{\+\_\+serialize\+\_\+edges()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00262}{\+\_\+serialize\+\_\+nodes()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00066}{page\+\_\+hierarchy}}.
+
+Here is the call graph for this function\+:
+% FIG 17
+
+
+\label{doc-variable-members}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a21ad2ac333d011cabac3a4e623320a36}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!edges@{edges}}
+\index{edges@{edges}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{edges}{edges}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a21ad2ac333d011cabac3a4e623320a36} 
+list ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+edges = \mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00064}{64}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00231}{\+\_\+calculate\+\_\+statistics()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00181}{\+\_\+create\+\_\+link\+\_\+edges()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00275}{\+\_\+serialize\+\_\+edges()}}.
+
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a6e69620e93401f645c783b82b39ca259}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!link\_graph@{link\_graph}}
+\index{link\_graph@{link\_graph}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{link\_graph}{link\_graph}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a6e69620e93401f645c783b82b39ca259} 
+dict ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+link\+\_\+graph = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00067}{67}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ac1cd36f90cab0197ba6c80ecb7a253a4}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!nodes@{nodes}}
+\index{nodes@{nodes}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{nodes}{nodes}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_ac1cd36f90cab0197ba6c80ecb7a253a4} 
+ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+nodes = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00063}{63}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00231}{\+\_\+calculate\+\_\+statistics()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00094}{\+\_\+create\+\_\+page\+\_\+node()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00262}{\+\_\+serialize\+\_\+nodes()}}.
+
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a5943e47c732e1b9670179696d755befb}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!page\_hierarchy@{page\_hierarchy}}
+\index{page\_hierarchy@{page\_hierarchy}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{page\_hierarchy}{page\_hierarchy}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a5943e47c732e1b9670179696d755befb} 
+ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+page\+\_\+hierarchy = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00066}{66}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{ast__to__uml_8py_source_l00231}{\+\_\+calculate\+\_\+statistics()}}, \mbox{\hyperlink{ast__to__uml_8py_source_l00199}{\+\_\+create\+\_\+hierarchy()}}, and \mbox{\hyperlink{ast__to__uml_8py_source_l00069}{transform\+\_\+site\+\_\+ast()}}.
+
+\Hypertarget{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0f3f6be36923283de9bc329eca0b89be}\index{ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}!site\_structure@{site\_structure}}
+\index{site\_structure@{site\_structure}!ast\_to\_uml.ASTToUMLTransformer@{ast\_to\_uml.ASTToUMLTransformer}}
+\doxysubsubsection{\texorpdfstring{site\_structure}{site\_structure}}
+{\footnotesize\ttfamily \label{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_a0f3f6be36923283de9bc329eca0b89be} 
+dict ast\+\_\+to\+\_\+uml.\+ASTTo\+UMLTransformer.\+site\+\_\+structure = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{ast__to__uml_8py_source_l00065}{65}} of file \mbox{\hyperlink{ast__to__uml_8py_source}{ast\+\_\+to\+\_\+uml.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{ast__to__uml_8py}{ast\+\_\+to\+\_\+uml.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\doxysection{update\+\_\+build\+\_\+systems.\+py}
+\hypertarget{update__build__systems_8py_source}{}\label{update__build__systems_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/update\_build\_systems.py@{/home/domini/src/Magazine/Magazine/scripts/update\_build\_systems.py}}
+\mbox{\hyperlink{update__build__systems_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00001}\mbox{\hyperlink{namespaceupdate__build__systems}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00002}00002\ \textcolor{comment}{\#\ Update\ build\ systems\ for\ new\ directory\ structure}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00003}00003\ \textcolor{comment}{\#\ ===========================================}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00005}00005\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00006}00006\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00007}00007\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00010}\mbox{\hyperlink{namespaceupdate__build__systems_aa0f9f36645291c4effa8d8a298704d82}{00010}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceupdate__build__systems_aa0f9f36645291c4effa8d8a298704d82}{update\_scons}}():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00011}00011\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Update\ SCons\ build\ system\ paths."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00012}00012\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔧\ Updating\ SCons\ build\ system..."{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00014}00014\ \ \ \ \ scons\_dir\ =\ Path(\textcolor{stringliteral}{"{}build-\/systems/scons"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ scons\_dir.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ SCons\ directory\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00019}00019\ \ \ \ \ \textcolor{comment}{\#\ Update\ SConstruct\ paths}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00020}00020\ \ \ \ \ sconstruct\_file\ =\ scons\_dir\ /\ \textcolor{stringliteral}{"{}SConstruct"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{if}\ sconstruct\_file.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00022}00022\ \ \ \ \ \ \ \ \ content\ =\ sconstruct\_file.read\_text()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ Haskell\ project\ path\ to\ work\ from\ build-\/systems/scons\ directory}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ content\ =\ content.replace(\textcolor{stringliteral}{"{}'../haskell-\/project'"{}},\ \textcolor{stringliteral}{"{}'../../haskell-\/project'"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ copy\ commands}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ content\ =\ content.replace(}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'cp\ \{env["{}HASKELL\_PROJECT\_DIR"{}]\}/.stack-\/work/'},}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'cp\ \{env["{}HASKELL\_PROJECT\_DIR"{}]\}/.stack-\/work/'},}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ sconstruct\_file.write\_text(content)}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Updated\ SConstruct"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00039}\mbox{\hyperlink{namespaceupdate__build__systems_ab0901a648b0e8728fd3db3f3155420b8}{00039}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceupdate__build__systems_ab0901a648b0e8728fd3db3f3155420b8}{update\_cmake}}():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00040}00040\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Update\ CMake\ build\ system\ paths."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00041}00041\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔧\ Updating\ CMake\ build\ system..."{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00043}00043\ \ \ \ \ cmake\_dir\ =\ Path(\textcolor{stringliteral}{"{}build-\/systems/cmake"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ cmake\_dir.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ CMake\ directory\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00048}00048\ \ \ \ \ \textcolor{comment}{\#\ Update\ CMakeLists.txt\ paths}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00049}00049\ \ \ \ \ cmake\_file\ =\ cmake\_dir\ /\ \textcolor{stringliteral}{"{}CMakeLists.txt"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ cmake\_file.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ content\ =\ cmake\_file.read\_text()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ Haskell\ project\ path}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ content\ =\ content.replace(}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\$\{CMAKE\_SOURCE\_DIR\}/haskell-\/project"{}},}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\$\{CMAKE\_SOURCE\_DIR\}/../../haskell-\/project"{}},}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ cmake\_file.write\_text(content)}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Updated\ CMakeLists.txt"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00065}\mbox{\hyperlink{namespaceupdate__build__systems_ac6f7c226e52ffcbf48daa6d1cbcb9a5a}{00065}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceupdate__build__systems_ac6f7c226e52ffcbf48daa6d1cbcb9a5a}{update\_autotools}}():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00066}00066\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Update\ Autotools\ build\ system\ paths."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00067}00067\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔧\ Updating\ Autotools\ build\ system..."{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00069}00069\ \ \ \ \ autotools\_dir\ =\ Path(\textcolor{stringliteral}{"{}build-\/systems/autotools"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ autotools\_dir.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Autotools\ directory\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00074}00074\ \ \ \ \ \textcolor{comment}{\#\ Update\ configure.ac}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00075}00075\ \ \ \ \ config\_file\ =\ autotools\_dir\ /\ \textcolor{stringliteral}{"{}configure.ac"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ config\_file.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ content\ =\ config\_file.read\_text()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ Haskell\ project\ path}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ content\ =\ content.replace(\textcolor{stringliteral}{"{}./haskell-\/project"{}},\ \textcolor{stringliteral}{"{}../../haskell-\/project"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ config\_file.write\_text(content)}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Updated\ configure.ac"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00085}00085\ \ \ \ \ \textcolor{comment}{\#\ Update\ Makefile.am}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00086}00086\ \ \ \ \ makefile\ =\ autotools\_dir\ /\ \textcolor{stringliteral}{"{}Makefile.am"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{if}\ makefile.exists():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ content\ =\ makefile.read\_text()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ Haskell\ project\ path}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ content\ =\ content.replace(\textcolor{stringliteral}{"{}\$(haskelldir)"{}},\ \textcolor{stringliteral}{"{}\$(HASKELL\_PROJECT\_DIR)"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ makefile.write\_text(content)}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Updated\ Makefile.am"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00099}\mbox{\hyperlink{namespaceupdate__build__systems_a483c86808c8f9877d95d7c1d927d0974}{00099}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespaceupdate__build__systems_a483c86808c8f9877d95d7c1d927d0974}{main}}():}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00100}00100\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ update\ function."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00101}00101\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Updating\ build\ systems\ for\ new\ directory\ structure..."{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00103}00103\ \ \ \ \ success\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00104}00104\ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespaceupdate__build__systems_aa0f9f36645291c4effa8d8a298704d82}{update\_scons}}()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00105}00105\ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespaceupdate__build__systems_ab0901a648b0e8728fd3db3f3155420b8}{update\_cmake}}()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00106}00106\ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespaceupdate__build__systems_ac6f7c226e52ffcbf48daa6d1cbcb9a5a}{update\_autotools}}()}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n✅\ All\ build\ systems\ updated\ successfully!"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n❌\ Some\ updates\ failed!"{}})}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00115}00115\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{update__build__systems_8py_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{namespaceupdate__build__systems_a483c86808c8f9877d95d7c1d927d0974}{main}}()}
+
+\end{DoxyCode}

@@ -1,0 +1,65 @@
+{
+  "total_articles": 8,
+  "articles_processed": [
+    "articles/smolyanova/main.tex",
+    "articles/bukharov/main.tex",
+    "articles/lugowska/main.tex",
+    "articles/holkin/main.tex",
+    "articles/krasheninnikov/main.tex",
+    "articles/safonov/main.tex",
+    "articles/moiseev/main.tex",
+    "articles/podzolkova/main.tex"
+  ],
+  "output_files": [
+    "smolyanova_reconstructed.md",
+    "bukharov_reconstructed.md",
+    "lugowska_reconstructed.md",
+    "holkin_reconstructed.md",
+    "krasheninnikov_reconstructed.md",
+    "safonov_reconstructed.md",
+    "moiseev_reconstructed.md",
+    "podzolkova_reconstructed.md"
+  ],
+  "reconstruction_details": {
+    "smolyanova_reconstructed.md": {
+      "title": "Smolyanova",
+      "author": "Unknown Author",
+      "source": "articles/smolyanova/main.tex"
+    },
+    "bukharov_reconstructed.md": {
+      "title": "Bukharov",
+      "author": "Unknown Author",
+      "source": "articles/bukharov/main.tex"
+    },
+    "lugowska_reconstructed.md": {
+      "title": "Lugowska",
+      "author": "Unknown Author",
+      "source": "articles/lugowska/main.tex"
+    },
+    "holkin_reconstructed.md": {
+      "title": "Holkin",
+      "author": "Unknown Author",
+      "source": "articles/holkin/main.tex"
+    },
+    "krasheninnikov_reconstructed.md": {
+      "title": "Krasheninnikov",
+      "author": "Unknown Author",
+      "source": "articles/krasheninnikov/main.tex"
+    },
+    "safonov_reconstructed.md": {
+      "title": "Safonov",
+      "author": "Unknown Author",
+      "source": "articles/safonov/main.tex"
+    },
+    "moiseev_reconstructed.md": {
+      "title": "POSSIBLE RESEARCH AREAS FOR THE INSTITUTE OF INTEGRAL SCIENCE",
+      "author": "Moiseev V.I.",
+      "source": "articles/moiseev/main.tex"
+    },
+    "podzolkova_reconstructed.md": {
+      "title": "THE CONCEPT OF DEVELOPMENT IN INTEGRAL PHILOSOPHY",
+      "author": "Podzolkova N.A.",
+      "source": "articles/podzolkova/main.tex"
+    }
+  }
+}

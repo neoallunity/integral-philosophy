@@ -1,0 +1,608 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d2/db6/classcontent__pipeline_1_1_content_pipeline" kind="class" language="Python" prot="public">
+    <compoundname>content_pipeline::ContentPipeline</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::work_dir</definition>
+        <argsstring></argsstring>
+        <name>work_dir</name>
+        <qualifiedname>content_pipeline.ContentPipeline.work_dir</qualifiedname>
+        <initializer>=  work_dir</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="47" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="47" bodyend="-1"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+        <referencedby refid="d3/d91/classformat__converter_1_1_format_converter_1a1e45074aee5188f3265b4eb281d6d362" compoundref="d4/d22/format__converter_8py" startline="140" endline="195">format_converter.FormatConverter._convert_with_pandoc</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" compoundref="d7/dae/html__tei__converter_8py" startline="52" endline="473">html_tei_converter.HTMLTEIConverter._create_xslt_stylesheets</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" compoundref="d9/dea/content__pipeline_8py" startline="165" endline="228">content_pipeline.ContentPipeline._stage_2_parse_content</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</referencedby>
+        <referencedby refid="d3/d91/classformat__converter_1_1_format_converter_1ab543241bfd728ca99f29fa540b19a87c" compoundref="d4/d22/format__converter_8py" startline="92" endline="132">format_converter.FormatConverter.convert</referencedby>
+        <referencedby refid="d3/d91/classformat__converter_1_1_format_converter_1a9a034a620b0f1a3c22318b768f077372" compoundref="d4/d22/format__converter_8py" startline="233" endline="277">format_converter.FormatConverter.convert_from_ast</referencedby>
+        <referencedby refid="d3/d91/classformat__converter_1_1_format_converter_1ac1b360c9e47acc0a13f81f4d4f95207f" compoundref="d4/d22/format__converter_8py" startline="196" endline="230">format_converter.FormatConverter.convert_to_ast</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" compoundref="d9/dea/content__pipeline_8py" startline="476" endline="496">content_pipeline.ContentPipeline.generate_report</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" compoundref="d7/dae/html__tei__converter_8py" startline="474" endline="534">html_tei_converter.HTMLTEIConverter.html_to_tei</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" compoundref="d7/dae/html__tei__converter_8py" startline="535" endline="577">html_tei_converter.HTMLTEIConverter.tei_to_html</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict content_pipeline.ContentPipeline::dirs</definition>
+        <argsstring></argsstring>
+        <name>dirs</name>
+        <qualifiedname>content_pipeline.ContentPipeline.dirs</qualifiedname>
+        <initializer>=  {
+            &quot;scraped&quot;: self.work_dir / &quot;01_scraped&quot;,
+            &quot;parsed&quot;: self.work_dir / &quot;02_parsed&quot;,
+            &quot;uml&quot;: self.work_dir / &quot;03_uml&quot;,
+            &quot;tei&quot;: self.work_dir / &quot;04_tei&quot;,
+            &quot;transformed&quot;: self.work_dir / &quot;05_transformed&quot;,
+            &quot;validation&quot;: self.work_dir / &quot;06_validation&quot;,
+            &quot;reports&quot;: self.work_dir / &quot;reports&quot;,
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="51" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="51" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a2ebb227e2db5d0a2a2051b89b4101799" compoundref="d9/dea/content__pipeline_8py" startline="423" endline="458">content_pipeline.ContentPipeline._check_format_consistency</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a046fd801f6ce4072fa3f3732ce7b8b11" compoundref="d9/dea/content__pipeline_8py" startline="497" endline="513">content_pipeline.ContentPipeline._get_directory_structure</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" compoundref="d9/dea/content__pipeline_8py" startline="132" endline="164">content_pipeline.ContentPipeline._stage_1_scrape_website</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" compoundref="d9/dea/content__pipeline_8py" startline="165" endline="228">content_pipeline.ContentPipeline._stage_2_parse_content</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" compoundref="d9/dea/content__pipeline_8py" startline="229" endline="266">content_pipeline.ContentPipeline._stage_3_generate_uml</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" compoundref="d9/dea/content__pipeline_8py" startline="302" endline="345">content_pipeline.ContentPipeline._stage_5_transform_formats</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" compoundref="d9/dea/content__pipeline_8py" startline="476" endline="496">content_pipeline.ContentPipeline.generate_report</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a6e4c137f0493d63ae42abbeaa771a975" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::scraper</definition>
+        <argsstring></argsstring>
+        <name>scraper</name>
+        <qualifiedname>content_pipeline.ContentPipeline.scraper</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="65" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="65" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" compoundref="d9/dea/content__pipeline_8py" startline="132" endline="164">content_pipeline.ContentPipeline._stage_1_scrape_website</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a014ba767afb3abb130285844fbd7ed02" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::parser</definition>
+        <argsstring></argsstring>
+        <name>parser</name>
+        <qualifiedname>content_pipeline.ContentPipeline.parser</qualifiedname>
+        <initializer>=  <ref refid="d7/d74/classmarkdowntex__parser_1_1_markdown_te_x_parser" kindref="compound">MarkdownTeXParser</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="66" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="66" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" compoundref="d9/dea/content__pipeline_8py" startline="165" endline="228">content_pipeline.ContentPipeline._stage_2_parse_content</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1abade25967f1def0af3f5bc1f04d96eae" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::uml_transformer</definition>
+        <argsstring></argsstring>
+        <name>uml_transformer</name>
+        <qualifiedname>content_pipeline.ContentPipeline.uml_transformer</qualifiedname>
+        <initializer>=  <ref refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer" kindref="compound">ASTToUMLTransformer</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="67" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="67" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" compoundref="d9/dea/content__pipeline_8py" startline="229" endline="266">content_pipeline.ContentPipeline._stage_3_generate_uml</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a51d5d2a89b637e7f8f02beb1d5b842be" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::tei_generator</definition>
+        <argsstring></argsstring>
+        <name>tei_generator</name>
+        <qualifiedname>content_pipeline.ContentPipeline.tei_generator</qualifiedname>
+        <initializer>=  <ref refid="dd/dbe/classtei__generator_1_1_t_e_i_generator" kindref="compound">TEIGenerator</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="68" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="68" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37d9377495f6f1f8174200ca6c2435e5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::xslt_transformer</definition>
+        <argsstring></argsstring>
+        <name>xslt_transformer</name>
+        <qualifiedname>content_pipeline.ContentPipeline.xslt_transformer</qualifiedname>
+        <initializer>=  <ref refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer" kindref="compound">XSLTTransformer</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="69" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="69" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" compoundref="d9/dea/content__pipeline_8py" startline="302" endline="345">content_pipeline.ContentPipeline._stage_5_transform_formats</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a3436f9334b01391c0cceb8b131202bbb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline::html_tei_converter</definition>
+        <argsstring></argsstring>
+        <name>html_tei_converter</name>
+        <qualifiedname>content_pipeline.ContentPipeline.html_tei_converter</qualifiedname>
+        <initializer>=  <ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" kindref="compound">HTMLTEIConverter</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="70" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="70" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict content_pipeline.ContentPipeline::results</definition>
+        <argsstring></argsstring>
+        <name>results</name>
+        <qualifiedname>content_pipeline.ContentPipeline.results</qualifiedname>
+        <initializer>=  {
+            &quot;start_time&quot;: None,
+            &quot;end_time&quot;: None,
+            &quot;duration&quot;: None,
+            &quot;stages&quot;: {},
+            &quot;success&quot;: False,
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="73" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="73" bodyend="-1"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a249244c24d82563492497dfc2fbc524e" compoundref="d9/dea/content__pipeline_8py" startline="514" endline="552">content_pipeline.ContentPipeline._generate_recommendations</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" compoundref="d9/dea/content__pipeline_8py" startline="132" endline="164">content_pipeline.ContentPipeline._stage_1_scrape_website</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" compoundref="d9/dea/content__pipeline_8py" startline="165" endline="228">content_pipeline.ContentPipeline._stage_2_parse_content</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" compoundref="d9/dea/content__pipeline_8py" startline="229" endline="266">content_pipeline.ContentPipeline._stage_3_generate_uml</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" compoundref="d9/dea/content__pipeline_8py" startline="302" endline="345">content_pipeline.ContentPipeline._stage_5_transform_formats</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" compoundref="d9/dea/content__pipeline_8py" startline="476" endline="496">content_pipeline.ContentPipeline.generate_report</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0793985ccef14ba186a29f0380bb5159" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>content_pipeline.ContentPipeline.__init__</definition>
+        <argsstring>(self, Path work_dir=Path(&quot;content_pipeline&quot;))</argsstring>
+        <name>__init__</name>
+        <qualifiedname>content_pipeline.ContentPipeline.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>work_dir</declname>
+          <defval>Path(&quot;content_pipeline&quot;)</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="46" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="46" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline.process_website</definition>
+        <argsstring>(self, str url, int max_pages=100)</argsstring>
+        <name>process_website</name>
+        <qualifiedname>content_pipeline.ContentPipeline.process_website</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_pages</declname>
+          <defval>100</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Process complete website through the pipeline</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="81" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="81" bodyend="131"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" compoundref="d9/dea/content__pipeline_8py" startline="132" endline="164">content_pipeline.ContentPipeline._stage_1_scrape_website</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" compoundref="d9/dea/content__pipeline_8py" startline="165" endline="228">content_pipeline.ContentPipeline._stage_2_parse_content</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" compoundref="d9/dea/content__pipeline_8py" startline="229" endline="266">content_pipeline.ContentPipeline._stage_3_generate_uml</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" compoundref="d9/dea/content__pipeline_8py" startline="302" endline="345">content_pipeline.ContentPipeline._stage_5_transform_formats</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] content_pipeline.ContentPipeline.generate_report</definition>
+        <argsstring>(self)</argsstring>
+        <name>generate_report</name>
+        <qualifiedname>content_pipeline.ContentPipeline.generate_report</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate comprehensive pipeline report</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="476" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="476" bodyend="496"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a249244c24d82563492497dfc2fbc524e" compoundref="d9/dea/content__pipeline_8py" startline="514" endline="552">content_pipeline.ContentPipeline._generate_recommendations</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a046fd801f6ce4072fa3f3732ce7b8b11" compoundref="d9/dea/content__pipeline_8py" startline="497" endline="513">content_pipeline.ContentPipeline._get_directory_structure</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_1_scrape_website</definition>
+        <argsstring>(self, str url, int max_pages)</argsstring>
+        <name>_stage_1_scrape_website</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_1_scrape_website</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_pages</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 1: Scrape website content</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="132" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="132" bodyend="164"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a6e4c137f0493d63ae42abbeaa771a975" compoundref="d9/dea/content__pipeline_8py" startline="65">content_pipeline.ContentPipeline.scraper</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_2_parse_content</definition>
+        <argsstring>(self)</argsstring>
+        <name>_stage_2_parse_content</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_2_parse_content</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 2: Parse MarkdownTeX content to AST</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="165" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="165" bodyend="228"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a014ba767afb3abb130285844fbd7ed02" compoundref="d9/dea/content__pipeline_8py" startline="66">content_pipeline.ContentPipeline.parser</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_3_generate_uml</definition>
+        <argsstring>(self)</argsstring>
+        <name>_stage_3_generate_uml</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_3_generate_uml</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 3: Generate UML diagrams from site structure</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="229" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="229" bodyend="266"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1abade25967f1def0af3f5bc1f04d96eae" compoundref="d9/dea/content__pipeline_8py" startline="67">content_pipeline.ContentPipeline.uml_transformer</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_4_generate_tei</definition>
+        <argsstring>(self)</argsstring>
+        <name>_stage_4_generate_tei</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_4_generate_tei</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 4: Generate canonical TEI XML format</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="267" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="267" bodyend="301"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0d81a94bea0219fcfcc1e01fa0afd1a7" compoundref="d9/dea/content__pipeline_8py" startline="383" endline="398">content_pipeline.ContentPipeline._validate_xml</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a51d5d2a89b637e7f8f02beb1d5b842be" compoundref="d9/dea/content__pipeline_8py" startline="68">content_pipeline.ContentPipeline.tei_generator</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_5_transform_formats</definition>
+        <argsstring>(self)</argsstring>
+        <name>_stage_5_transform_formats</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_5_transform_formats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 5: Transform TEI to multiple output formats</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="302" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="302" bodyend="345"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37d9377495f6f1f8174200ca6c2435e5" compoundref="d9/dea/content__pipeline_8py" startline="69">content_pipeline.ContentPipeline.xslt_transformer</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool content_pipeline.ContentPipeline._stage_6_validate_pipeline</definition>
+        <argsstring>(self)</argsstring>
+        <name>_stage_6_validate_pipeline</name>
+        <qualifiedname>content_pipeline.ContentPipeline._stage_6_validate_pipeline</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stage 6: Validate pipeline and test isomorphism</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="346" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="346" bodyend="382"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a2ebb227e2db5d0a2a2051b89b4101799" compoundref="d9/dea/content__pipeline_8py" startline="423" endline="458">content_pipeline.ContentPipeline._check_format_consistency</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ad8b772c220d5c18b9add36d3952ea959" compoundref="d9/dea/content__pipeline_8py" startline="399" endline="422">content_pipeline.ContentPipeline._validate_tei_structure</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a3436f9334b01391c0cceb8b131202bbb" compoundref="d9/dea/content__pipeline_8py" startline="70">content_pipeline.ContentPipeline.html_tei_converter</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" compoundref="d9/dea/content__pipeline_8py" startline="81" endline="131">content_pipeline.ContentPipeline.process_website</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0d81a94bea0219fcfcc1e01fa0afd1a7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] content_pipeline.ContentPipeline._validate_xml</definition>
+        <argsstring>(self, Path xml_file)</argsstring>
+        <name>_validate_xml</name>
+        <qualifiedname>content_pipeline.ContentPipeline._validate_xml</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>xml_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Validate XML file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="383" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="383" bodyend="398"/>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" compoundref="d9/dea/content__pipeline_8py" startline="267" endline="301">content_pipeline.ContentPipeline._stage_4_generate_tei</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ad8b772c220d5c18b9add36d3952ea959" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] content_pipeline.ContentPipeline._validate_tei_structure</definition>
+        <argsstring>(self, Path tei_file)</argsstring>
+        <name>_validate_tei_structure</name>
+        <qualifiedname>content_pipeline.ContentPipeline._validate_tei_structure</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>tei_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Validate TEI structure</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="399" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="399" bodyend="422"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1acc90c9788913e9c4441f9ebdb568bfbe" compoundref="d9/dea/content__pipeline_8py" startline="459" endline="475">content_pipeline.ContentPipeline._xpath_count</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a2ebb227e2db5d0a2a2051b89b4101799" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] content_pipeline.ContentPipeline._check_format_consistency</definition>
+        <argsstring>(self)</argsstring>
+        <name>_check_format_consistency</name>
+        <qualifiedname>content_pipeline.ContentPipeline._check_format_consistency</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check consistency across generated formats</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="423" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="423" bodyend="458"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" compoundref="d9/dea/content__pipeline_8py" startline="346" endline="382">content_pipeline.ContentPipeline._stage_6_validate_pipeline</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1acc90c9788913e9c4441f9ebdb568bfbe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int content_pipeline.ContentPipeline._xpath_count</definition>
+        <argsstring>(self, Path xml_file, str xpath)</argsstring>
+        <name>_xpath_count</name>
+        <qualifiedname>content_pipeline.ContentPipeline._xpath_count</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>xml_file</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>xpath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get XPath count from XML file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="459" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="459" bodyend="475"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ad8b772c220d5c18b9add36d3952ea959" compoundref="d9/dea/content__pipeline_8py" startline="399" endline="422">content_pipeline.ContentPipeline._validate_tei_structure</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a046fd801f6ce4072fa3f3732ce7b8b11" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] content_pipeline.ContentPipeline._get_directory_structure</definition>
+        <argsstring>(self)</argsstring>
+        <name>_get_directory_structure</name>
+        <qualifiedname>content_pipeline.ContentPipeline._get_directory_structure</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get directory structure and file counts</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="497" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="497" bodyend="513"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" compoundref="d9/dea/content__pipeline_8py" startline="51">content_pipeline.ContentPipeline.dirs</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" compoundref="d9/dea/content__pipeline_8py" startline="476" endline="496">content_pipeline.ContentPipeline.generate_report</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a249244c24d82563492497dfc2fbc524e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] content_pipeline.ContentPipeline._generate_recommendations</definition>
+        <argsstring>(self)</argsstring>
+        <name>_generate_recommendations</name>
+        <qualifiedname>content_pipeline.ContentPipeline._generate_recommendations</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate recommendations based on pipeline results</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="514" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="514" bodyend="552"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" compoundref="d9/dea/content__pipeline_8py" startline="73">content_pipeline.ContentPipeline.results</references>
+        <referencedby refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" compoundref="d9/dea/content__pipeline_8py" startline="476" endline="496">content_pipeline.ContentPipeline.generate_report</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Master content transformation pipeline</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>content_pipeline.ContentPipeline</label>
+        <link refid="d2/db6/classcontent__pipeline_1_1_content_pipeline"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="43" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="43" bodyend="552"/>
+    <listofallmembers>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0793985ccef14ba186a29f0380bb5159" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>__init__</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a2ebb227e2db5d0a2a2051b89b4101799" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_check_format_consistency</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a249244c24d82563492497dfc2fbc524e" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_generate_recommendations</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a046fd801f6ce4072fa3f3732ce7b8b11" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_get_directory_structure</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a781c3aeeb6c7bf8a17ba9abb911b19d4" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_1_scrape_website</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa7fcd45a4d7d57c292d93195f7d783" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_2_parse_content</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1aeca7457dd3ff32a794db209bb21454c8" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_3_generate_uml</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37a1ec204f46ef4794701981085e8eb1" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_4_generate_tei</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a042246df8fe8082ae21d0dec9e4a6b06" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_5_transform_formats</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a5fa14a99936afdc456de8431dce42995" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_stage_6_validate_pipeline</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ad8b772c220d5c18b9add36d3952ea959" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_validate_tei_structure</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0d81a94bea0219fcfcc1e01fa0afd1a7" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_validate_xml</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1acc90c9788913e9c4441f9ebdb568bfbe" prot="protected" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>_xpath_count</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a07958eede59d97fcdb5ef0ca808f1b96" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>dirs</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a0022330788a94f1dc45862a61b3f93df" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>generate_report</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a3436f9334b01391c0cceb8b131202bbb" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>html_tei_converter</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a014ba767afb3abb130285844fbd7ed02" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>parser</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a8c63e7b58a8f99983357aa6687d1db8b" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>process_website</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a931f2563440e186e5484feafb1a73b9b" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>results</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a6e4c137f0493d63ae42abbeaa771a975" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>scraper</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a51d5d2a89b637e7f8f02beb1d5b842be" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>tei_generator</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1abade25967f1def0af3f5bc1f04d96eae" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>uml_transformer</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>work_dir</name></member>
+      <member refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1a37d9377495f6f1f8174200ca6c2435e5" prot="public" virt="non-virtual"><scope>content_pipeline::ContentPipeline</scope><name>xslt_transformer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

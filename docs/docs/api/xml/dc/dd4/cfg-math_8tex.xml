@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dc/dd4/cfg-math_8tex" kind="file" language="C++">
+    <compoundname>cfg-math.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-math.tex<sp/>—<sp/>математика<sp/>и<sp/>теоремы</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\usepackage{amsmath,amssymb,amsthm}</highlight></codeline>
+<codeline><highlight class="normal">\numberwithin{equation}{chapter}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\theoremstyle{plain}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{theorem}{Теорема}[chapter]</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{lemma}[theorem]{Лемма}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{proposition}[theorem]{Утверждение}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{corollary}[theorem]{Следствие}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\theoremstyle{definition}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{definition}[theorem]{Определение}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{example}[theorem]{Пример}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\theoremstyle{remark}</highlight></codeline>
+<codeline><highlight class="normal">\newtheorem{remark}[theorem]{Замечание}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-math.tex"/>
+  </compounddef>
+</doxygen>

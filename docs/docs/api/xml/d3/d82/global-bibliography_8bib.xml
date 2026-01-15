@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d3/d82/global-bibliography_8bib" kind="file" language="C++">
+    <compoundname>global-bibliography.bib</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">@book{moiseev2019rphysics1,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{R-физика:<sp/>проект<sp/>физики<sp/>неорганической<sp/>и<sp/>органической<sp/>природы<sp/>(«большой<sp/>физики»)<sp/>на<sp/>основе<sp/>релятивистской<sp/>теории<sp/>количества.<sp/>Том<sp/>1:<sp/>Естественно-научный<sp/>проект},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Моисеев,<sp/>В.И.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2019},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{ЛЕНАНД},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{552}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{moiseev2019rphysics2,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{R-физика:<sp/>проект<sp/>физики<sp/>неорганической<sp/>и<sp/>органической<sp/>природы<sp/>(«большой<sp/>физики»)<sp/>на<sp/>основе<sp/>релятивистской<sp/>теории<sp/>количества.<sp/>Том<sp/>2:<sp/>Основания.<sp/>Гуманитарные<sp/>приложения},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Моисеев,<sp/>В.И.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2019},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{ЛЕНАНД},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{464}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{moiseev2022worldology,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Мирология:<sp/>Наука<sp/>о<sp/>мироподобных<sp/>системах},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Моисеев,<sp/>В.И.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2022},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{ЛЕНАНД},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{600}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{vygotsky2023thinking,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Мышление<sp/>и<sp/>речь},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Выготский,<sp/>Л.С.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2023},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{Изд-во<sp/>АСТ:<sp/>Кладезь},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{576}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@article{moiseev2025third,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Третья<sp/>сила<sp/>бытия},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Моисеев,<sp/>В.И.<sp/>and<sp/>Коломиец,<sp/>О.М.},</highlight></codeline>
+<codeline><highlight class="normal">journal<sp/>=<sp/>{Соловьевские<sp/>исследования},</highlight></codeline>
+<codeline><highlight class="normal">number<sp/>=<sp/>{2(86)},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{64--79},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2025}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@article{moiseev2025manifesto,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{На<sp/>пути<sp/>к<sp/>обществу<sp/>развития:<sp/>Манифест<sp/>философии<sp/>неовсеединства},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Моисеев,<sp/>В.И.},</highlight></codeline>
+<codeline><highlight class="normal">journal<sp/>=<sp/>{Альманах<sp/>Единая<sp/>философия<sp/>«Пределы<sp/>мышления<sp/>и<sp/>их<sp/>преодоление»},</highlight></codeline>
+<codeline><highlight class="normal">number<sp/>=<sp/>{1},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{9--12},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2025}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{bohm1959causality,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Причинность<sp/>и<sp/>случайность<sp/>в<sp/>современной<sp/>физике},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Бом,<sp/>Д.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{1959},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{ИЛ},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{248}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{weinberg2000gravitation,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Гравитация<sp/>и<sp/>космология.<sp/>Принципы<sp/>и<sp/>приложения<sp/>общей<sp/>теории<sp/>относительности},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Вейнберг,<sp/>С.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2000},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{Едиториал<sp/>УРСС},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{696}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@book{weinberg2003qft,</highlight></codeline>
+<codeline><highlight class="normal">title<sp/>=<sp/>{Квантовая<sp/>теория<sp/>поля.<sp/>Том<sp/>1:<sp/>Общая<sp/>теория},</highlight></codeline>
+<codeline><highlight class="normal">author<sp/>=<sp/>{Вейнберг,<sp/>С.},</highlight></codeline>
+<codeline><highlight class="normal">year<sp/>=<sp/>{2003},</highlight></codeline>
+<codeline><highlight class="normal">publisher<sp/>=<sp/>{Физматлит},</highlight></codeline>
+<codeline><highlight class="normal">address<sp/>=<sp/>{Москва},</highlight></codeline>
+<codeline><highlight class="normal">pages<sp/>=<sp/>{648}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/global-bibliography.bib"/>
+  </compounddef>
+</doxygen>

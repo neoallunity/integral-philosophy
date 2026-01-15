@@ -1,0 +1,55 @@
+{
+  "pipeline_info": {
+    "version": "1.0.0",
+    "timestamp": "2026-01-14 23:22:34",
+    "work_directory": "content_pipeline"
+  },
+  "results": {
+    "start_time": null,
+    "end_time": null,
+    "duration": null,
+    "stages": {},
+    "success": false
+  },
+  "directory_structure": {
+    "scraped": {
+      "path": "content_pipeline/01_scraped",
+      "total_files": 0,
+      "directories": 0
+    },
+    "parsed": {
+      "path": "content_pipeline/02_parsed",
+      "total_files": 0,
+      "directories": 0
+    },
+    "uml": {
+      "path": "content_pipeline/03_uml",
+      "total_files": 0,
+      "directories": 0
+    },
+    "tei": {
+      "path": "content_pipeline/04_tei",
+      "total_files": 0,
+      "directories": 0
+    },
+    "transformed": {
+      "path": "content_pipeline/05_transformed",
+      "total_files": 0,
+      "directories": 0
+    },
+    "validation": {
+      "path": "content_pipeline/06_validation",
+      "total_files": 0,
+      "directories": 0
+    },
+    "reports": {
+      "path": "content_pipeline/reports",
+      "total_files": 0,
+      "directories": 0
+    }
+  },
+  "recommendations": [
+    "Pipeline failed - check error messages in results",
+    "Some format transformations failed - check dependencies"
+  ]
+}

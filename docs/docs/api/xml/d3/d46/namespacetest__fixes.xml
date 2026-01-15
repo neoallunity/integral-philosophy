@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d3/d46/namespacetest__fixes" kind="namespace" language="Python">
+    <compoundname>test_fixes</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d3/d46/namespacetest__fixes_1a7367650bdf63cd660b22e1bed6002480" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_fixes.test_core_validators</definition>
+        <argsstring>()</argsstring>
+        <name>test_core_validators</name>
+        <qualifiedname>test_fixes.test_core_validators</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test core validators are working correctly.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" line="7" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" bodystart="7" bodyend="48"/>
+        <referencedby refid="d3/d46/namespacetest__fixes_1aa06d062746b095ce3c478415273db7ee" compoundref="d8/d9a/test__fixes_8py" startline="75" endline="89">test_validation_system</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d3/d46/namespacetest__fixes_1aaa6871a4a96c0b1b11d4f20dfa400ad9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_fixes.test_optional_validators</definition>
+        <argsstring>()</argsstring>
+        <name>test_optional_validators</name>
+        <qualifiedname>test_fixes.test_optional_validators</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test optional validators with graceful fallback.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" line="49" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" bodystart="49" bodyend="74"/>
+        <referencedby refid="d3/d46/namespacetest__fixes_1aa06d062746b095ce3c478415273db7ee" compoundref="d8/d9a/test__fixes_8py" startline="75" endline="89">test_validation_system</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d3/d46/namespacetest__fixes_1aa06d062746b095ce3c478415273db7ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_fixes.test_validation_system</definition>
+        <argsstring>()</argsstring>
+        <name>test_validation_system</name>
+        <qualifiedname>test_fixes.test_validation_system</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test the complete validation system.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" line="75" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" bodystart="75" bodyend="89"/>
+        <references refid="d3/d46/namespacetest__fixes_1a7367650bdf63cd660b22e1bed6002480" compoundref="d8/d9a/test__fixes_8py" startline="7" endline="48">test_core_validators</references>
+        <references refid="d3/d46/namespacetest__fixes_1aaa6871a4a96c0b1b11d4f20dfa400ad9" compoundref="d8/d9a/test__fixes_8py" startline="49" endline="74">test_optional_validators</references>
+        <referencedby refid="d3/d46/namespacetest__fixes_1aa703331892da06ceb9c690fd2688fc36" compoundref="d8/d9a/test__fixes_8py" startline="90" endline="116">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d3/d46/namespacetest__fixes_1aa703331892da06ceb9c690fd2688fc36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>test_fixes.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>test_fixes.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main test function.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" line="90" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" bodystart="90" bodyend="116"/>
+        <references refid="d3/d46/namespacetest__fixes_1aa703331892da06ceb9c690fd2688fc36" compoundref="d8/d9a/test__fixes_8py" startline="90" endline="116">main</references>
+        <references refid="d3/d46/namespacetest__fixes_1aa06d062746b095ce3c478415273db7ee" compoundref="d8/d9a/test__fixes_8py" startline="75" endline="89">test_validation_system</references>
+        <referencedby refid="d3/d46/namespacetest__fixes_1aa703331892da06ceb9c690fd2688fc36" compoundref="d8/d9a/test__fixes_8py" startline="90" endline="116">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Test script to validate all fixes and warnings resolution.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/test_fixes.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

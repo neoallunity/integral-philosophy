@@ -1,0 +1,254 @@
+{
+  "url": "https://philosophynow.org/",
+  "title": "Philosophy Now | a magazine of ideas",
+  "description": "A magazine for everyone interested in ideas.",
+  "keywords": "philosophy,magazine",
+  "language": "en",
+  "author": "",
+  "canonical": "",
+  "structure": {
+    "headings": [
+      {
+        "id": "",
+        "level": 3,
+        "text": "Happiness"
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Good Life Paradox"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Matthew Hammerton points out that a meaningful life and a life that goes well for you might not be the same thing."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Hedonic Treadmills in the Vale of Tears"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Michael Gracey looks at how philosophers have pursued happiness."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Good Life Paradox"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Matthew Hammerton points out that a meaningful life and a life that goes well for you might not be the same thing."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Deconstructing Happiness"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Abdullah Rayhan breaks down ‘happiness’ with Boethius, Kierkegaard & Montaigne."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Ancient Indian Wisdom for a Restless Age"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Jahnvi Borgohain looks at a variety of approaches to happiness."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Editorial: Happy Thoughts"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "by Rick Lewis"
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "News: December 2025 / January 2026"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Plato translation unveiled • Prison TV drama takes philosophical turn • UNESCO creates ethics code for neurotech — News reports by Anja Steinbauer, Olivia Gill and Martin Cohen"
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Peter Singer"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "The controversial Australian philosopher defends the right to choose to die on utilitarian grounds. Matt Qvortrup recently asked him about it."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Philosophy of William Blake"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Mark Vernon looks at the imaginative thinking of an imaginative artist."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Philosophy of Race"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Sailee Khurjekar argues that race is culturally constructed."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Evolution or Progress?"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Adam Neiblum asks what the difference is, and why it matters."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "What Women?"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Marcia Yudkin remembers almost choking at Cornell."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "What are the Proper Limits of Free Speech?"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Each answer below receives a random book. Apologies to the entrants not included."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Philosophy Shorts: Philosophers on Walking"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "by Matt Qvortrup"
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Philosophical Haiku: Baruch Spinoza (1632-1677)"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "by Terence Green"
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Islamic Philosophers: On Tyranny"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "AmirAli Maleki looks at tyranny from an Islamic perspective."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Art of Living: Marcus Aurelius’s Ten Commandments"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Massimo Pigliucci studies the Stoic Emperor’s to-do list."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "The Routledge Handbook of Philosophy of Friendship"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Elaine Coburn dips into different understandings of friendship."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Civic Solitude by Robert Talisse"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "John B. Min ponders temporarily stepping away from people for the sake of political understanding."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Wish You Were Here"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Ian Rizzo listens out for a philosophy of absence."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Medicine Wheel for the Planet by Jennifer Grenz"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Lucy Weir takes a wheel of healing for an intellectual spin."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "Bilbo Theorizes About Wellbeing"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Eric Comerford overhears Bilbo and Gandalf discussing happiness."
+      },
+      {
+        "id": "",
+        "level": 1,
+        "text": "“I’m Thinking”"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "by Dylan Skurka"
+      }
+    ],
+    "images": 37,
+    "links": 98,
+    "lists": 4,
+    "tables": 0
+  },
+  "scraped_at": "2026-01-15 02:58:19",
+  "content_length": 16474
+}

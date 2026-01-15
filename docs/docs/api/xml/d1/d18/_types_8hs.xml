@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d1/d18/_types_8hs" kind="file" language="C++">
+    <compoundname>Types.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>LambdaCase<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>StrictData<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Core<sp/>types<sp/>and<sp/>utilities<sp/>for<sp/>the<sp/>Integral<sp/>Philosophy<sp/>Publishing<sp/>System</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Types</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(<sp/>--<sp/>*<sp/>Basic<sp/>Types</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FilePath</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationSeverity(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationError(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationResult(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>QualityScore(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ProcessingContext(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--<sp/>*<sp/>Content<sp/>Types</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ContentType(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Document(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Section(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>MathExpression(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Citation(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Metadata(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--<sp/>*<sp/>Configuration</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>Config(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ValidationConfig(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>OutputConfig(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--<sp/>*<sp/>Results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ProcessingResult(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>BatchResult(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>QualityReport(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Time<sp/>(UTCTime)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Map.Strict<sp/>as<sp/>Map</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.FilePath<sp/>(FilePath)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">type<sp/>HashMap<sp/>k<sp/>v<sp/>=<sp/>Map.Map<sp/>k<sp/>v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Text<sp/>type<sp/>alias</highlight></codeline>
+<codeline><highlight class="normal">type<sp/>Text<sp/>=<sp/>T.Text</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Severity<sp/>of<sp/>validation<sp/>errors</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ValidationSeverity</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>=<sp/>Info</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>Warning</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>Error</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>Critical</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deriving<sp/>(Show,<sp/>Eq,<sp/>Ord)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Individual<sp/>validation<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ValidationError<sp/>=<sp/>ValidationError</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>veSeverity<sp/>::<sp/>!ValidationSeverity</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>veCode<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>veMessage<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>veFilePath<sp/>::<sp/>!FilePath</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>veLineNumber<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>veColumnNumber<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Result<sp/>of<sp/>validation</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ValidationResult<sp/>=<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>vrErrors<sp/>::<sp/>![ValidationError]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrWarnings<sp/>::<sp/>![ValidationError]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrScore<sp/>::<sp/>!QualityScore</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vrProcessingTime<sp/>::<sp/>!Double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Quality<sp/>score<sp/>(0-100)</highlight></codeline>
+<codeline><highlight class="normal">newtype<sp/>QualityScore<sp/>=<sp/>QualityScore<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>getQualityScore<sp/>::<sp/>Double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq,<sp/>Ord,<sp/>Num)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Processing<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ProcessingContext<sp/>=<sp/>ProcessingContext</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>pcConfig<sp/>::<sp/>!Config</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>pcStartTime<sp/>::<sp/>!UTCTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>pcWorkingDirectory<sp/>::<sp/>!FilePath</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Content<sp/>type<sp/>enumeration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ContentType</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>=<sp/>LaTeX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>HTML5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>EPUB3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>PDF</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>DOCX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>Markdown</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>TEI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deriving<sp/>(Show,<sp/>Eq,<sp/>Ord)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Document<sp/>representation</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Document<sp/>=<sp/>Document</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>docTitle<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docAuthor<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docAbstract<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docKeywords<sp/>::<sp/>![Text]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docSections<sp/>::<sp/>![Section]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docMathExpressions<sp/>::<sp/>![MathExpression]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docCitations<sp/>::<sp/>![Citation]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docMetadata<sp/>::<sp/>!Metadata</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>docContentType<sp/>::<sp/>!ContentType</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Document<sp/>section</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Section<sp/>=<sp/>Section</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>secLevel<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secTitle<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secContent<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>secSubsections<sp/>::<sp/>![Section]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Mathematical<sp/>expression</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>MathExpression</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>=<sp/>InlineMath<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>DisplayMath<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>Equation<sp/>!Text<sp/>![Text]<sp/>--<sp/>equation<sp/>body,<sp/>labels</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Citation<sp/>reference</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Citation<sp/>=<sp/>Citation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>citKey<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>citPages<sp/>::<sp/>!(Maybe<sp/>Text)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>citNote<sp/>::<sp/>!(Maybe<sp/>Text)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Document<sp/>metadata</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Metadata<sp/>=<sp/>Metadata</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>metaLanguage<sp/>::<sp/>!Text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCreationDate<sp/>::<sp/>!(Maybe<sp/>UTCTime)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaModificationDate<sp/>::<sp/>!(Maybe<sp/>UTCTime)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaWordCount<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCharCount<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metaCustomFields<sp/>::<sp/>!(HashMap<sp/>Text<sp/>Text)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Main<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Config<sp/>=<sp/>Config</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>cfgValidation<sp/>::<sp/>!ValidationConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>cfgOutput<sp/>::<sp/>!OutputConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>cfgVerbose<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>cfgParallel<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>cfgMaxThreads<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validation<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ValidationConfig<sp/>=<sp/>ValidationConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>vcEnableHTML5<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcEnableEPUB3<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcEnablePDF<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcEnableDOCX<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcEnableAccessibility<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcEnableSecurity<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcStrictMode<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>vcTimeoutSeconds<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Output<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>OutputConfig<sp/>=<sp/>OutputConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>ocOutputDirectory<sp/>::<sp/>!FilePath</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ocFormat<sp/>::<sp/>![ContentType]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ocGenerateReports<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ocReportFormat<sp/>::<sp/>![Text]<sp/>--<sp/>&quot;json&quot;,<sp/>&quot;html&quot;,<sp/>&quot;markdown&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>ocPreserveOriginal<sp/>::<sp/>!Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Single<sp/>processing<sp/>result</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ProcessingResult<sp/>a<sp/>=<sp/>ProcessingResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>prInput<sp/>::<sp/>!a</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>prOutput<sp/>::<sp/>!(Either<sp/>Text<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>prValidation<sp/>::<sp/>!ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>prTimestamp<sp/>::<sp/>!UTCTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Batch<sp/>processing<sp/>result</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>BatchResult<sp/>a<sp/>=<sp/>BatchResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>brResults<sp/>::<sp/>![ProcessingResult<sp/>a]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>brTotalCount<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>brSuccessCount<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>brFailureCount<sp/>::<sp/>!Int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>brTotalTime<sp/>::<sp/>!Double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>brQualityScore<sp/>::<sp/>!QualityScore</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Quality<sp/>report</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>QualityReport<sp/>=<sp/>QualityReport</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>qrDocument<sp/>::<sp/>!Document</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrOverallScore<sp/>::<sp/>!QualityScore</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrFormatScores<sp/>::<sp/>!(HashMap<sp/>ContentType<sp/>QualityScore)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrValidationResults<sp/>::<sp/>!(HashMap<sp/>ContentType<sp/>ValidationResult)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrRecommendations<sp/>::<sp/>![Text]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrProcessingTime<sp/>::<sp/>!Double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>qrGeneratedAt<sp/>::<sp/>!UTCTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Types.hs"/>
+  </compounddef>
+</doxygen>

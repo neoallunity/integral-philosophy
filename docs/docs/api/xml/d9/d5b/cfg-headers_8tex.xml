@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d9/d5b/cfg-headers_8tex" kind="file" language="C++">
+    <compoundname>cfg-headers.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-headers.tex<sp/>—<sp/>колонтитулы</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\usepackage{fancyhdr}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{tikzpagenodes}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{xcolor}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\setlength{\headheight}{18.5pt}</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>Два<sp/>режима:<sp/>строгий<sp/>(без<sp/>текстуры)<sp/>и<sp/>&quot;жар&quot;<sp/>(с<sp/>текстурой)</highlight></codeline>
+<codeline><highlight class="normal">\fancypagestyle{journalPlain}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\togglefalse{journaltexture}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\fancyhf{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">\fancypagestyle{journalHot}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\toggletrue{journaltexture}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\fancyhf{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Титул:<sp/>без<sp/>общих<sp/>оверлеев<sp/>(они<sp/>там<sp/>свои)</highlight></codeline>
+<codeline><highlight class="normal">\fancypagestyle{journalTitle}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\togglefalse{journaltexture}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\fancyhf{}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\pagestyle{journalHot}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Смелее:<sp/>угловые<sp/>акценты<sp/>+<sp/>верхняя<sp/>линия<sp/>+<sp/>«плашка»<sp/>внизу<sp/>(overlay)</highlight></codeline>
+<codeline><highlight class="normal">\AddToHook{shipout/foreground}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{tikzpicture}[remember<sp/>picture,overlay]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>Верхняя<sp/>линия</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\draw[JournalAccent!65,line<sp/>width=0.6pt]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=\JournalMarginX,yshift=\JournalHeaderY]current<sp/>page.north<sp/>west)<sp/>--</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=-\JournalMarginX,yshift=\JournalHeaderY]current<sp/>page.north<sp/>east);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>Второй<sp/>слой<sp/>(градиент-эффект<sp/>за<sp/>счет<sp/>2<sp/>линий)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\draw[JournalAccent2!45,line<sp/>width=1.2pt,opacity=0.25]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=14mm,yshift=-13.3mm]current<sp/>page.north<sp/>west)<sp/>--</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=-14mm,yshift=-13.3mm]current<sp/>page.north<sp/>east);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>Угловые<sp/>&quot;скобы&quot;<sp/>сверху</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\draw[JournalAccent!65,line<sp/>width=0.6pt]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=\JournalMarginX,yshift=-10mm]current<sp/>page.north<sp/>west)<sp/>--<sp/>++(10mm,0)<sp/>--<sp/>++(0,-6mm);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\draw[JournalAccent!65,line<sp/>width=0.6pt]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=-\JournalMarginX,yshift=-10mm]current<sp/>page.north<sp/>east)<sp/>--<sp/>++(-10mm,0)<sp/>--<sp/>++(0,-6mm);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>Нижняя<sp/>цветная<sp/>плашка</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\fill[JournalAccent!9]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=0mm,yshift=0mm]current<sp/>page.south<sp/>west)<sp/>rectangle</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=0mm,yshift=\JournalFooterH]current<sp/>page.south<sp/>east);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>«Жар»:<sp/>диагональные<sp/>штрихи<sp/>по<sp/>плашке</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\JournalIfTexture{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>\foreach<sp/>\x<sp/>in<sp/>{0,\JournalHatchStep,...,22}<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\draw[JournalAccent2!25,line<sp/>width=0.35pt,opacity=0.55]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=\x<sp/>cm,yshift=0mm]current<sp/>page.south<sp/>west)<sp/>--<sp/>++(\JournalHatchDx,\JournalFooterH);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>%<sp/>Тонкая<sp/>линия<sp/>над<sp/>футером</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\draw[JournalAccent!55,line<sp/>width=0.5pt]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=\JournalMarginX,yshift=\JournalFooterH]current<sp/>page.south<sp/>west)<sp/>--</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>([xshift=-\JournalMarginX,yshift=\JournalFooterH]current<sp/>page.south<sp/>east);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{tikzpicture}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Наполнение<sp/>колонтитулов</highlight></codeline>
+<codeline><highlight class="normal">\fancyhead[LE,RO]{\textcolor{JournalAccent!85}{\thepage}}</highlight></codeline>
+<codeline><highlight class="normal">\fancyhead[RE]{\textit{\nouppercase{\leftmark}}}</highlight></codeline>
+<codeline><highlight class="normal">\fancyhead[LO]{\textit{\nouppercase{\rightmark}}}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Микро-акцент<sp/>рядом<sp/>с<sp/>номером<sp/>страницы</highlight></codeline>
+<codeline><highlight class="normal">\fancyhead[LE]{\textcolor{JournalAccent2!65}{\large\raisebox{0.2ex}{\textbullet}}\;\textcolor{JournalAccent!85}{\thepage}}</highlight></codeline>
+<codeline><highlight class="normal">\fancyhead[RO]{\textcolor{JournalAccent!85}{\thepage}\;\textcolor{JournalAccent2!65}{\large\raisebox{0.2ex}{\textbullet}}}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Низ:<sp/>слева<sp/>URL,<sp/>по<sp/>центру<sp/>название,<sp/>справа<sp/>&quot;Выпуск<sp/>·<sp/>Год&quot;</highlight></codeline>
+<codeline><highlight class="normal">\fancyfoot[L]{\footnotesize\textcolor{JournalAccent!80}{\journalurl}}</highlight></codeline>
+<codeline><highlight class="normal">\fancyfoot[C]{\footnotesize\textcolor{JournalAccent!80}{\textit{Интегральная<sp/>философия}}}</highlight></codeline>
+<codeline><highlight class="normal">\fancyfoot[R]{\footnotesize\textcolor{JournalAccent!80}{\journalissue\;•\;\journalyear}}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\renewcommand{\headrulewidth}{0pt}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\footrulewidth}{0pt}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\chaptermark}[1]{\markboth{#1}{}}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\sectionmark}[1]{\markright{\thesection\<sp/>#1}}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-headers.tex"/>
+  </compounddef>
+</doxygen>

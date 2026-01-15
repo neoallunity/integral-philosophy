@@ -1,0 +1,1 @@
+# \n\n**URL:** https://allunity.ru/DOCS/%d0%a0%d0%b0%d0%b7%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-12.pdf\n\n**Language:** en\n\n**Scraped:** 2026-01-14 23:48:15\n\n---\n\n\n

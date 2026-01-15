@@ -1,0 +1,39 @@
+{
+  "url": "https://allunity.ru/DOCS/%d0%9a%d0%be%d0%bd%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b/",
+  "title": "Каталог лекций — Интегральное сообщество",
+  "description": "",
+  "keywords": "",
+  "language": "ru",
+  "author": "",
+  "canonical": "",
+  "structure": {
+    "headings": [
+      {
+        "id": "",
+        "level": 1,
+        "text": "📚 Каталог лекций"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Базовый курс"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Общий курс"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Углублённый курс"
+      }
+    ],
+    "images": 0,
+    "links": 0,
+    "lists": 0,
+    "tables": 0
+  },
+  "scraped_at": "2026-01-14 23:49:59",
+  "content_length": 8426
+}

@@ -1,0 +1,101 @@
+\doxysection{La\+Te\+XAnalyzer.\+hs}
+\hypertarget{_la_te_x_analyzer_8hs_source}{}\label{_la_te_x_analyzer_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/Tools/LaTeXAnalyzer.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/Tools/LaTeXAnalyzer.hs}}
+\mbox{\hyperlink{_la_te_x_analyzer_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00001}00001\ \{-\/\#\ LANGUAGE\ LambdaCase\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00002}00002\ \{-\/\#\ LANGUAGE\ OverloadedStrings\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00004}00004\ -\/-\/\ |\ LaTeX\ analyzer\ tool}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00005}00005\ module\ Tools.LaTeXAnalyzer\ where}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00007}00007\ import\ IntegralPhilosophy.Types}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00008}00008\ import\ IntegralPhilosophy.Reconstruction.LaTeX}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00009}00009\ import\ qualified\ Data.Text\ as\ T}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00010}00010\ import\ qualified\ Data.Text.IO\ as\ TIO}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00011}00011\ import\ System.Directory\ (doesFileExist,\ listDirectory)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00012}00012\ import\ System.FilePath\ ((</>),\ takeExtension)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00013}00013\ import\ Control.Monad\ (when,\ forM\_,\ filterM)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00015}00015\ -\/-\/\ |\ Main\ analyzer\ function}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00016}00016\ analyzeLaTeXFiles\ ::\ FilePath\ -\/>\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00017}00017\ analyzeLaTeXFiles\ dir\ =\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00018}00018\ \ \ putStrLn\ \$\ "{}Analyzing\ LaTeX\ files\ in:\ "{}\ ++\ dir}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00019}00019\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00020}00020\ \ \ files\ <-\/\ findLaTeXFiles\ dir}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00021}00021\ \ \ putStrLn\ \$\ "{}Found\ "{}\ ++\ show\ (length\ files)\ ++\ "{}\ LaTeX\ files"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00022}00022\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00023}00023\ \ \ forM\_\ files\ \$\ \(\backslash\)file\ -\/>\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00024}00024\ \ \ \ \ putStrLn\ \$\ "{}\(\backslash\)n-\/-\/-\/\ Analyzing:\ "{}\ ++\ file\ ++\ "{}\ -\/-\/-\/"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00025}00025\ \ \ \ \ analyzeSingleFile\ file}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00027}00027\ -\/-\/\ |\ Find\ all\ LaTeX\ files\ recursively}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00028}00028\ findLaTeXFiles\ ::\ FilePath\ -\/>\ IO\ [FilePath]}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00029}00029\ findLaTeXFiles\ dir\ =\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00030}00030\ \ \ exists\ <-\/\ doesFileExist\ dir}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00031}00031\ \ \ if\ exists}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00032}00032\ \ \ \ \ then\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00033}00033\ \ \ \ \ \ \ allFiles\ <-\/\ listDirectory\ dir}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00034}00034\ \ \ \ \ \ \ let\ texFiles\ =\ filter\ (\(\backslash\)f\ -\/>\ takeExtension\ f\ ==\ "{}.tex"{})\ allFiles}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00035}00035\ \ \ \ \ \ \ return\ \$\ map\ (dir\ </>)\ texFiles}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00036}00036\ \ \ \ \ else\ return\ []}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00038}00038\ -\/-\/\ |\ Analyze\ single\ LaTeX\ file}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00039}00039\ analyzeSingleFile\ ::\ FilePath\ -\/>\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00040}00040\ analyzeSingleFile\ file\ =\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00041}00041\ \ \ content\ <-\/\ TIO.readFile\ file}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00042}00042\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00043}00043\ \ \ let\ sections\ =\ extractSections\ content}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00044}00044\ \ \ let\ math\ =\ extractMathContent\ content}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00045}00045\ \ \ let\ metadata\ =\ extractMetadata\ content}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00046}00046\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00047}00047\ \ \ putStrLn\ \$\ "{}Sections:\ "{}\ ++\ show\ (length\ sections)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00048}00048\ \ \ putStrLn\ \$\ "{}Math\ expressions:\ "{}\ ++\ show\ (length\ math)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00049}00049\ \ \ putStrLn\ \$\ "{}Language:\ "{}\ ++\ T.unpack\ (metaLanguage\ metadata)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00050}00050\ \ \ putStrLn\ \$\ "{}Words:\ "{}\ ++\ show\ (metaWordCount\ metadata)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00051}00051\ \ \ putStrLn\ \$\ "{}Characters:\ "{}\ ++\ show\ (metaCharCount\ metadata)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00052}00052\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00053}00053\ \ \ when\ (not\ (null\ sections))\ \$\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00054}00054\ \ \ \ \ putStrLn\ "{}\(\backslash\)nSections\ found:"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00055}00055\ \ \ \ \ mapM\_\ printSection\ (take\ 5\ sections)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00056}00056\ \ \ \ \ when\ (length\ sections\ >\ 5)\ \$}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00057}00057\ \ \ \ \ \ \ putStrLn\ \$\ "{}...\ and\ "{}\ ++\ show\ (length\ sections\ -\/\ 5)\ ++\ "{}\ more"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00058}00058\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00059}00059\ \ \ when\ (not\ (null\ math))\ \$\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00060}00060\ \ \ \ \ putStrLn\ "{}\(\backslash\)nMath\ expressions\ (first\ 3):"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00061}00061\ \ \ \ \ mapM\_\ printMath\ (take\ 3\ math)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00062}00062\ \ \ \ \ when\ (length\ math\ >\ 3)\ \$}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00063}00063\ \ \ \ \ \ \ putStrLn\ \$\ "{}...\ and\ "{}\ ++\ show\ (length\ math\ -\/\ 3)\ ++\ "{}\ more"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00065}00065\ -\/-\/\ |\ Print\ section\ information}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00066}00066\ printSection\ ::\ Section\ -\/>\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00067}00067\ printSection\ sec\ =\ putStrLn\ \$\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00068}00068\ \ \ "{}\ \ "{}\ ++\ replicate\ (secLevel\ sec)\ '\#'\ ++\ "{}\ "{}\ ++\ T.unpack\ (secTitle\ sec)}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00070}00070\ -\/-\/\ |\ Print\ math\ expression}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00071}00071\ printMath\ ::\ MathExpression\ -\/>\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00072}00072\ printMath\ =\ \(\backslash\)case}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00073}00073\ \ \ InlineMath\ expr\ -\/>\ putStrLn\ \$\ "{}\ \ Inline:\ "{}\ ++\ T.unpack\ expr}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00074}00074\ \ \ DisplayMath\ expr\ -\/>\ putStrLn\ \$\ "{}\ \ Display:\ "{}\ ++\ T.unpack\ expr}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00075}00075\ \ \ Equation\ expr\ \_\ -\/>\ putStrLn\ \$\ "{}\ \ Equation:\ "{}\ ++\ T.unpack\ expr}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00077}00077\ -\/-\/\ |\ Batch\ analysis\ of\ all\ LaTeX\ files\ in\ project}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00078}00078\ batchAnalyze\ ::\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00079}00079\ batchAnalyze\ =\ do}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00080}00080\ \ \ putStrLn\ "{}===\ Integral\ Philosophy\ LaTeX\ Analysis\ ==="{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00081}00081\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00082}00082\ \ \ -\/-\/\ Analyze\ main\ directories}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00083}00083\ \ \ analyzeLaTeXFiles\ "{}."{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00084}00084\ \ \ analyzeLaTeXFiles\ "{}chapters"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00085}00085\ \ \ analyzeLaTeXFiles\ "{}frontmatter"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00086}00086\ \ \ analyzeLaTeXFiles\ "{}articles"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00087}00087\ \ \ analyzeLaTeXFiles\ "{}cfg"{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00088}00088\ \ \ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00089}00089\ \ \ -\/-\/\ Generate\ summary}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00090}00090\ \ \ putStrLn\ "{}\(\backslash\)n===\ Summary\ ==="{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00091}00091\ \ \ putStrLn\ "{}Analysis\ complete.\ See\ above\ for\ details."{}}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00093}00093\ -\/-\/\ |\ Entry\ point\ when\ run\ as\ standalone}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00094}00094\ main\ ::\ IO\ ()}
+\DoxyCodeLine{\Hypertarget{_la_te_x_analyzer_8hs_source_l00095}00095\ main\ =\ batchAnalyze}
+
+\end{DoxyCode}

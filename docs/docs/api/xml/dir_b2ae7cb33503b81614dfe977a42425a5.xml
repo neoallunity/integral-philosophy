@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_b2ae7cb33503b81614dfe977a42425a5" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation</compoundname>
+    <innerfile refid="dd/d91/_validation_2_la_te_x_8hs">LaTeX.hs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation/"/>
+  </compounddef>
+</doxygen>

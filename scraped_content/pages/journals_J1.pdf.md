@@ -1,0 +1,1 @@
+# \n\n**URL:** http://allunity.ru/journals/J1.pdf\n\n**Language:** en\n\n**Scraped:** 2026-01-15 02:39:33\n\n---\n\n\n

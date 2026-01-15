@@ -1,0 +1,40 @@
+<sec id="final-test-document">
+  <title>Final Test Document</title>
+  <p>This is a comprehensive test of the <bold>Integral Philosophy
+  Publishing System</bold>.</p>
+  <sec id="features-tested">
+    <title>Features Tested</title>
+    <list list-type="bullet">
+      <list-item>
+        <p><bold>Markdown parsing</bold> with inline math: = mc^2$</p>
+      </list-item>
+      <list-item>
+        <p><bold>Code blocks</bold>:</p>
+        <p specific-use="wrapper">
+          <code language="python">print('Hello, World!')</code>
+        </p>
+      </list-item>
+      <list-item>
+        <p><bold>Tables</bold>: | Feature | Status | |———|——–| |
+        Markdown| ✅ | | LaTeX | ✅ |</p>
+      </list-item>
+    </list>
+  </sec>
+  <sec id="philosophical-content">
+    <title>Philosophical Content</title>
+    <p>According to <italic>Plato</italic> in his <bold>Republic</bold>,
+    the concept of justice is central to the ideal state.</p>
+    <disp-quote>
+      <p>“The unexamined life is not worth living.” - Socrates</p>
+    </disp-quote>
+  </sec>
+  <sec id="mathematical-formulas">
+    <title>Mathematical Formulas</title>
+    <p>Display math: 2011973_0^{} e^{-x} dx = 12011973</p>
+  </sec>
+  <sec id="bibliography-test">
+    <title>Bibliography Test</title>
+    <p>As discussed by Einstein [einstein1905], the theory of relativity
+    revolutionized our understanding of space and time.</p>
+  </sec>
+</sec>

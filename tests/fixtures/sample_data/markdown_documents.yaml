@@ -1,0 +1,245 @@
+# Sample Markdown Documents
+simple_document.md: |
+  # Simple Document
+  
+  This is a simple markdown document for testing.
+  
+  ## Section 1
+  
+  Some content here.
+  
+  ## Section 2
+  
+  More content here.
+
+complex_document.md: |
+  # Complex Document
+  
+  This is a **complex** document with *multiple* formatting elements.
+  
+  ## Features Section
+  
+  ### Lists
+  
+  - Unordered item 1
+  - Unordered item 2
+    - Nested item 2.1
+    - Nested item 2.2
+  - Unordered item 3
+  
+  1. Ordered item 1
+  2. Ordered item 2
+     1. Nested ordered 2.1
+     2. Nested ordered 2.2
+  3. Ordered item 3
+  
+  ### Code Examples
+  
+  Inline code: `print("Hello, World!")`
+  
+  Code block:
+  ```python
+  def complex_function(param1, param2):
+      """
+      This is a complex function
+      with multiple parameters
+      """
+      result = param1 + param2
+      return result
+  ```
+  
+  ### Links and Images
+  
+  [External Link](https://example.com)
+  
+  ![Sample Image](images/sample.jpg)
+  
+  ### Tables
+  
+  | Name    | Age | City      |
+  |---------|-----|-----------|
+  | Alice   | 30  | New York  |
+  | Bob     | 25  | San Francisco |
+  | Charlie | 35  | Chicago   |
+  
+  ### Quotes
+  
+  > "This is a blockquote"
+  > 
+  > It can span multiple lines
+  > 
+  > — Author Name
+  
+  ### Horizontal Rule
+  
+  ---
+  
+  ## Mathematical Content
+  
+  Inline math: $E = mc^2$
+  
+  Block math:
+  $$\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$$
+  
+  ## End of Document
+  
+  This concludes our complex document.
+
+academic_paper.md: |
+  # Integral Philosophy: A Comprehensive Framework
+  
+  **Author:** Dr. Jane Smith, Institute of Integral Studies  
+  **Date:** January 2024
+  **DOI:** 10.1234/integral.2024.001
+  
+  ## Abstract
+  
+  This paper presents a comprehensive framework for integral philosophy, synthesizing insights from Eastern and Western philosophical traditions. We explore the fundamental principles that underpin an integral approach to understanding consciousness, reality, and human development.
+  
+  ## 1. Introduction
+  
+  Integral philosophy represents a synthesis of the world's great wisdom traditions, offering a comprehensive map of human consciousness and development. This framework, first systematically developed by Ken Wilber, provides tools for understanding the relationship between subjective experience, objective reality, cultural contexts, and social systems.
+  
+  ### 1.1 Historical Context
+  
+  The roots of integral thinking can be traced back to:
+  - Ancient Greek philosophy (Plato's Forms)
+  - Eastern contemplative traditions (Advaita Vedanta, Mahayana Buddhism)
+  - Western developmental psychology (Piaget, Kohlberg)
+  - Systems theory and complexity science
+  
+  ### 1.2 Research Questions
+  
+  This paper addresses the following research questions:
+  
+  1. How can we create a comprehensive framework that integrates multiple domains of knowledge?
+  2. What are the fundamental patterns that emerge across different levels of development?
+  3. How can integral philosophy inform practical approaches to personal and collective transformation?
+  
+  ## 2. Theoretical Framework
+  
+  ### 2.1 The Four Quadrants
+  
+  Wilber's four-quadrant model provides the foundation for integral theory:
+  
+  ![Four Quadrants Diagram](images/four_quadrants.png)
+  
+  The four quadrants represent:
+  
+  1. **Individual-Interior** (Upper-Left): Subjective experience, consciousness, intentions
+  2. **Individual-Exterior** (Upper-Right): Observable behavior, brain functioning, physiological processes
+  3. **Collective-Interior** (Lower-Left): Shared cultural values, worldviews, collective consciousness
+  4. **Collective-Exterior** (Lower-Right): Social systems, economic structures, environmental factors
+  
+  ### 2.2 Developmental Levels
+  
+  Development proceeds through recognizable levels or waves:
+  
+  ```mermaid
+  graph TD
+    A[Archaic] --> B[Magic]
+    B --> C[Mythic]
+    C --> D[Rational]
+    D --> E[Pluralistic]
+    E --> F[Integral]
+  ```
+  
+  Each level transcends and includes previous levels, incorporating their insights while resolving their limitations.
+  
+  ## 3. Methodology
+  
+  This research employs a mixed-methods approach:
+  
+  3.1 **Systematic Literature Review**
+     - Database: PubMed, PsycINFO, Philosopher's Index
+     - Time period: 1990-2024
+     - Search terms: "integral theory", "integral philosophy", "four quadrants", "Wilber"
+  
+  3.2 **Phenomenological Analysis**
+     - Participant interviews (n=50)
+     - Meditation experience logs
+     - Cross-cultural perspective analysis
+  
+  3.3 **Quantitative Validation**
+     - Integral Development Scale (IDS) validation
+     - Factor analysis of developmental markers
+     - Longitudinal tracking (5-year cohort)
+  
+  ## 4. Results and Discussion
+  
+  ### 4.1 Empirical Findings
+  
+  Our analysis of 500+ publications reveals consistent patterns across domains:
+  
+  | Domain | Key Findings | Sample Size | Effect Size |
+  |--------|-------------|-------------|-------------|
+  | Psychology | Integral therapy outcomes | 125 studies | d=0.78 |
+  | Education | Integral pedagogy effectiveness | 89 studies | d=0.65 |
+  | Business | Integral leadership impact | 67 studies | d=0.82 |
+  | Healthcare | Integral medicine outcomes | 45 studies | d=0.71 |
+  
+  ### 4.2 Theoretical Contributions
+  
+  This paper makes several theoretical contributions:
+  
+  1. **Expanded Quadrant Model**: We extend Wilber's original model to include additional dimensions for digital-native contexts.
+  
+  2. **Developmental Acceleration**: Our data suggests that contemporary developmental patterns are accelerating compared to historical baselines.
+  
+  3. **Cross-Cultural Validation**: The integral framework demonstrates remarkable consistency across diverse cultural contexts.
+  
+  ### 4.3 Practical Applications
+  
+  The integral framework has practical applications in:
+  
+  - **Personal Development**: Providing maps for consciousness evolution
+  - **Organizational Change**: Guiding systemic transformation initiatives
+  - **Policy Making**: Informing holistic approaches to complex problems
+  - **Education**: Designing comprehensive learning environments
+  
+  ## 5. Limitations and Future Research
+  
+  ### 5.1 Limitations
+  
+  This research has several limitations:
+  
+  1. **Sampling Bias**: Participants predominantly from Western, educated contexts
+  2. **Measurement Challenges**: Quantifying interior dimensions remains difficult
+  3. **Temporal Constraints**: Longitudinal effects require extended observation periods
+  
+  ### 5.2 Future Research Directions
+  
+  Future research should address:
+  
+  1. **Neurobiological Correlates**: Mapping integral stages to brain development
+  2. **Cultural Validation**: Extended cross-cultural testing
+  3. **Digital Integration**: How technology impacts integral development
+  4. **Collective Consciousness**: Empirical investigation of group-level phenomena
+  
+  ## 6. Conclusion
+  
+  Integral philosophy provides a comprehensive framework for understanding human consciousness, development, and transformation. Our research demonstrates both the theoretical coherence and practical applicability of this approach across multiple domains.
+  
+  The integral framework offers:
+  
+  - **A comprehensive map** of human potential and development
+  - **Practical tools** for personal and collective transformation
+  - **A common language** for interdisciplinary collaboration
+  - **A vision of integration** for our fragmented world
+  
+  As we face unprecedented global challenges, integral philosophy may provide the conceptual scaffolding needed to integrate diverse perspectives and create holistic solutions.
+  
+  ## Acknowledgments
+  
+  This research was supported by grants from the Institute of Integral Studies (#2024-001) and the Consciousness Research Foundation (#CRF-2024-15). We thank the 50 participants who shared their experiences with such depth and authenticity.
+  
+  ## References
+  
+  1. Wilber, K. (2000). *Integral Psychology: Consciousness, Spirit, Psychology, Therapy*. Shambhala.
+  2. Wilber, K. (2006). *Integral Spirituality: A Startling New Role for Religion in the Modern and Postmodern World*. Integral Books.
+  3. Esbjörn-Hargens, S. (2010). "An overview of integral theory: A basic introduction." *Integral Review*, 8(1), 1-48.
+  4. McIntosh, S. (2007). *Integral Consciousness and the Future of Evolution*. Paragon House.
+  5. Kegan, R. (1994). *In Over Our Heads: The Mental Demands of Modern Life*. Harvard University Press.
+  
+  ---
+  *Copyright © 2024 Dr. Jane Smith. Licensed under Creative Commons Attribution 4.0 International.*

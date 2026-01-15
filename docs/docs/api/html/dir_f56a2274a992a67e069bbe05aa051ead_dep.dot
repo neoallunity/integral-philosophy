@@ -1,0 +1,12 @@
+digraph "/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_31d929f1679b9028ddb95f9cec2427be {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="IntegralPhilosophy", fontname=FreeSans.ttf,fontsize=10 style="filled,dashed", URL="dir_31d929f1679b9028ddb95f9cec2427be.html",tooltip=""]
+  dir_f56a2274a992a67e069bbe05aa051ead [label="Reconstruction", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_f56a2274a992a67e069bbe05aa051ead.html",tooltip=""];
+  }
+}

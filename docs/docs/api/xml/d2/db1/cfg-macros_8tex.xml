@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d2/db1/cfg-macros_8tex" kind="file" language="C++">
+    <compoundname>cfg-macros.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-macros.tex<sp/>—<sp/>пользовательские<sp/>макросы/окружения</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\newenvironment{articleabstract}[4]{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textbf{#1}\\[0.2cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textbf{#2}\\[0.3cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#3\\[0.3cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textit{#4}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.7cm}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent</highlight></codeline>
+<codeline><highlight class="normal">}{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\newenvironment{englishabstract}[4]{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{otherlanguage}{english}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textbf{#1}\\[0.2cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textbf{#2}\\[0.3cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#3\\[0.3cm]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textit{#4}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{otherlanguage}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.7cm}</highlight></codeline>
+<codeline><highlight class="normal">}{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Алиасы<sp/>(избавляемся<sp/>от<sp/>разнобоя<sp/>otherlanguage/english)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{EN}{}{\begin{otherlanguage}{english}}{\end{otherlanguage}}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-macros.tex"/>
+  </compounddef>
+</doxygen>

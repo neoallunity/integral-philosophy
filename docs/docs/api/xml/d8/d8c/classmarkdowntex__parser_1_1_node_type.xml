@@ -1,0 +1,375 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d8/d8c/classmarkdowntex__parser_1_1_node_type" kind="class" language="Python" prot="public">
+    <compoundname>markdowntex_parser::NodeType</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Enum</basecompoundref>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1adf8a85595062f1cf807cfb2db7ba2290" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::DOCUMENT</definition>
+        <argsstring></argsstring>
+        <name>DOCUMENT</name>
+        <qualifiedname>markdowntex_parser.NodeType.DOCUMENT</qualifiedname>
+        <initializer>=  &quot;document&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="26" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1addb75a548f2e6b79bc16798f93795702" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::HEADING</definition>
+        <argsstring></argsstring>
+        <name>HEADING</name>
+        <qualifiedname>markdowntex_parser.NodeType.HEADING</qualifiedname>
+        <initializer>=  &quot;heading&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="27" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a6ede1d2571b1a92ef442591aa196c43c" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::PARAGRAPH</definition>
+        <argsstring></argsstring>
+        <name>PARAGRAPH</name>
+        <qualifiedname>markdowntex_parser.NodeType.PARAGRAPH</qualifiedname>
+        <initializer>=  &quot;paragraph&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a304e3f7e4ac3b3e4c4521f9913e7dccf" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::TEXT</definition>
+        <argsstring></argsstring>
+        <name>TEXT</name>
+        <qualifiedname>markdowntex_parser.NodeType.TEXT</qualifiedname>
+        <initializer>=  &quot;text&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="29" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a243dfb2678aa02a5c832f3d58798c8dd" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::LINK</definition>
+        <argsstring></argsstring>
+        <name>LINK</name>
+        <qualifiedname>markdowntex_parser.NodeType.LINK</qualifiedname>
+        <initializer>=  &quot;link&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="30" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a846a5bfb6001ea1a81ada83cd3643942" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::IMAGE</definition>
+        <argsstring></argsstring>
+        <name>IMAGE</name>
+        <qualifiedname>markdowntex_parser.NodeType.IMAGE</qualifiedname>
+        <initializer>=  &quot;image&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="31" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a513146c97b6c3e29617bf95b19bc7df0" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::CODE_BLOCK</definition>
+        <argsstring></argsstring>
+        <name>CODE_BLOCK</name>
+        <qualifiedname>markdowntex_parser.NodeType.CODE_BLOCK</qualifiedname>
+        <initializer>=  &quot;code_block&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="32" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a5609e1839b19b2911ee504db1c97236a" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::INLINE_CODE</definition>
+        <argsstring></argsstring>
+        <name>INLINE_CODE</name>
+        <qualifiedname>markdowntex_parser.NodeType.INLINE_CODE</qualifiedname>
+        <initializer>=  &quot;inline_code&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="33" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a3449158e163fbe328386d20b4f1b6c4b" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::MATH_BLOCK</definition>
+        <argsstring></argsstring>
+        <name>MATH_BLOCK</name>
+        <qualifiedname>markdowntex_parser.NodeType.MATH_BLOCK</qualifiedname>
+        <initializer>=  &quot;math_block&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="34" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a2d676e1f697b6c99ff3322e1f7cb9cbd" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::INLINE_MATH</definition>
+        <argsstring></argsstring>
+        <name>INLINE_MATH</name>
+        <qualifiedname>markdowntex_parser.NodeType.INLINE_MATH</qualifiedname>
+        <initializer>=  &quot;inline_math&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="35" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a864b61489455df88dbf1a23aabce4349" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::LIST</definition>
+        <argsstring></argsstring>
+        <name>LIST</name>
+        <qualifiedname>markdowntex_parser.NodeType.LIST</qualifiedname>
+        <initializer>=  &quot;list&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="36" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a7e52ccad58f277f5f2cdd0703faf2f1d" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::LIST_ITEM</definition>
+        <argsstring></argsstring>
+        <name>LIST_ITEM</name>
+        <qualifiedname>markdowntex_parser.NodeType.LIST_ITEM</qualifiedname>
+        <initializer>=  &quot;list_item&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="37" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1af71decdc0cd131a585d30e4a0bd0a7b4" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::TABLE</definition>
+        <argsstring></argsstring>
+        <name>TABLE</name>
+        <qualifiedname>markdowntex_parser.NodeType.TABLE</qualifiedname>
+        <initializer>=  &quot;table&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="38" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1ae5a323a8980ffe9916b3bab0cd89d9b4" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::TABLE_ROW</definition>
+        <argsstring></argsstring>
+        <name>TABLE_ROW</name>
+        <qualifiedname>markdowntex_parser.NodeType.TABLE_ROW</qualifiedname>
+        <initializer>=  &quot;table_row&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="39" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1aa0a4a1ab31883c79445ad4a730ab3337" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::TABLE_CELL</definition>
+        <argsstring></argsstring>
+        <name>TABLE_CELL</name>
+        <qualifiedname>markdowntex_parser.NodeType.TABLE_CELL</qualifiedname>
+        <initializer>=  &quot;table_cell&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="40" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a057074647b98e4dd0eb75c968a3af218" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::QUOTE</definition>
+        <argsstring></argsstring>
+        <name>QUOTE</name>
+        <qualifiedname>markdowntex_parser.NodeType.QUOTE</qualifiedname>
+        <initializer>=  &quot;quote&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="41" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a9960f260a95524dd0a4cde9b649cc74a" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::THEMATIC_BREAK</definition>
+        <argsstring></argsstring>
+        <name>THEMATIC_BREAK</name>
+        <qualifiedname>markdowntex_parser.NodeType.THEMATIC_BREAK</qualifiedname>
+        <initializer>=  &quot;thematic_break&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="42" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1aeb32c6068d29cff2fe6dbf469e79d28b" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::EMPHASIS</definition>
+        <argsstring></argsstring>
+        <name>EMPHASIS</name>
+        <qualifiedname>markdowntex_parser.NodeType.EMPHASIS</qualifiedname>
+        <initializer>=  &quot;emphasis&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="43" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a9fcbe62173ea952937b1021f5fbc10bf" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::STRONG</definition>
+        <argsstring></argsstring>
+        <name>STRONG</name>
+        <qualifiedname>markdowntex_parser.NodeType.STRONG</qualifiedname>
+        <initializer>=  &quot;strong&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="44" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1ad2e2a041b7976a927798ac460429cd54" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::RAW_HTML</definition>
+        <argsstring></argsstring>
+        <name>RAW_HTML</name>
+        <qualifiedname>markdowntex_parser.NodeType.RAW_HTML</qualifiedname>
+        <initializer>=  &quot;raw_html&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="45" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a243525b12d0634a4f24974862db7cf82" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str markdowntex_parser.NodeType::METADATA</definition>
+        <argsstring></argsstring>
+        <name>METADATA</name>
+        <qualifiedname>markdowntex_parser.NodeType.METADATA</qualifiedname>
+        <initializer>=  &quot;metadata&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="46" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>AST node types for MarkdownTeX</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Enum</label>
+      </node>
+      <node id="1">
+        <label>markdowntex_parser.NodeType</label>
+        <link refid="d8/d8c/classmarkdowntex__parser_1_1_node_type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Enum</label>
+      </node>
+      <node id="1">
+        <label>markdowntex_parser.NodeType</label>
+        <link refid="d8/d8c/classmarkdowntex__parser_1_1_node_type"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="23" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="23" bodyend="49"/>
+    <listofallmembers>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a513146c97b6c3e29617bf95b19bc7df0" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>CODE_BLOCK</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1adf8a85595062f1cf807cfb2db7ba2290" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>DOCUMENT</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1aeb32c6068d29cff2fe6dbf469e79d28b" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>EMPHASIS</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1addb75a548f2e6b79bc16798f93795702" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>HEADING</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a846a5bfb6001ea1a81ada83cd3643942" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>IMAGE</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a5609e1839b19b2911ee504db1c97236a" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>INLINE_CODE</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a2d676e1f697b6c99ff3322e1f7cb9cbd" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>INLINE_MATH</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a243dfb2678aa02a5c832f3d58798c8dd" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>LINK</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a864b61489455df88dbf1a23aabce4349" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>LIST</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a7e52ccad58f277f5f2cdd0703faf2f1d" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>LIST_ITEM</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a3449158e163fbe328386d20b4f1b6c4b" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>MATH_BLOCK</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a243525b12d0634a4f24974862db7cf82" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>METADATA</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a6ede1d2571b1a92ef442591aa196c43c" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>PARAGRAPH</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a057074647b98e4dd0eb75c968a3af218" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>QUOTE</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1ad2e2a041b7976a927798ac460429cd54" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>RAW_HTML</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a9fcbe62173ea952937b1021f5fbc10bf" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>STRONG</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1af71decdc0cd131a585d30e4a0bd0a7b4" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>TABLE</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1aa0a4a1ab31883c79445ad4a730ab3337" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>TABLE_CELL</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1ae5a323a8980ffe9916b3bab0cd89d9b4" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>TABLE_ROW</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a304e3f7e4ac3b3e4c4521f9913e7dccf" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>TEXT</name></member>
+      <member refid="d8/d8c/classmarkdowntex__parser_1_1_node_type_1a9960f260a95524dd0a4cde9b649cc74a" prot="public" virt="non-virtual"><scope>markdowntex_parser::NodeType</scope><name>THEMATIC_BREAK</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

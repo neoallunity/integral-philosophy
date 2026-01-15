@@ -1,0 +1,151 @@
+#!/bin/bash
+# Bootstrap script for Integral Philosophy Publishing System
+# ========================================================
+#
+# This script initializes the autotools build system.
+# Run this script after cloning the repository or after modifying
+# configure.ac or Makefile.am files.
+
+set -e  # Exit on error
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Print colored output
+print_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+print_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+print_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+# Check if required tools are available
+check_tools() {
+    print_info "Checking for required autotools..."
+    
+    local tools=("autoreconf" "autoconf" "automake" "aclocal")
+    local missing_tools=()
+    
+    for tool in "${tools[@]}"; do
+        if ! command -v "$tool" &> /dev/null; then
+            missing_tools+=("$tool")
+        fi
+    done
+    
+    if [ ${#missing_tools[@]} -ne 0 ]; then
+        print_error "Missing required tools: ${missing_tools[*]}"
+        print_info "Please install autotools package:"
+        print_info "  Ubuntu/Debian: sudo apt-get install autotools-dev autoconf automake"
+        print_info "  CentOS/RHEL: sudo yum install autoconf automake"
+        print_info "  macOS: brew install autoconf automake"
+        exit 1
+    fi
+    
+    print_success "All required tools found"
+}
+
+# Create necessary directories
+create_directories() {
+    print_info "Creating necessary directories..."
+    
+    mkdir -p build-aux
+    mkdir -p m4
+    
+    print_success "Directories created"
+}
+
+# Run autoreconf to generate configure script
+run_autoreconf() {
+    print_info "Running autoreconf..."
+    
+    # Run autoreconf with appropriate flags
+    autoreconf --install --force --verbose
+    
+    print_success "autoreconf completed successfully"
+}
+
+# Make configure script executable
+make_executable() {
+    print_info "Making configure script executable..."
+    
+    chmod +x configure
+    
+    print_success "configure script is now executable"
+}
+
+# Check for Stack and GHC
+check_haskell_tools() {
+    print_info "Checking for Haskell build tools..."
+    
+    if ! command -v stack &> /dev/null; then
+        print_warning "Stack not found. Please install Stack: https://docs.haskellstack.org/en/stable/install_and_upgrade/"
+    else
+        print_success "Stack found: $(stack --version)"
+    fi
+    
+    if ! command -v ghc &> /dev/null; then
+        print_warning "GHC not found. Please install GHC: https://www.haskell.org/ghc/download.html"
+    else
+        print_success "GHC found: $(ghc --version)"
+    fi
+}
+
+# Create initial test file if it doesn't exist
+create_test_file() {
+    if [ ! -f "test.tex" ]; then
+        print_info "Creating sample test.tex file..."
+        cat > test.tex << 'EOF'
+\documentclass{article}
+\title{Test Document}
+\author{Test Author}
+\begin{document}
+\maketitle
+This is a test LaTeX document for the Integral Philosophy Publishing System.
+\end{document}
+EOF
+        print_success "Created test.tex"
+    fi
+}
+
+# Main bootstrap process
+main() {
+    echo "🚀 Bootstrapping Integral Philosophy Publishing System..."
+    echo "========================================================="
+    
+    check_tools
+    create_directories
+    run_autoreconf
+    make_executable
+    check_haskell_tools
+    create_test_file
+    
+    echo ""
+    print_success "Bootstrap completed successfully!"
+    echo ""
+    print_info "Next steps:"
+    print_info "  1. Run ./configure to configure the build system"
+    print_info "  2. Run make to build the project"
+    print_info "  3. Run make help to see available targets"
+    echo ""
+    print_info "Configure options:"
+    print_info "  ./configure --help           Show all configure options"
+    print_info "  ./configure --enable-debug    Enable debug build"
+    print_info "  ./configure --with-test-file=FILE  Set custom test file"
+    echo ""
+}
+
+# Run main function
+main "$@"

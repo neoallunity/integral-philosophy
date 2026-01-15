@@ -1,0 +1,3 @@
+"""
+Academic standards compliance tests
+"""

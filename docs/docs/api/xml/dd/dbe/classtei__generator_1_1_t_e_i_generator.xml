@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dd/dbe/classtei__generator_1_1_t_e_i_generator" kind="class" language="Python" prot="public">
+    <compoundname>tei_generator::TEIGenerator</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aadf2afc8d2f19b2d27745a6a6235c71a" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str tei_generator.TEIGenerator::tei_ns</definition>
+        <argsstring></argsstring>
+        <name>tei_ns</name>
+        <qualifiedname>tei_generator.TEIGenerator.tei_ns</qualifiedname>
+        <initializer>=  &quot;http://www.tei-c.org/ns/1.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a36dcdbe5d1d02d11a6332b247e106726" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str tei_generator.TEIGenerator::xml_ns</definition>
+        <argsstring></argsstring>
+        <name>xml_ns</name>
+        <qualifiedname>tei_generator.TEIGenerator.xml_ns</qualifiedname>
+        <initializer>=  &quot;http://www.w3.org/XML/1998/namespace&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="29" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a12085212c364a9ca97b1cbd118c505ab" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict tei_generator.TEIGenerator::ns_map</definition>
+        <argsstring></argsstring>
+        <name>ns_map</name>
+        <qualifiedname>tei_generator.TEIGenerator.ns_map</qualifiedname>
+        <initializer>=  {&quot;tei&quot;: self.tei_ns, &quot;xml&quot;: self.xml_ns}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="32" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aebac647420f4c4adc4e94c0a25899500" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tei_generator.TEIGenerator.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>tei_generator.TEIGenerator.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="27" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="27" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a62fb30e8d10a0d40e483392478e52adb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Element</type>
+        <definition> Element tei_generator.TEIGenerator.generate_tei_header</definition>
+        <argsstring>(self, Dict[str, Any] site_metadata)</argsstring>
+        <name>generate_tei_header</name>
+        <qualifiedname>tei_generator.TEIGenerator.generate_tei_header</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>site_metadata</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate TEI header with site metadata</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="34" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="34" bodyend="109"/>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a6cffaf2cda0037154d931564ee139b77" compoundref="d6/d51/tei__generator_8py" startline="434" endline="493">tei_generator.TEIGenerator.generate_tei_document</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a76e652d556d47c74f42173f6a9370494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Element</type>
+        <definition> Element tei_generator.TEIGenerator.generate_text_body</definition>
+        <argsstring>(self, Dict[str, Any] pages)</argsstring>
+        <name>generate_text_body</name>
+        <qualifiedname>tei_generator.TEIGenerator.generate_text_body</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>pages</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate TEI text body from page content</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="110" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="110" bodyend="145"/>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa0bf3edb1377df08199383141ea16ffb" compoundref="d6/d51/tei__generator_8py" startline="146" endline="235">tei_generator.TEIGenerator._convert_page_to_tei_div</references>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a6cffaf2cda0037154d931564ee139b77" compoundref="d6/d51/tei__generator_8py" startline="434" endline="493">tei_generator.TEIGenerator.generate_tei_document</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a6cffaf2cda0037154d931564ee139b77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str tei_generator.TEIGenerator.generate_tei_document</definition>
+        <argsstring>(self, Dict[str, Any] site_ast)</argsstring>
+        <name>generate_tei_document</name>
+        <qualifiedname>tei_generator.TEIGenerator.generate_tei_document</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>site_ast</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate complete TEI XML document</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="434" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="434" bodyend="493"/>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a62fb30e8d10a0d40e483392478e52adb" compoundref="d6/d51/tei__generator_8py" startline="34" endline="109">tei_generator.TEIGenerator.generate_tei_header</references>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a76e652d556d47c74f42173f6a9370494" compoundref="d6/d51/tei__generator_8py" startline="110" endline="145">tei_generator.TEIGenerator.generate_text_body</references>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a0ce19e8690a182201774891901468d43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None tei_generator.TEIGenerator.save_tei_document</definition>
+        <argsstring>(self, str tei_xml, Union[str, Path] output_path)</argsstring>
+        <name>save_tei_document</name>
+        <qualifiedname>tei_generator.TEIGenerator.save_tei_document</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>tei_xml</declname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_path</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Save TEI XML document to file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="494" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="494" bodyend="504"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa0bf3edb1377df08199383141ea16ffb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Element</type>
+        <definition> Element tei_generator.TEIGenerator._convert_page_to_tei_div</definition>
+        <argsstring>(self, str url, Dict[str, Any] page_info)</argsstring>
+        <name>_convert_page_to_tei_div</name>
+        <qualifiedname>tei_generator.TEIGenerator._convert_page_to_tei_div</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>page_info</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convert a single page to TEI div</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="146" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="146" bodyend="235"/>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1add2a8fe86123aa1852e00d1e89f62860" compoundref="d6/d51/tei__generator_8py" startline="236" endline="425">tei_generator.TEIGenerator._convert_ast_to_tei</references>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa265f4655d384b6215fe70d21e5b6afe" compoundref="d6/d51/tei__generator_8py" startline="426" endline="433">tei_generator.TEIGenerator._create_page_id</references>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a76e652d556d47c74f42173f6a9370494" compoundref="d6/d51/tei__generator_8py" startline="110" endline="145">tei_generator.TEIGenerator.generate_text_body</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1add2a8fe86123aa1852e00d1e89f62860" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Element</type>
+        <definition> Element tei_generator.TEIGenerator._convert_ast_to_tei</definition>
+        <argsstring>(self, Union[ASTNode, Dict] ast_node)</argsstring>
+        <name>_convert_ast_to_tei</name>
+        <qualifiedname>tei_generator.TEIGenerator._convert_ast_to_tei</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>ast_node</declname>
+          <array>[ASTNode, Dict]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convert AST node to TEI XML</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="236" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="236" bodyend="425"/>
+        <references refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1add2a8fe86123aa1852e00d1e89f62860" compoundref="d6/d51/tei__generator_8py" startline="236" endline="425">tei_generator.TEIGenerator._convert_ast_to_tei</references>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1add2a8fe86123aa1852e00d1e89f62860" compoundref="d6/d51/tei__generator_8py" startline="236" endline="425">tei_generator.TEIGenerator._convert_ast_to_tei</referencedby>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa0bf3edb1377df08199383141ea16ffb" compoundref="d6/d51/tei__generator_8py" startline="146" endline="235">tei_generator.TEIGenerator._convert_page_to_tei_div</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa265f4655d384b6215fe70d21e5b6afe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str tei_generator.TEIGenerator._create_page_id</definition>
+        <argsstring>(self, str url)</argsstring>
+        <name>_create_page_id</name>
+        <qualifiedname>tei_generator.TEIGenerator._create_page_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create valid TEI XML ID from URL</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="426" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="426" bodyend="433"/>
+        <referencedby refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa0bf3edb1377df08199383141ea16ffb" compoundref="d6/d51/tei__generator_8py" startline="146" endline="235">tei_generator.TEIGenerator._convert_page_to_tei_div</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Generate TEI XML from AST and site data</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>tei_generator.TEIGenerator</label>
+        <link refid="dd/dbe/classtei__generator_1_1_t_e_i_generator"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" line="24" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/tei_generator.py" bodystart="24" bodyend="504"/>
+    <listofallmembers>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aebac647420f4c4adc4e94c0a25899500" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>__init__</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1add2a8fe86123aa1852e00d1e89f62860" prot="protected" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>_convert_ast_to_tei</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa0bf3edb1377df08199383141ea16ffb" prot="protected" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>_convert_page_to_tei_div</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aa265f4655d384b6215fe70d21e5b6afe" prot="protected" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>_create_page_id</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a6cffaf2cda0037154d931564ee139b77" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>generate_tei_document</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a62fb30e8d10a0d40e483392478e52adb" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>generate_tei_header</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a76e652d556d47c74f42173f6a9370494" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>generate_text_body</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a12085212c364a9ca97b1cbd118c505ab" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>ns_map</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a0ce19e8690a182201774891901468d43" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>save_tei_document</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1aadf2afc8d2f19b2d27745a6a6235c71a" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>tei_ns</name></member>
+      <member refid="dd/dbe/classtei__generator_1_1_t_e_i_generator_1a36dcdbe5d1d02d11a6332b247e106726" prot="public" virt="non-virtual"><scope>tei_generator::TEIGenerator</scope><name>xml_ns</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

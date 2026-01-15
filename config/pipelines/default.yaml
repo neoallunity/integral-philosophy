@@ -1,0 +1,39 @@
+# Integral Philosophy Publishing System
+# Core Configuration
+
+project:
+  name: "Integral Philosophy Publishing System"
+  version: "2.0.0"
+  description: "Elegant Academic Content Processing Pipeline"
+  author: "Philosophy Publishing Team"
+
+processing:
+  max_depth: 3
+  timeout: 30
+  parallel_processing: true
+  cache_enabled: true
+
+formats:
+  input: ["markdown", "html", "latex", "org", "asciidoc", "rest", "typst", "tei", "docbook", "jats", "json"]
+  output: ["html", "pdf", "epub", "docx", "latex", "tei", "xml"]
+
+scraping:
+  delay: 1.0
+  user_agent: "Integral Philosophy Bot 1.0"
+  javascript_enabled: true
+  respect_robots: true
+
+validation:
+  strict_mode: false
+  check_links: true
+  validate_tei: true
+  
+output:
+  directory: "./data/output"
+  cache_directory: "./data/cache"
+  backup_enabled: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/system.log"

@@ -1,0 +1,19 @@
+digraph "latex_to_markdown.TeXAnalyzer.reconstruct_markdown_tex"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="latex_to_markdown.TeXAnalyzer.reconstruct\l_markdown_tex",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="latex_to_markdown.TeXAnalyzer.\l_reconstruct_article",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#af759a89d4369e84f67dfb8170a7a8537",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="latex_to_markdown.TeXAnalyzer.\l_reconstruct_config",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#aca966b1b7a9b262b1bdd907af52a3262",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="latex_to_markdown.TeXAnalyzer.\l_reconstruct_frontmatter",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#afe356b0706b8dabd043d4c67c8c7c02a",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="latex_to_markdown.TeXAnalyzer.\l_reconstruct_generic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#a54a5f8fa643956c6a533d7cb42b9507c",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="latex_to_markdown.TeXAnalyzer.\l_reconstruct_main",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#aea86b8d2116b2ce019b7eb0c9247a8ea",tooltip=" "];
+}

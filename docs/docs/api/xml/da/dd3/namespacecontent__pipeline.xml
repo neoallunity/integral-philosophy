@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="da/dd3/namespacecontent__pipeline" kind="namespace" language="Python">
+    <compoundname>content_pipeline</compoundname>
+    <innerclass refid="d2/db6/classcontent__pipeline_1_1_content_pipeline" prot="public">content_pipeline::ContentPipeline</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="da/dd3/namespacecontent__pipeline_1aab86245c35007f68ee94fa54d864aeac" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>content_pipeline.level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="36" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="da/dd3/namespacecontent__pipeline_1a735d7e39fd408506bb01f182b9490801" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>content_pipeline.format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="37" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="da/dd3/namespacecontent__pipeline_1ad26945629502a21bb721cbeea8cca8e7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.handlers</definition>
+        <argsstring></argsstring>
+        <name>handlers</name>
+        <qualifiedname>content_pipeline.handlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="38" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="da/dd3/namespacecontent__pipeline_1aa0d1476134b04774fcf7c94b381a7ab4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>content_pipeline.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>content_pipeline.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="40" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="da/dd3/namespacecontent__pipeline_1a36b50cad109352b0bddf470d0e8ab50d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>content_pipeline.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>content_pipeline.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main pipeline execution</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="553" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" bodystart="553" bodyend="603"/>
+        <references refid="da/dd3/namespacecontent__pipeline_1a36b50cad109352b0bddf470d0e8ab50d" compoundref="d9/dea/content__pipeline_8py" startline="553" endline="603">main</references>
+        <referencedby refid="da/dd3/namespacecontent__pipeline_1a36b50cad109352b0bddf470d0e8ab50d" compoundref="d9/dea/content__pipeline_8py" startline="553" endline="603">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Master Content Pipeline Controller
+Orchestrates the complete conversion pipeline:
+Website → HTML → TEI → Multiple Formats (HTML, LaTeX, PDF, EPUB, DOCX)
+With UML visualization and isomorphism testing
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/content_pipeline.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

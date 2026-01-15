@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="xslt_transformer.XSLTTransformer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer.html",tooltip=" "];
+}

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dc/daf/namespacexslt__transformer" kind="namespace" language="Python">
+    <compoundname>xslt_transformer</compoundname>
+    <innerclass refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer" prot="public">xslt_transformer::XSLTTransformer</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dc/daf/namespacexslt__transformer_1acf2e0d3966553c3c3f554386de842862" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>xslt_transformer.level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="18" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dc/daf/namespacexslt__transformer_1a8488867b1c480bc8aff4a3475e8548c1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.INFO</definition>
+        <argsstring></argsstring>
+        <name>INFO</name>
+        <qualifiedname>xslt_transformer.INFO</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="18" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dc/daf/namespacexslt__transformer_1a4be04664237c339ef17275f8ce3e8db9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>xslt_transformer.format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="18" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dc/daf/namespacexslt__transformer_1aa36534410c3d1ca8d07f380547dc92fd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>xslt_transformer.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="20" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dc/daf/namespacexslt__transformer_1aef0de95daf6e601e25f0c78365cf0260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xslt_transformer.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>xslt_transformer.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function for testing</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="780" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="780" bodyend="835"/>
+        <references refid="dc/daf/namespacexslt__transformer_1aef0de95daf6e601e25f0c78365cf0260" compoundref="d6/d18/xslt__transformer_8py" startline="780" endline="835">main</references>
+        <referencedby refid="dc/daf/namespacexslt__transformer_1aef0de95daf6e601e25f0c78365cf0260" compoundref="d6/d18/xslt__transformer_8py" startline="780" endline="835">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>XSLT Transformation System for Multiple Output Formats
+Transforms TEI XML to HTML, LaTeX, EPUB, DOCX and other formats
+Supports academic publishing and web distribution
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

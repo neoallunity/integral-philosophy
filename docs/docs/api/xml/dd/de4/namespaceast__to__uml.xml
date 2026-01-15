@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dd/de4/namespaceast__to__uml" kind="namespace" language="Python">
+    <compoundname>ast_to_uml</compoundname>
+    <innerclass refid="d0/d8a/classast__to__uml_1_1_u_m_l_format" prot="public">ast_to_uml::UMLFormat</innerclass>
+    <innerclass refid="dd/dc0/classast__to__uml_1_1_u_m_l_node" prot="public">ast_to_uml::UMLNode</innerclass>
+    <innerclass refid="d3/d30/classast__to__uml_1_1_u_m_l_edge" prot="public">ast_to_uml::UMLEdge</innerclass>
+    <innerclass refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer" prot="public">ast_to_uml::ASTToUMLTransformer</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dd/de4/namespaceast__to__uml_1ab0d7129c80c6fb05e3412320b12565ca" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ast_to_uml.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>ast_to_uml.level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="24" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/de4/namespaceast__to__uml_1ac497c447b9eae47892d7907dcb55fb14" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ast_to_uml.INFO</definition>
+        <argsstring></argsstring>
+        <name>INFO</name>
+        <qualifiedname>ast_to_uml.INFO</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="24" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/de4/namespaceast__to__uml_1af53f047abcf34873448ca0c268d1ea66" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ast_to_uml.format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>ast_to_uml.format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="24" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/de4/namespaceast__to__uml_1a32b8bb5882e9f95afc536f24c25d728f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>ast_to_uml.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>ast_to_uml.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="26" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dd/de4/namespaceast__to__uml_1a3aa2c4a0b9e141cedb77ab313bcf786b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ast_to_uml.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>ast_to_uml.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function for testing</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="481" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="481" bodyend="530"/>
+        <references refid="dd/de4/namespaceast__to__uml_1a3aa2c4a0b9e141cedb77ab313bcf786b" compoundref="d8/d2b/ast__to__uml_8py" startline="481" endline="530">main</references>
+        <referencedby refid="dd/de4/namespaceast__to__uml_1a3aa2c4a0b9e141cedb77ab313bcf786b" compoundref="d8/d2b/ast__to__uml_8py" startline="481" endline="530">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>AST to UML Transformation System
+Converts site AST into UML diagrams for visualization
+Supports PlantUML, Mermaid, and Graphviz formats
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

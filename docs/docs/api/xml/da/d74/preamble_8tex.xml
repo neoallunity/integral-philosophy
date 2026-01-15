@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="da/d74/preamble_8tex" kind="file" language="C++">
+    <compoundname>preamble.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ПРЕАМБУЛА<sp/>ВЫПУСКА<sp/>ЖУРНАЛА<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>(подключается<sp/>из<sp/>main.tex)<sp/></highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Улучшение<sp/>верстки<sp/></highlight></codeline>
+<codeline><highlight class="normal">\tolerance=1000<sp/></highlight></codeline>
+<codeline><highlight class="normal">\emergencystretch=10pt<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Базовые<sp/>пакеты,<sp/>ранее<sp/>в<sp/>journal.cls<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{ifthen}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{graphicx}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\graphicspath{{images/}{articles/moiseev/images/}{articles/safonov/images/}{articles/smolyanova/images/}{articles/podzolkova/images/}{articles/krasheninnikov/images/}{articles/bukharov/images/}{articles/lugowska/images/}{articles/holkin/images/}}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{geometry}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{fancyhdr}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{xcolor}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{etoolbox}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{titlesec}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{tocloft}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{hyperref}</highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{adjustbox}</highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-fonts.tex}</highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{biblatex}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Конфигурационные<sp/>файлы</highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-metadata.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-brand.tex}</highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-macros.tex}</highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-typography.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-math.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-floats.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-structure.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-links.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-bibliography.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-glossary-index.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-headers.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-articles.tex}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\input{cfg/cfg-editorial.tex}<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Определение<sp/>цветов<sp/></highlight></codeline>
+<codeline><highlight class="normal">\definecolor{JournalAccent}{HTML}{1B4F8A}<sp/></highlight></codeline>
+<codeline><highlight class="normal">\definecolor{JournalAccent2}{HTML}{B31B5E}<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/preamble.tex"/>
+  </compounddef>
+</doxygen>

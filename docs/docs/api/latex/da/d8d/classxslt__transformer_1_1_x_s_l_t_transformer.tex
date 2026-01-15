@@ -1,0 +1,322 @@
+\doxysection{xslt\+\_\+transformer.\+XSLTTransformer Class Reference}
+\hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer}{}\label{classxslt__transformer_1_1_x_s_l_t_transformer}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+
+
+Collaboration diagram for xslt\+\_\+transformer.\+XSLTTransformer\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a4f42de91e24f3ff0794a0bb70a1fe769}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\mbox{[}Union\mbox{[}str, Path\mbox{]}\mbox{]} \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a25ba8efa13df153b441eab7d8fb6f401}{xslt\+\_\+dir}}=None)
+\item 
+bool \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a877d095f1c8e7f74ac3fe02c5138fd09}{transform\+\_\+to\+\_\+html}} (self, Union\mbox{[}str, Path\mbox{]} tei\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+file)
+\item 
+bool \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a27f409ceb96d0dd099eae47f7969b230}{transform\+\_\+to\+\_\+latex}} (self, Union\mbox{[}str, Path\mbox{]} tei\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+file)
+\item 
+bool \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_aefe2fe1b1b11f24d756e3d649417f139}{compile\+\_\+latex\+\_\+to\+\_\+pdf}} (self, Union\mbox{[}str, Path\mbox{]} latex\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+file)
+\item 
+bool \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_abe3ff479a9605c1cf4be16b9aee4b4cf}{transform\+\_\+to\+\_\+epub}} (self, Union\mbox{[}str, Path\mbox{]} tei\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+file)
+\item 
+bool \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a6fe70ba475a8ca5746e002c5efbee985}{transform\+\_\+to\+\_\+docx}} (self, Union\mbox{[}str, Path\mbox{]} tei\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+file)
+\item 
+Dict\mbox{[}str, bool\mbox{]} \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_acf68ac99c924b4293d28872bc6fdaaf1}{transform\+\_\+all\+\_\+formats}} (self, Union\mbox{[}str, Path\mbox{]} tei\+\_\+file, Union\mbox{[}str, Path\mbox{]} output\+\_\+dir)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a25ba8efa13df153b441eab7d8fb6f401}{xslt\+\_\+dir}} = Path(xslt\+\_\+dir) if xslt\+\_\+dir else Path("{}xslt"{})
+\item 
+\mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a651b5f5050544880504c5de70ba4a0a9}{temp\+\_\+dir}} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a624d5eb5841edfc47ca7ce822bdbb31a}{\+\_\+create\+\_\+xslt\+\_\+stylesheets}} (self)
+\item 
+None \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a0e5fdc5d92ddee9cbaa1f03908113741}{\+\_\+create\+\_\+html\+\_\+xslt}} (self)
+\item 
+None \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a7a748154ce7b4c517a77e1176752ea9b}{\+\_\+create\+\_\+latex\+\_\+xslt}} (self)
+\item 
+None \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_a0f108901a4355924ea69ff675debcd04}{\+\_\+create\+\_\+epub\+\_\+xslt}} (self)
+\item 
+None \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer_abf1914c8e5519e0d37f5e809a56b3272}{\+\_\+create\+\_\+docx\+\_\+xslt}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Handles XSLT transformations from TEI XML to multiple formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00023}{23}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a4f42de91e24f3ff0794a0bb70a1fe769}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a4f42de91e24f3ff0794a0bb70a1fe769} 
+xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\mbox{[}Union\mbox{[}str, Path\mbox{]}\mbox{]} }]{xslt\+\_\+dir}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00026}{26}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_abf1914c8e5519e0d37f5e809a56b3272}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_create\_docx\_xslt@{\_create\_docx\_xslt}}
+\index{\_create\_docx\_xslt@{\_create\_docx\_xslt}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_docx\_xslt()}{\_create\_docx\_xslt()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_abf1914c8e5519e0d37f5e809a56b3272} 
+ None xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+create\+\_\+docx\+\_\+xslt (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create DOCX XSLT stylesheet (simplified)\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00462}{462}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00036}{\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a0f108901a4355924ea69ff675debcd04}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_create\_epub\_xslt@{\_create\_epub\_xslt}}
+\index{\_create\_epub\_xslt@{\_create\_epub\_xslt}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_epub\_xslt()}{\_create\_epub\_xslt()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a0f108901a4355924ea69ff675debcd04} 
+ None xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+create\+\_\+epub\+\_\+xslt (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create EPUB XSLT stylesheet\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00372}{372}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00036}{\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a0e5fdc5d92ddee9cbaa1f03908113741}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_create\_html\_xslt@{\_create\_html\_xslt}}
+\index{\_create\_html\_xslt@{\_create\_html\_xslt}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_html\_xslt()}{\_create\_html\_xslt()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a0e5fdc5d92ddee9cbaa1f03908113741} 
+ None xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+create\+\_\+html\+\_\+xslt (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create HTML XSLT stylesheet\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00051}{51}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00036}{\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a7a748154ce7b4c517a77e1176752ea9b}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_create\_latex\_xslt@{\_create\_latex\_xslt}}
+\index{\_create\_latex\_xslt@{\_create\_latex\_xslt}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_latex\_xslt()}{\_create\_latex\_xslt()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a7a748154ce7b4c517a77e1176752ea9b} 
+ None xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+create\+\_\+latex\+\_\+xslt (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create LaTeX XSLT stylesheet\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00209}{209}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00036}{\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a624d5eb5841edfc47ca7ce822bdbb31a}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!\_create\_xslt\_stylesheets@{\_create\_xslt\_stylesheets}}
+\index{\_create\_xslt\_stylesheets@{\_create\_xslt\_stylesheets}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{\_create\_xslt\_stylesheets()}{\_create\_xslt\_stylesheets()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a624d5eb5841edfc47ca7ce822bdbb31a} 
+ None xslt\+\_\+transformer.\+XSLTTransformer.\+\_\+create\+\_\+xslt\+\_\+stylesheets (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create XSLT stylesheets for different output formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00036}{36}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00462}{\+\_\+create\+\_\+docx\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00372}{\+\_\+create\+\_\+epub\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00051}{\+\_\+create\+\_\+html\+\_\+xslt()}}, and \mbox{\hyperlink{xslt__transformer_8py_source_l00209}{\+\_\+create\+\_\+latex\+\_\+xslt()}}.
+
+Here is the call graph for this function\+:
+% FIG 5
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_aefe2fe1b1b11f24d756e3d649417f139}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!compile\_latex\_to\_pdf@{compile\_latex\_to\_pdf}}
+\index{compile\_latex\_to\_pdf@{compile\_latex\_to\_pdf}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{compile\_latex\_to\_pdf()}{compile\_latex\_to\_pdf()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_aefe2fe1b1b11f24d756e3d649417f139} 
+ bool xslt\+\_\+transformer.\+XSLTTransformer.\+compile\+\_\+latex\+\_\+to\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{latex\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Compile LaTeX to PDF\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00576}{576}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00746}{transform\+\_\+all\+\_\+formats()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_acf68ac99c924b4293d28872bc6fdaaf1}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!transform\_all\_formats@{transform\_all\_formats}}
+\index{transform\_all\_formats@{transform\_all\_formats}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_all\_formats()}{transform\_all\_formats()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_acf68ac99c924b4293d28872bc6fdaaf1} 
+ Dict\mbox{[}str, bool\mbox{]} xslt\+\_\+transformer.\+XSLTTransformer.\+transform\+\_\+all\+\_\+formats (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{tei\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+dir}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform TEI to all supported formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00744}{744}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00578}{compile\+\_\+latex\+\_\+to\+\_\+pdf()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00709}{transform\+\_\+to\+\_\+docx()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00620}{transform\+\_\+to\+\_\+epub()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00512}{transform\+\_\+to\+\_\+html()}}, and \mbox{\hyperlink{xslt__transformer_8py_source_l00548}{transform\+\_\+to\+\_\+latex()}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a6fe70ba475a8ca5746e002c5efbee985}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!transform\_to\_docx@{transform\_to\_docx}}
+\index{transform\_to\_docx@{transform\_to\_docx}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_to\_docx()}{transform\_to\_docx()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a6fe70ba475a8ca5746e002c5efbee985} 
+ bool xslt\+\_\+transformer.\+XSLTTransformer.\+transform\+\_\+to\+\_\+docx (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{tei\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform TEI to DOCX using external tools\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00707}{707}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00746}{transform\+\_\+all\+\_\+formats()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_abe3ff479a9605c1cf4be16b9aee4b4cf}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!transform\_to\_epub@{transform\_to\_epub}}
+\index{transform\_to\_epub@{transform\_to\_epub}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_to\_epub()}{transform\_to\_epub()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_abe3ff479a9605c1cf4be16b9aee4b4cf} 
+ bool xslt\+\_\+transformer.\+XSLTTransformer.\+transform\+\_\+to\+\_\+epub (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{tei\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform TEI to EPUB\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00618}{618}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00512}{transform\+\_\+to\+\_\+html()}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00746}{transform\+\_\+all\+\_\+formats()}}.
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a877d095f1c8e7f74ac3fe02c5138fd09}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!transform\_to\_html@{transform\_to\_html}}
+\index{transform\_to\_html@{transform\_to\_html}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_to\_html()}{transform\_to\_html()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a877d095f1c8e7f74ac3fe02c5138fd09} 
+ bool xslt\+\_\+transformer.\+XSLTTransformer.\+transform\+\_\+to\+\_\+html (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{tei\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform TEI to HTML using XSLT\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00510}{510}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00746}{transform\+\_\+all\+\_\+formats()}}, and \mbox{\hyperlink{xslt__transformer_8py_source_l00620}{transform\+\_\+to\+\_\+epub()}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a27f409ceb96d0dd099eae47f7969b230}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!transform\_to\_latex@{transform\_to\_latex}}
+\index{transform\_to\_latex@{transform\_to\_latex}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{transform\_to\_latex()}{transform\_to\_latex()}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a27f409ceb96d0dd099eae47f7969b230} 
+ bool xslt\+\_\+transformer.\+XSLTTransformer.\+transform\+\_\+to\+\_\+latex (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\mbox{[}str, Path\mbox{]}}]{tei\+\_\+file}{, }\item[{Union\mbox{[}str, Path\mbox{]}     }]{output\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform TEI to LaTeX using XSLT\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00546}{546}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+References \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{xslt\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00746}{transform\+\_\+all\+\_\+formats()}}.
+
+Here is the caller graph for this function\+:
+% FIG 12
+
+
+\label{doc-variable-members}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a651b5f5050544880504c5de70ba4a0a9}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!temp\_dir@{temp\_dir}}
+\index{temp\_dir@{temp\_dir}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{temp\_dir}{temp\_dir}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a651b5f5050544880504c5de70ba4a0a9} 
+xslt\+\_\+transformer.\+XSLTTransformer.\+temp\+\_\+dir = None}
+
+
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00028}{28}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+\Hypertarget{classxslt__transformer_1_1_x_s_l_t_transformer_a25ba8efa13df153b441eab7d8fb6f401}\index{xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}!xslt\_dir@{xslt\_dir}}
+\index{xslt\_dir@{xslt\_dir}!xslt\_transformer.XSLTTransformer@{xslt\_transformer.XSLTTransformer}}
+\doxysubsubsection{\texorpdfstring{xslt\_dir}{xslt\_dir}}
+{\footnotesize\ttfamily \label{classxslt__transformer_1_1_x_s_l_t_transformer_a25ba8efa13df153b441eab7d8fb6f401} 
+xslt\+\_\+transformer.\+XSLTTransformer.\+xslt\+\_\+dir = Path(xslt\+\_\+dir) if xslt\+\_\+dir else Path("{}xslt"{})}
+
+
+
+Definition at line \mbox{\hyperlink{xslt__transformer_8py_source_l00027}{27}} of file \mbox{\hyperlink{xslt__transformer_8py_source}{xslt\+\_\+transformer.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{xslt__transformer_8py_source_l00462}{\+\_\+create\+\_\+docx\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00372}{\+\_\+create\+\_\+epub\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00051}{\+\_\+create\+\_\+html\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00209}{\+\_\+create\+\_\+latex\+\_\+xslt()}}, \mbox{\hyperlink{xslt__transformer_8py_source_l00512}{transform\+\_\+to\+\_\+html()}}, and \mbox{\hyperlink{xslt__transformer_8py_source_l00548}{transform\+\_\+to\+\_\+latex()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{xslt__transformer_8py}{xslt\+\_\+transformer.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d4/d37/_la_te_x_analyzer_8hs" kind="file" language="C++">
+    <compoundname>LaTeXAnalyzer.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>LambdaCase<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>analyzer<sp/>tool</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>Tools.LaTeXAnalyzer<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Types</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Reconstruction.LaTeX</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text.IO<sp/>as<sp/>TIO</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.Directory<sp/>(doesFileExist,<sp/>listDirectory)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.FilePath<sp/>((&lt;/&gt;),<sp/>takeExtension)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Monad<sp/>(when,<sp/>forM_,<sp/>filterM)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Main<sp/>analyzer<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">analyzeLaTeXFiles<sp/>::<sp/>FilePath<sp/>-&gt;<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">analyzeLaTeXFiles<sp/>dir<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Analyzing<sp/>LaTeX<sp/>files<sp/>in:<sp/>&quot;<sp/>++<sp/>dir</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>files<sp/>&lt;-<sp/>findLaTeXFiles<sp/>dir</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Found<sp/>&quot;<sp/>++<sp/>show<sp/>(length<sp/>files)<sp/>++<sp/>&quot;<sp/>LaTeX<sp/>files&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>forM_<sp/>files<sp/>$<sp/>\file<sp/>-&gt;<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;\n---<sp/>Analyzing:<sp/>&quot;<sp/>++<sp/>file<sp/>++<sp/>&quot;<sp/>---&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>analyzeSingleFile<sp/>file</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Find<sp/>all<sp/>LaTeX<sp/>files<sp/>recursively</highlight></codeline>
+<codeline><highlight class="normal">findLaTeXFiles<sp/>::<sp/>FilePath<sp/>-&gt;<sp/>IO<sp/>[FilePath]</highlight></codeline>
+<codeline><highlight class="normal">findLaTeXFiles<sp/>dir<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>exists<sp/>&lt;-<sp/>doesFileExist<sp/>dir</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>exists</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>then<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>allFiles<sp/>&lt;-<sp/>listDirectory<sp/>dir</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>let<sp/>texFiles<sp/>=<sp/>filter<sp/>(\f<sp/>-&gt;<sp/>takeExtension<sp/>f<sp/>==<sp/>&quot;.tex&quot;)<sp/>allFiles</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>$<sp/>map<sp/>(dir<sp/>&lt;/&gt;)<sp/>texFiles</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else<sp/>return<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Analyze<sp/>single<sp/>LaTeX<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">analyzeSingleFile<sp/>::<sp/>FilePath<sp/>-&gt;<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">analyzeSingleFile<sp/>file<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>content<sp/>&lt;-<sp/>TIO.readFile<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>sections<sp/>=<sp/>extractSections<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>math<sp/>=<sp/>extractMathContent<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>metadata<sp/>=<sp/>extractMetadata<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Sections:<sp/>&quot;<sp/>++<sp/>show<sp/>(length<sp/>sections)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Math<sp/>expressions:<sp/>&quot;<sp/>++<sp/>show<sp/>(length<sp/>math)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Language:<sp/>&quot;<sp/>++<sp/>T.unpack<sp/>(metaLanguage<sp/>metadata)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Words:<sp/>&quot;<sp/>++<sp/>show<sp/>(metaWordCount<sp/>metadata)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>&quot;Characters:<sp/>&quot;<sp/>++<sp/>show<sp/>(metaCharCount<sp/>metadata)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>when<sp/>(not<sp/>(null<sp/>sections))<sp/>$<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>putStrLn<sp/>&quot;\nSections<sp/>found:&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mapM_<sp/>printSection<sp/>(take<sp/>5<sp/>sections)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>when<sp/>(length<sp/>sections<sp/>&gt;<sp/>5)<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;...<sp/>and<sp/>&quot;<sp/>++<sp/>show<sp/>(length<sp/>sections<sp/>-<sp/>5)<sp/>++<sp/>&quot;<sp/>more&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>when<sp/>(not<sp/>(null<sp/>math))<sp/>$<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>putStrLn<sp/>&quot;\nMath<sp/>expressions<sp/>(first<sp/>3):&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mapM_<sp/>printMath<sp/>(take<sp/>3<sp/>math)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>when<sp/>(length<sp/>math<sp/>&gt;<sp/>3)<sp/>$</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>putStrLn<sp/>$<sp/>&quot;...<sp/>and<sp/>&quot;<sp/>++<sp/>show<sp/>(length<sp/>math<sp/>-<sp/>3)<sp/>++<sp/>&quot;<sp/>more&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Print<sp/>section<sp/>information</highlight></codeline>
+<codeline><highlight class="normal">printSection<sp/>::<sp/>Section<sp/>-&gt;<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">printSection<sp/>sec<sp/>=<sp/>putStrLn<sp/>$<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;<sp/><sp/>&quot;<sp/>++<sp/>replicate<sp/>(secLevel<sp/>sec)<sp/>&apos;#&apos;<sp/>++<sp/>&quot;<sp/>&quot;<sp/>++<sp/>T.unpack<sp/>(secTitle<sp/>sec)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Print<sp/>math<sp/>expression</highlight></codeline>
+<codeline><highlight class="normal">printMath<sp/>::<sp/>MathExpression<sp/>-&gt;<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">printMath<sp/>=<sp/>\case</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>InlineMath<sp/>expr<sp/>-&gt;<sp/>putStrLn<sp/>$<sp/>&quot;<sp/><sp/>Inline:<sp/>&quot;<sp/>++<sp/>T.unpack<sp/>expr</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>DisplayMath<sp/>expr<sp/>-&gt;<sp/>putStrLn<sp/>$<sp/>&quot;<sp/><sp/>Display:<sp/>&quot;<sp/>++<sp/>T.unpack<sp/>expr</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Equation<sp/>expr<sp/>_<sp/>-&gt;<sp/>putStrLn<sp/>$<sp/>&quot;<sp/><sp/>Equation:<sp/>&quot;<sp/>++<sp/>T.unpack<sp/>expr</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Batch<sp/>analysis<sp/>of<sp/>all<sp/>LaTeX<sp/>files<sp/>in<sp/>project</highlight></codeline>
+<codeline><highlight class="normal">batchAnalyze<sp/>::<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">batchAnalyze<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;===<sp/>Integral<sp/>Philosophy<sp/>LaTeX<sp/>Analysis<sp/>===&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>--<sp/>Analyze<sp/>main<sp/>directories</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>analyzeLaTeXFiles<sp/>&quot;.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>analyzeLaTeXFiles<sp/>&quot;chapters&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>analyzeLaTeXFiles<sp/>&quot;frontmatter&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>analyzeLaTeXFiles<sp/>&quot;articles&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>analyzeLaTeXFiles<sp/>&quot;cfg&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>--<sp/>Generate<sp/>summary</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;\n===<sp/>Summary<sp/>===&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>&quot;Analysis<sp/>complete.<sp/>See<sp/>above<sp/>for<sp/>details.&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Entry<sp/>point<sp/>when<sp/>run<sp/>as<sp/>standalone</highlight></codeline>
+<codeline><highlight class="normal">main<sp/>::<sp/>IO<sp/>()</highlight></codeline>
+<codeline><highlight class="normal">main<sp/>=<sp/>batchAnalyze</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/Tools/LaTeXAnalyzer.hs"/>
+  </compounddef>
+</doxygen>

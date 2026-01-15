@@ -1,0 +1,69 @@
+# Performance Testing Requirements for Integral Philosophy Publishing System
+# Additional dependencies for Phase 2 Performance Tests
+
+# Core testing framework (already in main requirements)
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-xdist>=3.0.0
+
+# Performance monitoring
+psutil>=5.9.0
+memory-profiler>=0.60.0
+tracemalloc  # Built-in Python module
+
+# Concurrent execution
+concurrent-futures>=3.1.1  # Built-in but included for clarity
+
+# Statistical analysis
+statistics  # Built-in Python module
+
+# Report generation
+json  # Built-in Python module
+
+# HTTP testing (for load testing)
+requests>=2.28.0
+
+# System information
+platform  # Built-in Python module
+sys  # Built-in Python module
+os  # Built-in Python module
+time  # Built-in Python module
+threading  # Built-in Python module
+gc  # Built-in Python module
+weakref  # Built-in Python module
+
+# File and path handling
+pathlib  # Built-in Python module
+tempfile  # Built-in Python module
+
+# Data handling
+typing>=4.0.0  # For type hints
+dataclasses  # Built-in Python module (Python 3.7+)
+
+# Optional: For enhanced reporting
+pytest-json-report>=1.5.0
+
+# Development and debugging
+traceback  # Built-in Python module
+logging>=0.4.9.6
+
+# Test data generation (for mock data)
+random  # Built-in Python module
+
+# Timing and measurements
+time  # Built-in Python module
+datetime  # Built-in Python module
+
+# Process management
+subprocess  # Built-in Python module
+
+# System monitoring extensions
+# Note: These might require additional system packages:
+# - On Ubuntu/Debian: sudo apt-get install python3-dev gcc
+# - On CentOS/RHEL: sudo yum install python3-devel gcc
+# - On macOS: xcode-select --install
+
+# Optional advanced profiling (uncomment if needed)
+# py-spy>=0.3.14  # Sampling profiler
+# line-profiler>=4.0.0  # Line-by-line profiling
+# memory-profiler>=0.60.0  # Memory usage profiling

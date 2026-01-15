@@ -1,0 +1,138 @@
+# Integral Philosophy Publishing System - Taskfile Configuration
+# =======================================================
+
+version: '3'
+
+tasks:
+  # Build and Development Tasks
+  setup:
+    description: 'Setup the development environment'
+    cmds:
+      - 'mkdir -p build bin'
+      - 'cd haskell-project && stack setup'
+  
+  build:
+    description: 'Build the Haskell project'
+    deps: [setup]
+    cmds:
+      - 'cd haskell-project && stack build --fast'
+      - 'if [ -f haskell-project/.stack-work/install/x86_64-linux-tinfo6/*/9.4.8/bin/integral-philosophy ]; then cp haskell-project/.stack-work/install/x86_64-linux-tinfo6/*/9.4.8/bin/integral-philosophy ../bin/integral-philosophy; elif [ -f haskell-project/.stack-work/dist/x86_64-linux-tinfo6/*/build/integral-philosophy/integral-philosophy ]; then cp haskell-project/.stack-work/dist/x86_64-linux-tinfo6/*/build/integral-philosophy/integral-philosophy ../bin/integral-philosophy; fi'
+  
+  clean:
+    description: 'Clean build artifacts'
+    cmds:
+      - 'rm -rf build bin'
+      - 'cd haskell-project && stack clean'
+  
+  # Testing and Validation Tasks
+  test:
+    description: 'Run validation tests'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy validate test.tex'
+  
+  validate:
+    description: 'Validate a LaTeX file'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy validate {{.FILE}}'
+    vars:
+      FILE: '{{.CLI_ARGS | default "test.tex"}}'
+  
+  reconstruct:
+    description: 'Reconstruct LaTeX to Markdown'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy reconstruct {{.FILE}}'
+    vars:
+      FILE: '{{.CLI_ARGS | default "test.tex"}}'
+  
+  analyze:
+    description: 'Analyze LaTeX structure'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy analyze {{.FILE}}'
+    vars:
+      FILE: '{{.CLI_ARGS | default "test.tex"}}'
+  
+  # Utility Tasks
+  help:
+    description: 'Show system help'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy help'
+  
+  demo:
+    description: 'Run system demo'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy help'
+      - 'echo "🔍 Validating test.tex..."'
+      - './bin/integral-philosophy validate test.tex'
+      - 'echo "🔧 Reconstructing test.tex..."'
+      - './bin/integral-philosophy reconstruct test.tex'
+      - 'echo "📊 Analyzing test.tex..."'
+      - './bin/integral-philosophy analyze test.tex'
+  
+  # Full System Check
+  check:
+    description: 'Run complete system validation'
+    deps: [build]
+    cmds:
+      - 'echo "🎉 Running complete Integral Philosophy Publishing System validation..."'
+      - './bin/integral-philosophy help'
+      - './bin/integral-philosophy validate test.tex'
+      - './bin/integral-philosophy reconstruct test.tex'
+      - './bin/integral-philosophy analyze test.tex'
+      - 'echo "✅ All validations completed successfully!"'
+  
+  # Development Tasks
+  dev:
+    description: 'Development build and run'
+    deps: [build]
+    cmds:
+      - './bin/integral-philosophy {{.CLI_ARGS}}'
+    vars:
+      CLI_ARGS: '{{.CLI_ARGS | default "help"}}'
+  
+  # Project Information
+  info:
+    description: 'Show project information'
+    cmds:
+      - 'echo "🎉 Integral Philosophy Publishing System - Haskell Implementation"'
+      - 'echo "📚 Academic Publishing Validation & Reconstruction System"'
+      - 'echo "🔧 Built with: Haskell + Stack"'
+      - 'echo "📁 Features: LaTeX validation, reconstruction, analysis"'
+      - 'echo "🚀 Ready for production use!"'
+  
+  # Release Tasks
+  release:
+    description: 'Clean build and full release build'
+    deps: [clean, build]
+    cmds:
+      - 'echo "🏗️ Building release version..."'
+      - 'cd haskell-project && stack build --copy-bins'
+      - 'echo "✅ Release build complete!"'
+  
+  install:
+    description: 'Install the system'
+    deps: [release]
+    cmds:
+      - 'echo "📦 Installing Integral Philosophy Publishing System..."'
+      - 'cp bin/integral-philosophy /usr/local/bin/ 2>/dev/null || echo "Please copy to appropriate location in PATH"'
+
+# Environment Variables
+dotenv: []
+
+# Shell Configuration
+shopt: []
+
+# Output Configuration
+output: ''
+
+# Include Files
+includes: []
+
+# Settings
+silent: false
+ignore_errors: false

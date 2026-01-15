@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/d3a/namespacelatex__to__markdown" kind="namespace" language="Python">
+    <compoundname>latex_to_markdown</compoundname>
+    <innerclass refid="d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer" prot="public">latex_to_markdown::TeXAnalyzer</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d5/d3a/namespacelatex__to__markdown_1a3826b987d7643f58e894e06bc2c2121e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>latex_to_markdown.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>latex_to_markdown.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main reconstruction function.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="320" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" bodystart="320" bodyend="388"/>
+        <references refid="d5/d3a/namespacelatex__to__markdown_1a3826b987d7643f58e894e06bc2c2121e" compoundref="db/de9/latex__to__markdown_8py" startline="320" endline="388">main</references>
+        <referencedby refid="d5/d3a/namespacelatex__to__markdown_1a3826b987d7643f58e894e06bc2c2121e" compoundref="db/de9/latex__to__markdown_8py" startline="320" endline="388">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>LaTeX to Markdown+TeX Source Reconstruction Tool
+Reconstructs original markdown+TeX source from LaTeX files in the Integral Philosophy project.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/latex_to_markdown.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_f8a3365de196da2ff5b0c5d3d1b56938" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/haskell-project/src/Tools</compoundname>
+    <innerfile refid="d4/d37/_la_te_x_analyzer_8hs">LaTeXAnalyzer.hs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/Tools/"/>
+  </compounddef>
+</doxygen>

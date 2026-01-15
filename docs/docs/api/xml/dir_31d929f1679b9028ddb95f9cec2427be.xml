@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_31d929f1679b9028ddb95f9cec2427be" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy</compoundname>
+    <innerdir refid="dir_f56a2274a992a67e069bbe05aa051ead">/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Reconstruction</innerdir>
+    <innerdir refid="dir_15c4462be0975e5ae712ff6582320d8d">/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Utils</innerdir>
+    <innerdir refid="dir_b2ae7cb33503b81614dfe977a42425a5">/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation</innerdir>
+    <innerfile refid="d6/d5c/_prelude_8hs">Prelude.hs</innerfile>
+    <innerfile refid="d1/d18/_types_8hs">Types.hs</innerfile>
+    <innerfile refid="d2/dc4/_validation_8hs">Validation.hs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/"/>
+  </compounddef>
+</doxygen>

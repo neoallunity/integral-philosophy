@@ -1,0 +1,86 @@
+{
+  "test_timestamp": "2026-01-15 03:03:44",
+  "results": {
+    "format_conversion": {
+      "html": {
+        "success": false,
+        "time_seconds": 0.0016722679138183594
+      },
+      "latex": {
+        "success": false,
+        "time_seconds": 0.0018222332000732422
+      },
+      "org": {
+        "success": false,
+        "time_seconds": 0.0013849735260009766
+      },
+      "asciidoc": {
+        "success": false,
+        "time_seconds": 0.0011301040649414062
+      },
+      "rst": {
+        "success": false,
+        "time_seconds": 0.001142263412475586
+      },
+      "tei": {
+        "success": false,
+        "time_seconds": 0.0011718273162841797
+      }
+    },
+    "tei_generation": {
+      "success": false,
+      "error": "AST generation failed"
+    },
+    "uml_generation": {
+      "plantuml": {
+        "success": false,
+        "time_seconds": 0.0012586116790771484
+      },
+      "mermaid": {
+        "success": false,
+        "time_seconds": 0.00128936767578125
+      },
+      "graphviz": {
+        "success": false,
+        "time_seconds": 0.0011594295501708984
+      }
+    },
+    "conversion_matrix": {
+      "success": false,
+      "time_seconds": 0.0011942386627197266
+    },
+    "chain_conversion": {
+      "chain_1": {
+        "chain": [
+          "org",
+          "html"
+        ],
+        "success": false,
+        "time_seconds": 0.0012316703796386719
+      },
+      "chain_2": {
+        "chain": [
+          "org",
+          "asciidoc",
+          "html"
+        ],
+        "success": false,
+        "time_seconds": 0.0010690689086914062
+      },
+      "chain_3": {
+        "chain": [
+          "org",
+          "asciidoc",
+          "rst",
+          "html"
+        ],
+        "success": false,
+        "time_seconds": 0.0015940666198730469
+      }
+    }
+  },
+  "success_rates": {
+    "format_conversion": 0.0,
+    "uml_generation": 0.0
+  }
+}

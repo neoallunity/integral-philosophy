@@ -1,0 +1,234 @@
+{
+  "url": "https://plato.stanford.edu/entries/descartes-epistemology/",
+  "title": "Descartes’ Epistemology (Stanford Encyclopedia of Philosophy)",
+  "description": "",
+  "keywords": "",
+  "language": "en",
+  "author": "",
+  "canonical": "",
+  "structure": {
+    "headings": [
+      {
+        "id": "",
+        "level": 1,
+        "text": "Descartes’ Epistemology"
+      },
+      {
+        "id": "ConcKnow",
+        "level": 2,
+        "text": "1. Conception of Knowledge"
+      },
+      {
+        "id": "AnalPerfKnow",
+        "level": 3,
+        "text": "1.1 Analysis of Perfect Knowledge"
+      },
+      {
+        "id": "InteJust",
+        "level": 3,
+        "text": "1.2 Internalism and Justification"
+      },
+      {
+        "id": "MethAppr",
+        "level": 3,
+        "text": "1.3 Methodist Approach"
+      },
+      {
+        "id": "InnaIdea",
+        "level": 3,
+        "text": "1.4 Innate Ideas"
+      },
+      {
+        "id": "MethFounDoub",
+        "level": 2,
+        "text": "2. The Methods: Foundationalism and Doubt"
+      },
+      {
+        "id": "Foun",
+        "level": 3,
+        "text": "2.1 Foundationalism"
+      },
+      {
+        "id": "MethDoub",
+        "level": 3,
+        "text": "2.2 Method of Doubt"
+      },
+      {
+        "id": "FirsMediDoubArgu",
+        "level": 2,
+        "text": "3. First Meditation Doubting Arguments"
+      },
+      {
+        "id": "DreaDoub",
+        "level": 3,
+        "text": "3.1 Dreaming Doubts"
+      },
+      {
+        "id": "EvilGeniDoub",
+        "level": 3,
+        "text": "3.2 Evil Genius Doubt"
+      },
+      {
+        "id": "CogiDoub",
+        "level": 2,
+        "text": "4. The Cogito and Doubt"
+      },
+      {
+        "id": "CogiErgoSum",
+        "level": 3,
+        "text": "4.1 Cogito Ergo Sum"
+      },
+      {
+        "id": "DoesCogiCounAtheAvaiPerfKnow",
+        "level": 3,
+        "text": "4.2 Does the Cogito count as (Atheist-Available) Perfect Knowledge?"
+      },
+      {
+        "id": "HowIndiDoubCleaDistPerc",
+        "level": 3,
+        "text": "4.3 How Indirectly to Doubt Clear and Distinct Perception"
+      },
+      {
+        "id": "CaDRuleRoadPerfKnow",
+        "level": 2,
+        "text": "5. C&D Rule and the Road to Perfect Knowledge"
+      },
+      {
+        "id": "ClarDistProvTrutRule",
+        "level": 3,
+        "text": "5.1 Clarity and Distinctness as a Provisional Truth Rule"
+      },
+      {
+        "id": "StraForConsProoMoviForw",
+        "level": 3,
+        "text": "5.2 Strategy for Constructive Proofs \nMoving Forward"
+      },
+      {
+        "id": "FourMediProoCaDRule",
+        "level": 3,
+        "text": "5.3 Fourth Meditation Proof of the C&D Rule"
+      },
+      {
+        "id": "PerfKnowCircTrut",
+        "level": 2,
+        "text": "6. Perfect Knowledge, Circularity, and Truth"
+      },
+      {
+        "id": "CartCirc",
+        "level": 3,
+        "text": "6.1 The Cartesian Circle"
+      },
+      {
+        "id": "SelfEvidGodInte",
+        "level": 3,
+        "text": "6.2 Self-Evident God Interpretation"
+      },
+      {
+        "id": "AnotCartCirc",
+        "level": 3,
+        "text": "6.3 Another Cartesian Circle?"
+      },
+      {
+        "id": "TrutCondPerfKnow",
+        "level": 3,
+        "text": "6.4 Is Truth a Condition of Perfect Knowledge?"
+      },
+      {
+        "id": "ProvExteMateWorl",
+        "level": 2,
+        "text": "7. Proving an External Material World"
+      },
+      {
+        "id": "CaseForExteCausSens",
+        "level": 3,
+        "text": "7.1 Case for the Externality\nof the Causes of Sensation"
+      },
+      {
+        "id": "CaseForMateCausSens",
+        "level": 3,
+        "text": "7.2 Case for the Materiality\nof the Causes of Sensation"
+      },
+      {
+        "id": "PerfKnowBeinAwak",
+        "level": 2,
+        "text": "8. Perfect Knowledge of Being Awake"
+      },
+      {
+        "id": "SelfKnow",
+        "level": 2,
+        "text": "9. Self-Knowledge"
+      },
+      {
+        "id": "MindBettKnowThanBody",
+        "level": 3,
+        "text": "9.1 That Mind is Better-Known than Body"
+      },
+      {
+        "id": "WhetWePerfKnowOurOwnMind",
+        "level": 3,
+        "text": "9.2 Whether We Perfectly Know Our Own Minds"
+      },
+      {
+        "id": "Bib",
+        "level": 2,
+        "text": "Bibliography"
+      },
+      {
+        "id": "PrimSour",
+        "level": 3,
+        "text": "Primary Sources"
+      },
+      {
+        "id": "SecoSour",
+        "level": 3,
+        "text": "Secondary Sources"
+      },
+      {
+        "id": "Aca",
+        "level": 2,
+        "text": "Academic Tools"
+      },
+      {
+        "id": "Oth",
+        "level": 2,
+        "text": "Other Internet Resources"
+      },
+      {
+        "id": "Rel",
+        "level": 2,
+        "text": "Related Entries"
+      },
+      {
+        "id": "",
+        "level": 3,
+        "text": "Acknowledgments"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Browse"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "About"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Support SEP"
+      },
+      {
+        "id": "",
+        "level": 4,
+        "text": "Mirror Sites"
+      }
+    ],
+    "images": 5,
+    "links": 139,
+    "lists": 25,
+    "tables": 2
+  },
+  "scraped_at": "2026-01-15 03:00:06",
+  "content_length": 210828
+}

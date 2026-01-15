@@ -1,0 +1,51 @@
+# Integral Philosophy Publishing System - Core Dependencies
+# Beautiful academic content processing pipeline
+
+# Core Processing
+beautifulsoup4>=4.12.0          # HTML/XML parsing
+lxml>=4.9.0                      # XML processing with XPath support
+requests>=2.31.0                  # HTTP client for web scraping
+selenium>=4.15.0                  # Browser automation for dynamic content
+pandoc>=3.5                       # Document conversion engine
+
+# Data Processing
+pandas>=2.0.0                     # Data manipulation and analysis
+numpy>=1.24.0                     # Numerical computing
+markdown>=3.4.0                    # Markdown parsing
+pyyaml>=6.0                        # YAML configuration files
+
+# Academic Features
+jinja2>=3.1.0                     # Template engine for output generation
+python-markdown-math>=0.8         # Mathematical formula support
+pybtex>=0.24.0                    # Bibliography management
+
+# Visualization & UML
+matplotlib>=3.7.0                 # Plotting and diagrams
+seaborn>=0.12.0                   # Statistical visualization
+plotly>=5.15.0                    # Interactive charts
+networkx>=3.1                     # Network graphs and UML
+pillow>=10.0.0                     # Image processing
+
+# Web Interface & API
+flask>=2.3.0                       # Web framework
+flask-cors>=4.0.0                 # Cross-origin resource sharing
+werkzeug>=2.3.0                    # WSGI utilities
+gunicorn>=21.2.0                   # Production WSGI server
+
+# Development & Testing
+pytest>=7.4.0                      # Testing framework
+pytest-cov>=4.1.0                 # Coverage reporting
+black>=23.7.0                      # Code formatting
+flake8>=6.0.0                      # Linting
+mypy>=1.5.0                        # Type checking
+
+# Deployment & Production
+docker>=6.1.0                      # Docker Python client
+redis>=4.6.0                       # Caching and job queue
+prometheus-client>=0.17.0           # Metrics collection
+
+# Optional - Advanced Features
+# sphinx>=7.1.0                    # Documentation generation
+# jupyter>=1.0.0                   # Notebook support
+# streamlit>=1.25.0                # Alternative web interface
+# fastapi>=0.100.0                 # Alternative API framework

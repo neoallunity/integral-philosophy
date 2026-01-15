@@ -1,0 +1,54 @@
+{
+  "url": "https://philosophynow.org/events",
+  "title": "Events | Philosophy Now",
+  "description": "Listing of lectures, debates, seminars, conferences, meetings in cafes or pubs and other philosophy events.",
+  "keywords": "philosophy,events,lectures,debates,seminars,conferences,meetings",
+  "language": "en",
+  "author": "",
+  "canonical": "",
+  "structure": {
+    "headings": [
+      {
+        "id": "",
+        "level": 1,
+        "text": "Events"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Australia"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Canada"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "Ireland"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "New Zealand"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "United Kingdom"
+      },
+      {
+        "id": "",
+        "level": 2,
+        "text": "United States"
+      }
+    ],
+    "images": 10,
+    "links": 35,
+    "lists": 1,
+    "tables": 0
+  },
+  "scraped_at": "2026-01-15 02:59:03",
+  "content_length": 1034
+}

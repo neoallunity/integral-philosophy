@@ -1,0 +1,134 @@
+\doxysection{cfg-\/editorial.tex}
+\hypertarget{cfg-editorial_8tex_source}{}\label{cfg-editorial_8tex_source}\index{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/editorial.tex@{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/editorial.tex}}
+\mbox{\hyperlink{cfg-editorial_8tex}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00001}00001\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00002}00002\ \%\ cfg-\/editorial.tex\ —\ редакционные\ элементы\ и\ семантические\ макросы}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00003}00003\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00005}00005\ \(\backslash\)RequirePackage\{xparse\}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00007}00007\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00008}00008\ \%\ СЕМАНТИЧЕСКИЕ\ МАКРОСЫ\ ДЛЯ\ ПЕРСОНАЛИЙ}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00009}00009\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00011}00011\ \%\ Главный\ редактор}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00012}00012\ \(\backslash\)NewDocumentCommand\{\(\backslash\)PrintEditorInChief\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00013}00013\ \ \ \(\backslash\)textsc\{Гл.\ редактор\}\ \#1\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00016}00016\ \%\ Редактор\ (обычный)}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00017}00017\ \(\backslash\)NewDocumentCommand\{\(\backslash\)PrintEditor\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00018}00018\ \ \ \(\backslash\)textsc\{Редактор\}\ \#1\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00021}00021\ \%\ Автор\ статьи\ (с\ возможной\ аффилиацией)}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00022}00022\ \(\backslash\)NewDocumentCommand\{\(\backslash\)PrintArticleAuthor\}\{o\ m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00023}00023\ \ \ \(\backslash\)IfNoValueTF\{\#1\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00024}00024\ \ \ \ \ \(\backslash\)textbf\{\#2\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00025}00025\ \ \ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00026}00026\ \ \ \ \ \(\backslash\)textbf\{\#2\}\(\backslash\)textsuperscript\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00027}00027\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00030}00030\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00031}00031\ \%\ ОКРУЖЕНИЕ:\ РЕДАКЦИОННАЯ\ ПОДПИСЬ}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00032}00032\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00034}00034\ \%\ Использование:}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00035}00035\ \%\ \ \ \(\backslash\)begin\{editorialsignature\}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00036}00036\ \%\ \ \ \ \ \(\backslash\)PrintEditorInChief\{Моисеев\ В.\(\backslash\),И.\}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00037}00037\ \%\ \ \ \(\backslash\)end\{editoitalsignature\}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00039}00039\ \(\backslash\)NewDocumentEnvironment\{editorialsignature\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00040}00040\ \ \ \(\backslash\)vspace\{1.2cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00041}00041\ \ \ \(\backslash\)begin\{flushright\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00042}00042\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00043}00043\ \ \ \(\backslash\)end\{flushright\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00044}00044\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00047}00047\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00048}00048\ \%\ ОКРУЖЕНИЕ:\ ПРЕДИСЛОВИЕ\ (РУССКОЯЗЫЧНОЕ)}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00049}00049\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00051}00051\ \%\ Параметры:\ опционально\ можно\ переопределить\ заголовок}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00052}00052\ \(\backslash\)NewDocumentEnvironment\{foreword\}\{O\{Предисловие\}\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00053}00053\ \ \ \(\backslash\)chapter*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00054}00054\ \ \ \(\backslash\)addcontentsline\{toc\}\{chapter\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00055}00055\ \ \ \(\backslash\)markboth\{\#1\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00056}00056\ \ \ \(\backslash\)thispagestyle\{journalPlain\}\%\ или\ journalHot\ —\ на\ усмотрение}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00057}00057\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00058}00058\ \ \ \(\backslash\)clearpage\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00061}00061\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00062}00062\ \%\ ОКРУЖЕНИЕ:\ ПРЕДИСЛОВИЕ\ (АНГЛОЯЗЫЧНОЕ)}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00063}00063\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00065}00065\ \(\backslash\)NewDocumentEnvironment\{forewordEN\}\{O\{Foreword\}\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00066}00066\ \ \ \(\backslash\)chapter*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00067}00067\ \ \ \(\backslash\)addcontentsline\{toc\}\{chapter\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00068}00068\ \ \ \(\backslash\)markboth\{\#1\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00069}00069\ \ \ \(\backslash\)thispagestyle\{journalPlain\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00070}00070\ \ \ \(\backslash\)begin\{otherlanguage\}\{english\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00071}00071\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00072}00072\ \ \ \(\backslash\)end\{otherlanguage\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00073}00073\ \ \ \(\backslash\)clearpage\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00074}00074\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00076}00076\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00077}00077\ \%\ ОКРУЖЕНИЕ:\ РАЗДЕЛ\ АННОТАЦИЙ}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00078}00078\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00080}00080\ \%\ Для\ английских\ аннотаций}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00081}00081\ \(\backslash\)NewDocumentEnvironment\{abstractsection\}\{O\{Abstract\}\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00082}00082\ \ \ \(\backslash\)chapter*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00083}00083\ \ \ \(\backslash\)addcontentsline\{toc\}\{chapter\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00084}00084\ \ \ \(\backslash\)markboth\{\#1\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00085}00085\ \ \ \(\backslash\)begin\{otherlanguage\}\{english\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00086}00086\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00087}00087\ \ \ \(\backslash\)end\{otherlanguage\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00088}00088\ \ \ \(\backslash\)clearpage\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00091}00091\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00092}00092\ \%\ МАКРОС:\ ОТДЕЛЬНАЯ\ АННОТАЦИЯ\ СТАТЬИ}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00093}00093\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00095}00095\ \%\ Параметры:}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00096}00096\ \%\ \ \ \#1\ —\ имя\ автора}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00097}00097\ \%\ \ \ \#2\ —\ название\ статьи}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00098}00098\ \%\ \ \ \#3\ —\ текст\ аннотации}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00099}00099\ \%\ \ \ \#4\ —\ ключевые\ слова\ (например,\ "{}Keywords:\ word1,\ word2"{})}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00101}00101\ \(\backslash\)NewDocumentCommand\{\(\backslash\)SingleAbstract\}\{m\ m\ m\ m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00102}00102\ \ \ \(\backslash\)subsection*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00103}00103\ \ \ \(\backslash\)subsubsection*\{\#2\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00104}00104\ \ \ \(\backslash\)noindent\ \#3\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00105}00105\ \ \ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00106}00106\ \ \ \(\backslash\)vspace\{0.3cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00107}00107\ \ \ \(\backslash\)noindent\(\backslash\)textit\{\#4\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00108}00108\ \ \ \(\backslash\)vspace\{1cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00111}00111\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00112}00112\ \%\ ОКРУЖЕНИЕ:\ ИНФОРМАЦИЯ\ ОБ\ АВТОРАХ}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00113}00113\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00115}00115\ \(\backslash\)NewDocumentEnvironment\{authorsinfo\}\{O\{Авторы\}\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00116}00116\ \ \ \(\backslash\)chapter*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00117}00117\ \ \ \(\backslash\)addcontentsline\{toc\}\{chapter\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00118}00118\ \ \ \(\backslash\)markboth\{\#1\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00119}00119\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00120}00120\ \ \ \(\backslash\)clearpage\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00121}00121\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00123}00123\ \%\ Отдельный\ автор}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00124}00124\ \(\backslash\)NewDocumentCommand\{\(\backslash\)AuthorBio\}\{m\ m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00125}00125\ \ \ \(\backslash\)section*\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00126}00126\ \ \ \(\backslash\)noindent\ \#2\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00127}00127\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-editorial_8tex_source_l00128}00128\ \}}
+
+\end{DoxyCode}

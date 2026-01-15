@@ -1,0 +1,45 @@
+* Final Test Document
+:PROPERTIES:
+:CUSTOM_ID: final-test-document
+:END:
+This is a comprehensive test of the *Integral Philosophy Publishing
+System*.
+
+** Features Tested
+:PROPERTIES:
+:CUSTOM_ID: features-tested
+:END:
+- *Markdown parsing* with inline math: = mc^2$
+
+- *Code blocks*:
+
+  #+begin_src python
+  print('Hello, World!')
+  #+end_src
+
+- *Tables*: | Feature | Status | |---------|--------| | Markdown| ✅ | |
+  LaTeX | ✅ |
+
+** Philosophical Content
+:PROPERTIES:
+:CUSTOM_ID: philosophical-content
+:END:
+According to /Plato/ in his *Republic*, the concept of justice is
+central to the ideal state.
+
+#+begin_quote
+"The unexamined life is not worth living." - Socrates
+#+end_quote
+
+** Mathematical Formulas
+:PROPERTIES:
+:CUSTOM_ID: mathematical-formulas
+:END:
+Display math: 2011973\int_0^{\infty} e^{-x} dx = 12011973
+
+** Bibliography Test
+:PROPERTIES:
+:CUSTOM_ID: bibliography-test
+:END:
+As discussed by Einstein [einstein1905], the theory of relativity
+revolutionized our understanding of space and time.

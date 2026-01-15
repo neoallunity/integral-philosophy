@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-01-14T16:43:03.362207",
+  "source_files": [
+    "main.tex"
+  ],
+  "output_formats": [
+    "latex"
+  ],
+  "validation_results": {
+    "latex": {
+      "is_valid": false,
+      "errors": [
+        {
+          "severity": "error",
+          "message": "Missing \\documentclass declaration",
+          "file_path": "articles/bukharov/main.tex",
+          "line": 1,
+          "column": null,
+          "rule_id": "latex-documentclass"
+        },
+        {
+          "severity": "error",
+          "message": "Unmatched environments: russian",
+          "file_path": "articles/bukharov/main.tex",
+          "line": null,
+          "column": null,
+          "rule_id": "latex-unmatched-environments"
+        },
+        {
+          "severity": "error",
+          "message": "Unbalanced braces: 33 open, 31 close",
+          "file_path": "articles/bukharov/main.tex",
+          "line": null,
+          "column": null,
+          "rule_id": "latex-unbalanced-braces"
+        },
+        {
+          "severity": "warning",
+          "message": "Missing input encoding package (inputenc or fontspec)",
+          "file_path": "articles/bukharov/main.tex",
+          "line": null,
+          "column": null,
+          "rule_id": "latex-encoding"
+        }
+      ],
+      "stats": {
+        "file_size": 28636,
+        "lines": 89,
+        "environments": 2,
+        "checks_performed": 5
+      }
+    }
+  },
+  "quality_metrics": {
+    "overall_score": 69.5,
+    "format_scores": {
+      "latex": 69.5
+    },
+    "integrity_score": 0.0,
+    "accessibility_score": 50.0,
+    "performance_score": 80.0,
+    "standards_compliance": 100.0
+  },
+  "errors_by_severity": {
+    "error": 3,
+    "warning": 1,
+    "info": 0
+  },
+  "recommendations": [
+    "Fix 1 unmatched LaTeX environments"
+  ],
+  "processing_time": 5.0
+}

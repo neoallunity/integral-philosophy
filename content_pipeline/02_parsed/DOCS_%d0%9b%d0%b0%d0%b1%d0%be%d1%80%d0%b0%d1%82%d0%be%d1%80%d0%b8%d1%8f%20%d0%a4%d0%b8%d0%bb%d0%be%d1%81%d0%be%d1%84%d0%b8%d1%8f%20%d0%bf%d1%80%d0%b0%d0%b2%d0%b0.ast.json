@@ -1,0 +1,352 @@
+{
+  "type": "document",
+  "attributes": {},
+  "content": [
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 1
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Интегральное Сообщество - Библиотека Документов\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "URL:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " https://allunity.ru/DOCS/%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f%20%d0%a4%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d1%8f%20%d0%bf%d1%80%d0%b0%d0%b2%d0%b0/\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Language:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " ru\\n\\n"
+        },
+        {
+          "type": "strong",
+          "attributes": {},
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Scraped:"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": " 2026-01-14 23:47:06\\n\\n---\\n\\n## Сборник материалов и документов\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Показать:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Плоский\n                         Изысканный\n                         Табличный"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Сортировать:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Имени\n                         Дате модификации\n                         Размеру\n                         Описанию"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Порядок:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "возрастанию\n                         убыванию"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Версии:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "в нормальном порядке\n                         в порядке версий"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Фильтры:"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "![[ICO]](/icons/blank.gif)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=N;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Name"
+            }
+          ]
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=S;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Size"
+            }
+          ]
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "?C=D;O=A"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Description"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "[![[DIR]](/icons/folder.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f_%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80_%d1%84%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d0%b8_%d0%bf%d1%80%d0%b0%d0%b2%d0%b0/)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f_%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80_%d1%84%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d0%b8_%d0%bf%d1%80%d0%b0%d0%b2%d0%b0/"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория_интегр_философии_права/"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "  - \n   [![[   ]](/icons/layout.gif)](%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f_%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80_%d1%84%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d0%b8_%d0%bf%d1%80%d0%b0%d0%b2%d0%b0.pdf)"
+        },
+        {
+          "type": "link",
+          "attributes": {
+            "href": "%d0%9b%d0%b0%d0%b1%d0%be%d1%80%d0%b0%d1%82%d0%be%d1%80%d0%b8%d1%8f_%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80_%d1%84%d0%b8%d0%bb%d0%be%d1%81%d0%be%d1%84%d0%b8%d0%b8_%d0%bf%d1%80%d0%b0%d0%b2%d0%b0.pdf"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "Лаборатория_интегр_философии_права.pdf"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "185KФормат переносимых документов Adobe"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "О коллекции документов\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Этот каталог содержит материалы по интегральной физике, философии и математике. \n                Документы представлены в формате PDF для удобного просмотра и скачивания.\n            \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "PDF\n                Учебные материалы\n                Интегральная физика\n                Философия"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "attributes": {
+        "level": 2
+      },
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Внесите свой вклад в библиотеку\\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "Если у вас есть материалы, которые могут быть интересны читателям нашей библиотеки, мы приглашаем вас поделиться ими с сообществом. Это могут быть статьи, книги, исследования или другие публикации, связанные с интегральным подходом.\n                    \\n\\n"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "link",
+          "attributes": {
+            "href": "contribute.html"
+          },
+          "content": [
+            {
+              "type": "text",
+              "attributes": {},
+              "content": "\n                            Предложить материал\n                        "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "attributes": {},
+      "content": [
+        {
+          "type": "text",
+          "attributes": {},
+          "content": "&lt;\\n"
+        }
+      ]
+    }
+  ]
+}

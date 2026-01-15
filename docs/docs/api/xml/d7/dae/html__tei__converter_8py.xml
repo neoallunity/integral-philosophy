@@ -1,0 +1,942 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/dae/html__tei__converter_8py" kind="file" language="Python">
+    <compoundname>html_tei_converter.py</compoundname>
+    <innerclass refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" prot="public">html_tei_converter::ConversionResult</innerclass>
+    <innerclass refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" prot="public">html_tei_converter::HTMLTEIConverter</innerclass>
+    <innernamespace refid="d3/daa/namespacehtml__tei__converter">html_tei_converter</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="d3/daa/namespacehtml__tei__converter" refkind="compound"><highlight class="comment">#!/usr/bin/env<sp/>python3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral">Bidirectional<sp/>HTML<sp/>↔<sp/>TEI<sp/>Converter<sp/>with<sp/>Isomorphism<sp/>Testing</highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">Supports<sp/>HTML5<sp/>to<sp/>TEI<sp/>conversion<sp/>and<sp/>back<sp/>for<sp/>content<sp/>preservation<sp/>validation</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>subprocess</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>json</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>tempfile</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pathlib<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Path</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>typing<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Dict,<sp/>List,<sp/>Optional,<sp/>Union,<sp/>Any,<sp/>Tuple</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>hashlib</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>dataclasses<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>dataclass</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>xml.etree<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>ElementTree<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>ET</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>logging</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Set<sp/>up<sp/>logging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">logging.basicConfig(</highlight></codeline>
+<codeline lineno="19" refid="d3/daa/namespacehtml__tei__converter_1a00ef0a4194d79e7504089abfcee1aa4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>level=logging.INFO,<sp/>format=</highlight><highlight class="stringliteral">&quot;%(asctime)s<sp/>-<sp/>%(levelname)s<sp/>-<sp/>%(message)s&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="21" refid="d3/daa/namespacehtml__tei__converter_1ac80aa9ded05cbef1701b6a1c3ccad9c3" refkind="member"><highlight class="normal">logger<sp/>=<sp/>logging.getLogger(__name__)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">@dataclass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Result<sp/>of<sp/>conversion<sp/>operation&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>success:<sp/>bool</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>output_file:<sp/>Path</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>input_file:<sp/>Path</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>conversion_time:<sp/>float</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>checksum:<sp/>str</highlight></codeline>
+<codeline lineno="33" refid="dd/d55/classhtml__tei__converter_1_1_conversion_result_1a0ecbd663a80f462d201781a0232ab6ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>metadata:<sp/>Dict[str,<sp/>Any]</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" kindref="compound">HTMLTEIConverter</ref>:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Bidirectional<sp/>HTML<sp/>↔<sp/>TEI<sp/>converter<sp/>with<sp/>validation&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a00fd922703396e06d55758234072eb22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a00fd922703396e06d55758234072eb22" kindref="member">__init__</ref>(self,<sp/>work_dir:<sp/>Optional[Path]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="40" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>=<sp/>work_dir<sp/></highlight><highlight class="keywordflow">or</highlight><highlight class="normal"><sp/>Path(</highlight><highlight class="stringliteral">&quot;conversion_workspace&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref>.mkdir(exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>subdirectories</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;html&quot;</highlight><highlight class="normal">).mkdir(exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;tei&quot;</highlight><highlight class="normal">).mkdir(exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;build&quot;</highlight><highlight class="normal">).mkdir(exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;xslt&quot;</highlight><highlight class="normal">).mkdir(exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Initialize<sp/>conversion<sp/>tools</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" kindref="member">_create_xslt_stylesheets</ref>()</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" kindref="member">_create_xslt_stylesheets</ref>(self)<sp/>-&gt;<sp/>None:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Create<sp/>XSLT<sp/>stylesheets<sp/>for<sp/>HTML<sp/>↔<sp/>TEI<sp/>conversion&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>HTML<sp/>to<sp/>TEI<sp/>XSLT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_to_tei_xslt<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;&lt;?xml<sp/>version=&quot;1.0&quot;<sp/>encoding=&quot;UTF-8&quot;?&gt;</highlight></codeline>
+<codeline lineno="57"><highlight class="stringliteral">&lt;xsl:stylesheet<sp/>version=&quot;1.0&quot;</highlight></codeline>
+<codeline lineno="58"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;</highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns:h=&quot;http://www.w3.org/1999/xhtml&quot;</highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns:tei=&quot;http://www.tei-c.org/ns/1.0&quot;</highlight></codeline>
+<codeline lineno="61"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;</highlight></codeline>
+<codeline lineno="62"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>exclude-result-prefixes=&quot;h&quot;&gt;</highlight></codeline>
+<codeline lineno="63"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="64"><highlight class="stringliteral">&lt;xsl:output<sp/>method=&quot;xml&quot;<sp/>indent=&quot;yes&quot;<sp/>encoding=&quot;UTF-8&quot;/&gt;</highlight></codeline>
+<codeline lineno="65"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="66"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;/h:html&quot;&gt;</highlight></codeline>
+<codeline lineno="67"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;TEI&gt;</highlight></codeline>
+<codeline lineno="68"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;teiHeader&gt;</highlight></codeline>
+<codeline lineno="69"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;fileDesc&gt;</highlight></codeline>
+<codeline lineno="70"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;titleStmt&gt;</highlight></codeline>
+<codeline lineno="71"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;title&gt;&lt;xsl:value-of<sp/>select=&quot;//h:title&quot;/&gt;&lt;/title&gt;</highlight></codeline>
+<codeline lineno="72"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;author&gt;&lt;xsl:value-of<sp/>select=&quot;//h:meta[@name=&apos;author&apos;]/@content&quot;/&gt;&lt;/author&gt;</highlight></codeline>
+<codeline lineno="73"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/titleStmt&gt;</highlight></codeline>
+<codeline lineno="74"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;publicationStmt&gt;</highlight></codeline>
+<codeline lineno="75"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;publisher&gt;Generated<sp/>from<sp/>HTML&lt;/publisher&gt;</highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;date&gt;&lt;xsl:value-of<sp/>select=&quot;//h:meta[@name=&apos;date&apos;]/@content&quot;/&gt;&lt;/date&gt;</highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/publicationStmt&gt;</highlight></codeline>
+<codeline lineno="78"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;sourceDesc&gt;</highlight></codeline>
+<codeline lineno="79"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;bibl&gt;</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;title&gt;&lt;xsl:value-of<sp/>select=&quot;//h:title&quot;/&gt;&lt;/title&gt;</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;url&gt;Original<sp/>HTML&lt;/url&gt;</highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/bibl&gt;</highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/sourceDesc&gt;</highlight></codeline>
+<codeline lineno="84"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/fileDesc&gt;</highlight></codeline>
+<codeline lineno="85"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;profileDesc&gt;</highlight></codeline>
+<codeline lineno="86"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;langUsage&gt;</highlight></codeline>
+<codeline lineno="87"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;language<sp/>ident=&quot;{//h:html/@lang}&quot;/&gt;</highlight></codeline>
+<codeline lineno="88"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/langUsage&gt;</highlight></codeline>
+<codeline lineno="89"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/profileDesc&gt;</highlight></codeline>
+<codeline lineno="90"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/teiHeader&gt;</highlight></codeline>
+<codeline lineno="91"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;text&gt;</highlight></codeline>
+<codeline lineno="92"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;body&gt;</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates<sp/>select=&quot;//h:body&quot;/&gt;</highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/body&gt;</highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/text&gt;</highlight></codeline>
+<codeline lineno="96"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/TEI&gt;</highlight></codeline>
+<codeline lineno="97"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="98"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="99"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:section<sp/>|<sp/>h:article<sp/>|<sp/>h:main&quot;&gt;</highlight></codeline>
+<codeline lineno="100"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div<sp/>type=&quot;section&quot;&gt;</highlight></codeline>
+<codeline lineno="101"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;xml:id&quot;&gt;</highlight></codeline>
+<codeline lineno="102"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@id&quot;/&gt;</highlight></codeline>
+<codeline lineno="103"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="104"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="105"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="106"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="107"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="108"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:header&quot;&gt;</highlight></codeline>
+<codeline lineno="109"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div<sp/>type=&quot;header&quot;&gt;</highlight></codeline>
+<codeline lineno="110"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="111"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="112"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="113"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="114"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:footer&quot;&gt;</highlight></codeline>
+<codeline lineno="115"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div<sp/>type=&quot;footer&quot;&gt;</highlight></codeline>
+<codeline lineno="116"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="117"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="118"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="119"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="120"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:nav&quot;&gt;</highlight></codeline>
+<codeline lineno="121"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div<sp/>type=&quot;navigation&quot;&gt;</highlight></codeline>
+<codeline lineno="122"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="123"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="124"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="125"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="126"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:aside&quot;&gt;</highlight></codeline>
+<codeline lineno="127"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div<sp/>type=&quot;aside&quot;&gt;</highlight></codeline>
+<codeline lineno="128"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="129"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="130"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="131"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="132"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:h1&quot;&gt;</highlight></codeline>
+<codeline lineno="133"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;head<sp/>type=&quot;h1&quot;&gt;</highlight></codeline>
+<codeline lineno="134"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="135"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/head&gt;</highlight></codeline>
+<codeline lineno="136"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="137"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="138"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:h2&quot;&gt;</highlight></codeline>
+<codeline lineno="139"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;head<sp/>type=&quot;h2&quot;&gt;</highlight></codeline>
+<codeline lineno="140"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="141"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/head&gt;</highlight></codeline>
+<codeline lineno="142"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="143"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:h3&quot;&gt;</highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;head<sp/>type=&quot;h3&quot;&gt;</highlight></codeline>
+<codeline lineno="146"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="147"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/head&gt;</highlight></codeline>
+<codeline lineno="148"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="149"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="150"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:h4|h:h5|h:h6&quot;&gt;</highlight></codeline>
+<codeline lineno="151"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;head&gt;</highlight></codeline>
+<codeline lineno="152"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;local-name()&quot;/&gt;</highlight></codeline>
+<codeline lineno="153"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:text&gt;:<sp/>&lt;/xsl:text&gt;</highlight></codeline>
+<codeline lineno="154"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="155"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/head&gt;</highlight></codeline>
+<codeline lineno="156"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="157"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="158"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:p&quot;&gt;</highlight></codeline>
+<codeline lineno="159"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;p&gt;</highlight></codeline>
+<codeline lineno="160"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="161"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/p&gt;</highlight></codeline>
+<codeline lineno="162"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="163"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="164"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:div&quot;&gt;</highlight></codeline>
+<codeline lineno="165"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div&gt;</highlight></codeline>
+<codeline lineno="166"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@class&quot;&gt;</highlight></codeline>
+<codeline lineno="167"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;type&quot;&gt;</highlight></codeline>
+<codeline lineno="168"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@class&quot;/&gt;</highlight></codeline>
+<codeline lineno="169"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="170"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="171"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@id&quot;&gt;</highlight></codeline>
+<codeline lineno="172"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;xml:id&quot;&gt;</highlight></codeline>
+<codeline lineno="173"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@id&quot;/&gt;</highlight></codeline>
+<codeline lineno="174"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="175"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="176"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="177"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="178"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="179"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="180"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:span&quot;&gt;</highlight></codeline>
+<codeline lineno="181"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;span&gt;</highlight></codeline>
+<codeline lineno="182"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@class&quot;&gt;</highlight></codeline>
+<codeline lineno="183"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;type&quot;&gt;</highlight></codeline>
+<codeline lineno="184"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@class&quot;/&gt;</highlight></codeline>
+<codeline lineno="185"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="186"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="187"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="188"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/span&gt;</highlight></codeline>
+<codeline lineno="189"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="190"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="191"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:a&quot;&gt;</highlight></codeline>
+<codeline lineno="192"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;ref&gt;</highlight></codeline>
+<codeline lineno="193"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;target&quot;&gt;</highlight></codeline>
+<codeline lineno="194"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@href&quot;/&gt;</highlight></codeline>
+<codeline lineno="195"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="196"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="197"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/ref&gt;</highlight></codeline>
+<codeline lineno="198"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="199"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="200"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:img&quot;&gt;</highlight></codeline>
+<codeline lineno="201"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;figure&gt;</highlight></codeline>
+<codeline lineno="202"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;graphic&gt;</highlight></codeline>
+<codeline lineno="203"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;url&quot;&gt;</highlight></codeline>
+<codeline lineno="204"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@src&quot;/&gt;</highlight></codeline>
+<codeline lineno="205"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="206"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@alt&quot;&gt;</highlight></codeline>
+<codeline lineno="207"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;alt&quot;&gt;</highlight></codeline>
+<codeline lineno="208"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@alt&quot;/&gt;</highlight></codeline>
+<codeline lineno="209"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="210"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="211"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/graphic&gt;</highlight></codeline>
+<codeline lineno="212"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@alt&quot;&gt;</highlight></codeline>
+<codeline lineno="213"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;figDesc&gt;&lt;xsl:value-of<sp/>select=&quot;@alt&quot;/&gt;&lt;/figDesc&gt;</highlight></codeline>
+<codeline lineno="214"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="215"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/figure&gt;</highlight></codeline>
+<codeline lineno="216"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="217"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="218"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:ul|h:ol&quot;&gt;</highlight></codeline>
+<codeline lineno="219"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;list&gt;</highlight></codeline>
+<codeline lineno="220"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;local-name()=&apos;ol&apos;&quot;&gt;</highlight></codeline>
+<codeline lineno="221"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;type&quot;&gt;ordered&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="222"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="223"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="224"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/list&gt;</highlight></codeline>
+<codeline lineno="225"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="226"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="227"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:li&quot;&gt;</highlight></codeline>
+<codeline lineno="228"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;item&gt;</highlight></codeline>
+<codeline lineno="229"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="230"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/item&gt;</highlight></codeline>
+<codeline lineno="231"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="232"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="233"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:blockquote&quot;&gt;</highlight></codeline>
+<codeline lineno="234"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;quote&gt;</highlight></codeline>
+<codeline lineno="235"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="236"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/quote&gt;</highlight></codeline>
+<codeline lineno="237"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="238"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="239"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:pre&quot;&gt;</highlight></codeline>
+<codeline lineno="240"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;code&gt;</highlight></codeline>
+<codeline lineno="241"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;lang&quot;&gt;text&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="242"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;.&quot;/&gt;</highlight></codeline>
+<codeline lineno="243"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/code&gt;</highlight></codeline>
+<codeline lineno="244"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="245"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="246"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:code&quot;&gt;</highlight></codeline>
+<codeline lineno="247"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;hi<sp/>rend=&quot;t&quot;&gt;</highlight></codeline>
+<codeline lineno="248"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;.&quot;/&gt;</highlight></codeline>
+<codeline lineno="249"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/hi&gt;</highlight></codeline>
+<codeline lineno="250"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="251"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="252"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:strong|h:b&quot;&gt;</highlight></codeline>
+<codeline lineno="253"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;hi<sp/>rend=&quot;bold&quot;&gt;</highlight></codeline>
+<codeline lineno="254"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="255"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/hi&gt;</highlight></codeline>
+<codeline lineno="256"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="257"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="258"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:em|h:i&quot;&gt;</highlight></codeline>
+<codeline lineno="259"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;hi<sp/>rend=&quot;it&quot;&gt;</highlight></codeline>
+<codeline lineno="260"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="261"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/hi&gt;</highlight></codeline>
+<codeline lineno="262"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="263"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="264"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:table&quot;&gt;</highlight></codeline>
+<codeline lineno="265"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;table&gt;</highlight></codeline>
+<codeline lineno="266"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="267"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/table&gt;</highlight></codeline>
+<codeline lineno="268"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="269"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="270"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:tr&quot;&gt;</highlight></codeline>
+<codeline lineno="271"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;row&gt;</highlight></codeline>
+<codeline lineno="272"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="273"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/row&gt;</highlight></codeline>
+<codeline lineno="274"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="275"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="276"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:td|h:th&quot;&gt;</highlight></codeline>
+<codeline lineno="277"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;cell&gt;</highlight></codeline>
+<codeline lineno="278"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;local-name()=&apos;th&apos;&quot;&gt;</highlight></codeline>
+<codeline lineno="279"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;role&quot;&gt;header&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="280"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="281"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="282"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/cell&gt;</highlight></codeline>
+<codeline lineno="283"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="284"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="285"><highlight class="stringliteral">&lt;!--<sp/>Math<sp/>elements<sp/>--&gt;</highlight></codeline>
+<codeline lineno="286"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:math&quot;&gt;</highlight></codeline>
+<codeline lineno="287"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;formula<sp/>notation=&quot;mathml&quot;&gt;</highlight></codeline>
+<codeline lineno="288"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:copy-of<sp/>select=&quot;node()&quot;/&gt;</highlight></codeline>
+<codeline lineno="289"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/formula&gt;</highlight></codeline>
+<codeline lineno="290"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="291"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="292"><highlight class="stringliteral">&lt;!--<sp/>Script<sp/>and<sp/>style<sp/>elements<sp/>(ignored<sp/>for<sp/>TEI)<sp/>--&gt;</highlight></codeline>
+<codeline lineno="293"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;h:script|h:style&quot;/&gt;</highlight></codeline>
+<codeline lineno="294"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="295"><highlight class="stringliteral">&lt;/xsl:stylesheet&gt;&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>TEI<sp/>to<sp/>HTML<sp/>XSLT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tei_to_html_xslt<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;&lt;?xml<sp/>version=&quot;1.0&quot;<sp/>encoding=&quot;UTF-8&quot;?&gt;</highlight></codeline>
+<codeline lineno="299"><highlight class="stringliteral">&lt;xsl:stylesheet<sp/>version=&quot;1.0&quot;</highlight></codeline>
+<codeline lineno="300"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;</highlight></codeline>
+<codeline lineno="301"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns:tei=&quot;http://www.tei-c.org/ns/1.0&quot;</highlight></codeline>
+<codeline lineno="302"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>xmlns=&quot;http://www.w3.org/1999/xhtml&quot;</highlight></codeline>
+<codeline lineno="303"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>exclude-result-prefixes=&quot;tei&quot;&gt;</highlight></codeline>
+<codeline lineno="304"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="305"><highlight class="stringliteral">&lt;xsl:output<sp/>method=&quot;xml&quot;<sp/></highlight></codeline>
+<codeline lineno="306"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>doctype-public=&quot;-//W3C//DTD<sp/>XHTML<sp/>1.1//EN&quot;</highlight></codeline>
+<codeline lineno="307"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>doctype-system=&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</highlight></codeline>
+<codeline lineno="308"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>indent=&quot;yes&quot;<sp/>encoding=&quot;UTF-8&quot;/&gt;</highlight></codeline>
+<codeline lineno="309"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="310"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;/tei:TEI&quot;&gt;</highlight></codeline>
+<codeline lineno="311"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;html<sp/>xml:lang=&quot;{tei:text/@xml:lang}&quot;&gt;</highlight></codeline>
+<codeline lineno="312"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;head&gt;</highlight></codeline>
+<codeline lineno="313"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;title&gt;&lt;xsl:value-of<sp/>select=&quot;tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title&quot;/&gt;&lt;/title&gt;</highlight></codeline>
+<codeline lineno="314"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;meta<sp/>charset=&quot;UTF-8&quot;/&gt;</highlight></codeline>
+<codeline lineno="315"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;meta<sp/>name=&quot;viewport&quot;<sp/>content=&quot;width=device-width,<sp/>initial-scale=1.0&quot;/&gt;</highlight></codeline>
+<codeline lineno="316"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;style&gt;</highlight></codeline>
+<codeline lineno="317"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>body<sp/>{<sp/>font-family:<sp/>serif;<sp/>line-height:<sp/>1.6;<sp/>max-width:<sp/>800px;<sp/>margin:<sp/>0<sp/>auto;<sp/>padding:<sp/>20px;<sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.metadata<sp/>{<sp/>background:<sp/>#f0f0f0;<sp/>padding:<sp/>1em;<sp/>margin:<sp/>1em<sp/>0;<sp/>border-radius:<sp/>4px;<sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.section<sp/>{<sp/>border-bottom:<sp/>1px<sp/>solid<sp/>#ccc;<sp/>margin-bottom:<sp/>2em;<sp/>}</highlight></codeline>
+<codeline lineno="320"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>table<sp/>{<sp/>border-collapse:<sp/>collapse;<sp/>width:<sp/>100%;<sp/>}</highlight></codeline>
+<codeline lineno="321"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>th,<sp/>td<sp/>{<sp/>border:<sp/>1px<sp/>solid<sp/>#ddd;<sp/>padding:<sp/>8px;<sp/>text-align:<sp/>left;<sp/>}</highlight></codeline>
+<codeline lineno="322"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>th<sp/>{<sp/>background-color:<sp/>#f2f2f2;<sp/>}</highlight></codeline>
+<codeline lineno="323"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/style&gt;</highlight></codeline>
+<codeline lineno="324"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/head&gt;</highlight></codeline>
+<codeline lineno="325"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;body&gt;</highlight></codeline>
+<codeline lineno="326"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;header<sp/>class=&quot;metadata&quot;&gt;</highlight></codeline>
+<codeline lineno="327"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;h1&gt;&lt;xsl:value-of<sp/>select=&quot;tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title&quot;/&gt;&lt;/h1&gt;</highlight></codeline>
+<codeline lineno="328"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;p&gt;Author:<sp/>&lt;xsl:value-of<sp/>select=&quot;tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author/tei:name&quot;/&gt;&lt;/p&gt;</highlight></codeline>
+<codeline lineno="329"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;p&gt;Date:<sp/>&lt;xsl:value-of<sp/>select=&quot;tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:date&quot;/&gt;&lt;/p&gt;</highlight></codeline>
+<codeline lineno="330"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/header&gt;</highlight></codeline>
+<codeline lineno="331"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="332"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;main&gt;</highlight></codeline>
+<codeline lineno="333"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates<sp/>select=&quot;tei:text/tei:body&quot;/&gt;</highlight></codeline>
+<codeline lineno="334"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/main&gt;</highlight></codeline>
+<codeline lineno="335"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/body&gt;</highlight></codeline>
+<codeline lineno="336"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/html&gt;</highlight></codeline>
+<codeline lineno="337"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="338"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="339"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:div[@type=&apos;section&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="340"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;section<sp/>class=&quot;section&quot;&gt;</highlight></codeline>
+<codeline lineno="341"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@xml:id&quot;&gt;</highlight></codeline>
+<codeline lineno="342"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;id&quot;&gt;</highlight></codeline>
+<codeline lineno="343"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@xml:id&quot;/&gt;</highlight></codeline>
+<codeline lineno="344"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="345"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="346"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="347"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/section&gt;</highlight></codeline>
+<codeline lineno="348"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="349"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="350"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:div&quot;&gt;</highlight></codeline>
+<codeline lineno="351"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;div&gt;</highlight></codeline>
+<codeline lineno="352"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@type&quot;&gt;</highlight></codeline>
+<codeline lineno="353"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;class&quot;&gt;</highlight></codeline>
+<codeline lineno="354"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@type&quot;/&gt;</highlight></codeline>
+<codeline lineno="355"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="356"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="357"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;@xml:id&quot;&gt;</highlight></codeline>
+<codeline lineno="358"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;id&quot;&gt;</highlight></codeline>
+<codeline lineno="359"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;@xml:id&quot;/&gt;</highlight></codeline>
+<codeline lineno="360"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="361"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="362"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="363"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/div&gt;</highlight></codeline>
+<codeline lineno="364"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="365"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="366"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:head[@type=&apos;h1&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="367"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;h1&gt;&lt;xsl:apply-templates/&gt;&lt;/h1&gt;</highlight></codeline>
+<codeline lineno="368"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="369"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="370"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:head[@type=&apos;h2&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="371"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;h2&gt;&lt;xsl:apply-templates/&gt;&lt;/h2&gt;</highlight></codeline>
+<codeline lineno="372"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="373"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="374"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:head[@type=&apos;h3&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="375"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;h3&gt;&lt;xsl:apply-templates/&gt;&lt;/h3&gt;</highlight></codeline>
+<codeline lineno="376"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="377"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="378"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:head&quot;&gt;</highlight></codeline>
+<codeline lineno="379"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;h4&gt;&lt;xsl:apply-templates/&gt;&lt;/h4&gt;</highlight></codeline>
+<codeline lineno="380"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="381"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="382"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:p&quot;&gt;</highlight></codeline>
+<codeline lineno="383"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;p&gt;&lt;xsl:apply-templates/&gt;&lt;/p&gt;</highlight></codeline>
+<codeline lineno="384"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="385"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="386"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:ref&quot;&gt;</highlight></codeline>
+<codeline lineno="387"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;a<sp/>href=&quot;{@target}&quot;&gt;&lt;xsl:apply-templates/&gt;&lt;/a&gt;</highlight></codeline>
+<codeline lineno="388"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="389"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="390"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:figure&quot;&gt;</highlight></codeline>
+<codeline lineno="391"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;figure&gt;</highlight></codeline>
+<codeline lineno="392"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;img<sp/>src=&quot;{tei:graphic/@url}&quot;&gt;</highlight></codeline>
+<codeline lineno="393"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;tei:graphic/@alt&quot;&gt;</highlight></codeline>
+<codeline lineno="394"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:attribute<sp/>name=&quot;alt&quot;&gt;</highlight></codeline>
+<codeline lineno="395"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:value-of<sp/>select=&quot;tei:graphic/@alt&quot;/&gt;</highlight></codeline>
+<codeline lineno="396"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:attribute&gt;</highlight></codeline>
+<codeline lineno="397"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="398"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/img&gt;</highlight></codeline>
+<codeline lineno="399"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:if<sp/>test=&quot;tei:figDesc&quot;&gt;</highlight></codeline>
+<codeline lineno="400"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;figcaption&gt;&lt;xsl:value-of<sp/>select=&quot;tei:figDesc&quot;/&gt;&lt;/figcaption&gt;</highlight></codeline>
+<codeline lineno="401"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:if&gt;</highlight></codeline>
+<codeline lineno="402"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/figure&gt;</highlight></codeline>
+<codeline lineno="403"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="404"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="405"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:list&quot;&gt;</highlight></codeline>
+<codeline lineno="406"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;xsl:choose&gt;</highlight></codeline>
+<codeline lineno="407"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:when<sp/>test=&quot;@type=&apos;ordered&apos;&quot;&gt;</highlight></codeline>
+<codeline lineno="408"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;ol&gt;&lt;xsl:apply-templates/&gt;&lt;/ol&gt;</highlight></codeline>
+<codeline lineno="409"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:when&gt;</highlight></codeline>
+<codeline lineno="410"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:otherwise&gt;</highlight></codeline>
+<codeline lineno="411"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;ul&gt;&lt;xsl:apply-templates/&gt;&lt;/ul&gt;</highlight></codeline>
+<codeline lineno="412"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:otherwise&gt;</highlight></codeline>
+<codeline lineno="413"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/xsl:choose&gt;</highlight></codeline>
+<codeline lineno="414"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="415"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="416"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:item&quot;&gt;</highlight></codeline>
+<codeline lineno="417"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;li&gt;&lt;xsl:apply-templates/&gt;&lt;/li&gt;</highlight></codeline>
+<codeline lineno="418"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="419"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="420"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:quote&quot;&gt;</highlight></codeline>
+<codeline lineno="421"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;blockquote&gt;&lt;xsl:apply-templates/&gt;&lt;/blockquote&gt;</highlight></codeline>
+<codeline lineno="422"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="423"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="424"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:code&quot;&gt;</highlight></codeline>
+<codeline lineno="425"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;pre&gt;&lt;xsl:apply-templates/&gt;&lt;/pre&gt;</highlight></codeline>
+<codeline lineno="426"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="427"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="428"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:hi[@rend=&apos;bold&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="429"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;strong&gt;&lt;xsl:apply-templates/&gt;&lt;/strong&gt;</highlight></codeline>
+<codeline lineno="430"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="431"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="432"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:hi[@rend=&apos;it&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="433"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;em&gt;&lt;xsl:apply-templates/&gt;&lt;/em&gt;</highlight></codeline>
+<codeline lineno="434"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="435"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="436"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:hi[@rend=&apos;t&apos;]&quot;&gt;</highlight></codeline>
+<codeline lineno="437"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;code&gt;&lt;xsl:apply-templates/&gt;&lt;/code&gt;</highlight></codeline>
+<codeline lineno="438"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="439"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="440"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:table&quot;&gt;</highlight></codeline>
+<codeline lineno="441"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;table&gt;</highlight></codeline>
+<codeline lineno="442"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:apply-templates/&gt;</highlight></codeline>
+<codeline lineno="443"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/table&gt;</highlight></codeline>
+<codeline lineno="444"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="445"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="446"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:row&quot;&gt;</highlight></codeline>
+<codeline lineno="447"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;tr&gt;&lt;xsl:apply-templates/&gt;&lt;/tr&gt;</highlight></codeline>
+<codeline lineno="448"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="449"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="450"><highlight class="stringliteral">&lt;xsl:template<sp/>match=&quot;tei:cell&quot;&gt;</highlight></codeline>
+<codeline lineno="451"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;xsl:choose&gt;</highlight></codeline>
+<codeline lineno="452"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:when<sp/>test=&quot;@role=&apos;header&apos;&quot;&gt;</highlight></codeline>
+<codeline lineno="453"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;th&gt;&lt;xsl:apply-templates/&gt;&lt;/th&gt;</highlight></codeline>
+<codeline lineno="454"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:when&gt;</highlight></codeline>
+<codeline lineno="455"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;xsl:otherwise&gt;</highlight></codeline>
+<codeline lineno="456"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;td&gt;&lt;xsl:apply-templates/&gt;&lt;/td&gt;</highlight></codeline>
+<codeline lineno="457"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;/xsl:otherwise&gt;</highlight></codeline>
+<codeline lineno="458"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&lt;/xsl:choose&gt;</highlight></codeline>
+<codeline lineno="459"><highlight class="stringliteral">&lt;/xsl:template&gt;</highlight></codeline>
+<codeline lineno="460"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="461"><highlight class="stringliteral">&lt;/xsl:stylesheet&gt;&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="462"><highlight class="normal"></highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Save<sp/>XSLT<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;xslt&quot;</highlight><highlight class="normal"><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;html_to_tei.xslt&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(html_to_tei_xslt)</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"></highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;xslt&quot;</highlight><highlight class="normal"><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;tei_to_html.xslt&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(tei_to_html_xslt)</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"></highlight></codeline>
+<codeline lineno="474" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" kindref="member">html_to_tei</ref>(self,<sp/>html_file:<sp/>Path)<sp/>-&gt;<sp/>ConversionResult:</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Convert<sp/>HTML<sp/>to<sp/>TEI<sp/>using<sp/>tidy<sp/>+<sp/>XSLT&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start_time<sp/>=<sp/>time.time()</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"></highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>1:<sp/>Tidy<sp/>HTML<sp/>to<sp/>valid<sp/>XHTML</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xhtml_file<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;build&quot;</highlight><highlight class="normal"><sp/>/<sp/>f</highlight><highlight class="stringliteral">&quot;{html_file.stem}.xhtml&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="481"><highlight class="normal"></highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;tidy&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-q&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-xml&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-asxhtml&quot;</highlight><highlight class="normal">,<sp/>str(html_file)],</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>!=<sp/>0:</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Tidy<sp/>failed:<sp/>{result.stderr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight><highlight class="keyword">False</highlight><highlight class="normal">,<sp/>Path(),<sp/>html_file,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>{})</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Save<sp/>cleaned<sp/>XHTML</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(xhtml_file,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(result.stdout)</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"></highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>2:<sp/>Transform<sp/>XHTML<sp/>to<sp/>TEI<sp/>using<sp/>XSLT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tei_file<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;tei&quot;</highlight><highlight class="normal"><sp/>/<sp/>f</highlight><highlight class="stringliteral">&quot;{html_file.stem}.xml&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="499"><highlight class="normal"></highlight></codeline>
+<codeline lineno="500"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;saxon&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-s:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(xhtml_file),</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-xsl:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;xslt&quot;</highlight><highlight class="normal"><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;html_to_tei.xslt&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-o:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(tei_file),</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="510"><highlight class="normal"></highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>!=<sp/>0:</highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Saxon<sp/>transformation<sp/>failed:<sp/>{result.stderr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight><highlight class="keyword">False</highlight><highlight class="normal">,<sp/>tei_file,<sp/>html_file,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>{})</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"></highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Calculate<sp/>checksum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checksum<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" kindref="member">_calculate_checksum</ref>(tei_file)</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"></highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conversion_time<sp/>=<sp/>time.time()<sp/>-<sp/>start_time</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"></highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;HTML<sp/>→<sp/>TEI:<sp/>{html_file}<sp/>→<sp/>{tei_file}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_file=tei_file,</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_file=html_file,</highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conversion_time=conversion_time,</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checksum=checksum,</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>metadata={</highlight><highlight class="stringliteral">&quot;elements&quot;</highlight><highlight class="normal">:<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" kindref="member">_count_tei_elements</ref>(tei_file)},</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"></highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Error<sp/>converting<sp/>HTML<sp/>to<sp/>TEI:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight><highlight class="keyword">False</highlight><highlight class="normal">,<sp/>Path(),<sp/>html_file,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>{})</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"></highlight></codeline>
+<codeline lineno="535" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" kindref="member">tei_to_html</ref>(self,<sp/>tei_file:<sp/>Path)<sp/>-&gt;<sp/>ConversionResult:</highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Convert<sp/>TEI<sp/>to<sp/>HTML<sp/>using<sp/>XSLT&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="537"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start_time<sp/>=<sp/>time.time()</highlight></codeline>
+<codeline lineno="538"><highlight class="normal"></highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Transform<sp/>TEI<sp/>to<sp/>HTML<sp/>using<sp/>XSLT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_file<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;html&quot;</highlight><highlight class="normal"><sp/>/<sp/>f</highlight><highlight class="stringliteral">&quot;{tei_file.stem}.html&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="542"><highlight class="normal"></highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;saxon&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-s:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(tei_file),</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-xsl:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;xslt&quot;</highlight><highlight class="normal"><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;tei_to_html.xslt&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-o:&quot;</highlight><highlight class="normal"><sp/>+<sp/>str(html_file),</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"></highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>!=<sp/>0:</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Saxon<sp/>transformation<sp/>failed:<sp/>{result.stderr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight><highlight class="keyword">False</highlight><highlight class="normal">,<sp/>html_file,<sp/>tei_file,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>{})</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"></highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Calculate<sp/>checksum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checksum<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" kindref="member">_calculate_checksum</ref>(html_file)</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"></highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conversion_time<sp/>=<sp/>time.time()<sp/>-<sp/>start_time</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"></highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;TEI<sp/>→<sp/>HTML:<sp/>{tei_file}<sp/>→<sp/>{html_file}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_file=html_file,</highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_file=tei_file,</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>conversion_time=conversion_time,</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checksum=checksum,</highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>metadata={</highlight><highlight class="stringliteral">&quot;elements&quot;</highlight><highlight class="normal">:<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" kindref="member">_count_html_elements</ref>(html_file)},</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"></highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Error<sp/>converting<sp/>TEI<sp/>to<sp/>HTML:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref>(</highlight><highlight class="keyword">False</highlight><highlight class="normal">,<sp/>Path(),<sp/>tei_file,<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>{})</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"></highlight></codeline>
+<codeline lineno="578" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" kindref="member">test_isomorphism</ref>(self,<sp/>original_html:<sp/>Path)<sp/>-&gt;<sp/>Dict[str,<sp/>Any]:</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Test<sp/>HTML<sp/>→<sp/>TEI<sp/>→<sp/>HTML<sp/>isomorphism&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Testing<sp/>isomorphism<sp/>for:<sp/>{original_html}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="583"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;original_file&quot;</highlight><highlight class="normal">:<sp/>str(original_html),</highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">:<sp/>{},</highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;comparisons&quot;</highlight><highlight class="normal">:<sp/>{},</highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;isomorphic&quot;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"></highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>1:<sp/>HTML<sp/>→<sp/>TEI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_to_tei_result<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" kindref="member">html_to_tei</ref>(original_html)</highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>html_to_tei_result.success:</highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;html_to_tei&quot;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Failed&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>results</highlight></codeline>
+<codeline lineno="595"><highlight class="normal"></highlight></codeline>
+<codeline lineno="596"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;html_to_tei&quot;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Success&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tei_file<sp/>=<sp/>html_to_tei_result.output_file</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"></highlight></codeline>
+<codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>2:<sp/>TEI<sp/>→<sp/>HTML</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tei_to_html_result<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" kindref="member">tei_to_html</ref>(tei_file)</highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>tei_to_html_result.success:</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;tei_to_html&quot;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Failed&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>results</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"></highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;tei_to_html&quot;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Success&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="606"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_html<sp/>=<sp/>tei_to_html_result.output_file</highlight></codeline>
+<codeline lineno="607"><highlight class="normal"></highlight></codeline>
+<codeline lineno="608"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>3:<sp/>Compare<sp/>original<sp/>and<sp/>final<sp/>HTML</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="609"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" kindref="member">_compare_html_files</ref>(original_html,<sp/>final_html)</highlight></codeline>
+<codeline lineno="610"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;comparisons&quot;</highlight><highlight class="normal">]<sp/>=<sp/>comparison</highlight></codeline>
+<codeline lineno="611"><highlight class="normal"></highlight></codeline>
+<codeline lineno="612"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>4:<sp/>Determine<sp/>isomorphism</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="613"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;isomorphic&quot;</highlight><highlight class="normal">]<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" kindref="member">_is_isomorphic</ref>(comparison)</highlight></codeline>
+<codeline lineno="614"><highlight class="normal"></highlight></codeline>
+<codeline lineno="615"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Step<sp/>5:<sp/>Generate<sp/>detailed<sp/>diff<sp/>if<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="616"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>results[</highlight><highlight class="stringliteral">&quot;isomorphic&quot;</highlight><highlight class="normal">]:</highlight></codeline>
+<codeline lineno="617"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;diff&quot;</highlight><highlight class="normal">]<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" kindref="member">_generate_html_diff</ref>(original_html,<sp/>final_html)</highlight></codeline>
+<codeline lineno="618"><highlight class="normal"></highlight></codeline>
+<codeline lineno="619"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>results</highlight></codeline>
+<codeline lineno="620"><highlight class="normal"></highlight></codeline>
+<codeline lineno="621"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="622"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Error<sp/>testing<sp/>isomorphism:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal">]<sp/>=<sp/>str(e)</highlight></codeline>
+<codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>results</highlight></codeline>
+<codeline lineno="625"><highlight class="normal"></highlight></codeline>
+<codeline lineno="626" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" kindref="member">_calculate_checksum</ref>(self,<sp/>file_path:<sp/>Path)<sp/>-&gt;<sp/>str:</highlight></codeline>
+<codeline lineno="627"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Calculate<sp/>SHA-256<sp/>checksum<sp/>of<sp/>file&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="628"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hash_sha256<sp/>=<sp/>hashlib.sha256()</highlight></codeline>
+<codeline lineno="629"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(file_path,<sp/></highlight><highlight class="stringliteral">&quot;rb&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="630"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>chunk<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>iter(</highlight><highlight class="keyword">lambda</highlight><highlight class="normal">:<sp/>f.read(4096),<sp/>b</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="631"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hash_sha256.update(chunk)</highlight></codeline>
+<codeline lineno="632"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>hash_sha256.hexdigest()</highlight></codeline>
+<codeline lineno="633"><highlight class="normal"></highlight></codeline>
+<codeline lineno="634" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" kindref="member">_count_tei_elements</ref>(self,<sp/>tei_file:<sp/>Path)<sp/>-&gt;<sp/>Dict[str,<sp/>int]:</highlight></codeline>
+<codeline lineno="635"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Count<sp/>TEI<sp/>elements<sp/>in<sp/>file&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="636"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="637"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="638"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;xmllint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--xpath&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;count(//tei:*)&quot;</highlight><highlight class="normal">,<sp/>str(tei_file)],</highlight></codeline>
+<codeline lineno="639"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="640"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="641"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="642"><highlight class="normal"></highlight></codeline>
+<codeline lineno="643"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0:</highlight></codeline>
+<codeline lineno="644"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight><highlight class="stringliteral">&quot;total_elements&quot;</highlight><highlight class="normal">:<sp/>int(result.stdout.strip())}</highlight></codeline>
+<codeline lineno="645"><highlight class="normal"></highlight></codeline>
+<codeline lineno="646"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="647"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="648"><highlight class="normal"></highlight></codeline>
+<codeline lineno="649"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight><highlight class="stringliteral">&quot;total_elements&quot;</highlight><highlight class="normal">:<sp/>0}</highlight></codeline>
+<codeline lineno="650"><highlight class="normal"></highlight></codeline>
+<codeline lineno="651" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" kindref="member">_count_html_elements</ref>(self,<sp/>html_file:<sp/>Path)<sp/>-&gt;<sp/>Dict[str,<sp/>int]:</highlight></codeline>
+<codeline lineno="652"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Count<sp/>HTML<sp/>elements<sp/>in<sp/>file&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="653"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="654"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Count<sp/>sections,<sp/>headings,<sp/>links</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="655"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counts<sp/>=<sp/>{}</highlight></codeline>
+<codeline lineno="656"><highlight class="normal"></highlight></codeline>
+<codeline lineno="657"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>xpath,<sp/>name<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>[</highlight></codeline>
+<codeline lineno="658"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//section)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;sections&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="659"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//h1|//h2|//h3|//h4|//h5|//h6)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="660"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//a)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="661"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//p)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;paragraphs&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="662"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//div)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;divs&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="663"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//ul|//ol)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;lists&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="664"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="stringliteral">&quot;count(//img)&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;images&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="665"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]:</highlight></codeline>
+<codeline lineno="666"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="667"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;xmllint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--xpath&quot;</highlight><highlight class="normal">,<sp/>xpath,<sp/>str(html_file)],</highlight></codeline>
+<codeline lineno="668"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="669"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="670"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="671"><highlight class="normal"></highlight></codeline>
+<codeline lineno="672"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0:</highlight></codeline>
+<codeline lineno="673"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="674"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counts[name]<sp/>=<sp/>int(result.stdout.strip())</highlight></codeline>
+<codeline lineno="675"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>ValueError:</highlight></codeline>
+<codeline lineno="676"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counts[name]<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="677"><highlight class="normal"></highlight></codeline>
+<codeline lineno="678"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>counts</highlight></codeline>
+<codeline lineno="679"><highlight class="normal"></highlight></codeline>
+<codeline lineno="680"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="681"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.warning(f</highlight><highlight class="stringliteral">&quot;Error<sp/>counting<sp/>HTML<sp/>elements:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="682"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{}</highlight></codeline>
+<codeline lineno="683"><highlight class="normal"></highlight></codeline>
+<codeline lineno="684" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" kindref="member">_compare_html_files</ref>(self,<sp/>original:<sp/>Path,<sp/>final:<sp/>Path)<sp/>-&gt;<sp/>Dict[str,<sp/>Any]:</highlight></codeline>
+<codeline lineno="685"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Compare<sp/>two<sp/>HTML<sp/>files<sp/>for<sp/>structure<sp/>and<sp/>content<sp/>preservation&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="686"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison<sp/>=<sp/>{</highlight><highlight class="stringliteral">&quot;structure&quot;</highlight><highlight class="normal">:<sp/>{},<sp/></highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">:<sp/>{},<sp/></highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">:<sp/>{},<sp/></highlight><highlight class="stringliteral">&quot;checksums&quot;</highlight><highlight class="normal">:<sp/>{}}</highlight></codeline>
+<codeline lineno="687"><highlight class="normal"></highlight></codeline>
+<codeline lineno="688"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="689"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Clean<sp/>both<sp/>files<sp/>with<sp/>tidy</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="690"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orig_clean<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" kindref="member">_clean_html_with_tidy</ref>(original)</highlight></codeline>
+<codeline lineno="691"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_clean<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" kindref="member">_clean_html_with_tidy</ref>(final)</highlight></codeline>
+<codeline lineno="692"><highlight class="normal"></highlight></codeline>
+<codeline lineno="693"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orig_file<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;build&quot;</highlight><highlight class="normal"><sp/>/<sp/>f</highlight><highlight class="stringliteral">&quot;orig_clean.xhtml&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="694"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_file<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" kindref="member">work_dir</ref><sp/>/<sp/></highlight><highlight class="stringliteral">&quot;build&quot;</highlight><highlight class="normal"><sp/>/<sp/>f</highlight><highlight class="stringliteral">&quot;final_clean.xhtml&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="695"><highlight class="normal"></highlight></codeline>
+<codeline lineno="696"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(orig_file,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="697"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(orig_clean)</highlight></codeline>
+<codeline lineno="698"><highlight class="normal"></highlight></codeline>
+<codeline lineno="699"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(final_file,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="700"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f.write(final_clean)</highlight></codeline>
+<codeline lineno="701"><highlight class="normal"></highlight></codeline>
+<codeline lineno="702"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Compare<sp/>structure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="703"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orig_sections<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" kindref="member">_xpath_count</ref>(orig_file,<sp/></highlight><highlight class="stringliteral">&quot;count(//section)&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="704"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_sections<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" kindref="member">_xpath_count</ref>(final_file,<sp/></highlight><highlight class="stringliteral">&quot;count(//section)&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="705"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;structure&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;sections_match&quot;</highlight><highlight class="normal">]<sp/>=<sp/>orig_sections<sp/>==<sp/>final_sections</highlight></codeline>
+<codeline lineno="706"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;structure&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;original_sections&quot;</highlight><highlight class="normal">]<sp/>=<sp/>orig_sections</highlight></codeline>
+<codeline lineno="707"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;structure&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;final_sections&quot;</highlight><highlight class="normal">]<sp/>=<sp/>final_sections</highlight></codeline>
+<codeline lineno="708"><highlight class="normal"></highlight></codeline>
+<codeline lineno="709"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Compare<sp/>headings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="710"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orig_headings<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" kindref="member">_xpath_text</ref>(orig_file,<sp/></highlight><highlight class="stringliteral">&quot;//h1|//h2|//h3/text()&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="711"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_headings<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" kindref="member">_xpath_text</ref>(final_file,<sp/></highlight><highlight class="stringliteral">&quot;//h1|//h2|//h3/text()&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="712"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;match&quot;</highlight><highlight class="normal">]<sp/>=<sp/>orig_headings<sp/>==<sp/>final_headings</highlight></codeline>
+<codeline lineno="713"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;original&quot;</highlight><highlight class="normal">]<sp/>=<sp/>orig_headings</highlight></codeline>
+<codeline lineno="714"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;final&quot;</highlight><highlight class="normal">]<sp/>=<sp/>final_headings</highlight></codeline>
+<codeline lineno="715"><highlight class="normal"></highlight></codeline>
+<codeline lineno="716"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Compare<sp/>links</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="717"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orig_links<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" kindref="member">_xpath_links</ref>(orig_file)</highlight></codeline>
+<codeline lineno="718"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>final_links<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" kindref="member">_xpath_links</ref>(final_file)</highlight></codeline>
+<codeline lineno="719"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;match&quot;</highlight><highlight class="normal">]<sp/>=<sp/>orig_links<sp/>==<sp/>final_links</highlight></codeline>
+<codeline lineno="720"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;original_count&quot;</highlight><highlight class="normal">]<sp/>=<sp/>len(orig_links)</highlight></codeline>
+<codeline lineno="721"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;final_count&quot;</highlight><highlight class="normal">]<sp/>=<sp/>len(final_links)</highlight></codeline>
+<codeline lineno="722"><highlight class="normal"></highlight></codeline>
+<codeline lineno="723"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Compare<sp/>checksums</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="724"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;checksums&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;original&quot;</highlight><highlight class="normal">]<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" kindref="member">_calculate_checksum</ref>(original)</highlight></codeline>
+<codeline lineno="725"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;checksums&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;final&quot;</highlight><highlight class="normal">]<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" kindref="member">_calculate_checksum</ref>(final)</highlight></codeline>
+<codeline lineno="726"><highlight class="normal"></highlight></codeline>
+<codeline lineno="727"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="728"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Error<sp/>comparing<sp/>HTML<sp/>files:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="729"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>comparison[</highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal">]<sp/>=<sp/>str(e)</highlight></codeline>
+<codeline lineno="730"><highlight class="normal"></highlight></codeline>
+<codeline lineno="731"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>comparison</highlight></codeline>
+<codeline lineno="732"><highlight class="normal"></highlight></codeline>
+<codeline lineno="733" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" kindref="member">_clean_html_with_tidy</ref>(self,<sp/>html_file:<sp/>Path)<sp/>-&gt;<sp/>str:</highlight></codeline>
+<codeline lineno="734"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Clean<sp/>HTML<sp/>with<sp/>tidy&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="735"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="736"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;tidy&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-q&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-xml&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-asxhtml&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-indent&quot;</highlight><highlight class="normal">,<sp/>str(html_file)],</highlight></codeline>
+<codeline lineno="737"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="738"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="739"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="740"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="741"><highlight class="normal"></highlight></codeline>
+<codeline lineno="742"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result.stdout<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="743"><highlight class="normal"></highlight></codeline>
+<codeline lineno="744" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" kindref="member">_xpath_count</ref>(self,<sp/>file_path:<sp/>Path,<sp/>xpath:<sp/>str)<sp/>-&gt;<sp/>int:</highlight></codeline>
+<codeline lineno="745"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Get<sp/>XPath<sp/>count<sp/>from<sp/>file&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="746"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="747"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;xmllint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--xpath&quot;</highlight><highlight class="normal">,<sp/>xpath,<sp/>str(file_path)],</highlight></codeline>
+<codeline lineno="748"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="749"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="750"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="751"><highlight class="normal"></highlight></codeline>
+<codeline lineno="752"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0:</highlight></codeline>
+<codeline lineno="753"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="754"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>int(result.stdout.strip())</highlight></codeline>
+<codeline lineno="755"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>ValueError:</highlight></codeline>
+<codeline lineno="756"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="757"><highlight class="normal"></highlight></codeline>
+<codeline lineno="758"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0</highlight></codeline>
+<codeline lineno="759"><highlight class="normal"></highlight></codeline>
+<codeline lineno="760" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" kindref="member">_xpath_text</ref>(self,<sp/>file_path:<sp/>Path,<sp/>xpath:<sp/>str)<sp/>-&gt;<sp/>List[str]:</highlight></codeline>
+<codeline lineno="761"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Get<sp/>XPath<sp/>text<sp/>content<sp/>from<sp/>file&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="762"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="763"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;xmllint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--xpath&quot;</highlight><highlight class="normal">,<sp/>xpath,<sp/>str(file_path)],</highlight></codeline>
+<codeline lineno="764"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="765"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="766"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="767"><highlight class="normal"></highlight></codeline>
+<codeline lineno="768"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0:</highlight></codeline>
+<codeline lineno="769"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[</highlight></codeline>
+<codeline lineno="770"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>line.strip()</highlight></codeline>
+<codeline lineno="771"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>line<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>result.stdout.strip().split(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="772"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>line.strip()</highlight></codeline>
+<codeline lineno="773"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="774"><highlight class="normal"></highlight></codeline>
+<codeline lineno="775"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[]</highlight></codeline>
+<codeline lineno="776"><highlight class="normal"></highlight></codeline>
+<codeline lineno="777" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" kindref="member">_xpath_links</ref>(self,<sp/>file_path:<sp/>Path)<sp/>-&gt;<sp/>List[str]:</highlight></codeline>
+<codeline lineno="778"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Extract<sp/>all<sp/>href<sp/>attributes<sp/>from<sp/>links&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="779"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="780"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;xmllint&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--xpath&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;//a/@href&quot;</highlight><highlight class="normal">,<sp/>str(file_path)],</highlight></codeline>
+<codeline lineno="781"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="782"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="783"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="784"><highlight class="normal"></highlight></codeline>
+<codeline lineno="785"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>==<sp/>0:</highlight></codeline>
+<codeline lineno="786"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>links<sp/>=<sp/>[</highlight></codeline>
+<codeline lineno="787"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>line.strip()</highlight></codeline>
+<codeline lineno="788"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>line<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>result.stdout.strip().split(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="789"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>line.strip()</highlight></codeline>
+<codeline lineno="790"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="791"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sorted(links)<sp/><sp/></highlight><highlight class="comment">#<sp/>Sort<sp/>for<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="792"><highlight class="normal"></highlight></codeline>
+<codeline lineno="793"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[]</highlight></codeline>
+<codeline lineno="794"><highlight class="normal"></highlight></codeline>
+<codeline lineno="795" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" kindref="member">_is_isomorphic</ref>(self,<sp/>comparison:<sp/>Dict[str,<sp/>Any])<sp/>-&gt;<sp/>bool:</highlight></codeline>
+<codeline lineno="796"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Determine<sp/>if<sp/>conversion<sp/>preserves<sp/>structure<sp/>(isomorphism)&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>comparison:</highlight></codeline>
+<codeline lineno="798"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="799"><highlight class="normal"></highlight></codeline>
+<codeline lineno="800"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Check<sp/>key<sp/>structural<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="801"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>structure_ok<sp/>=<sp/>comparison.get(</highlight><highlight class="stringliteral">&quot;structure&quot;</highlight><highlight class="normal">,<sp/>{}).get(</highlight><highlight class="stringliteral">&quot;sections_match&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="802"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headings_ok<sp/>=<sp/>comparison.get(</highlight><highlight class="stringliteral">&quot;headings&quot;</highlight><highlight class="normal">,<sp/>{}).get(</highlight><highlight class="stringliteral">&quot;match&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="803"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>links_ok<sp/>=<sp/>comparison.get(</highlight><highlight class="stringliteral">&quot;links&quot;</highlight><highlight class="normal">,<sp/>{}).get(</highlight><highlight class="stringliteral">&quot;match&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="804"><highlight class="normal"></highlight></codeline>
+<codeline lineno="805"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Consider<sp/>isomorphic<sp/>if<sp/>major<sp/>structural<sp/>elements<sp/>are<sp/>preserved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="806"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>structure_ok<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>headings_ok<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>links_ok</highlight></codeline>
+<codeline lineno="807"><highlight class="normal"></highlight></codeline>
+<codeline lineno="808" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" kindref="member">_generate_html_diff</ref>(self,<sp/>original:<sp/>Path,<sp/>final:<sp/>Path)<sp/>-&gt;<sp/>str:</highlight></codeline>
+<codeline lineno="809"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Generate<sp/>diff<sp/>between<sp/>HTML<sp/>files&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="810"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="811"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>subprocess.run(</highlight></codeline>
+<codeline lineno="812"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="stringliteral">&quot;diff&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;-u&quot;</highlight><highlight class="normal">,<sp/>str(original),<sp/>str(final)],</highlight></codeline>
+<codeline lineno="813"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capture_output=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="814"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>text=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="815"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="816"><highlight class="normal"></highlight></codeline>
+<codeline lineno="817"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result.stdout<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>result.returncode<sp/>!=<sp/>0<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;No<sp/>differences<sp/>found&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="818"><highlight class="normal"></highlight></codeline>
+<codeline lineno="819"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="820"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Diff<sp/>generation<sp/>failed&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="821"><highlight class="normal"></highlight></codeline>
+<codeline lineno="822" refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1add48d65f9b422f454ab226b866dca44c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1add48d65f9b422f454ab226b866dca44c" kindref="member">batch_test_isomorphism</ref>(self,<sp/>html_files:<sp/>List[Path])<sp/>-&gt;<sp/>Dict[str,<sp/>Any]:</highlight></codeline>
+<codeline lineno="823"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Test<sp/>isomorphism<sp/>for<sp/>multiple<sp/>HTML<sp/>files&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="824"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="825"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;total_files&quot;</highlight><highlight class="normal">:<sp/>len(html_files),</highlight></codeline>
+<codeline lineno="826"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;successful_conversions&quot;</highlight><highlight class="normal">:<sp/>0,</highlight></codeline>
+<codeline lineno="827"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;isomorphic_files&quot;</highlight><highlight class="normal">:<sp/>0,</highlight></codeline>
+<codeline lineno="828"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;file_results&quot;</highlight><highlight class="normal">:<sp/>{},</highlight></codeline>
+<codeline lineno="829"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;summary&quot;</highlight><highlight class="normal">:<sp/>{},</highlight></codeline>
+<codeline lineno="830"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="831"><highlight class="normal"></highlight></codeline>
+<codeline lineno="832"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>html_file<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>html_files:</highlight></codeline>
+<codeline lineno="833"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Testing:<sp/>{html_file}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="834"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file_result<sp/>=<sp/>self.<ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" kindref="member">test_isomorphism</ref>(html_file)</highlight></codeline>
+<codeline lineno="835"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;file_results&quot;</highlight><highlight class="normal">][str(html_file)]<sp/>=<sp/>file_result</highlight></codeline>
+<codeline lineno="836"><highlight class="normal"></highlight></codeline>
+<codeline lineno="837"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>file_result.get(</highlight><highlight class="stringliteral">&quot;isomorphic&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="838"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;isomorphic_files&quot;</highlight><highlight class="normal">]<sp/>+=<sp/>1</highlight></codeline>
+<codeline lineno="839"><highlight class="normal"></highlight></codeline>
+<codeline lineno="840"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight></codeline>
+<codeline lineno="841"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>file_result.get(</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">,<sp/>{}).get(</highlight><highlight class="stringliteral">&quot;html_to_tei&quot;</highlight><highlight class="normal">)<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;Success&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="842"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>file_result.get(</highlight><highlight class="stringliteral">&quot;steps&quot;</highlight><highlight class="normal">,<sp/>{}).get(</highlight><highlight class="stringliteral">&quot;tei_to_html&quot;</highlight><highlight class="normal">)<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;Success&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="843"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>):</highlight></codeline>
+<codeline lineno="844"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;successful_conversions&quot;</highlight><highlight class="normal">]<sp/>+=<sp/>1</highlight></codeline>
+<codeline lineno="845"><highlight class="normal"></highlight></codeline>
+<codeline lineno="846"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Calculate<sp/>summary<sp/>statistics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="847"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results[</highlight><highlight class="stringliteral">&quot;summary&quot;</highlight><highlight class="normal">]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="848"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;conversion_success_rate&quot;</highlight><highlight class="normal">:<sp/>results[</highlight><highlight class="stringliteral">&quot;successful_conversions&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="849"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/<sp/>len(html_files),</highlight></codeline>
+<codeline lineno="850"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;isomorphism_rate&quot;</highlight><highlight class="normal">:<sp/>results[</highlight><highlight class="stringliteral">&quot;isomorphic_files&quot;</highlight><highlight class="normal">]<sp/>/<sp/>len(html_files),</highlight></codeline>
+<codeline lineno="851"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;total_errors&quot;</highlight><highlight class="normal">:<sp/>sum(</highlight></codeline>
+<codeline lineno="852"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>r<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>results[</highlight><highlight class="stringliteral">&quot;file_results&quot;</highlight><highlight class="normal">].values()<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>r</highlight></codeline>
+<codeline lineno="853"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>),</highlight></codeline>
+<codeline lineno="854"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="855"><highlight class="normal"></highlight></codeline>
+<codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>results</highlight></codeline>
+<codeline lineno="857"><highlight class="normal"></highlight></codeline>
+<codeline lineno="858"><highlight class="normal"></highlight></codeline>
+<codeline lineno="859" refid="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" kindref="member">main</ref>():</highlight></codeline>
+<codeline lineno="860"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Main<sp/>function<sp/>for<sp/>testing&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="861"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>argparse</highlight></codeline>
+<codeline lineno="862"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>time</highlight></codeline>
+<codeline lineno="863"><highlight class="normal"></highlight></codeline>
+<codeline lineno="864"><highlight class="normal"><sp/><sp/><sp/><sp/>parser<sp/>=<sp/>argparse.ArgumentParser(description=</highlight><highlight class="stringliteral">&quot;Test<sp/>HTML<sp/>↔<sp/>TEI<sp/>isomorphism&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="865"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">,<sp/>nargs=</highlight><highlight class="stringliteral">&quot;+&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Input<sp/>HTML<sp/>files<sp/>or<sp/>directory&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="866"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight></codeline>
+<codeline lineno="867"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;-o&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;--output&quot;</highlight><highlight class="normal">,<sp/>default=</highlight><highlight class="stringliteral">&quot;isomorphism_test_results&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Output<sp/>directory&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="868"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="869"><highlight class="normal"><sp/><sp/><sp/><sp/>parser.add_argument(</highlight><highlight class="stringliteral">&quot;--batch&quot;</highlight><highlight class="normal">,<sp/>action=</highlight><highlight class="stringliteral">&quot;store_true&quot;</highlight><highlight class="normal">,<sp/>help=</highlight><highlight class="stringliteral">&quot;Process<sp/>multiple<sp/>files&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="870"><highlight class="normal"></highlight></codeline>
+<codeline lineno="871"><highlight class="normal"><sp/><sp/><sp/><sp/>args<sp/>=<sp/>parser.parse_args()</highlight></codeline>
+<codeline lineno="872"><highlight class="normal"></highlight></codeline>
+<codeline lineno="873"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>converter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="874"><highlight class="normal"><sp/><sp/><sp/><sp/>converter<sp/>=<sp/><ref refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" kindref="compound">HTMLTEIConverter</ref>()</highlight></codeline>
+<codeline lineno="875"><highlight class="normal"></highlight></codeline>
+<codeline lineno="876"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Get<sp/>HTML<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="877"><highlight class="normal"><sp/><sp/><sp/><sp/>html_files<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="878"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>path<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>args.input:</highlight></codeline>
+<codeline lineno="879"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p<sp/>=<sp/>Path(path)</highlight></codeline>
+<codeline lineno="880"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>p.is_file()<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>p.suffix<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>[</highlight><highlight class="stringliteral">&quot;.html&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.htm&quot;</highlight><highlight class="normal">]:</highlight></codeline>
+<codeline lineno="881"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_files.append(p)</highlight></codeline>
+<codeline lineno="882"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">elif</highlight><highlight class="normal"><sp/>p.is_dir():</highlight></codeline>
+<codeline lineno="883"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_files.extend(p.glob(</highlight><highlight class="stringliteral">&quot;**/*.html&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="884"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>html_files.extend(p.glob(</highlight><highlight class="stringliteral">&quot;**/*.htm&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="885"><highlight class="normal"></highlight></codeline>
+<codeline lineno="886"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>html_files:</highlight></codeline>
+<codeline lineno="887"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(</highlight><highlight class="stringliteral">&quot;No<sp/>HTML<sp/>files<sp/>found&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="888"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="890"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Found<sp/>{len(html_files)}<sp/>HTML<sp/>files&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="891"><highlight class="normal"></highlight></codeline>
+<codeline lineno="892"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Test<sp/>isomorphism</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="893"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>len(html_files)<sp/>==<sp/>1:</highlight></codeline>
+<codeline lineno="894"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results<sp/>=<sp/>converter.test_isomorphism(html_files[0])</highlight></codeline>
+<codeline lineno="895"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="896"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>results<sp/>=<sp/>converter.batch_test_isomorphism(html_files)</highlight></codeline>
+<codeline lineno="897"><highlight class="normal"></highlight></codeline>
+<codeline lineno="898"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Save<sp/>results</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="899"><highlight class="normal"><sp/><sp/><sp/><sp/>output_dir<sp/>=<sp/>Path(args.output)</highlight></codeline>
+<codeline lineno="900"><highlight class="normal"><sp/><sp/><sp/><sp/>output_dir.mkdir(parents=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,<sp/>exist_ok=</highlight><highlight class="keyword">True</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="901"><highlight class="normal"></highlight></codeline>
+<codeline lineno="902"><highlight class="normal"><sp/><sp/><sp/><sp/>results_file<sp/>=<sp/>output_dir<sp/>/<sp/></highlight><highlight class="stringliteral">&quot;isomorphism_results.json&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="903"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">with</highlight><highlight class="normal"><sp/>open(results_file,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>encoding=</highlight><highlight class="stringliteral">&quot;utf-8&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>f:</highlight></codeline>
+<codeline lineno="904"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>json.dump(results,<sp/>f,<sp/>indent=2,<sp/>ensure_ascii=</highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="905"><highlight class="normal"></highlight></codeline>
+<codeline lineno="906"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Results<sp/>saved<sp/>to:<sp/>{results_file}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="907"><highlight class="normal"></highlight></codeline>
+<codeline lineno="908"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Print<sp/>summary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="909"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>isinstance(results,<sp/>dict)<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;summary&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>results:</highlight></codeline>
+<codeline lineno="910"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>summary<sp/>=<sp/>results[</highlight><highlight class="stringliteral">&quot;summary&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="911"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;\n===<sp/>Isomorphism<sp/>Test<sp/>Summary<sp/>===&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="912"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Total<sp/>files:<sp/>{results[&apos;total_files&apos;]}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="913"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Successful<sp/>conversions:<sp/>{results[&apos;successful_conversions&apos;]}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="914"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Isomorphic<sp/>files:<sp/>{results[&apos;isomorphic_files&apos;]}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="915"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Conversion<sp/>success<sp/>rate:<sp/>{summary[&apos;conversion_success_rate&apos;]:.2%}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="916"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Isomorphism<sp/>rate:<sp/>{summary[&apos;isomorphism_rate&apos;]:.2%}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="917"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="918"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(</highlight></codeline>
+<codeline lineno="919"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f</highlight><highlight class="stringliteral">&quot;Single<sp/>file<sp/>result:<sp/>{&apos;Isomorphic&apos;<sp/>if<sp/>results.get(&apos;isomorphic&apos;,<sp/>False)<sp/>else<sp/>&apos;Not<sp/>isomorphic&apos;}&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="920"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="921"><highlight class="normal"></highlight></codeline>
+<codeline lineno="922"><highlight class="normal"></highlight></codeline>
+<codeline lineno="923"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>__name__<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;__main__&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="924"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>time</highlight></codeline>
+<codeline lineno="925"><highlight class="normal"></highlight></codeline>
+<codeline lineno="926"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d3/daa/namespacehtml__tei__converter_1adcd6a0235ab3810ca1793b9c558f34bd" kindref="member">main</ref>()</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py"/>
+  </compounddef>
+</doxygen>

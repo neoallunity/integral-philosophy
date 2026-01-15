@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "base_url": "https://test-website.com",
+    "domain": "test-website.com",
+    "scraped_at": "2026-01-14 23:21:00",
+    "total_pages": 2
+  },
+  "pages": {
+    "https://test-website.com": {
+      "filename": "index.md",
+      "metadata": {
+        "title": "Test Website",
+        "description": "A test website for pipeline testing",
+        "language": "en",
+        "scraped_at": "2026-01-14 23:21:00"
+      },
+      "content": "# Test Website Content\n\nThis is a test page with some content.\n\n## Mathematics\nE = mc^2\n\n## Lists\n- Item 1\n- Item 2\n"
+    }
+  }
+}
