@@ -1,188 +1,203 @@
 # 🌟 Integral Philosophy Publishing System
 
-> **Elegant Academic Content Processing Pipeline** - Transform ideas into published works
+**Modular Academic Content Processing Platform** - Split into focused subprojects
+
+## 📦 Project Structure
+
+This is the **main project** that orchestrates all subprojects:
 
 ```
-📚 Content → 🔄 Processing → 📖 Publication
+integral-philosophy/
+├── 🧠 subprojects/integral-philosophy-core/     # Core processing engine
+├── 🌐 subprojects/integral-philosophy-web/      # Web interface & API
+├── 🛠️ subprojects/integral-philosophy-cli/     # Command-line tools
+├── 📚 subprojects/integral-philosophy-docs/    # Documentation
+├── 📚 subprojects/integral-philosophy-content/ # Sample content
+├── ⚙️ subprojects/integral-philosophy-config/ # Configuration
+├── 🚀 subprojects/integral-philosophy-deploy/  # Deployment
+└── 🧪 subprojects/integral-philosophy-tests/  # Testing suite
 ```
-
-## ✨ Features
-
-### 🎯 Core Capabilities
-- **🕷️ Web Scraping** - Extract content from any website with JavaScript support
-- **📝 Format Conversion** - Seamless conversion between 10+ markup formats  
-- **📚 Academic Publishing** - TEI XML generation meeting scholarly standards
-- **🎨 Visualization** - UML diagrams for content structure analysis
-- **🌐 Web Interface** - Modern responsive UI with real-time processing
-- **🔌 REST API** - Complete programmatic access to all features
-
-### 🔄 Supported Formats
-**Input:** Markdown, HTML, LaTeX, Org, AsciiDoc, reST, Typst, TEI, DocBook, JATS, JSON  
-**Output:** All input formats + PDF, EPUB, DOCX via XSLT
 
 ## 🚀 Quick Start
 
-```bash
-# 1. Setup environment
-./tools/cli/setup_venv.sh
+### 🔄 Setup with Submodules
+\`\`\`bash
+# Clone with submodules
+git clone --recursive https://github.com/dominicusin/integral-philosophy.git
+cd integral-philosophy
 
-# 2. Activate environment  
-source venv/bin/activate
+# Or initialize submodules manually
+git submodule update --init --recursive
+\`\`\`
 
-# 3. Process content
-./tools/cli/pipeline.sh --url https://example.com --output ./results
+### 🌟 Install Complete System
+\`\`\`bash
+# Setup all subprojects
+./setup-all.sh
 
-# 4. Start web interface
-./tools/cli/start_web_interface.sh
-```
+# Start complete system
+./start-full.sh
+\`\`\`
 
-## 📁 Project Structure
+## 📦 Individual Subproject Usage
 
-```
-integral-philosophy-publisher/
-├── 🎯 core/                    # Core processing modules
-│   ├── parsers/                 # Content parsers (Markdown, LaTeX, etc.)
-│   ├── converters/              # Format converters  
-│   ├── scrapers/               # Web scraping engines
-│   ├── generators/              # TEI, UML, XSLT generators
-│   └── validators/             # Content validation
-├── 🛠️ tools/                    # Command-line tools
-│   ├── cli/                    # Shell scripts and utilities
-│   └── automation/             # Automation workflows
-├── 🌐 web/                      # Web interface and API
-│   ├── api/                    # REST API server
-│   ├── ui/                     # Web interface
-│   └── templates/              # HTML templates
-├── 📚 docs/                     # Documentation
-│   ├── user/                   # User guides
-│   ├── developer/              # Developer docs
-│   └── api/                    # API reference
-├── ⚙️ config/                   # Configuration files
-│   ├── pipelines/              # Processing pipelines
-│   ├── styles/                 # Styling and themes
-│   └── metadata/               # Metadata schemas
-├── 💾 data/                     # Data directories
-│   ├── input/                  # Input content
-│   ├── output/                 # Generated outputs
-│   └── cache/                 # Temporary files
-├── 🧪 tests/                    # Test suites
-│   ├── unit/                   # Unit tests
-│   ├── integration/            # Integration tests
-│   └── e2e/                    # End-to-end tests
-├── 🎪 examples/                 # Examples and demos
-│   ├── samples/                # Sample content
-│   └── demos/                  # Demonstration projects
-└── 🚀 deploy/                   # Deployment configurations
-    ├── docker/                 # Docker configurations
-    └── scripts/                # Deployment scripts
-```
+### 🧠 Core Engine
+\`\`\`bash
+cd subprojects/integral-philosophy-core
+pip install -e ".[dev]"
+integral-core parse content.md --format md
+\`\`\`
 
-## 🎨 Usage Examples
+### 🌐 Web Interface  
+\`\`\`bash
+cd subprojects/integral-philosophy-web
+pip install -e ".[dev]"
+integral-web --port 8000
+\`\`\`
 
-### Web Scraping & Processing
-```bash
-# Scrape and process a philosophy website
-./tools/cli/scrape.sh https://plato.stanford.edu --depth 2 --output ./plato_content
-
-# Convert between formats
-./tools/cli/convert.sh ./plato_content/input.md --to html --output ./plato_content/output.html
-
-# Generate UML diagrams
-./tools/cli/uml.sh ./plato_content/structure.json --format plantuml --output ./plato_content/diagram.puml
-```
-
-### Academic Publishing
-```bash
-# Generate TEI XML
-./tools/cli/tei.sh ./plato_content/content.md --output ./plato_content/tei.xml
-
-# Transform to multiple formats
-./tools/cli/transform.sh ./plato_content/tei.xml --formats html,pdf,epub --output ./publications/
-```
-
-### API Usage
-```python
-import requests
-
-# Process content via API
-response = requests.post('http://localhost:8001/api/process', json={
-    'url': 'https://philosophy-example.com',
-    'formats': ['html', 'pdf', 'tei'],
-    'generate_uml': True
-})
-
-result = response.json()
-print(f"Processing complete: {result['status']}")
-```
+### 🛠️ CLI Tools
+\`\`\`bash
+cd subprojects/integral-philosophy-cli
+pip install -e ".[dev]"
+integral-publisher process https://example.com --output ./results
+\`\`\`
 
 ## 🏗️ Architecture
 
-The system follows a **pipeline architecture** with clear separation of concerns:
+### 🔄 Communication Between Subprojects
 
 ```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Input Source  │ → │   Content Parser │ → │   Content AST   │
-│ (Web/Files)    │    │ (Structure)      │    │ (Canonical)    │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                        │
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   UML Diagrams  │ ← │  AST Analyzer    │ ← │   Validators    │
-│ (Visualization) │    │ (Relationships)  │    │ (Quality)       │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                                                        │
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│  Multiple       │ → │  Format Engines  │ → │   TEI XML       │
-│  Formats        │    │ (Pandoc/LuaLaTeX)│    │ (Academic)     │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
+🌐 Web Interface → 🔌 API Gateway → 🧠 Core Engine → 📚 Output
+     │                    │                    │               │
+  • React UI         • FastAPI          • Content Parsers   • HTML
+  • WebSocket         • Background Jobs    • Format Converters  • PDF  
+  • Live Updates      • Rate Limiting     • Content Validators • EPUB
+  • File Management    • JWT Auth         • Content Generators • TEI XML
 ```
 
-## 🛠️ Installation
+## 🔧 Development Workflow
 
-### Prerequisites
-- Python 3.8+
-- Pandoc 3.0+
-- LaTeX (LuaLaTeX)
-- Node.js 14+ (optional, for web interface)
+### 🛠️ Individual Subproject Development
+\`\`\`bash
+# Work on specific subproject
+cd subprojects/integral-philosophy-core
+git checkout -b feature/new-parser
+npm run dev
 
-### Setup
-```bash
-# Clone repository
-git clone <repository-url>
-cd integral-philosophy-publisher
+# Test integration
+cd ../integral-philosophy-tests
+pytest tests/integration/
+\`\`\`
 
-# Automated setup
-./tools/cli/setup_venv.sh
+### 🔄 Cross-Subproject Testing
+\`\`\`bash
+# Full integration tests
+./run-integration-tests.sh
 
-# Manual setup (if needed)
-python -m venv venv
-source venv/bin/activate
-pip install -r docs/user/requirements.txt
-```
+# Docker development
+docker-compose -f docker-compose.dev.yml up
+\`\`\`
 
-## 🌟 Highlights
+## 📦 Installation Options
 
-- **🎓 Academic Standards**: TEI P5 compliant XML generation
-- **⚡ High Performance**: Sub-second conversion times
-- **🔄 Universal**: Convert between any supported formats
-- **🎨 Beautiful Output**: Responsive HTML, professional PDFs
-- **🔒 Reliable**: Comprehensive validation and error handling
-- **🐳 Production Ready**: Docker deployment with monitoring
+### 🎯 Complete Installation
+\`\`\`bash
+# Install all subprojects
+./install-all.sh
 
-## 📖 Documentation
+# Or install specific components
+./install-core.sh       # Core engine only
+./install-web.sh        # Web interface only
+./install-cli.sh         # CLI tools only
+\`\`\`
 
-- **[User Guide](docs/user/README.md)** - Complete usage instructions
-- **[Developer Guide](docs/developer/README.md)** - Architecture and contribution
-- **[API Reference](docs/api/README.md)** - REST API documentation
-- **[Examples](examples/README.md)** - Sample projects and use cases
+### 🐳 Docker Deployment
+\`\`\`bash
+# Complete system
+docker-compose up -d
 
-## 🤝 Contributing
+# Individual services
+docker-compose up -d web api core
+\`\`\`
 
-We welcome contributions! Please see the [Developer Guide](docs/developer/README.md) for details.
+## 🚀 Production Deployment
+
+### ☸️ Kubernetes
+\`\`\`bash
+# Deploy all services
+kubectl apply -f deploy/kubernetes/
+
+# Individual services
+kubectl apply -f deploy/kubernetes/web/
+kubectl apply -f deploy/kubernetes/api/
+\`\`\`
+
+### 🐳 Docker Swarm
+\`\`\`bash
+docker stack deploy -c docker-compose.yml integral-philosophy
+\`\`\`
+
+## 📚 Documentation
+
+- **[User Guide](docs/user-guide.md)** - Complete user documentation
+- **[Developer Guide](docs/developer-guide.md)** - Architecture and development
+- **[API Reference](docs/api-reference.md)** - Full API documentation
+- **[Deployment Guide](docs/deployment-guide.md)** - Production deployment
+
+## 🧪 Testing
+
+- **[Test Suite](tests/README.md)** - Testing documentation
+- **[CI/CD](.github/workflows/)** - GitHub Actions workflows
+- **[Quality Gates](tests/quality/)** - Code quality checks
+
+## 📦 Subproject Details
+
+### 🧠 integral-philosophy-core
+- **Purpose**: Core content processing engine
+- **Language**: Python 3.8+
+- **Dependencies**: BeautifulSoup, Pandoc, Pandas
+- **Tests**: pytest, coverage
+- **CI**: GitHub Actions
+
+### 🌐 integral-philosophy-web  
+- **Purpose**: Web interface and REST API
+- **Technologies**: FastAPI, React, WebSocket
+- **Features**: Real-time updates, file management
+- **Tests**: pytest, Playwright
+- **CI**: GitHub Actions
+
+### 🛠️ integral-philosophy-cli
+- **Purpose**: Command-line interface tools
+- **Features**: Unified CLI, batch processing
+- **Compatibility**: Works with core engine
+- **Tests**: pytest, integration tests
+
+## 🔧 Contributing
+
+### 🎯 Development Workflow
+1. Choose subproject to work on
+2. Create feature branch
+3. Make changes with tests
+4. Submit pull request
+
+### 🔄 Integration Guidelines
+- Use semantic versioning
+- Follow project coding standards
+- Update cross-project tests
+- Document breaking changes
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file
 
 ---
 
-**🌟 Built with passion for academic publishing and digital humanities**
+## 🌟 What's New in v2.0.0
+
+- ✨ **Modular Architecture** - Split into 8 focused subprojects
+- 🔧 **Better Separation** - Clear boundaries and dependencies
+- 🚀 **Easier Development** - Independent development cycles
+- 📦 **Flexible Deployment** - Deploy individual components
+- 🔄 **Improved Testing** - Focused testing for each subproject
+
+**🚀 Integral Philosophy Publishing System - Now Modular and Production-Ready!**
