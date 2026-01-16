@@ -1,39 +1,39 @@
 [submodule "subprojects/integral-philosophy-core"]
 	path = subprojects/integral-philosophy-core
-	url = https://github.com/dominicusin/integral-philosophy-core.git
+	url = https://github.com/neoallunity/integral-philosophy-core.git
 	branch = main
 
 [submodule "subprojects/integral-philosophy-web"]
 	path = subprojects/integral-philosophy-web
-	url = https://github.com/dominicusin/integral-philosophy-web.git
+	url = https://github.com/neoallunity/integral-philosophy-web.git
 	branch = main
 
 [submodule "subprojects/integral-philosophy-cli"]
 	path = subprojects/integral-philosophy-cli
-	url = https://github.com/dominicusin/integral-philosophy-cli.git
-	branch = main
-
-[submodule "subprojects/integral-philosophy-content"]
-	path = subprojects/integral-philosophy-content
-	url = https://github.com/dominicusin/integral-philosophy-content.git
-	branch = main
-
-[submodule "subprojects/integral-philosophy-config"]
-	path = subprojects/integral-philosophy-config
-	url = https://github.com/dominicusin/integral-philosophy-config.git
-	branch = main
-
-[submodule "subprojects/integral-philosophy-deploy"]
-	path = subprojects/integral-philosophy-deploy
-	url = https://github.com/dominicusin/integral-philosophy-deploy.git
+	url = https://github.com/neoallunity/integral-philosophy-cli.git
 	branch = main
 
 [submodule "subprojects/integral-philosophy-docs"]
 	path = subprojects/integral-philosophy-docs
-	url = https://github.com/dominicusin/integral-philosophy-docs.git
+	url = https://github.com/neoallunity/integral-philosophy-docs.git
+	branch = main
+
+[submodule "subprojects/integral-philosophy-content"]
+	path = subprojects/integral-philosophy-content
+	url = https://github.com/neoallunity/integral-philosophy-content.git
+	branch = main
+
+[submodule "subprojects/integral-philosophy-config"]
+	path = subprojects/integral-philosophy-config
+	url = https://github.com/neoallunity/integral-philosophy-config.git
+	branch = main
+
+[submodule "subprojects/integral-philosophy-deploy"]
+	path = subprojects/integral-philosophy-deploy
+	url = https://github.com/neoallunity/integral-philosophy-deploy.git
 	branch = main
 
 [submodule "subprojects/integral-philosophy-tests"]
 	path = subprojects/integral-philosophy-tests
-	url = https://github.com/dominicusin/integral-philosophy-tests.git
+	url = https://github.com/neoallunity/integral-philosophy-tests.git
 	branch = main
