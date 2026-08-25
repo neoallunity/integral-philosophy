@@ -1,0 +1,9 @@
+# CLI Tools Dependencies
+click>=8.1.0
+rich>=13.0.0
+typer>=0.7.0
+shellingham>=1.5.0
+
+# Core processing integration
+integral-philosophy-core>=2.0.0
+integral-philosophy-web>=2.0.0
