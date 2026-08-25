@@ -1,0 +1,207 @@
+\doxysection{cfg-\/semantic.tex}
+\hypertarget{cfg-semantic_8tex_source}{}\label{cfg-semantic_8tex_source}\index{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/semantic.tex@{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/semantic.tex}}
+\mbox{\hyperlink{cfg-semantic_8tex}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00001}00001\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00002}00002\ \%\ cfg-\/semantic.tex\ —\ расширенные\ семантические\ конструкции}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00003}00003\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00005}00005\ \(\backslash\)RequirePackage\{xparse\}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00006}00006\ \(\backslash\)RequirePackage\{xcolor\}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00008}00008\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00009}00009\ \%\ СЕМАНТИЧЕСКИЕ\ АКЦЕНТЫ\ В\ ТЕКСТЕ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00010}00010\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00012}00012\ \%\ Термин\ (например,\ для\ глоссария)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00013}00013\ \(\backslash\)NewDocumentCommand\{\(\backslash\)Term\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00014}00014\ \ \ \(\backslash\)textbf\{\(\backslash\)textcolor\{JournalAccent!85\}\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00017}00017\ \%\ Важное\ понятие}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00018}00018\ \(\backslash\)NewDocumentCommand\{\(\backslash\)Concept\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00019}00019\ \ \ \(\backslash\)textit\{\(\backslash\)textcolor\{JournalAccent2!75\}\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00022}00022\ \%\ Цитируемый\ источник\ (inline)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00023}00023\ \(\backslash\)NewDocumentCommand\{\(\backslash\)Source\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00024}00024\ \ \ \(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)textit\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00027}00027\ \%\ Акцент\ (замена\ для\ \(\backslash\)emph\ с\ фирменным\ цветом)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00028}00028\ \(\backslash\)NewDocumentCommand\{\(\backslash\)Accent\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00029}00029\ \ \ \(\backslash\)textcolor\{JournalAccent2!80\}\{\(\backslash\)textit\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00032}00032\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00033}00033\ \%\ СЕМАНТИЧЕСКИЕ\ БЛОКИ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00034}00034\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00036}00036\ \%\ Замечание\ редакции}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00037}00037\ \(\backslash\)NewDocumentEnvironment\{editorialremark\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00038}00038\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00039}00039\ \ \ \(\backslash\)noindent\(\backslash\)colorbox\{JournalAccent!8\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00040}00040\ \ \ \ \ \(\backslash\)begin\{minipage\}\{\(\backslash\)dimexpr\(\backslash\)textwidth-\/2\(\backslash\)fboxsep-\/2\(\backslash\)fboxrule\}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00041}00041\ \ \ \ \ \ \ \(\backslash\)small\(\backslash\)textcolor\{JournalAccent!80\}\{\(\backslash\)textbf\{Примечание\ редакции:\}\}\(\backslash\)\(\backslash\)[0.2cm]}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00042}00042\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00043}00043\ \ \ \ \ \(\backslash\)end\{minipage\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00044}00044\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00045}00045\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00048}00048\ \%\ Врезка\ с\ дополнительной\ информацией}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00049}00049\ \(\backslash\)NewDocumentEnvironment\{sidebar\}\{o\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00050}00050\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00051}00051\ \ \ \(\backslash\)noindent\(\backslash\)fcolorbox\{JournalAccent2!50\}\{JournalAccent2!5\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00052}00052\ \ \ \ \ \(\backslash\)begin\{minipage\}\{\(\backslash\)dimexpr\(\backslash\)textwidth-\/2\(\backslash\)fboxsep-\/2\(\backslash\)fboxrule\}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00053}00053\ \ \ \ \ \ \ \(\backslash\)IfNoValueTF\{\#1\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00054}00054\ \ \ \ \ \ \ \ \ \(\backslash\)small\(\backslash\)textbf\{\(\backslash\)textcolor\{JournalAccent2!85\}\{\#1\}\}\(\backslash\)\(\backslash\)[0.2cm]\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00055}00055\ \ \ \ \ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00056}00056\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00057}00057\ \ \ \ \ \(\backslash\)end\{minipage\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00058}00058\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00059}00059\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00062}00062\ \%\ Цитата\ (с\ фирменным\ оформлением)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00063}00063\ \(\backslash\)RenewDocumentEnvironment\{quote\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00064}00064\ \ \ \(\backslash\)vspace\{0.4cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00065}00065\ \ \ \(\backslash\)begin\{list\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00066}00066\ \ \ \ \ \(\backslash\)setlength\{\(\backslash\)leftmargin\}\{1.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00067}00067\ \ \ \ \ \(\backslash\)setlength\{\(\backslash\)rightmargin\}\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00068}00068\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00069}00069\ \ \ \(\backslash\)item\(\backslash\)relax\(\backslash\)small\(\backslash\)itshape\(\backslash\)textcolor\{JournalAccent!75\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00070}00070\ \}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00071}00071\ \ \ \(\backslash\)end\{list\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00072}00072\ \ \ \(\backslash\)vspace\{0.4cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00075}00075\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00076}00076\ \%\ СЕМАНТИЧЕСКИЕ\ РАЗДЕЛИТЕЛИ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00077}00077\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00079}00079\ \%\ Тематический\ разрыв\ (замена\ \(\backslash\)rule)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00080}00080\ \(\backslash\)NewDocumentCommand\{\(\backslash\)ThematicBreak\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00081}00081\ \ \ \(\backslash\)vspace\{0.8cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00082}00082\ \ \ \(\backslash\)noindent\(\backslash\)textcolor\{JournalAccent2!60\}\{\(\backslash\)rule\{0.3\(\backslash\)textwidth\}\{0.5pt\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00083}00083\ \ \ \(\backslash\)vspace\{0.8cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00084}00084\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00086}00086\ \%\ Разделитель\ секций\ (более\ яркий)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00087}00087\ \(\backslash\)NewDocumentCommand\{\(\backslash\)SectionBreak\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00088}00088\ \ \ \(\backslash\)vspace\{1cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00089}00089\ \ \ \(\backslash\)begin\{center\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00090}00090\ \ \ \ \ \(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)Large\(\backslash\)textbullet\(\backslash\)quad\(\backslash\)textbullet\(\backslash\)quad\(\backslash\)textbullet\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00091}00091\ \ \ \(\backslash\)end\{center\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00092}00092\ \ \ \(\backslash\)vspace\{1cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00095}00095\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00096}00096\ \%\ НОМЕРА\ И\ ССЫЛКИ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00097}00097\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00099}00099\ \%\ Номер\ выпуска\ (с\ фирменным\ стилем)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00100}00100\ \(\backslash\)NewDocumentCommand\{\(\backslash\)IssueNumber\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00101}00101\ \ \ \(\backslash\)textcolor\{JournalAccent!85\}\{\(\backslash\)textbf\{№\(\backslash\),\(\backslash\)journalissue\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00104}00104\ \%\ Год\ выпуска}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00105}00105\ \(\backslash\)NewDocumentCommand\{\(\backslash\)IssueYear\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00106}00106\ \ \ \(\backslash\)textcolor\{JournalAccent!85\}\{\(\backslash\)textbf\{\(\backslash\)journalyear\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00107}00107\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00109}00109\ \%\ Полное\ обозначение\ выпуска}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00110}00110\ \(\backslash\)NewDocumentCommand\{\(\backslash\)IssueLabel\}\{\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00111}00111\ \ \ \(\backslash\)textcolor\{JournalAccent!85\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00112}00112\ \ \ \ \ \(\backslash\)textbf\{№\(\backslash\),\(\backslash\)journalissue\(\backslash\);•\(\backslash\);\(\backslash\)journalyear\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00113}00113\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00116}00116\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00117}00117\ \%\ АФФИЛИАЦИИ\ И\ АДРЕСА}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00118}00118\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00120}00120\ \%\ Аффилиация\ автора}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00121}00121\ \(\backslash\)NewDocumentCommand\{\(\backslash\)Affiliation\}\{m\ m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00122}00122\ \ \ \(\backslash\)textsuperscript\{\#1\}\(\backslash\),\(\backslash\)textit\{\#2\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00123}00123\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00125}00125\ \%\ Email\ автора}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00126}00126\ \(\backslash\)NewDocumentCommand\{\(\backslash\)AuthorEmail\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00127}00127\ \ \ \(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)texttt\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00130}00130\ \%\ ORCID\ (с\ иконкой\ если\ есть)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00131}00131\ \(\backslash\)NewDocumentCommand\{\(\backslash\)AuthorORCID\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00132}00132\ \ \ \(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)textsc\{orcid:\}\(\backslash\),\(\backslash\)texttt\{\#1\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00133}00133\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00135}00135\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00136}00136\ \%\ ДАТЫ\ И\ ВЕРСИИ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00137}00137\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00139}00139\ \%\ Дата\ поступления\ статьи}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00140}00140\ \(\backslash\)NewDocumentCommand\{\(\backslash\)SubmissionDate\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00141}00141\ \ \ \(\backslash\)small\(\backslash\)textit\{Поступила:\}\(\backslash\);\(\backslash\)textcolor\{JournalAccent!70\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00142}00142\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00144}00144\ \%\ Дата\ принятия\ статьи}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00145}00145\ \(\backslash\)NewDocumentCommand\{\(\backslash\)AcceptanceDate\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00146}00146\ \ \ \(\backslash\)small\(\backslash\)textit\{Принята:\}\(\backslash\);\(\backslash\)textcolor\{JournalAccent!70\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00147}00147\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00149}00149\ \%\ Дата\ публикации}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00150}00150\ \(\backslash\)NewDocumentCommand\{\(\backslash\)PublicationDate\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00151}00151\ \ \ \(\backslash\)small\(\backslash\)textit\{Опубликована:\}\(\backslash\);\(\backslash\)textcolor\{JournalAccent!70\}\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00152}00152\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00154}00154\ \%\ Блок\ дат\ (объединяет\ три\ даты)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00155}00155\ \(\backslash\)NewDocumentCommand\{\(\backslash\)ArticleDates\}\{m\ m\ m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00156}00156\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00157}00157\ \ \ \(\backslash\)noindent\(\backslash\)small\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00158}00158\ \ \ \(\backslash\)SubmissionDate\{\#1\}\(\backslash\)quad|\(\backslash\)quad\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00159}00159\ \ \ \(\backslash\)AcceptanceDate\{\#2\}\(\backslash\)quad|\(\backslash\)quad\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00160}00160\ \ \ \(\backslash\)PublicationDate\{\#3\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00161}00161\ \ \ \(\backslash\)vspace\{0.5cm\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00162}00162\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00164}00164\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00165}00165\ \%\ DOI\ И\ ЛИЦЕНЗИИ}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00166}00166\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00168}00168\ \%\ DOI\ статьи}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00169}00169\ \(\backslash\)NewDocumentCommand\{\(\backslash\)ArticleDOI\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00170}00170\ \ \ \(\backslash\)noindent\(\backslash\)small\(\backslash\)textsc\{doi:\}\(\backslash\);\(\backslash\)url\{https://doi.org/\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00171}00171\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00173}00173\ \%\ Лицензия\ Creative\ Commons}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00174}00174\ \(\backslash\)NewDocumentCommand\{\(\backslash\)CCLicense\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00175}00175\ \ \ \(\backslash\)noindent\(\backslash\)small\(\backslash\)textcolor\{JournalAccent!70\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00176}00176\ \ \ \ \ \(\backslash\)textcopyright\(\backslash\);Распространяется\ по\ лицензии\ CC\(\backslash\),\#1\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00177}00177\ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00180}00180\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00181}00181\ \%\ ПЕРЕКРЕСТНЫЕ\ ССЫЛКИ\ (СЕМАНТИЧЕСКИЕ)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00182}00182\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00184}00184\ \%\ Ссылка\ на\ другую\ статью\ в\ выпуске}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00185}00185\ \(\backslash\)NewDocumentCommand\{\(\backslash\)RefArticle\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00186}00186\ \ \ \(\backslash\)textcolor\{JournalAccent2!75\}\{\(\backslash\)textit\{см.\ статью\}\}\(\backslash\);\(\backslash\)cref\{\#1\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00187}00187\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00189}00189\ \%\ Ссылка\ на\ предыдущий\ выпуск}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00190}00190\ \(\backslash\)NewDocumentCommand\{\(\backslash\)RefPreviousIssue\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00191}00191\ \ \ \(\backslash\)textcolor\{JournalAccent!70\}\{\(\backslash\)textit\{см.\ выпуск\}\}\(\backslash\);№\(\backslash\),\#1\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00192}00192\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00194}00194\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00195}00195\ \%\ АННОТАЦИИ\ (ДОПОЛНИТЕЛЬНЫЕ)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00196}00196\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00198}00198\ \%\ Краткая\ версия\ для\ TOC\ (Table\ of\ Contents\ Abstract)}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00199}00199\ \(\backslash\)NewDocumentCommand\{\(\backslash\)TOCAbstract\}\{m\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00200}00200\ \ \ \(\backslash\)addtocontents\{toc\}\{\(\backslash\)protect\(\backslash\)begin\{quote\}\(\backslash\)protect\(\backslash\)small\(\backslash\)textit\{\#1\}\(\backslash\)protect\(\backslash\)end\{quote\}\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-semantic_8tex_source_l00201}00201\ \}}
+
+\end{DoxyCode}

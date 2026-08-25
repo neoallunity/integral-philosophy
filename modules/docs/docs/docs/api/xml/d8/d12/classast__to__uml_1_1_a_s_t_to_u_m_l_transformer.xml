@@ -1,0 +1,516 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer" kind="class" language="Python" prot="public">
+    <compoundname>ast_to_uml::ASTToUMLTransformer</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ac1cd36f90cab0197ba6c80ecb7a253a4" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>ast_to_uml.ASTToUMLTransformer::nodes</definition>
+        <argsstring></argsstring>
+        <name>nodes</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.nodes</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="63" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="63" bodyend="-1"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" compoundref="d8/d2b/ast__to__uml_8py" startline="231" endline="249">ast_to_uml.ASTToUMLTransformer._calculate_statistics</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" compoundref="d8/d2b/ast__to__uml_8py" startline="94" endline="132">ast_to_uml.ASTToUMLTransformer._create_page_node</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab27179bffb18f8cb7529c9cec92fe741" compoundref="d8/d2b/ast__to__uml_8py" startline="262" endline="274">ast_to_uml.ASTToUMLTransformer._serialize_nodes</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a21ad2ac333d011cabac3a4e623320a36" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list ast_to_uml.ASTToUMLTransformer::edges</definition>
+        <argsstring></argsstring>
+        <name>edges</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.edges</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="64" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="64" bodyend="-1"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" compoundref="d8/d2b/ast__to__uml_8py" startline="231" endline="249">ast_to_uml.ASTToUMLTransformer._calculate_statistics</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab87dba3e5942aeca94ee6c865e6327aa" compoundref="d8/d2b/ast__to__uml_8py" startline="181" endline="198">ast_to_uml.ASTToUMLTransformer._create_link_edges</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad79353bb9ce9c2559ac219249e6540a1" compoundref="d8/d2b/ast__to__uml_8py" startline="275" endline="286">ast_to_uml.ASTToUMLTransformer._serialize_edges</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0f3f6be36923283de9bc329eca0b89be" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict ast_to_uml.ASTToUMLTransformer::site_structure</definition>
+        <argsstring></argsstring>
+        <name>site_structure</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.site_structure</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="65" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a5943e47c732e1b9670179696d755befb" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>ast_to_uml.ASTToUMLTransformer::page_hierarchy</definition>
+        <argsstring></argsstring>
+        <name>page_hierarchy</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.page_hierarchy</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="66" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="66" bodyend="-1"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" compoundref="d8/d2b/ast__to__uml_8py" startline="231" endline="249">ast_to_uml.ASTToUMLTransformer._calculate_statistics</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4cc5b7aea5090bb69cead8de51385fb0" compoundref="d8/d2b/ast__to__uml_8py" startline="199" endline="230">ast_to_uml.ASTToUMLTransformer._create_hierarchy</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a6e69620e93401f645c783b82b39ca259" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict ast_to_uml.ASTToUMLTransformer::link_graph</definition>
+        <argsstring></argsstring>
+        <name>link_graph</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.link_graph</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="67" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4b9c9386767ce1ef16bf0896e2e665a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ast_to_uml.ASTToUMLTransformer.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="62" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="62" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] ast_to_uml.ASTToUMLTransformer.transform_site_ast</definition>
+        <argsstring>(self, Dict[str, Any] site_ast)</argsstring>
+        <name>transform_site_ast</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.transform_site_ast</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>site_ast</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform entire site AST to UML representation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="69" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="69" bodyend="93"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" compoundref="d8/d2b/ast__to__uml_8py" startline="231" endline="249">ast_to_uml.ASTToUMLTransformer._calculate_statistics</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4cc5b7aea5090bb69cead8de51385fb0" compoundref="d8/d2b/ast__to__uml_8py" startline="199" endline="230">ast_to_uml.ASTToUMLTransformer._create_hierarchy</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab87dba3e5942aeca94ee6c865e6327aa" compoundref="d8/d2b/ast__to__uml_8py" startline="181" endline="198">ast_to_uml.ASTToUMLTransformer._create_link_edges</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" compoundref="d8/d2b/ast__to__uml_8py" startline="94" endline="132">ast_to_uml.ASTToUMLTransformer._create_page_node</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad79353bb9ce9c2559ac219249e6540a1" compoundref="d8/d2b/ast__to__uml_8py" startline="275" endline="286">ast_to_uml.ASTToUMLTransformer._serialize_edges</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab27179bffb18f8cb7529c9cec92fe741" compoundref="d8/d2b/ast__to__uml_8py" startline="262" endline="274">ast_to_uml.ASTToUMLTransformer._serialize_nodes</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a5943e47c732e1b9670179696d755befb" compoundref="d8/d2b/ast__to__uml_8py" startline="66">ast_to_uml.ASTToUMLTransformer.page_hierarchy</references>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1abe49bcc2982b23ed28a030aefcc00554" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str ast_to_uml.ASTToUMLTransformer.generate_plantuml</definition>
+        <argsstring>(self, Dict[str, Any] uml_data)</argsstring>
+        <name>generate_plantuml</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.generate_plantuml</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>uml_data</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate PlantUML representation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="287" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="287" bodyend="342"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a64186c220247b14aa76ceffc69e1a893" compoundref="d8/d2b/ast__to__uml_8py" startline="449" endline="480">ast_to_uml.ASTToUMLTransformer.generate_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1acb9eca814723ad702b257a759ad67bc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str ast_to_uml.ASTToUMLTransformer.generate_mermaid</definition>
+        <argsstring>(self, Dict[str, Any] uml_data)</argsstring>
+        <name>generate_mermaid</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.generate_mermaid</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>uml_data</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate Mermaid diagram</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="343" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="343" bodyend="387"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a9f0c970b4e63f32d2007ea0d0786d976" compoundref="d8/d2b/ast__to__uml_8py" startline="167" endline="180">ast_to_uml.ASTToUMLTransformer._get_page_style</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a64186c220247b14aa76ceffc69e1a893" compoundref="d8/d2b/ast__to__uml_8py" startline="449" endline="480">ast_to_uml.ASTToUMLTransformer.generate_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4b17ab9cc473cb6214a9218893a86a0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str ast_to_uml.ASTToUMLTransformer.generate_graphviz</definition>
+        <argsstring>(self, Dict[str, Any] uml_data)</argsstring>
+        <name>generate_graphviz</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.generate_graphviz</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>uml_data</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate Graphviz DOT representation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="388" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="388" bodyend="448"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a64186c220247b14aa76ceffc69e1a893" compoundref="d8/d2b/ast__to__uml_8py" startline="449" endline="480">ast_to_uml.ASTToUMLTransformer.generate_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a64186c220247b14aa76ceffc69e1a893" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None ast_to_uml.ASTToUMLTransformer.generate_all_formats</definition>
+        <argsstring>(self, Dict[str, Any] uml_data, Path output_dir)</argsstring>
+        <name>generate_all_formats</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer.generate_all_formats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>uml_data</declname>
+          <array>[str, Any]</array>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate all supported UML formats</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="449" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="449" bodyend="480"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4b17ab9cc473cb6214a9218893a86a0f" compoundref="d8/d2b/ast__to__uml_8py" startline="388" endline="448">ast_to_uml.ASTToUMLTransformer.generate_graphviz</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1acb9eca814723ad702b257a759ad67bc5" compoundref="d8/d2b/ast__to__uml_8py" startline="343" endline="387">ast_to_uml.ASTToUMLTransformer.generate_mermaid</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1abe49bcc2982b23ed28a030aefcc00554" compoundref="d8/d2b/ast__to__uml_8py" startline="287" endline="342">ast_to_uml.ASTToUMLTransformer.generate_plantuml</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None ast_to_uml.ASTToUMLTransformer._create_page_node</definition>
+        <argsstring>(self, str url, Dict[str, Any] page_info)</argsstring>
+        <name>_create_page_node</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._create_page_node</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>page_info</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create UML node for a page</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="94" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="94" bodyend="132"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad7fe8e53ab6f7e8be1291e9d5476c475" compoundref="d8/d2b/ast__to__uml_8py" startline="133" endline="166">ast_to_uml.ASTToUMLTransformer._classify_page_type</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a9f0c970b4e63f32d2007ea0d0786d976" compoundref="d8/d2b/ast__to__uml_8py" startline="167" endline="180">ast_to_uml.ASTToUMLTransformer._get_page_style</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0b7e3f786a3c4ac9f8a67041c809ebcf" compoundref="d8/d2b/ast__to__uml_8py" startline="250" endline="261">ast_to_uml.ASTToUMLTransformer._sanitize_id</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ac1cd36f90cab0197ba6c80ecb7a253a4" compoundref="d8/d2b/ast__to__uml_8py" startline="63">ast_to_uml.ASTToUMLTransformer.nodes</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad7fe8e53ab6f7e8be1291e9d5476c475" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str ast_to_uml.ASTToUMLTransformer._classify_page_type</definition>
+        <argsstring>(self, str url, Dict[str, Any] metadata)</argsstring>
+        <name>_classify_page_type</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._classify_page_type</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>metadata</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Classify page type based on URL and metadata</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="133" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="133" bodyend="166"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" compoundref="d8/d2b/ast__to__uml_8py" startline="94" endline="132">ast_to_uml.ASTToUMLTransformer._create_page_node</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a9f0c970b4e63f32d2007ea0d0786d976" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, str]</type>
+        <definition> Dict[str, str] ast_to_uml.ASTToUMLTransformer._get_page_style</definition>
+        <argsstring>(self, str page_type)</argsstring>
+        <name>_get_page_style</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._get_page_style</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>page_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get styling for page type</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="167" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="167" bodyend="180"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" compoundref="d8/d2b/ast__to__uml_8py" startline="94" endline="132">ast_to_uml.ASTToUMLTransformer._create_page_node</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1acb9eca814723ad702b257a759ad67bc5" compoundref="d8/d2b/ast__to__uml_8py" startline="343" endline="387">ast_to_uml.ASTToUMLTransformer.generate_mermaid</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab87dba3e5942aeca94ee6c865e6327aa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None ast_to_uml.ASTToUMLTransformer._create_link_edges</definition>
+        <argsstring>(self, Dict[str, Any] pages)</argsstring>
+        <name>_create_link_edges</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._create_link_edges</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>pages</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create edges representing links between pages</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="181" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="181" bodyend="198"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0b7e3f786a3c4ac9f8a67041c809ebcf" compoundref="d8/d2b/ast__to__uml_8py" startline="250" endline="261">ast_to_uml.ASTToUMLTransformer._sanitize_id</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a21ad2ac333d011cabac3a4e623320a36" compoundref="d8/d2b/ast__to__uml_8py" startline="64">ast_to_uml.ASTToUMLTransformer.edges</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4cc5b7aea5090bb69cead8de51385fb0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None ast_to_uml.ASTToUMLTransformer._create_hierarchy</definition>
+        <argsstring>(self, Dict[str, Any] pages)</argsstring>
+        <name>_create_hierarchy</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._create_hierarchy</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>pages</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create hierarchical structure from URL paths</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="199" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="199" bodyend="230"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a5943e47c732e1b9670179696d755befb" compoundref="d8/d2b/ast__to__uml_8py" startline="66">ast_to_uml.ASTToUMLTransformer.page_hierarchy</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] ast_to_uml.ASTToUMLTransformer._calculate_statistics</definition>
+        <argsstring>(self)</argsstring>
+        <name>_calculate_statistics</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._calculate_statistics</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate statistics about the site structure</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="231" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="231" bodyend="249"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a21ad2ac333d011cabac3a4e623320a36" compoundref="d8/d2b/ast__to__uml_8py" startline="64">ast_to_uml.ASTToUMLTransformer.edges</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ac1cd36f90cab0197ba6c80ecb7a253a4" compoundref="d8/d2b/ast__to__uml_8py" startline="63">ast_to_uml.ASTToUMLTransformer.nodes</references>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a5943e47c732e1b9670179696d755befb" compoundref="d8/d2b/ast__to__uml_8py" startline="66">ast_to_uml.ASTToUMLTransformer.page_hierarchy</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0b7e3f786a3c4ac9f8a67041c809ebcf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str ast_to_uml.ASTToUMLTransformer._sanitize_id</definition>
+        <argsstring>(self, str url)</argsstring>
+        <name>_sanitize_id</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._sanitize_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>url</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a valid UML node ID from URL</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="250" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="250" bodyend="261"/>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab87dba3e5942aeca94ee6c865e6327aa" compoundref="d8/d2b/ast__to__uml_8py" startline="181" endline="198">ast_to_uml.ASTToUMLTransformer._create_link_edges</referencedby>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" compoundref="d8/d2b/ast__to__uml_8py" startline="94" endline="132">ast_to_uml.ASTToUMLTransformer._create_page_node</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab27179bffb18f8cb7529c9cec92fe741" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict[str, Any]]</type>
+        <definition> List[Dict[str, Any]] ast_to_uml.ASTToUMLTransformer._serialize_nodes</definition>
+        <argsstring>(self)</argsstring>
+        <name>_serialize_nodes</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._serialize_nodes</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Serialize nodes to dictionary format</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="262" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="262" bodyend="274"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ac1cd36f90cab0197ba6c80ecb7a253a4" compoundref="d8/d2b/ast__to__uml_8py" startline="63">ast_to_uml.ASTToUMLTransformer.nodes</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad79353bb9ce9c2559ac219249e6540a1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict[str, Any]]</type>
+        <definition> List[Dict[str, Any]] ast_to_uml.ASTToUMLTransformer._serialize_edges</definition>
+        <argsstring>(self)</argsstring>
+        <name>_serialize_edges</name>
+        <qualifiedname>ast_to_uml.ASTToUMLTransformer._serialize_edges</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Serialize edges to dictionary format</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="275" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="275" bodyend="286"/>
+        <references refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a21ad2ac333d011cabac3a4e623320a36" compoundref="d8/d2b/ast__to__uml_8py" startline="64">ast_to_uml.ASTToUMLTransformer.edges</references>
+        <referencedby refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" compoundref="d8/d2b/ast__to__uml_8py" startline="69" endline="93">ast_to_uml.ASTToUMLTransformer.transform_site_ast</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Transforms site AST into UML diagrams</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ast_to_uml.ASTToUMLTransformer</label>
+        <link refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="59" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="59" bodyend="480"/>
+    <listofallmembers>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4b9c9386767ce1ef16bf0896e2e665a7" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>__init__</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ae00a4ef5a25ffb0d341776a95247887e" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_calculate_statistics</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad7fe8e53ab6f7e8be1291e9d5476c475" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_classify_page_type</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4cc5b7aea5090bb69cead8de51385fb0" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_create_hierarchy</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab87dba3e5942aeca94ee6c865e6327aa" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_create_link_edges</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0dfd2dea8573aaa1c55edd1c925b00de" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_create_page_node</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a9f0c970b4e63f32d2007ea0d0786d976" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_get_page_style</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0b7e3f786a3c4ac9f8a67041c809ebcf" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_sanitize_id</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ad79353bb9ce9c2559ac219249e6540a1" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_serialize_edges</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ab27179bffb18f8cb7529c9cec92fe741" prot="protected" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>_serialize_nodes</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a21ad2ac333d011cabac3a4e623320a36" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>edges</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a64186c220247b14aa76ceffc69e1a893" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>generate_all_formats</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a4b17ab9cc473cb6214a9218893a86a0f" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>generate_graphviz</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1acb9eca814723ad702b257a759ad67bc5" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>generate_mermaid</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1abe49bcc2982b23ed28a030aefcc00554" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>generate_plantuml</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a6e69620e93401f645c783b82b39ca259" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>link_graph</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1ac1cd36f90cab0197ba6c80ecb7a253a4" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>nodes</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a5943e47c732e1b9670179696d755befb" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>page_hierarchy</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a0f3f6be36923283de9bc329eca0b89be" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>site_structure</name></member>
+      <member refid="d8/d12/classast__to__uml_1_1_a_s_t_to_u_m_l_transformer_1a3534d6735846aae78bdf859a3a84bff6" prot="public" virt="non-virtual"><scope>ast_to_uml::ASTToUMLTransformer</scope><name>transform_site_ast</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

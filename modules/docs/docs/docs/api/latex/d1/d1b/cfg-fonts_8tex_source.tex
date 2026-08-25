@@ -1,0 +1,44 @@
+\doxysection{cfg-\/fonts.tex}
+\hypertarget{cfg-fonts_8tex_source}{}\label{cfg-fonts_8tex_source}\index{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/fonts.tex@{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/fonts.tex}}
+\mbox{\hyperlink{cfg-fonts_8tex}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00001}00001\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00002}00002\ \%\ cfg-\/fonts.tex\ —\ шрифты\ и\ языки}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00003}00003\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00005}00005\ \%\ cfg/cfg-\/fonts.tex\ —\ единая\ конфигурация\ шрифтов\ (для\ LuaLaTeX)}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00006}00006\ \(\backslash\)ProvidesFile\{cfg-\/fonts.tex\}[2025/12/15\ Journal\ font\ config]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00008}00008\ \%\ Если\ используем\ LuaLaTeX\ —\ fontspec\ +\ polyglossia}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00009}00009\ \(\backslash\)RequirePackage\{ifluatex\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00010}00010\ \(\backslash\)ifluatex}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00011}00011\ \ \ \(\backslash\)RequirePackage\{fontspec\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00012}00012\ \ \ \(\backslash\)RequirePackage\{polyglossia\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00013}00013\ \ \ \(\backslash\)setmainlanguage\{russian\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00014}00014\ \ \ \(\backslash\)setotherlanguage\{english\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00016}00016\ \ \ \%\ -\/-\/-\/\ serif\ (main)}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00017}00017\ \ \ \(\backslash\)setmainfont\{Linux\ Libertine\ O\}[Ligatures=TeX,Scale=MatchLowercase]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00019}00019\ \ \ \%\ -\/-\/-\/\ sans}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00020}00020\ \ \ \(\backslash\)setsansfont\{Linux\ Biolinum\ O\}[Scale=MatchLowercase]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00022}00022\ \ \ \%\ -\/-\/-\/\ mono}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00023}00023\ \ \ \(\backslash\)setmonofont\{Linux\ Libertine\ Mono\ O\}[Scale=MatchLowercase]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00025}00025\ \ \ \%\ -\/-\/-\/\ math\ font\ (если\ есть\ специальный\ math-\/шрифт)}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00026}00026\ \ \ \%\ \(\backslash\)setmathfont\{Latin\ Modern\ Math\}\ \%\ Moved\ from\ preamble.tex}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00028}00028\ \ \ \%\ Явные\ семейства\ для\ кириллицы\ (fallbacks)}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00029}00029\ \ \ \(\backslash\)newfontfamily\(\backslash\)cyrillicfont\{Linux\ Libertine\ O\}[Script=Cyrillic]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00030}00030\ \ \ \(\backslash\)newfontfamily\(\backslash\)cyrillicfontsf\{Linux\ Biolinum\ O\}[Script=Cyrillic]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00031}00031\ \ \ \(\backslash\)newfontfamily\(\backslash\)cyrillicfonttt\{Linux\ Libertine\ Mono\ O\}[Scale=MatchLowercase]}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00033}00033\ \%\ \(\backslash\)else}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00034}00034\ \%\ \ \ \%\ fallback\ для\ pdfLaTeX\ /\ XeLaTeX\ без\ fontspec}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00035}00035\ \%\ \ \ \(\backslash\)RequirePackage[T2A]\{fontenc\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00036}00036\ \%\ \ \ \(\backslash\)RequirePackage[utf8]\{inputenc\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00037}00037\ \%\ \ \ \(\backslash\)RequirePackage[russian,english]\{babel\}}
+\DoxyCodeLine{\Hypertarget{cfg-fonts_8tex_source_l00038}00038\ \(\backslash\)fi}
+
+\end{DoxyCode}

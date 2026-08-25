@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="df/d1e/cfg-structure_8tex" kind="file" language="C++">
+    <compoundname>cfg-structure.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-structure.tex<sp/>—<sp/>структура,<sp/>заголовки,<sp/>оглавление</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Определение<sp/>длин<sp/>для<sp/>линий<sp/>в<sp/>заголовках</highlight></codeline>
+<codeline><highlight class="normal">\newlength{\JournalSectionRuleW}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\JournalSectionRuleW}{0.25\textwidth}<sp/>%<sp/>Примерное<sp/>значение</highlight></codeline>
+<codeline><highlight class="normal">\newlength{\JournalSectionRuleH}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\JournalSectionRuleH}{0.9pt}<sp/>%<sp/>Примерное<sp/>значение</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\newlength{\JournalSubsectionRuleW}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\JournalSubsectionRuleW}{0.15\textwidth}<sp/>%<sp/>Примерное<sp/>значение</highlight></codeline>
+<codeline><highlight class="normal">\newlength{\JournalSubsectionRuleH}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\JournalSubsectionRuleH}{0.7pt}<sp/>%<sp/>Примерное<sp/>значение</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Глубина<sp/>нумерации/оглавления</highlight></codeline>
+<codeline><highlight class="normal">\setcounter{secnumdepth}{3}</highlight></codeline>
+<codeline><highlight class="normal">\setcounter{tocdepth}{2}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Заголовки</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{titlesec}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{tikz}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Фирменный<sp/>стиль<sp/>для<sp/>глав:<sp/>крупный<sp/>цветной<sp/>номер<sp/>+<sp/>акцентная<sp/>линия</highlight></codeline>
+<codeline><highlight class="normal">\titleformat{\chapter}[display]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\normalfont\huge\bfseries}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\begin{tikzpicture}[baseline=(n.base)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>\node<sp/>(n)<sp/>[inner<sp/>sep=0pt]<sp/>{\textcolor{JournalAccent2!85}{\fontsize{48}{48}\selectfont\bfseries\thechapter}};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>\end{tikzpicture}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>\hspace{0.8em}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>\textcolor{JournalAccent!60}{\rule{0.45\textwidth}{0.9pt}}}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{10pt}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\Huge}</highlight></codeline>
+<codeline><highlight class="normal">\titleformat{\section}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\normalfont\Large\bfseries}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\textcolor{JournalAccent2!75}{\Large\textbullet}\hspace{0.6em}\textcolor{JournalAccent!75}{\rule{\JournalSectionRuleW}{\JournalSectionRuleH}}\hspace{0.8em}\thesection}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{0.6em}{}</highlight></codeline>
+<codeline><highlight class="normal">\titleformat{\subsection}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\normalfont\large\bfseries}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{\textcolor{JournalAccent!70}{\rule{\JournalSubsectionRuleW}{\JournalSubsectionRuleH}}\hspace{0.7em}\thesubsection}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{0.6em}{}</highlight></codeline>
+<codeline><highlight class="normal">\titlespacing*{\chapter}{0pt}{0pt}{1.2\baselineskip}</highlight></codeline>
+<codeline><highlight class="normal">\titlespacing*{\section}{0pt}{1.0\baselineskip}{0.5\baselineskip}</highlight></codeline>
+<codeline><highlight class="normal">\titlespacing*{\subsection}{0pt}{0.8\baselineskip}{0.4\baselineskip}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Оглавление</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{tocloft}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\cftchapfont}{\bfseries}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\cftsecfont}{\normalfont}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\cftbeforechapskip}{0.25\baselineskip}</highlight></codeline>
+<codeline><highlight class="normal">\setlength{\cftbeforesecskip}{0.10\baselineskip}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-structure.tex"/>
+  </compounddef>
+</doxygen>

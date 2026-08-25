@@ -1,0 +1,20 @@
+digraph "extract_bibliography.main"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="extract_bibliography.main",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node1 [id="edge7_Node000001_Node000001",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node2 [id="edge8_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="extract_bibliography.process\l_article",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dae/namespaceextract__bibliography.html#a02e817bb7c1bea3d92058625f8d932fb",tooltip=" "];
+  Node2 -> Node3 [id="edge9_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="extract_bibliography.create\l_bibtex_entry",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dae/namespaceextract__bibliography.html#af4f9f5e90e68762492bcacade6c9b5f0",tooltip=" "];
+  Node3 -> Node4 [id="edge10_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="extract_bibliography.find\l_context_info",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dae/namespaceextract__bibliography.html#a8157a0bf8db7d2f97c82cacc05534d70",tooltip=" "];
+  Node2 -> Node5 [id="edge11_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="extract_bibliography.extract\l_citations_from_latex",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dae/namespaceextract__bibliography.html#ae756c30899a4afc25a7306194305d3c4",tooltip=" "];
+  Node1 -> Node6 [id="edge12_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="extract_bibliography.update\l_master_bibliography",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dae/namespaceextract__bibliography.html#ac5acfb9f990161ac49d7ba2f3f446b72",tooltip=" "];
+}

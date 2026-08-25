@@ -1,0 +1,14 @@
+digraph "format_converter.FormatConverter._compare_structure"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="format_converter.FormatConverter.\l_compare_structure",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="format_converter.FormatConverter.\l_extract_headings",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d91/classformat__converter_1_1_format_converter.html#affd6ff90fd816881bfd814e66de52168",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="format_converter.FormatConverter.detect\l_format",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d91/classformat__converter_1_1_format_converter.html#a76b326609ac0a7c41b01b266834ef15b",tooltip=" "];
+  Node1 -> Node3 [id="edge3_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+}

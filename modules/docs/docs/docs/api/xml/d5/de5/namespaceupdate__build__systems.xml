@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/de5/namespaceupdate__build__systems" kind="namespace" language="Python">
+    <compoundname>update_build_systems</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d5/de5/namespaceupdate__build__systems_1aa0f9f36645291c4effa8d8a298704d82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>update_build_systems.update_scons</definition>
+        <argsstring>()</argsstring>
+        <name>update_scons</name>
+        <qualifiedname>update_build_systems.update_scons</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Update SCons build system paths.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" line="10" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" bodystart="10" bodyend="38"/>
+        <referencedby refid="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" compoundref="db/d01/update__build__systems_8py" startline="99" endline="114">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/de5/namespaceupdate__build__systems_1ab0901a648b0e8728fd3db3f3155420b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>update_build_systems.update_cmake</definition>
+        <argsstring>()</argsstring>
+        <name>update_cmake</name>
+        <qualifiedname>update_build_systems.update_cmake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Update CMake build system paths.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" line="39" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" bodystart="39" bodyend="64"/>
+        <referencedby refid="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" compoundref="db/d01/update__build__systems_8py" startline="99" endline="114">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/de5/namespaceupdate__build__systems_1ac6f7c226e52ffcbf48daa6d1cbcb9a5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>update_build_systems.update_autotools</definition>
+        <argsstring>()</argsstring>
+        <name>update_autotools</name>
+        <qualifiedname>update_build_systems.update_autotools</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Update Autotools build system paths.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" line="65" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" bodystart="65" bodyend="98"/>
+        <referencedby refid="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" compoundref="db/d01/update__build__systems_8py" startline="99" endline="114">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>update_build_systems.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>update_build_systems.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main update function.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" line="99" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" bodystart="99" bodyend="114"/>
+        <references refid="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" compoundref="db/d01/update__build__systems_8py" startline="99" endline="114">main</references>
+        <references refid="d5/de5/namespaceupdate__build__systems_1ac6f7c226e52ffcbf48daa6d1cbcb9a5a" compoundref="db/d01/update__build__systems_8py" startline="65" endline="98">update_autotools</references>
+        <references refid="d5/de5/namespaceupdate__build__systems_1ab0901a648b0e8728fd3db3f3155420b8" compoundref="db/d01/update__build__systems_8py" startline="39" endline="64">update_cmake</references>
+        <references refid="d5/de5/namespaceupdate__build__systems_1aa0f9f36645291c4effa8d8a298704d82" compoundref="db/d01/update__build__systems_8py" startline="10" endline="38">update_scons</references>
+        <referencedby refid="d5/de5/namespaceupdate__build__systems_1a483c86808c8f9877d95d7c1d927d0974" compoundref="db/d01/update__build__systems_8py" startline="99" endline="114">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/update_build_systems.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

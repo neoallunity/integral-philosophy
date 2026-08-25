@@ -1,0 +1,116 @@
+\doxysection{La\+Te\+X.\+hs}
+\hypertarget{_validation_2_la_te_x_8hs_source}{}\label{_validation_2_la_te_x_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Validation/LaTeX.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Validation/LaTeX.hs}}
+\mbox{\hyperlink{_validation_2_la_te_x_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00001}00001\ \{-\/\#\ LANGUAGE\ LambdaCase\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00002}00002\ \{-\/\#\ LANGUAGE\ OverloadedStrings\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00004}00004\ -\/-\/\ |\ Simplified\ LaTeX\ validator\ without\ complex\ parsing}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00005}00005\ module\ IntegralPhilosophy.Validation.LaTeX}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00006}00006\ \ \ (\ LaTeXValidator(..)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00007}00007\ \ \ ,\ LaTeXConfig(..)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00008}00008\ \ \ ,\ validateLaTeX}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00009}00009\ \ \ ,\ extractMathExpressions}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00010}00010\ \ \ )\ where}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00012}00012\ import\ IntegralPhilosophy.Types}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00013}00013\ import\ IntegralPhilosophy.Validation}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00014}00014\ import\ qualified\ Data.Text\ as\ T}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00015}00015\ import\ qualified\ Data.Text.IO\ as\ TIO}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00016}00016\ import\ Control.Monad.IO.Class\ (MonadIO,\ liftIO)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00017}00017\ import\ Control.Exception\ (SomeException)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00018}00018\ import\ qualified\ Control.Exception\ as\ Exception}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00019}00019\ import\ Data.Time\ (getCurrentTime,\ UTCTime)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00020}00020\ import\ Data.Maybe\ (mapMaybe)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00021}00021\ import\ System.Process\ (readProcess)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00022}00022\ import\ Data.List\ (tails,\ inits,\ isPrefixOf,\ isInfixOf)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00024}00024\ -\/-\/\ |\ LaTeX\ validator\ configuration}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00025}00025\ data\ LaTeXValidator\ =\ LaTeXValidator}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00026}00026\ \ \ \{\ lvEngine\ ::\ FilePath\ \ -\/-\/\ Path\ to\ LaTeX\ engine\ (pdflatex,\ xelatex,\ etc.)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00027}00027\ \ \ ,\ lvConfig\ ::\ LaTeXConfig}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00028}00028\ \ \ \}\ deriving\ (Show,\ Eq)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00030}00030\ -\/-\/\ |\ LaTeX\ validation\ configuration}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00031}00031\ data\ LaTeXConfig\ =\ LaTeXConfig}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00032}00032\ \ \ \{\ lcCheckMath\ ::\ Bool}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00033}00033\ \ \ ,\ lcCheckReferences\ ::\ Bool}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00034}00034\ \ \ ,\ lcCheckSyntax\ ::\ Bool}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00035}00035\ \ \ ,\ lcTimeout\ ::\ Int\ \ -\/-\/\ seconds}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00036}00036\ \ \ \}\ deriving\ (Show,\ Eq)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00038}00038\ -\/-\/\ |\ Simple\ LaTeX\ parser\ type}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00039}00039\ type\ LaTeXParser\ =\ String}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00041}00041\ instance\ Validator\ LaTeXValidator\ where}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00042}00042\ \ \ validate\ validator\ doc\ =\ liftIO\ \$\ validateLaTeX\ validator\ doc}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00043}00043\ \ \ validatorName\ \_\ =\ "{}LaTeX\ Validator"{}}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00044}00044\ \ \ validatorType\ \_\ =\ LaTeX}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00046}00046\ -\/-\/\ |\ Validate\ LaTeX\ document}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00047}00047\ validateLaTeX\ ::\ LaTeXValidator\ -\/>\ Document\ -\/>\ IO\ ValidationResult}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00048}00048\ validateLaTeX\ validator\ doc\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00049}00049\ \ \ let\ content\ =\ getLaTeXContent\ doc}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00050}00050\ \ \ \ \ \ \ errors\ =\ concat}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00051}00051\ \ \ \ \ \ \ \ \ [\ if\ hasLatexSyntaxIssues\ content\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ then\ [makeError\ Error\ "{}latex\_syntax"{}\ "{}LaTeX\ syntax\ issues\ detected"{}\ "{}"{}\ 0\ 0]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ else\ []}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00054}00054\ \ \ \ \ \ \ \ \ ,\ if\ hasMissingReferences\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ then\ [makeError\ Error\ "{}missing\_references"{}\ "{}Missing\ LaTeX\ references"{}\ "{}"{}\ 0\ 0]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ else\ []}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00057}00057\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00058}00058\ \ \ \ \ \ \ score\ =\ calculateLaTeXScore\ errors\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00059}00059\ \ \ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00060}00060\ \ \ in\ return\ \$\ ValidationResult\ errors\ []\ score\ 0.1}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00062}00062\ -\/-\/\ |\ Get\ LaTeX\ content\ from\ document}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00063}00063\ getLaTeXContent\ ::\ Document\ -\/>\ String}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00064}00064\ getLaTeXContent\ doc\ =\ T.unpack\ \$\ T.unlines\ \$\ map\ secContent\ (docSections\ doc)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00066}00066\ -\/-\/\ |\ Check\ for\ basic\ LaTeX\ syntax\ issues}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00067}00067\ hasLatexSyntaxIssues\ ::\ String\ -\/>\ Bool}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00068}00068\ hasLatexSyntaxIssues\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00069}00069\ \ \ "{}\(\backslash\)\(\backslash\)begin\{"{}\ \`{}isPrefixOf`\ content\ \&\&\ not\ ("{}\(\backslash\)\(\backslash\)end\{"{}\ \`{}isInfixOf`\ content)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00070}00070\ \ \ ||\ "{}\(\backslash\)\(\backslash\)section\{"{}\ \`{}isPrefixOf`\ content\ \&\&\ not\ ("{}\(\backslash\)\(\backslash\)section"{}\ \`{}isPrefixOf`\ drop\ 8\ content)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00071}00071\ \ \ ||\ length\ (filter\ (==\ '\(\backslash\)\(\backslash\)')\ content)\ >\ length\ (filter\ (==\ '\}')\ content)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00073}00073\ -\/-\/\ |\ Check\ for\ missing\ references}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00074}00074\ hasMissingReferences\ ::\ String\ -\/>\ Bool}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00075}00075\ hasMissingReferences\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00076}00076\ \ \ "{}\(\backslash\)\(\backslash\)ref\{"{}\ \`{}isInfixOf`\ content\ \&\&\ not\ ("{}\(\backslash\)\(\backslash\)label\{"{}\ \`{}isInfixOf`\ content)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00078}00078\ -\/-\/\ |\ Calculate\ LaTeX-\/specific\ quality\ score}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00079}00079\ calculateLaTeXScore\ ::\ [ValidationError]\ -\/>\ String\ -\/>\ QualityScore}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00080}00080\ calculateLaTeXScore\ errors\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00081}00081\ \ \ let\ errorCount\ =\ length\ errors}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00082}00082\ \ \ \ \ \ \ contentLength\ =\ length\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00083}00083\ \ \ \ \ \ \ errorPenalty\ =\ fromIntegral\ errorCount\ *\ 10.0}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00084}00084\ \ \ \ \ \ \ lengthPenalty\ =\ fromIntegral\ contentLength\ /\ 10000.0\ *\ 0.1}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00085}00085\ \ \ in\ QualityScore\ \$\ max\ 0\ \$\ 100.0\ -\/\ errorPenalty\ -\/\ lengthPenalty}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00087}00087\ -\/-\/\ |\ Extract\ mathematical\ expressions}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00088}00088\ extractMathExpressions\ ::\ Text\ -\/>\ [MathExpression]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00089}00089\ extractMathExpressions\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00090}00090\ \ \ let\ displayExprs\ =\ extractDisplayMath\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00091}00091\ \ \ \ \ \ \ inlineExprs\ =\ extractInlineMath\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00092}00092\ \ \ in\ displayExprs\ ++\ inlineExprs}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00094}00094\ -\/-\/\ |\ Extract\ display\ math}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00095}00095\ extractDisplayMath\ ::\ Text\ -\/>\ [MathExpression]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00096}00096\ extractDisplayMath\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00097}00097\ \ \ case\ T.splitOn\ "{}\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)["{}\ content\ of}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00098}00098\ \ \ \ \ [\_,\ math,\ \_]\ -\/>\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00099}00099\ \ \ \ \ \ \ case\ T.splitOn\ "{}\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)]"{}\ math\ of}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00100}00100\ \ \ \ \ \ \ \ \ [expr,\ \_]\ -\/>\ [DisplayMath\ \$\ T.strip\ expr]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00101}00101\ \ \ \ \ \ \ \ \ \_\ -\/>\ []}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00102}00102\ \ \ \ \ \_\ -\/>\ []}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00104}00104\ -\/-\/\ |\ Extract\ inline\ math}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00105}00105\ extractInlineMath\ ::\ Text\ -\/>\ [MathExpression]}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00106}00106\ extractInlineMath\ content\ =\ }
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00107}00107\ \ \ let\ parts\ =\ T.splitOn\ "{}\$"{}\ content}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00108}00108\ \ \ in\ case\ length\ parts\ of}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00109}00109\ \ \ \ \ n\ |\ n\ >=\ 3\ -\/>\ take\ (n\ \`{}div`\ 2)\ \$\ zipWith\ (\(\backslash\)p1\ \_\ -\/>\ InlineMath\ p1)\ parts\ (drop\ 1\ parts)}
+\DoxyCodeLine{\Hypertarget{_validation_2_la_te_x_8hs_source_l00110}00110\ \ \ \ \ \_\ -\/>\ []}
+
+\end{DoxyCode}

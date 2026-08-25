@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d2/d4c/cfg-metadata_8tex" kind="file" language="C++">
+    <compoundname>cfg-metadata.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>AUTO-GENERATED<sp/>from<sp/>metadata.yml</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\journalissue}{15}</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\journalyear}{2025}</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\journalurl}{http://allunity.ru}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-metadata.tex"/>
+  </compounddef>
+</doxygen>

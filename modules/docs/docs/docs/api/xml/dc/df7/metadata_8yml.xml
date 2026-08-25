@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dc/df7/metadata_8yml" kind="file" language="C++">
+    <compoundname>metadata.yml</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">journal:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>name:<sp/>&quot;Интегральная<sp/>философия&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>url:<sp/>&quot;http://allunity.ru&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">issue:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>number:<sp/>15</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>year:<sp/>2025</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">editor_in_chief:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>name:<sp/>&quot;Моисеев<sp/>В.И.&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>name_en:<sp/>&quot;Moiseev<sp/>V.I.&quot;</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/metadata.yml"/>
+  </compounddef>
+</doxygen>

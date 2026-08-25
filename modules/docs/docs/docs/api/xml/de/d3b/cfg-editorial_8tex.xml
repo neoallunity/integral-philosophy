@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="de/d3b/cfg-editorial_8tex" kind="file" language="C++">
+    <compoundname>cfg-editorial.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-editorial.tex<sp/>—<sp/>редакционные<sp/>элементы<sp/>и<sp/>семантические<sp/>макросы</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\RequirePackage{xparse}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>СЕМАНТИЧЕСКИЕ<sp/>МАКРОСЫ<sp/>ДЛЯ<sp/>ПЕРСОНАЛИЙ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Главный<sp/>редактор</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\PrintEditorInChief}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textsc{Гл.<sp/>редактор}<sp/>#1%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Редактор<sp/>(обычный)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\PrintEditor}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textsc{Редактор}<sp/>#1%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Автор<sp/>статьи<sp/>(с<sp/>возможной<sp/>аффилиацией)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\PrintArticleAuthor}{o<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\IfNoValueTF{#1}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\textbf{#2}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\textbf{#2}\textsuperscript{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ОКРУЖЕНИЕ:<sp/>РЕДАКЦИОННАЯ<sp/>ПОДПИСЬ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Использование:</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\begin{editorialsignature}</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/><sp/><sp/>\PrintEditorInChief{Моисеев<sp/>В.\,И.}</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>\end{editoitalsignature}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{editorialsignature}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{1.2cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{flushright}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{flushright}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ОКРУЖЕНИЕ:<sp/>ПРЕДИСЛОВИЕ<sp/>(РУССКОЯЗЫЧНОЕ)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Параметры:<sp/>опционально<sp/>можно<sp/>переопределить<sp/>заголовок</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{foreword}{O{Предисловие}}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\chapter*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addcontentsline{toc}{chapter}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\markboth{#1}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\thispagestyle{journalPlain}%<sp/>или<sp/>journalHot<sp/>—<sp/>на<sp/>усмотрение</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\clearpage%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ОКРУЖЕНИЕ:<sp/>ПРЕДИСЛОВИЕ<sp/>(АНГЛОЯЗЫЧНОЕ)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{forewordEN}{O{Foreword}}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\chapter*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addcontentsline{toc}{chapter}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\markboth{#1}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\thispagestyle{journalPlain}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{otherlanguage}{english}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{otherlanguage}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\clearpage%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ОКРУЖЕНИЕ:<sp/>РАЗДЕЛ<sp/>АННОТАЦИЙ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Для<sp/>английских<sp/>аннотаций</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{abstractsection}{O{Abstract}}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\chapter*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addcontentsline{toc}{chapter}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\markboth{#1}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{otherlanguage}{english}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{otherlanguage}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\clearpage%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>МАКРОС:<sp/>ОТДЕЛЬНАЯ<sp/>АННОТАЦИЯ<sp/>СТАТЬИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Параметры:</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>#1<sp/>—<sp/>имя<sp/>автора</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>#2<sp/>—<sp/>название<sp/>статьи</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>#3<sp/>—<sp/>текст<sp/>аннотации</highlight></codeline>
+<codeline><highlight class="normal">%<sp/><sp/><sp/>#4<sp/>—<sp/>ключевые<sp/>слова<sp/>(например,<sp/>&quot;Keywords:<sp/>word1,<sp/>word2&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\SingleAbstract}{m<sp/>m<sp/>m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\subsection*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\subsubsection*{#2}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#3%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.3cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textit{#4}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{1cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ОКРУЖЕНИЕ:<sp/>ИНФОРМАЦИЯ<sp/>ОБ<sp/>АВТОРАХ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{authorsinfo}{O{Авторы}}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\chapter*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addcontentsline{toc}{chapter}{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\markboth{#1}{#1}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\clearpage%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Отдельный<sp/>автор</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\AuthorBio}{m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\section*{#1}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent<sp/>#2%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-editorial.tex"/>
+  </compounddef>
+</doxygen>

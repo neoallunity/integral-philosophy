@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d6/d66/cfg-bibliography_8tex" kind="file" language="C++">
+    <compoundname>cfg-bibliography.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-bibliography.tex<sp/>—<sp/>библиография<sp/>(biblatex/biber)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\addbibresource{global-bibliography.bib}<sp/>%<sp/>Global<sp/>bibliography<sp/>for<sp/>common<sp/>references</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>This<sp/>command<sp/>is<sp/>now<sp/>a<sp/>dummy<sp/>command,<sp/>the<sp/>real<sp/>work<sp/>is<sp/>done<sp/>in<sp/>the<sp/>hook<sp/>below.</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\addallbibresources}{}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\ExplSyntaxOn</highlight></codeline>
+<codeline><highlight class="normal">\AtBeginDocument</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\clist_map_inline:Nn<sp/>\g_journal_articles_clist</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\addbibresource{articles/##1/references.bib}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">\ExplSyntaxOff</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-bibliography.tex"/>
+  </compounddef>
+</doxygen>

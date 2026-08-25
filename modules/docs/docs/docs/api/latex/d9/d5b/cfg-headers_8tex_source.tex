@@ -1,0 +1,92 @@
+\doxysection{cfg-\/headers.tex}
+\hypertarget{cfg-headers_8tex_source}{}\label{cfg-headers_8tex_source}\index{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/headers.tex@{/home/domini/src/Magazine/Magazine/config/cfg/cfg-\/headers.tex}}
+\mbox{\hyperlink{cfg-headers_8tex}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00001}00001\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00002}00002\ \%\ cfg-\/headers.tex\ —\ колонтитулы}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00003}00003\ \%\ ============================================}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00005}00005\ \(\backslash\)usepackage\{fancyhdr\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00006}00006\ \(\backslash\)usepackage\{tikzpagenodes\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00007}00007\ \(\backslash\)usepackage\{xcolor\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00009}00009\ \(\backslash\)setlength\{\(\backslash\)headheight\}\{18.5pt\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00010}00010\ \%\ Два\ режима:\ строгий\ (без\ текстуры)\ и\ "{}жар"{}\ (с\ текстурой)}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00011}00011\ \(\backslash\)fancypagestyle\{journalPlain\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00012}00012\ \ \ \(\backslash\)togglefalse\{journaltexture\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00013}00013\ \ \ \(\backslash\)fancyhf\{\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00015}00015\ \(\backslash\)fancypagestyle\{journalHot\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00016}00016\ \ \ \(\backslash\)toggletrue\{journaltexture\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00017}00017\ \ \ \(\backslash\)fancyhf\{\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00018}00018\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00020}00020\ \%\ Титул:\ без\ общих\ оверлеев\ (они\ там\ свои)}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00021}00021\ \(\backslash\)fancypagestyle\{journalTitle\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00022}00022\ \ \ \(\backslash\)togglefalse\{journaltexture\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00023}00023\ \ \ \(\backslash\)fancyhf\{\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00026}00026\ \(\backslash\)pagestyle\{journalHot\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00028}00028\ \%\ Смелее:\ угловые\ акценты\ +\ верхняя\ линия\ +\ «плашка»\ внизу\ (overlay)}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00029}00029\ \(\backslash\)AddToHook\{shipout/foreground\}\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00030}00030\ \ \ \(\backslash\)begin\{tikzpicture\}[remember\ picture,overlay]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00032}00032\ \ \ \ \ \%\ Верхняя\ линия}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00033}00033\ \ \ \ \ \(\backslash\)draw[JournalAccent!65,line\ width=0.6pt]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00034}00034\ \ \ \ \ \ \ ([xshift=\(\backslash\)JournalMarginX,yshift=\(\backslash\)JournalHeaderY]current\ page.north\ west)\ -\/-\/}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00035}00035\ \ \ \ \ \ \ ([xshift=-\/\(\backslash\)JournalMarginX,yshift=\(\backslash\)JournalHeaderY]current\ page.north\ east);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00037}00037\ \ \ \ \ \%\ Второй\ слой\ (градиент-\/эффект\ за\ счет\ 2\ линий)}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00038}00038\ \ \ \ \ \(\backslash\)draw[JournalAccent2!45,line\ width=1.2pt,opacity=0.25]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00039}00039\ \ \ \ \ \ \ ([xshift=14mm,yshift=-\/13.3mm]current\ page.north\ west)\ -\/-\/}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00040}00040\ \ \ \ \ \ \ ([xshift=-\/14mm,yshift=-\/13.3mm]current\ page.north\ east);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00042}00042\ \ \ \ \ \%\ Угловые\ "{}скобы"{}\ сверху}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00043}00043\ \ \ \ \ \(\backslash\)draw[JournalAccent!65,line\ width=0.6pt]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00044}00044\ \ \ \ \ \ \ ([xshift=\(\backslash\)JournalMarginX,yshift=-\/10mm]current\ page.north\ west)\ -\/-\/\ ++(10mm,0)\ -\/-\/\ ++(0,-\/6mm);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00045}00045\ \ \ \ \ \(\backslash\)draw[JournalAccent!65,line\ width=0.6pt]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00046}00046\ \ \ \ \ \ \ ([xshift=-\/\(\backslash\)JournalMarginX,yshift=-\/10mm]current\ page.north\ east)\ -\/-\/\ ++(-\/10mm,0)\ -\/-\/\ ++(0,-\/6mm);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00048}00048\ \ \ \ \ \%\ Нижняя\ цветная\ плашка}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00049}00049\ \ \ \ \ \(\backslash\)fill[JournalAccent!9]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00050}00050\ \ \ \ \ \ \ ([xshift=0mm,yshift=0mm]current\ page.south\ west)\ rectangle}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00051}00051\ \ \ \ \ \ \ ([xshift=0mm,yshift=\(\backslash\)JournalFooterH]current\ page.south\ east);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00053}00053\ \ \ \ \ \%\ «Жар»:\ диагональные\ штрихи\ по\ плашке}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00054}00054\ \ \ \ \ \(\backslash\)JournalIfTexture\{\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00055}00055\ \ \ \ \ \ \ \(\backslash\)foreach\ \(\backslash\)x\ in\ \{0,\(\backslash\)JournalHatchStep,...,22\}\ \{}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00056}00056\ \ \ \ \ \ \ \ \ \(\backslash\)draw[JournalAccent2!25,line\ width=0.35pt,opacity=0.55]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ ([xshift=\(\backslash\)x\ cm,yshift=0mm]current\ page.south\ west)\ -\/-\/\ ++(\(\backslash\)JournalHatchDx,\(\backslash\)JournalFooterH);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00058}00058\ \ \ \ \ \ \ \}\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00061}00061\ \ \ \ \ \%\ Тонкая\ линия\ над\ футером}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00062}00062\ \ \ \ \ \(\backslash\)draw[JournalAccent!55,line\ width=0.5pt]}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00063}00063\ \ \ \ \ \ \ ([xshift=\(\backslash\)JournalMarginX,yshift=\(\backslash\)JournalFooterH]current\ page.south\ west)\ -\/-\/}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00064}00064\ \ \ \ \ \ \ ([xshift=-\/\(\backslash\)JournalMarginX,yshift=\(\backslash\)JournalFooterH]current\ page.south\ east);}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00066}00066\ \ \ \(\backslash\)end\{tikzpicture\}\%}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00069}00069\ \%\ Наполнение\ колонтитулов}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00070}00070\ \(\backslash\)fancyhead[LE,RO]\{\(\backslash\)textcolor\{JournalAccent!85\}\{\(\backslash\)thepage\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00071}00071\ \(\backslash\)fancyhead[RE]\{\(\backslash\)textit\{\(\backslash\)nouppercase\{\(\backslash\)leftmark\}\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00072}00072\ \(\backslash\)fancyhead[LO]\{\(\backslash\)textit\{\(\backslash\)nouppercase\{\(\backslash\)rightmark\}\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00074}00074\ \%\ Микро-\/акцент\ рядом\ с\ номером\ страницы}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00075}00075\ \(\backslash\)fancyhead[LE]\{\(\backslash\)textcolor\{JournalAccent2!65\}\{\(\backslash\)large\(\backslash\)raisebox\{0.2ex\}\{\(\backslash\)textbullet\}\}\(\backslash\);\(\backslash\)textcolor\{JournalAccent!85\}\{\(\backslash\)thepage\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00076}00076\ \(\backslash\)fancyhead[RO]\{\(\backslash\)textcolor\{JournalAccent!85\}\{\(\backslash\)thepage\}\(\backslash\);\(\backslash\)textcolor\{JournalAccent2!65\}\{\(\backslash\)large\(\backslash\)raisebox\{0.2ex\}\{\(\backslash\)textbullet\}\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00078}00078\ \%\ Низ:\ слева\ URL,\ по\ центру\ название,\ справа\ "{}Выпуск\ ·\ Год"{}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00079}00079\ \(\backslash\)fancyfoot[L]\{\(\backslash\)footnotesize\(\backslash\)textcolor\{JournalAccent!80\}\{\(\backslash\)journalurl\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00080}00080\ \(\backslash\)fancyfoot[C]\{\(\backslash\)footnotesize\(\backslash\)textcolor\{JournalAccent!80\}\{\(\backslash\)textit\{Интегральная\ философия\}\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00081}00081\ \(\backslash\)fancyfoot[R]\{\(\backslash\)footnotesize\(\backslash\)textcolor\{JournalAccent!80\}\{\(\backslash\)journalissue\(\backslash\);•\(\backslash\);\(\backslash\)journalyear\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00083}00083\ \(\backslash\)renewcommand\{\(\backslash\)headrulewidth\}\{0pt\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00084}00084\ \(\backslash\)renewcommand\{\(\backslash\)footrulewidth\}\{0pt\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00085}00085\ \(\backslash\)renewcommand\{\(\backslash\)chaptermark\}[1]\{\(\backslash\)markboth\{\#1\}\{\}\}}
+\DoxyCodeLine{\Hypertarget{cfg-headers_8tex_source_l00086}00086\ \(\backslash\)renewcommand\{\(\backslash\)sectionmark\}[1]\{\(\backslash\)markright\{\(\backslash\)thesection\(\backslash\)\ \#1\}\}}
+
+\end{DoxyCode}

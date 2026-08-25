@@ -1,0 +1,16 @@
+digraph "tei_generator.TEIGenerator.generate_text_body"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="tei_generator.TEIGenerator.generate\l_text_body",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge5_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="tei_generator.TEIGenerator.\l_convert_page_to_tei_div",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/dbe/classtei__generator_1_1_t_e_i_generator.html#aa0bf3edb1377df08199383141ea16ffb",tooltip=" "];
+  Node2 -> Node3 [id="edge6_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="tei_generator.TEIGenerator.\l_convert_ast_to_tei",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/dbe/classtei__generator_1_1_t_e_i_generator.html#add2a8fe86123aa1852e00d1e89f62860",tooltip=" "];
+  Node3 -> Node3 [id="edge7_Node000003_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node4 [id="edge8_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="tei_generator.TEIGenerator.\l_create_page_id",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/dbe/classtei__generator_1_1_t_e_i_generator.html#aa265f4655d384b6215fe70d21e5b6afe",tooltip=" "];
+}

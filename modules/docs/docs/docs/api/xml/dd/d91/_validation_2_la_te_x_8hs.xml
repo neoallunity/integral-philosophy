@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dd/d91/_validation_2_la_te_x_8hs" kind="file" language="C++">
+    <compoundname>LaTeX.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>LambdaCase<sp/>#-}</highlight></codeline>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Simplified<sp/>LaTeX<sp/>validator<sp/>without<sp/>complex<sp/>parsing</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Validation.LaTeX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(<sp/>LaTeXValidator(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>LaTeXConfig(..)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>validateLaTeX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>extractMathExpressions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Types</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>IntegralPhilosophy.Validation</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text.IO<sp/>as<sp/>TIO</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Monad.IO.Class<sp/>(MonadIO,<sp/>liftIO)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Control.Exception<sp/>(SomeException)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Control.Exception<sp/>as<sp/>Exception</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Time<sp/>(getCurrentTime,<sp/>UTCTime)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Maybe<sp/>(mapMaybe)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>System.Process<sp/>(readProcess)</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.List<sp/>(tails,<sp/>inits,<sp/>isPrefixOf,<sp/>isInfixOf)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>validator<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>LaTeXValidator<sp/>=<sp/>LaTeXValidator</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>lvEngine<sp/>::<sp/>FilePath<sp/><sp/>--<sp/>Path<sp/>to<sp/>LaTeX<sp/>engine<sp/>(pdflatex,<sp/>xelatex,<sp/>etc.)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>lvConfig<sp/>::<sp/>LaTeXConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>validation<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>LaTeXConfig<sp/>=<sp/>LaTeXConfig</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>lcCheckMath<sp/>::<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>lcCheckReferences<sp/>::<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>lcCheckSyntax<sp/>::<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>lcTimeout<sp/>::<sp/>Int<sp/><sp/>--<sp/>seconds</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Simple<sp/>LaTeX<sp/>parser<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">type<sp/>LaTeXParser<sp/>=<sp/>String</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">instance<sp/>Validator<sp/>LaTeXValidator<sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validate<sp/>validator<sp/>doc<sp/>=<sp/>liftIO<sp/>$<sp/>validateLaTeX<sp/>validator<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorName<sp/>_<sp/>=<sp/>&quot;LaTeX<sp/>Validator&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>validatorType<sp/>_<sp/>=<sp/>LaTeX</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validate<sp/>LaTeX<sp/>document</highlight></codeline>
+<codeline><highlight class="normal">validateLaTeX<sp/>::<sp/>LaTeXValidator<sp/>-&gt;<sp/>Document<sp/>-&gt;<sp/>IO<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">validateLaTeX<sp/>validator<sp/>doc<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>content<sp/>=<sp/>getLaTeXContent<sp/>doc</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>errors<sp/>=<sp/>concat</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[<sp/>if<sp/>hasLatexSyntaxIssues<sp/>content<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>then<sp/>[makeError<sp/>Error<sp/>&quot;latex_syntax&quot;<sp/>&quot;LaTeX<sp/>syntax<sp/>issues<sp/>detected&quot;<sp/>&quot;&quot;<sp/>0<sp/>0]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/>if<sp/>hasMissingReferences<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>then<sp/>[makeError<sp/>Error<sp/>&quot;missing_references&quot;<sp/>&quot;Missing<sp/>LaTeX<sp/>references&quot;<sp/>&quot;&quot;<sp/>0<sp/>0]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>score<sp/>=<sp/>calculateLaTeXScore<sp/>errors<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>return<sp/>$<sp/>ValidationResult<sp/>errors<sp/>[]<sp/>score<sp/>0.1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Get<sp/>LaTeX<sp/>content<sp/>from<sp/>document</highlight></codeline>
+<codeline><highlight class="normal">getLaTeXContent<sp/>::<sp/>Document<sp/>-&gt;<sp/>String</highlight></codeline>
+<codeline><highlight class="normal">getLaTeXContent<sp/>doc<sp/>=<sp/>T.unpack<sp/>$<sp/>T.unlines<sp/>$<sp/>map<sp/>secContent<sp/>(docSections<sp/>doc)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Check<sp/>for<sp/>basic<sp/>LaTeX<sp/>syntax<sp/>issues</highlight></codeline>
+<codeline><highlight class="normal">hasLatexSyntaxIssues<sp/>::<sp/>String<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">hasLatexSyntaxIssues<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;\\begin{&quot;<sp/>`isPrefixOf`<sp/>content<sp/>&amp;&amp;<sp/>not<sp/>(&quot;\\end{&quot;<sp/>`isInfixOf`<sp/>content)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>||<sp/>&quot;\\section{&quot;<sp/>`isPrefixOf`<sp/>content<sp/>&amp;&amp;<sp/>not<sp/>(&quot;\\section&quot;<sp/>`isPrefixOf`<sp/>drop<sp/>8<sp/>content)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>||<sp/>length<sp/>(filter<sp/>(==<sp/>&apos;\\&apos;)<sp/>content)<sp/>&gt;<sp/>length<sp/>(filter<sp/>(==<sp/>&apos;}&apos;)<sp/>content)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Check<sp/>for<sp/>missing<sp/>references</highlight></codeline>
+<codeline><highlight class="normal">hasMissingReferences<sp/>::<sp/>String<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">hasMissingReferences<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;\\ref{&quot;<sp/>`isInfixOf`<sp/>content<sp/>&amp;&amp;<sp/>not<sp/>(&quot;\\label{&quot;<sp/>`isInfixOf`<sp/>content)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Calculate<sp/>LaTeX-specific<sp/>quality<sp/>score</highlight></codeline>
+<codeline><highlight class="normal">calculateLaTeXScore<sp/>::<sp/>[ValidationError]<sp/>-&gt;<sp/>String<sp/>-&gt;<sp/>QualityScore</highlight></codeline>
+<codeline><highlight class="normal">calculateLaTeXScore<sp/>errors<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>errorCount<sp/>=<sp/>length<sp/>errors</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>contentLength<sp/>=<sp/>length<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>errorPenalty<sp/>=<sp/>fromIntegral<sp/>errorCount<sp/>*<sp/>10.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lengthPenalty<sp/>=<sp/>fromIntegral<sp/>contentLength<sp/>/<sp/>10000.0<sp/>*<sp/>0.1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>QualityScore<sp/>$<sp/>max<sp/>0<sp/>$<sp/>100.0<sp/>-<sp/>errorPenalty<sp/>-<sp/>lengthPenalty</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>mathematical<sp/>expressions</highlight></codeline>
+<codeline><highlight class="normal">extractMathExpressions<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractMathExpressions<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>displayExprs<sp/>=<sp/>extractDisplayMath<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>inlineExprs<sp/>=<sp/>extractInlineMath<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>displayExprs<sp/>++<sp/>inlineExprs</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>display<sp/>math</highlight></codeline>
+<codeline><highlight class="normal">extractDisplayMath<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractDisplayMath<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\\\[&quot;<sp/>content<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[_,<sp/>math,<sp/>_]<sp/>-&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>T.splitOn<sp/>&quot;\\\\]&quot;<sp/>math<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[expr,<sp/>_]<sp/>-&gt;<sp/>[DisplayMath<sp/>$<sp/>T.strip<sp/>expr]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Extract<sp/>inline<sp/>math</highlight></codeline>
+<codeline><highlight class="normal">extractInlineMath<sp/>::<sp/>Text<sp/>-&gt;<sp/>[MathExpression]</highlight></codeline>
+<codeline><highlight class="normal">extractInlineMath<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>parts<sp/>=<sp/>T.splitOn<sp/>&quot;$&quot;<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>case<sp/>length<sp/>parts<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>n<sp/>|<sp/>n<sp/>&gt;=<sp/>3<sp/>-&gt;<sp/>take<sp/>(n<sp/>`div`<sp/>2)<sp/>$<sp/>zipWith<sp/>(\p1<sp/>_<sp/>-&gt;<sp/>InlineMath<sp/>p1)<sp/>parts<sp/>(drop<sp/>1<sp/>parts)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Validation/LaTeX.hs"/>
+  </compounddef>
+</doxygen>

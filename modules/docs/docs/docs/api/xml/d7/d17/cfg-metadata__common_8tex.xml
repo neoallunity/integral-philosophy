@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/d17/cfg-metadata__common_8tex" kind="file" language="C++">
+    <compoundname>cfg-metadata_common.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-metadata_common.tex<sp/>—<sp/><sp/>метаданные</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Версия<sp/>документа<sp/>(меняйте<sp/>при<sp/>релизах)</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\docversion}{1.0}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Дата/время<sp/>сборки</highlight></codeline>
+<codeline><highlight class="normal">\usepackage[useregional]{datetime2}</highlight></codeline>
+<codeline><highlight class="normal">\newcommand{\builddatetime}{\DTMnow}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Количество<sp/>страниц</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{lastpage}<sp/>%<sp/>\pageref{LastPage}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>PDF-метаданные<sp/>(ставим<sp/>в<sp/>начале<sp/>документа,<sp/>когда<sp/>доступны<sp/>счётчики)</highlight></codeline>
+<codeline><highlight class="normal">\AtBeginDocument{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\hypersetup{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdftitle={Интегральная<sp/>философия.<sp/>Выпуск<sp/>\journalissue.<sp/>\journalyear},%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdfauthor={Коллектив<sp/>авторов},%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdfsubject={Философия<sp/>неовсеединства.<sp/>Версия<sp/>\docversion.<sp/>Сборка<sp/>\builddatetime.<sp/>Страниц:<sp/>\pageref{LastPage}},%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdfkeywords={философия,<sp/>неовсеединство,<sp/>интегральная<sp/>философия},%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdfcreator={LuaLaTeX},%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pdfproducer={Crixet}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-metadata_common.tex"/>
+  </compounddef>
+</doxygen>

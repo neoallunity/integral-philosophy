@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_a6ce8a5b22bac01a900933a56bbfe354" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/config/cfg</compoundname>
+    <innerfile refid="df/d3f/cfg-articles_8tex">cfg-articles.tex</innerfile>
+    <innerfile refid="d6/d66/cfg-bibliography_8tex">cfg-bibliography.tex</innerfile>
+    <innerfile refid="d5/d65/cfg-brand_8tex">cfg-brand.tex</innerfile>
+    <innerfile refid="de/d3b/cfg-editorial_8tex">cfg-editorial.tex</innerfile>
+    <innerfile refid="d7/d9c/cfg-floats_8tex">cfg-floats.tex</innerfile>
+    <innerfile refid="d1/d1b/cfg-fonts_8tex">cfg-fonts.tex</innerfile>
+    <innerfile refid="df/de2/cfg-glossary-index_8tex">cfg-glossary-index.tex</innerfile>
+    <innerfile refid="d9/d5b/cfg-headers_8tex">cfg-headers.tex</innerfile>
+    <innerfile refid="d4/d20/cfg-links_8tex">cfg-links.tex</innerfile>
+    <innerfile refid="d2/db1/cfg-macros_8tex">cfg-macros.tex</innerfile>
+    <innerfile refid="dc/dd4/cfg-math_8tex">cfg-math.tex</innerfile>
+    <innerfile refid="d2/d4c/cfg-metadata_8tex">cfg-metadata.tex</innerfile>
+    <innerfile refid="d7/d17/cfg-metadata__common_8tex">cfg-metadata_common.tex</innerfile>
+    <innerfile refid="da/d97/cfg-semantic_8tex">cfg-semantic.tex</innerfile>
+    <innerfile refid="df/d1e/cfg-structure_8tex">cfg-structure.tex</innerfile>
+    <innerfile refid="de/d30/cfg-typography_8tex">cfg-typography.tex</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/"/>
+  </compounddef>
+</doxygen>

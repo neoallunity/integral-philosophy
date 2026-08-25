@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="da/d97/cfg-semantic_8tex" kind="file" language="C++">
+    <compoundname>cfg-semantic.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-semantic.tex<sp/>—<sp/>расширенные<sp/>семантические<sp/>конструкции</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\RequirePackage{xparse}</highlight></codeline>
+<codeline><highlight class="normal">\RequirePackage{xcolor}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>СЕМАНТИЧЕСКИЕ<sp/>АКЦЕНТЫ<sp/>В<sp/>ТЕКСТЕ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Термин<sp/>(например,<sp/>для<sp/>глоссария)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\Term}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textbf{\textcolor{JournalAccent!85}{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Важное<sp/>понятие</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\Concept}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textit{\textcolor{JournalAccent2!75}{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Цитируемый<sp/>источник<sp/>(inline)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\Source}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!70}{\textit{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Акцент<sp/>(замена<sp/>для<sp/>\emph<sp/>с<sp/>фирменным<sp/>цветом)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\Accent}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent2!80}{\textit{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>СЕМАНТИЧЕСКИЕ<sp/>БЛОКИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Замечание<sp/>редакции</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{editorialremark}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\colorbox{JournalAccent!8}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>\small\textcolor{JournalAccent!80}{\textbf{Примечание<sp/>редакции:}}\\[0.2cm]</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\end{minipage}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Врезка<sp/>с<sp/>дополнительной<sp/>информацией</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentEnvironment{sidebar}{o}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\fcolorbox{JournalAccent2!50}{JournalAccent2!5}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>\IfNoValueTF{#1}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\small\textbf{\textcolor{JournalAccent2!85}{#1}}\\[0.2cm]%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\end{minipage}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Цитата<sp/>(с<sp/>фирменным<sp/>оформлением)</highlight></codeline>
+<codeline><highlight class="normal">\RenewDocumentEnvironment{quote}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.4cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{list}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\setlength{\leftmargin}{1.5cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\setlength{\rightmargin}{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\item\relax\small\itshape\textcolor{JournalAccent!75}%</highlight></codeline>
+<codeline><highlight class="normal">}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{list}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.4cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>СЕМАНТИЧЕСКИЕ<sp/>РАЗДЕЛИТЕЛИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Тематический<sp/>разрыв<sp/>(замена<sp/>\rule)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\ThematicBreak}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.8cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\textcolor{JournalAccent2!60}{\rule{0.3\textwidth}{0.5pt}}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.8cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Разделитель<sp/>секций<sp/>(более<sp/>яркий)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\SectionBreak}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{1cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\begin{center}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\textcolor{JournalAccent!70}{\Large\textbullet\quad\textbullet\quad\textbullet}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\end{center}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{1cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>НОМЕРА<sp/>И<sp/>ССЫЛКИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Номер<sp/>выпуска<sp/>(с<sp/>фирменным<sp/>стилем)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\IssueNumber}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!85}{\textbf{№\,\journalissue}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Год<sp/>выпуска</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\IssueYear}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!85}{\textbf{\journalyear}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Полное<sp/>обозначение<sp/>выпуска</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\IssueLabel}{}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!85}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\textbf{№\,\journalissue\;•\;\journalyear}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>АФФИЛИАЦИИ<sp/>И<sp/>АДРЕСА</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Аффилиация<sp/>автора</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\Affiliation}{m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textsuperscript{#1}\,\textit{#2}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Email<sp/>автора</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\AuthorEmail}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!70}{\texttt{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>ORCID<sp/>(с<sp/>иконкой<sp/>если<sp/>есть)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\AuthorORCID}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!70}{\textsc{orcid:}\,\texttt{#1}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ДАТЫ<sp/>И<sp/>ВЕРСИИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Дата<sp/>поступления<sp/>статьи</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\SubmissionDate}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\small\textit{Поступила:}\;\textcolor{JournalAccent!70}{#1}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Дата<sp/>принятия<sp/>статьи</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\AcceptanceDate}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\small\textit{Принята:}\;\textcolor{JournalAccent!70}{#1}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Дата<sp/>публикации</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\PublicationDate}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\small\textit{Опубликована:}\;\textcolor{JournalAccent!70}{#1}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Блок<sp/>дат<sp/>(объединяет<sp/>три<sp/>даты)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\ArticleDates}{m<sp/>m<sp/>m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\small%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\SubmissionDate{#1}\quad|\quad%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\AcceptanceDate{#2}\quad|\quad%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\PublicationDate{#3}%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\vspace{0.5cm}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>DOI<sp/>И<sp/>ЛИЦЕНЗИИ</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>DOI<sp/>статьи</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\ArticleDOI}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\small\textsc{doi:}\;\url{https://doi.org/#1}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Лицензия<sp/>Creative<sp/>Commons</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\CCLicense}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\noindent\small\textcolor{JournalAccent!70}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>\textcopyright\;Распространяется<sp/>по<sp/>лицензии<sp/>CC\,#1%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>ПЕРЕКРЕСТНЫЕ<sp/>ССЫЛКИ<sp/>(СЕМАНТИЧЕСКИЕ)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Ссылка<sp/>на<sp/>другую<sp/>статью<sp/>в<sp/>выпуске</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\RefArticle}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent2!75}{\textit{см.<sp/>статью}}\;\cref{#1}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Ссылка<sp/>на<sp/>предыдущий<sp/>выпуск</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\RefPreviousIssue}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\textcolor{JournalAccent!70}{\textit{см.<sp/>выпуск}}\;№\,#1%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>АННОТАЦИИ<sp/>(ДОПОЛНИТЕЛЬНЫЕ)</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Краткая<sp/>версия<sp/>для<sp/>TOC<sp/>(Table<sp/>of<sp/>Contents<sp/>Abstract)</highlight></codeline>
+<codeline><highlight class="normal">\NewDocumentCommand{\TOCAbstract}{m}{%</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>\addtocontents{toc}{\protect\begin{quote}\protect\small\textit{#1}\protect\end{quote}}%</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-semantic.tex"/>
+  </compounddef>
+</doxygen>

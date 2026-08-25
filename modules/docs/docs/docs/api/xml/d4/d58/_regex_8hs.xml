@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d4/d58/_regex_8hs" kind="file" language="C++">
+    <compoundname>Regex.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">--<sp/>|<sp/>Simple<sp/>regex<sp/>parsing<sp/>utilities</highlight></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Utils.Regex<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>T</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Foldable<sp/>(any)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Simple<sp/>regex<sp/>extraction<sp/>(placeholder<sp/>implementation)</highlight></codeline>
+<codeline><highlight class="normal">extractRegex<sp/>::<sp/>T.Text<sp/>-&gt;<sp/>T.Text<sp/>-&gt;<sp/>[T.Text]</highlight></codeline>
+<codeline><highlight class="normal">extractRegex<sp/>pattern<sp/>text<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>parts<sp/>=<sp/>T.splitOn<sp/>pattern<sp/>text</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>case<sp/>length<sp/>parts<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1<sp/>-&gt;<sp/>[]<sp/><sp/>--<sp/>No<sp/>matches<sp/>found</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>2<sp/>-&gt;<sp/>[T.strip<sp/>$<sp/>parts<sp/>!!<sp/>1]<sp/><sp/>--<sp/>Extract<sp/>content<sp/>between<sp/>pattern</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>_<sp/>-&gt;<sp/>[]<sp/><sp/>--<sp/>Complex<sp/>patterns<sp/>not<sp/>supported<sp/>yet</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Check<sp/>if<sp/>text<sp/>contains<sp/>any<sp/>LaTeX<sp/>commands</highlight></codeline>
+<codeline><highlight class="normal">hasInvalidCommands<sp/>::<sp/>T.Text<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">hasInvalidCommands<sp/>text<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>invalidCommands<sp/>=<sp/>[&quot;\\&quot;,<sp/>&quot;{&quot;,<sp/>&quot;}&quot;,<sp/>&quot;[&quot;,<sp/>&quot;]&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>in<sp/>any<sp/>(`T.isInfixOf`<sp/>text)<sp/>(map<sp/>T.pack<sp/>invalidCommands)</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Utils/Regex.hs"/>
+  </compounddef>
+</doxygen>

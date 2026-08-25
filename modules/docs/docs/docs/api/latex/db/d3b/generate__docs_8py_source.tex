@@ -1,0 +1,209 @@
+\doxysection{generate\+\_\+docs.\+py}
+\hypertarget{generate__docs_8py_source}{}\label{generate__docs_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/generate\_docs.py@{/home/domini/src/Magazine/Magazine/scripts/generate\_docs.py}}
+\mbox{\hyperlink{generate__docs_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00001}\mbox{\hyperlink{namespacegenerate__docs}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00002}00002\ \textcolor{comment}{\#\ API\ Documentation\ Generator\ for\ Integral\ Philosophy\ Publishing\ System}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00003}00003\ \textcolor{comment}{\#\ =================================================================}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00005}00005\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00006}00006\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00007}00007\ \textcolor{keyword}{import}\ subprocess}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00008}00008\ \textcolor{keyword}{import}\ argparse}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00009}00009\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00012}\mbox{\hyperlink{namespacegenerate__docs_ae3581cf59edef004f73e0ae49153dfc8}{00012}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacegenerate__docs_ae3581cf59edef004f73e0ae49153dfc8}{run\_command}}(cmd,\ description="{}"{}):}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00013}00013\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ a\ command\ with\ error\ handling."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00014}00014\ \ \ \ \ print(f\textcolor{stringliteral}{"{}🔧\ \{description\}..."{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ cmd,\ shell=\textcolor{keyword}{True},\ check=\textcolor{keyword}{True},\ capture\_output=\textcolor{keyword}{True},\ text=\textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00018}00018\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.stdout:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ print(result.stdout)}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{except}\ subprocess.CalledProcessError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ Error:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ e.stderr:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ output:\ \{e.stderr\}"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00029}\mbox{\hyperlink{namespacegenerate__docs_a09d1575644d45e300d702814049c5f62}{00029}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacegenerate__docs_a09d1575644d45e300d702814049c5f62}{generate\_api\_docs}}():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00030}00030\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ API\ documentation\ using\ Doxygen."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00031}00031\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Generating\ API\ documentation..."{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00033}00033\ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ Doxygen\ is\ installed}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ \mbox{\hyperlink{namespacegenerate__docs_ae3581cf59edef004f73e0ae49153dfc8}{run\_command}}(\textcolor{stringliteral}{"{}doxygen\ -\/-\/version"{}},\ \textcolor{stringliteral}{"{}Checking\ Doxygen\ installation"{}}):}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Doxygen\ not\ found.\ Please\ install\ Doxygen:"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ \ Ubuntu/Debian:\ sudo\ apt-\/get\ install\ doxygen"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ \ macOS:\ brew\ install\ doxygen"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ \ pip:\ pip\ install\ doxygen"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00041}00041\ \ \ \ \ \textcolor{comment}{\#\ Run\ Doxygen}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacegenerate__docs_ae3581cf59edef004f73e0ae49153dfc8}{run\_command}}(\textcolor{stringliteral}{"{}doxygen\ Doxyfile"{}},\ \textcolor{stringliteral}{"{}Generating\ API\ documentation"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00045}\mbox{\hyperlink{namespacegenerate__docs_a4e16faeb0b5dce8fa495dd60242c0216}{00045}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacegenerate__docs_a4e16faeb0b5dce8fa495dd60242c0216}{generate\_user\_docs}}():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00046}00046\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ user\ documentation\ from\ markdown\ files."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00047}00047\ \ \ \ \ print(\textcolor{stringliteral}{"{}📚\ Generating\ user\ documentation..."{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00049}00049\ \ \ \ \ docs\_dir\ =\ Path(\textcolor{stringliteral}{"{}docs/user"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ docs\_dir.exists():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ docs\_dir.mkdir(parents=\textcolor{keyword}{True},\ exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00053}00053\ \ \ \ \ \textcolor{comment}{\#\ Copy\ README\ to\ user\ docs}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00054}00054\ \ \ \ \ readme\_src\ =\ Path(\textcolor{stringliteral}{"{}docs/README.md"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{if}\ readme\_src.exists():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ readme\_dst\ =\ docs\_dir\ /\ \textcolor{stringliteral}{"{}README.md"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ shutil}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ shutil.copy2(readme\_src,\ readme\_dst)}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ Copied\ README\ to\ \{readme\_dst\}"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00065}\mbox{\hyperlink{namespacegenerate__docs_ac6fb3586a7089ec0c784b73d6b7c32f4}{00065}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacegenerate__docs_ac6fb3586a7089ec0c784b73d6b7c32f4}{generate\_dev\_docs}}():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00066}00066\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ development\ documentation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00067}00067\ \ \ \ \ print(\textcolor{stringliteral}{"{}🛠️\ Generating\ development\ documentation..."{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00069}00069\ \ \ \ \ dev\_docs\_dir\ =\ Path(\textcolor{stringliteral}{"{}docs/development"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ dev\_docs\_dir.exists():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ dev\_docs\_dir.mkdir(parents=\textcolor{keyword}{True},\ exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00073}00073\ \ \ \ \ \textcolor{comment}{\#\ Create\ development\ guide}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00074}00074\ \ \ \ \ dev\_guide\ =\ dev\_docs\_dir\ /\ \textcolor{stringliteral}{"{}DEVELOPMENT.md"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00075}00075\ \ \ \ \ dev\_content\ =\ \textcolor{stringliteral}{"{}"{}"{}\#\ Development\ Guide}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00076}00076\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00077}00077\ \textcolor{stringliteral}{\#\#\ Build\ Systems}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00078}00078\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00079}00079\ \textcolor{stringliteral}{This\ project\ supports\ multiple\ build\ systems:}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00080}00080\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00081}00081\ \textcolor{stringliteral}{\#\#\#\ SCons\ (Recommended)}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00082}00082\ \textcolor{stringliteral}{\`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00083}00083\ \textcolor{stringliteral}{./build-\/systems/scons/scons-\/helper\ init}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00084}00084\ \textcolor{stringliteral}{./build-\/systems/scons/scons-\/helper\ build}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00085}00085\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00086}00086\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00087}00087\ \textcolor{stringliteral}{\#\#\#\ CMake}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00088}00088\ \textcolor{stringliteral}{\`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00089}00089\ \textcolor{stringliteral}{mkdir\ -\/p\ cmake-\/build\ \&\&\ cd\ cmake-\/build}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00090}00090\ \textcolor{stringliteral}{cmake\ ../build-\/systems/cmake/}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00091}00091\ \textcolor{stringliteral}{make}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00092}00092\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00093}00093\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00094}00094\ \textcolor{stringliteral}{\#\#\#\ Autotools}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00095}00095\ \textcolor{stringliteral}{\`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00096}00096\ \textcolor{stringliteral}{cd\ build-\/systems/autotools/}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00097}00097\ \textcolor{stringliteral}{./bootstrap}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00098}00098\ \textcolor{stringliteral}{./configure}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00099}00099\ \textcolor{stringliteral}{make}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00100}00100\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00101}00101\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00102}00102\ \textcolor{stringliteral}{\#\#\#\ Make}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00103}00103\ \textcolor{stringliteral}{\`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00104}00104\ \textcolor{stringliteral}{make\ -\/C\ build-\/systems/make/}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00105}00105\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00106}00106\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00107}00107\ \textcolor{stringliteral}{\#\#\ Project\ Structure}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00108}00108\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00109}00109\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00110}00110\ \textcolor{stringliteral}{Integral\ Philosophy\ Publishing\ System/}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00111}00111\ \textcolor{stringliteral}{├──\ build-\/systems/\ \ \ \ \ \ \ \ \ \ \#\ Build\ system\ configurations}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00112}00112\ \textcolor{stringliteral}{│\ \ \ ├──\ scons/\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ SCons\ build\ system}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00113}00113\ \textcolor{stringliteral}{│\ \ \ ├──\ cmake/\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ CMake\ build\ system}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00114}00114\ \textcolor{stringliteral}{│\ \ \ ├──\ autotools/\ \ \ \ \ \ \ \ \ \#\ Autotools\ build\ system}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00115}00115\ \textcolor{stringliteral}{│\ \ \ └──\ make/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Traditional\ Make}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00116}00116\ \textcolor{stringliteral}{├──\ haskell-\/project/\ \ \ \ \ \ \ \#\ Haskell\ source\ code}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00117}00117\ \textcolor{stringliteral}{├──\ scripts/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Utility\ scripts}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00118}00118\ \textcolor{stringliteral}{├──\ config/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Configuration\ files}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00119}00119\ \textcolor{stringliteral}{├──\ examples/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Example\ outputs}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00120}00120\ \textcolor{stringliteral}{├──\ docs/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Documentation}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00121}00121\ \textcolor{stringliteral}{│\ \ \ ├──\ api/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ API\ documentation\ (Doxygen)}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00122}00122\ \textcolor{stringliteral}{│\ \ \ ├──\ user/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ User\ documentation}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00123}00123\ \textcolor{stringliteral}{│\ \ \ └──\ development/\ \ \ \ \ \ \ \#\ Development\ docs}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00124}00124\ \textcolor{stringliteral}{├──\ tests/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Test\ files}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00125}00125\ \textcolor{stringliteral}{└──\ legacy/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Old/deprecated\ files}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00126}00126\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00127}00127\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00128}00128\ \textcolor{stringliteral}{\#\#\ Contributing}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00129}00129\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00130}00130\ \textcolor{stringliteral}{1.\ Fork\ the\ repository}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00131}00131\ \textcolor{stringliteral}{2.\ Create\ a\ feature\ branch}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00132}00132\ \textcolor{stringliteral}{3.\ Make\ your\ changes}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00133}00133\ \textcolor{stringliteral}{4.\ Test\ with\ all\ build\ systems}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00134}00134\ \textcolor{stringliteral}{5.\ Submit\ a\ pull\ request}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00135}00135\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00136}00136\ \textcolor{stringliteral}{\#\#\ Testing}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00137}00137\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00138}00138\ \textcolor{stringliteral}{\`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00139}00139\ \textcolor{stringliteral}{\#\ Run\ basic\ tests}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00140}00140\ \textcolor{stringliteral}{./scripts/test\_basic.py}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00141}00141\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00142}00142\ \textcolor{stringliteral}{\#\ Run\ validation\ tests}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00143}00143\ \textcolor{stringliteral}{./scripts/test\_validator\_structure.py}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00144}00144\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00145}00145\ \textcolor{stringliteral}{\#\ Run\ with\ specific\ build\ system}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00146}00146\ \textcolor{stringliteral}{./build-\/systems/scons/scons-\/helper\ test}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00147}00147\ \textcolor{stringliteral}{\`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00148}00148\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00150}00150\ \ \ \ \ \textcolor{keyword}{with}\ open(dev\_guide,\ \textcolor{stringliteral}{"{}w"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ f.write(dev\_content)}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00153}00153\ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ Created\ development\ guide:\ \{dev\_guide\}"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00157}\mbox{\hyperlink{namespacegenerate__docs_a7fe0214d2eee488ef3cd66bd71bbab7c}{00157}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacegenerate__docs_a7fe0214d2eee488ef3cd66bd71bbab7c}{main}}():}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00158}00158\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ function."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00159}00159\ \ \ \ \ parser\ =\ argparse.ArgumentParser(}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ description=\textcolor{stringliteral}{"{}Generate\ documentation\ for\ Integral\ Philosophy\ Publishing\ System"{}},}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ formatter\_class=argparse.RawDescriptionHelpFormatter,}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00162}00162\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00164}00164\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/api"{}},\ action=\textcolor{stringliteral}{"{}store\_true"{}},\ help=\textcolor{stringliteral}{"{}Generate\ API\ documentation\ (Doxygen)"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00166}00166\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00167}00167\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/user"{}},\ action=\textcolor{stringliteral}{"{}store\_true"{}},\ help=\textcolor{stringliteral}{"{}Generate\ user\ documentation"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00169}00169\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00170}00170\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/dev"{}},\ action=\textcolor{stringliteral}{"{}store\_true"{}},\ help=\textcolor{stringliteral}{"{}Generate\ development\ documentation"{}}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00172}00172\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00173}00173\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}-\/-\/all"{}},\ action=\textcolor{stringliteral}{"{}store\_true"{}},\ help=\textcolor{stringliteral}{"{}Generate\ all\ documentation"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00175}00175\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00177}00177\ \ \ \ \ \textcolor{comment}{\#\ Default\ to\ all\ if\ no\ specific\ option\ given}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00178}00178\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ any([args.api,\ args.user,\ args.dev]):}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ args.all\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00181}00181\ \ \ \ \ success\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{if}\ args.all\ \textcolor{keywordflow}{or}\ args.api:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespacegenerate__docs_a09d1575644d45e300d702814049c5f62}{generate\_api\_docs}}()}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{if}\ args.all\ \textcolor{keywordflow}{or}\ args.user:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespacegenerate__docs_a4e16faeb0b5dce8fa495dd60242c0216}{generate\_user\_docs}}()}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{if}\ args.all\ \textcolor{keywordflow}{or}\ args.dev:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ success\ \&=\ \mbox{\hyperlink{namespacegenerate__docs_ac6fb3586a7089ec0c784b73d6b7c32f4}{generate\_dev\_docs}}()}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00192}00192\ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n✅\ Documentation\ generation\ completed!"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}📖\ API\ docs:\ docs/api/html/index.html"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}📚\ User\ docs:\ docs/user/"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}🛠️\ Development\ docs:\ docs/development/"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00197}00197\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n❌\ Documentation\ generation\ failed!"{}})}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ sys.exit(1)}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00202}00202\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{generate__docs_8py_source_l00203}00203\ \ \ \ \ \mbox{\hyperlink{namespacegenerate__docs_a7fe0214d2eee488ef3cd66bd71bbab7c}{main}}()}
+
+\end{DoxyCode}

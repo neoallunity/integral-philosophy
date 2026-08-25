@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d4/dc0/test__biblatex_8tex" kind="file" language="C++">
+    <compoundname>test_biblatex.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">\documentclass{article}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{biblatex}</highlight></codeline>
+<codeline><highlight class="normal">\addbibresource{global-bibliography.bib}<sp/>%<sp/>Assuming<sp/>this<sp/>file<sp/>exists<sp/>and<sp/>is<sp/>empty<sp/>or<sp/>has<sp/>a<sp/>valid<sp/>entry</highlight></codeline>
+<codeline><highlight class="normal">\begin{document}</highlight></codeline>
+<codeline><highlight class="normal">Test.</highlight></codeline>
+<codeline><highlight class="normal">\nocite{*}</highlight></codeline>
+<codeline><highlight class="normal">\printbibliography</highlight></codeline>
+<codeline><highlight class="normal">\end{document}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/test_biblatex.tex"/>
+  </compounddef>
+</doxygen>

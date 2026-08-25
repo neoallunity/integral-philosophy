@@ -1,0 +1,99 @@
+\doxysection{Validation.\+hs}
+\hypertarget{_validation_8hs_source}{}\label{_validation_8hs_source}\index{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Validation.hs@{/home/domini/src/Magazine/Magazine/haskell-\/project/src/IntegralPhilosophy/Validation.hs}}
+\mbox{\hyperlink{_validation_8hs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00001}00001\ \{-\/\#\ LANGUAGE\ LambdaCase\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00002}00002\ \{-\/\#\ LANGUAGE\ OverloadedStrings\ \#-\/\}}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00004}00004\ -\/-\/\ |\ Core\ validation\ framework}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00005}00005\ module\ IntegralPhilosophy.Validation}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00006}00006\ \ \ (\ -\/-\/\ *\ Validation\ interface}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00007}00007\ \ \ \ \ Validator(..)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00008}00008\ \ \ ,\ Validation(..)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00009}00009\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00010}00010\ \ \ \ \ -\/-\/\ *\ Core\ validation\ functions\ \ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00011}00011\ \ \ ,\ validateDocument}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00012}00012\ \ \ ,\ validateMultiple}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00013}00013\ \ \ ,\ combineResults}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00014}00014\ \ \ ,\ calculateQualityScore}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00015}00015\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00016}00016\ \ \ \ \ -\/-\/\ *\ Error\ handling}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00017}00017\ \ \ ,\ ValidationError(..)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00018}00018\ \ \ ,\ ValidationSeverity(..)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00019}00019\ \ \ ,\ ValidationResult(..)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00020}00020\ \ \ ,\ makeError}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00021}00021\ \ \ ,\ makeWarning}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00022}00022\ \ \ ,\ makeInfo}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00023}00023\ \ \ )\ where}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00025}00025\ import\ IntegralPhilosophy.Types}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00026}00026\ import\ qualified\ IntegralPhilosophy.Utils.Time\ as\ TimeUtils}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00027}00027\ import\ qualified\ Data.Text\ as\ T}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00028}00028\ import\ Data.Time\ (getCurrentTime,\ UTCTime,\ diffUTCTime)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00029}00029\ import\ Control.Monad.IO.Class\ (MonadIO,\ liftIO)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00030}00030\ import\ Control.DeepSeq\ (NFData,\ rnf)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00032}00032\ -\/-\/\ |\ Validation\ interface}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00033}00033\ class\ Validator\ a\ where}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00034}00034\ \ \ validate\ ::\ MonadIO\ m\ =>\ a\ -\/>\ Document\ -\/>\ m\ ValidationResult}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00035}00035\ \ \ validatorName\ ::\ a\ -\/>\ Text}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00036}00036\ \ \ validatorType\ ::\ a\ -\/>\ ContentType}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00038}00038\ -\/-\/\ |\ Validation\ context}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00039}00039\ data\ Validation\ =\ Validation}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00040}00040\ \ \ \{\ valConfig\ ::\ !ValidationConfig}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00041}00041\ \ \ ,\ valContext\ ::\ !ProcessingContext}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00042}00042\ \ \ ,\ valStartTime\ ::\ !UTCTime}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00043}00043\ \ \ \}\ deriving\ (Show,\ Eq)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00045}00045\ -\/-\/\ |\ Validate\ a\ single\ document\ with\ a\ specific\ validator}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00046}00046\ validateDocument\ ::\ (MonadIO\ m,\ NFData\ a,\ Validator\ a)\ =>\ a\ -\/>\ Document\ -\/>\ m\ ValidationResult}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00047}00047\ validateDocument\ validator\ doc\ =\ do}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00048}00048\ \ \ startTime\ <-\/\ liftIO\ getCurrentTime}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00049}00049\ \ \ result\ <-\/\ validate\ validator\ doc}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00050}00050\ \ \ endTime\ <-\/\ liftIO\ getCurrentTime}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00051}00051\ \ \ pure\ \$\ result}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00052}00052\ \ \ \ \ \{\ vrProcessingTime\ =\ calculateTime\ startTime\ endTime}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00055}00055\ -\/-\/\ |\ Validate\ multiple\ documents\ with\ multiple\ validators}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00056}00056\ validateMultiple\ ::\ (MonadIO\ m,\ NFData\ a,\ Validator\ a)\ =>\ [a]\ -\/>\ [Document]\ -\/>\ m\ [ValidationResult]}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00057}00057\ validateMultiple\ validators\ documents\ =\ do}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00058}00058\ \ \ results\ <-\/\ mapM\ (\(\backslash\)doc\ -\/>\ mapM\ (`validateDocument`\ doc)\ validators)\ documents}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00059}00059\ \ \ pure\ \$\ concat\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00061}00061\ -\/-\/\ |\ Combine\ multiple\ validation\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00062}00062\ combineResults\ ::\ [ValidationResult]\ -\/>\ ValidationResult}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00063}00063\ combineResults\ []\ =\ ValidationResult\ []\ []\ (QualityScore\ 100.0)\ 0.0}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00064}00064\ combineResults\ results\ =\ ValidationResult}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00065}00065\ \ \ \{\ vrErrors\ =\ concatMap\ vrErrors\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00066}00066\ \ \ ,\ vrWarnings\ =\ concatMap\ vrWarnings\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00067}00067\ \ \ ,\ vrScore\ =\ calculateQualityScore\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00068}00068\ \ \ ,\ vrProcessingTime\ =\ sum\ \$\ map\ vrProcessingTime\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00069}00069\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00071}00071\ -\/-\/\ |\ Calculate\ quality\ score\ from\ validation\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00072}00072\ calculateQualityScore\ ::\ [ValidationResult]\ -\/>\ QualityScore}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00073}00073\ calculateQualityScore\ []\ =\ QualityScore\ 100.0}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00074}00074\ calculateQualityScore\ results\ =\ QualityScore\ \$\ max\ 0\ \$\ 100.0\ -\/\ errorPenalty\ -\/\ warningPenalty}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00075}00075\ \ \ where}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00076}00076\ \ \ \ \ totalErrors\ =\ sum\ \$\ length\ .\ vrErrors\ <\$>\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00077}00077\ \ \ \ \ totalWarnings\ =\ sum\ \$\ length\ .\ vrWarnings\ <\$>\ results}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00078}00078\ \ \ \ \ errorPenalty\ =\ fromIntegral\ totalErrors\ *\ 10.0}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00079}00079\ \ \ \ \ warningPenalty\ =\ fromIntegral\ totalWarnings\ *\ 2.0}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00081}00081\ -\/-\/\ |\ Calculate\ time\ difference\ (local\ version\ to\ avoid\ conflicts)}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00082}00082\ calculateTime\ ::\ UTCTime\ -\/>\ UTCTime\ -\/>\ Double}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00083}00083\ calculateTime\ start\ end\ =\ realToFrac\ \$\ diffUTCTime\ end\ start}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00085}00085\ -\/-\/\ |\ Error\ constructors}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00086}00086\ makeError\ ::\ ValidationSeverity\ -\/>\ Text\ -\/>\ Text\ -\/>\ FilePath\ -\/>\ Int\ -\/>\ Int\ -\/>\ ValidationError}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00087}00087\ makeError\ =\ ValidationError}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00089}00089\ makeWarning\ ::\ Text\ -\/>\ Text\ -\/>\ FilePath\ -\/>\ Int\ -\/>\ Int\ -\/>\ ValidationError}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00090}00090\ makeWarning\ =\ ValidationError\ Warning}
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00092}00092\ makeInfo\ ::\ Text\ -\/>\ Text\ -\/>\ FilePath\ -\/>\ Int\ -\/>\ Int\ -\/>\ ValidationError\ \ }
+\DoxyCodeLine{\Hypertarget{_validation_8hs_source_l00093}00093\ makeInfo\ =\ ValidationError\ Info}
+
+\end{DoxyCode}

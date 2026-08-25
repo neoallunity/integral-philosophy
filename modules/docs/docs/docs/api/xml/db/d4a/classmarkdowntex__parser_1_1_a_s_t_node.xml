@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node" kind="class" language="Python" prot="public">
+    <compoundname>markdowntex_parser::ASTNode</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a964a08f14c33478290b5adac3f350999" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>markdowntex_parser.ASTNode::content</definition>
+        <argsstring></argsstring>
+        <name>content</name>
+        <qualifiedname>markdowntex_parser.ASTNode.content</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="54" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="54" bodyend="-1"/>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" compoundref="d9/dc7/markdowntex__parser_8py" startline="64" endline="73">markdowntex_parser.ASTNode.to_dict</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a9372b518a30a174dcd82bc1f8ae41882" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>markdowntex_parser.ASTNode::attributes</definition>
+        <argsstring></argsstring>
+        <name>attributes</name>
+        <qualifiedname>markdowntex_parser.ASTNode.attributes</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="55" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="55" bodyend="-1"/>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a1a7af40c056c9ffc72bed77c660117c9" compoundref="d9/dc7/markdowntex__parser_8py" startline="58" endline="63">markdowntex_parser.ASTNode.__post_init__</referencedby>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" compoundref="d9/dc7/markdowntex__parser_8py" startline="64" endline="73">markdowntex_parser.ASTNode.to_dict</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1aca4dce41ed2a4d5c83973602f4c3dacc" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>markdowntex_parser.ASTNode::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>markdowntex_parser.ASTNode.position</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="56" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="56" bodyend="-1"/>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a1a7af40c056c9ffc72bed77c660117c9" compoundref="d9/dc7/markdowntex__parser_8py" startline="58" endline="63">markdowntex_parser.ASTNode.__post_init__</referencedby>
+        <referencedby refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" compoundref="d9/dc7/markdowntex__parser_8py" startline="64" endline="73">markdowntex_parser.ASTNode.to_dict</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a1a7af40c056c9ffc72bed77c660117c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>markdowntex_parser.ASTNode.__post_init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__post_init__</name>
+        <qualifiedname>markdowntex_parser.ASTNode.__post_init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="58" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="58" bodyend="63"/>
+        <references refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a9372b518a30a174dcd82bc1f8ae41882" compoundref="d9/dc7/markdowntex__parser_8py" startline="55">markdowntex_parser.ASTNode.attributes</references>
+        <references refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1aca4dce41ed2a4d5c83973602f4c3dacc" compoundref="d9/dc7/markdowntex__parser_8py" startline="56">markdowntex_parser.ASTNode.position</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict markdowntex_parser.ASTNode.to_dict</definition>
+        <argsstring>(self)</argsstring>
+        <name>to_dict</name>
+        <qualifiedname>markdowntex_parser.ASTNode.to_dict</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convert node to dictionary representation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="64" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="64" bodyend="73"/>
+        <references refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a9372b518a30a174dcd82bc1f8ae41882" compoundref="d9/dc7/markdowntex__parser_8py" startline="55">markdowntex_parser.ASTNode.attributes</references>
+        <references refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a964a08f14c33478290b5adac3f350999" compoundref="d9/dc7/markdowntex__parser_8py" startline="54">markdowntex_parser.ASTNode.content</references>
+        <references refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1aca4dce41ed2a4d5c83973602f4c3dacc" compoundref="d9/dc7/markdowntex__parser_8py" startline="56">markdowntex_parser.ASTNode.position</references>
+        <references refid="dd/dc0/classast__to__uml_1_1_u_m_l_node_1ad788aa499fd221a8f40a628a4021e57b" compoundref="d8/d2b/ast__to__uml_8py" startline="44">ast_to_uml.UMLNode.type</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Abstract Syntax Tree node for MarkdownTeX content</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>markdowntex_parser.ASTNode</label>
+        <link refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" line="50" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/markdowntex_parser.py" bodystart="50" bodyend="73"/>
+    <listofallmembers>
+      <member refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a1a7af40c056c9ffc72bed77c660117c9" prot="public" virt="non-virtual"><scope>markdowntex_parser::ASTNode</scope><name>__post_init__</name></member>
+      <member refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a9372b518a30a174dcd82bc1f8ae41882" prot="public" virt="non-virtual"><scope>markdowntex_parser::ASTNode</scope><name>attributes</name></member>
+      <member refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a964a08f14c33478290b5adac3f350999" prot="public" virt="non-virtual"><scope>markdowntex_parser::ASTNode</scope><name>content</name></member>
+      <member refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1aca4dce41ed2a4d5c83973602f4c3dacc" prot="public" virt="non-virtual"><scope>markdowntex_parser::ASTNode</scope><name>position</name></member>
+      <member refid="db/d4a/classmarkdowntex__parser_1_1_a_s_t_node_1a5ea4f32b4402e6a8d478de7ec2b5c549" prot="public" virt="non-virtual"><scope>markdowntex_parser::ASTNode</scope><name>to_dict</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

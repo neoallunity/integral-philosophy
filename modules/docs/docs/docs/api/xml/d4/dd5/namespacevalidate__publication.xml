@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d4/dd5/namespacevalidate__publication" kind="namespace" language="Python">
+    <compoundname>validate_publication</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d4/dd5/namespacevalidate__publication_1a3bdf69a07ef5aabe1ddd500e95136490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>validate_publication.validate_publication_outputs</definition>
+        <argsstring>()</argsstring>
+        <name>validate_publication_outputs</name>
+        <qualifiedname>validate_publication.validate_publication_outputs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Validate typical publication outputs from the Integral Philosophy system.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/validate_publication.py" line="26" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/validate_publication.py" bodystart="26" bodyend="239"/>
+        <referencedby refid="d4/dd5/namespacevalidate__publication_1a69239b6d997be8a3fd69f59f6fd02dce" compoundref="d4/d5c/validate__publication_8py" startline="240" endline="257">main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dd5/namespacevalidate__publication_1a69239b6d997be8a3fd69f59f6fd02dce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>validate_publication.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>validate_publication.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Run publication validation.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/validate_publication.py" line="240" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/validate_publication.py" bodystart="240" bodyend="257"/>
+        <references refid="d4/dd5/namespacevalidate__publication_1a69239b6d997be8a3fd69f59f6fd02dce" compoundref="d4/d5c/validate__publication_8py" startline="240" endline="257">main</references>
+        <references refid="d4/dd5/namespacevalidate__publication_1a3bdf69a07ef5aabe1ddd500e95136490" compoundref="d4/d5c/validate__publication_8py" startline="26" endline="239">validate_publication_outputs</references>
+        <referencedby refid="d4/dd5/namespacevalidate__publication_1a69239b6d997be8a3fd69f59f6fd02dce" compoundref="d4/d5c/validate__publication_8py" startline="240" endline="257">main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Integration script for validation system with Integral Philosophy publishing pipeline.
+Demonstrates end-to-end validation of publication outputs.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/validate_publication.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer" kind="class" language="Python" prot="public">
+    <compoundname>xslt_transformer::XSLTTransformer</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.XSLTTransformer::xslt_dir</definition>
+        <argsstring></argsstring>
+        <name>xslt_dir</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.xslt_dir</qualifiedname>
+        <initializer>=  Path(xslt_dir) if xslt_dir else Path(&quot;xslt&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="27" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="27" bodyend="-1"/>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abf1914c8e5519e0d37f5e809a56b3272" compoundref="d6/d18/xslt__transformer_8py" startline="462" endline="509">xslt_transformer.XSLTTransformer._create_docx_xslt</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0f108901a4355924ea69ff675debcd04" compoundref="d6/d18/xslt__transformer_8py" startline="372" endline="461">xslt_transformer.XSLTTransformer._create_epub_xslt</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0e5fdc5d92ddee9cbaa1f03908113741" compoundref="d6/d18/xslt__transformer_8py" startline="51" endline="208">xslt_transformer.XSLTTransformer._create_html_xslt</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a7a748154ce7b4c517a77e1176752ea9b" compoundref="d6/d18/xslt__transformer_8py" startline="209" endline="371">xslt_transformer.XSLTTransformer._create_latex_xslt</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a877d095f1c8e7f74ac3fe02c5138fd09" compoundref="d6/d18/xslt__transformer_8py" startline="512" endline="545">xslt_transformer.XSLTTransformer.transform_to_html</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a27f409ceb96d0dd099eae47f7969b230" compoundref="d6/d18/xslt__transformer_8py" startline="548" endline="575">xslt_transformer.XSLTTransformer.transform_to_latex</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a651b5f5050544880504c5de70ba4a0a9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>xslt_transformer.XSLTTransformer::temp_dir</definition>
+        <argsstring></argsstring>
+        <name>temp_dir</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.temp_dir</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a4f42de91e24f3ff0794a0bb70a1fe769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xslt_transformer.XSLTTransformer.__init__</definition>
+        <argsstring>(self, Optional[Union[str, Path]] xslt_dir=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>xslt_dir</declname>
+          <array>[Union[str, Path]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="26" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="26" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a877d095f1c8e7f74ac3fe02c5138fd09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool xslt_transformer.XSLTTransformer.transform_to_html</definition>
+        <argsstring>(self, Union[str, Path] tei_file, Union[str, Path] output_file)</argsstring>
+        <name>transform_to_html</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.transform_to_html</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>tei_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform TEI to HTML using XSLT</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="510" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="512" bodyend="545"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" compoundref="d6/d18/xslt__transformer_8py" startline="746" endline="779">xslt_transformer.XSLTTransformer.transform_all_formats</referencedby>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abe3ff479a9605c1cf4be16b9aee4b4cf" compoundref="d6/d18/xslt__transformer_8py" startline="620" endline="706">xslt_transformer.XSLTTransformer.transform_to_epub</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a27f409ceb96d0dd099eae47f7969b230" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool xslt_transformer.XSLTTransformer.transform_to_latex</definition>
+        <argsstring>(self, Union[str, Path] tei_file, Union[str, Path] output_file)</argsstring>
+        <name>transform_to_latex</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.transform_to_latex</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>tei_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform TEI to LaTeX using XSLT</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="546" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="548" bodyend="575"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" compoundref="d6/d18/xslt__transformer_8py" startline="746" endline="779">xslt_transformer.XSLTTransformer.transform_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1aefe2fe1b1b11f24d756e3d649417f139" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool xslt_transformer.XSLTTransformer.compile_latex_to_pdf</definition>
+        <argsstring>(self, Union[str, Path] latex_file, Union[str, Path] output_file)</argsstring>
+        <name>compile_latex_to_pdf</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.compile_latex_to_pdf</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>latex_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Compile LaTeX to PDF</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="576" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="578" bodyend="617"/>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" compoundref="d6/d18/xslt__transformer_8py" startline="746" endline="779">xslt_transformer.XSLTTransformer.transform_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abe3ff479a9605c1cf4be16b9aee4b4cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool xslt_transformer.XSLTTransformer.transform_to_epub</definition>
+        <argsstring>(self, Union[str, Path] tei_file, Union[str, Path] output_file)</argsstring>
+        <name>transform_to_epub</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.transform_to_epub</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>tei_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform TEI to EPUB</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="618" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="620" bodyend="706"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a877d095f1c8e7f74ac3fe02c5138fd09" compoundref="d6/d18/xslt__transformer_8py" startline="512" endline="545">xslt_transformer.XSLTTransformer.transform_to_html</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" compoundref="d6/d18/xslt__transformer_8py" startline="746" endline="779">xslt_transformer.XSLTTransformer.transform_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a6fe70ba475a8ca5746e002c5efbee985" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool xslt_transformer.XSLTTransformer.transform_to_docx</definition>
+        <argsstring>(self, Union[str, Path] tei_file, Union[str, Path] output_file)</argsstring>
+        <name>transform_to_docx</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.transform_to_docx</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>tei_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform TEI to DOCX using external tools</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="707" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="709" bodyend="743"/>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" compoundref="d6/d18/xslt__transformer_8py" startline="746" endline="779">xslt_transformer.XSLTTransformer.transform_all_formats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, bool]</type>
+        <definition> Dict[str, bool] xslt_transformer.XSLTTransformer.transform_all_formats</definition>
+        <argsstring>(self, Union[str, Path] tei_file, Union[str, Path] output_dir)</argsstring>
+        <name>transform_all_formats</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer.transform_all_formats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>tei_file</declname>
+          <array>[str, Path]</array>
+        </param>
+        <param>
+          <type>Union</type>
+          <declname>output_dir</declname>
+          <array>[str, Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Transform TEI to all supported formats</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="744" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="746" bodyend="779"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1aefe2fe1b1b11f24d756e3d649417f139" compoundref="d6/d18/xslt__transformer_8py" startline="578" endline="617">xslt_transformer.XSLTTransformer.compile_latex_to_pdf</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a6fe70ba475a8ca5746e002c5efbee985" compoundref="d6/d18/xslt__transformer_8py" startline="709" endline="743">xslt_transformer.XSLTTransformer.transform_to_docx</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abe3ff479a9605c1cf4be16b9aee4b4cf" compoundref="d6/d18/xslt__transformer_8py" startline="620" endline="706">xslt_transformer.XSLTTransformer.transform_to_epub</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a877d095f1c8e7f74ac3fe02c5138fd09" compoundref="d6/d18/xslt__transformer_8py" startline="512" endline="545">xslt_transformer.XSLTTransformer.transform_to_html</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a27f409ceb96d0dd099eae47f7969b230" compoundref="d6/d18/xslt__transformer_8py" startline="548" endline="575">xslt_transformer.XSLTTransformer.transform_to_latex</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None xslt_transformer.XSLTTransformer._create_xslt_stylesheets</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_xslt_stylesheets</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer._create_xslt_stylesheets</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create XSLT stylesheets for different output formats</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="36" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="36" bodyend="50"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abf1914c8e5519e0d37f5e809a56b3272" compoundref="d6/d18/xslt__transformer_8py" startline="462" endline="509">xslt_transformer.XSLTTransformer._create_docx_xslt</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0f108901a4355924ea69ff675debcd04" compoundref="d6/d18/xslt__transformer_8py" startline="372" endline="461">xslt_transformer.XSLTTransformer._create_epub_xslt</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0e5fdc5d92ddee9cbaa1f03908113741" compoundref="d6/d18/xslt__transformer_8py" startline="51" endline="208">xslt_transformer.XSLTTransformer._create_html_xslt</references>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a7a748154ce7b4c517a77e1176752ea9b" compoundref="d6/d18/xslt__transformer_8py" startline="209" endline="371">xslt_transformer.XSLTTransformer._create_latex_xslt</references>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0e5fdc5d92ddee9cbaa1f03908113741" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None xslt_transformer.XSLTTransformer._create_html_xslt</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_html_xslt</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer._create_html_xslt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create HTML XSLT stylesheet</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="51" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="51" bodyend="208"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" compoundref="d6/d18/xslt__transformer_8py" startline="36" endline="50">xslt_transformer.XSLTTransformer._create_xslt_stylesheets</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a7a748154ce7b4c517a77e1176752ea9b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None xslt_transformer.XSLTTransformer._create_latex_xslt</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_latex_xslt</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer._create_latex_xslt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create LaTeX XSLT stylesheet</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="209" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="209" bodyend="371"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" compoundref="d6/d18/xslt__transformer_8py" startline="36" endline="50">xslt_transformer.XSLTTransformer._create_xslt_stylesheets</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0f108901a4355924ea69ff675debcd04" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None xslt_transformer.XSLTTransformer._create_epub_xslt</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_epub_xslt</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer._create_epub_xslt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create EPUB XSLT stylesheet</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="372" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="372" bodyend="461"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" compoundref="d6/d18/xslt__transformer_8py" startline="36" endline="50">xslt_transformer.XSLTTransformer._create_xslt_stylesheets</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abf1914c8e5519e0d37f5e809a56b3272" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None xslt_transformer.XSLTTransformer._create_docx_xslt</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_docx_xslt</name>
+        <qualifiedname>xslt_transformer.XSLTTransformer._create_docx_xslt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create DOCX XSLT stylesheet (simplified)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="462" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="462" bodyend="509"/>
+        <references refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" compoundref="d6/d18/xslt__transformer_8py" startline="27">xslt_transformer.XSLTTransformer.xslt_dir</references>
+        <referencedby refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" compoundref="d6/d18/xslt__transformer_8py" startline="36" endline="50">xslt_transformer.XSLTTransformer._create_xslt_stylesheets</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Handles XSLT transformations from TEI XML to multiple formats</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>xslt_transformer.XSLTTransformer</label>
+        <link refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" line="23" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/xslt_transformer.py" bodystart="23" bodyend="779"/>
+    <listofallmembers>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a4f42de91e24f3ff0794a0bb70a1fe769" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>__init__</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abf1914c8e5519e0d37f5e809a56b3272" prot="protected" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>_create_docx_xslt</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0f108901a4355924ea69ff675debcd04" prot="protected" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>_create_epub_xslt</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a0e5fdc5d92ddee9cbaa1f03908113741" prot="protected" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>_create_html_xslt</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a7a748154ce7b4c517a77e1176752ea9b" prot="protected" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>_create_latex_xslt</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a624d5eb5841edfc47ca7ce822bdbb31a" prot="protected" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>_create_xslt_stylesheets</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1aefe2fe1b1b11f24d756e3d649417f139" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>compile_latex_to_pdf</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a651b5f5050544880504c5de70ba4a0a9" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>temp_dir</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1acf68ac99c924b4293d28872bc6fdaaf1" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>transform_all_formats</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a6fe70ba475a8ca5746e002c5efbee985" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>transform_to_docx</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1abe3ff479a9605c1cf4be16b9aee4b4cf" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>transform_to_epub</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a877d095f1c8e7f74ac3fe02c5138fd09" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>transform_to_html</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a27f409ceb96d0dd099eae47f7969b230" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>transform_to_latex</name></member>
+      <member refid="da/d8d/classxslt__transformer_1_1_x_s_l_t_transformer_1a25ba8efa13df153b441eab7d8fb6f401" prot="public" virt="non-virtual"><scope>xslt_transformer::XSLTTransformer</scope><name>xslt_dir</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

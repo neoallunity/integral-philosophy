@@ -1,0 +1,11 @@
+digraph "latex_to_markdown.TeXAnalyzer._extract_sections"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="latex_to_markdown.TeXAnalyzer.\l_extract_sections",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge2_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="latex_to_markdown.TeXAnalyzer.analyze_file",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d0f/classlatex__to__markdown_1_1_te_x_analyzer.html#ad0b85901fc05ba8ff4cd1e0fc127ab25",tooltip=" "];
+}

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dir_53e6fa9553ac22a5646d2a2b2d7b97a1" kind="dir">
+    <compoundname>/home/domini/src/Magazine/Magazine/scripts</compoundname>
+    <innerfile refid="d2/d56/advanced__reconstruction_8py">advanced_reconstruction.py</innerfile>
+    <innerfile refid="d8/d2b/ast__to__uml_8py">ast_to_uml.py</innerfile>
+    <innerfile refid="d9/dea/content__pipeline_8py">content_pipeline.py</innerfile>
+    <innerfile refid="d4/dea/extract__bibliography_8py">extract_bibliography.py</innerfile>
+    <innerfile refid="d5/d57/final__validation_8py">final_validation.py</innerfile>
+    <innerfile refid="d4/d22/format__converter_8py">format_converter.py</innerfile>
+    <innerfile refid="db/d3b/generate__docs_8py">generate_docs.py</innerfile>
+    <innerfile refid="d3/d82/global-bibliography_8bib">global-bibliography.bib</innerfile>
+    <innerfile refid="df/d76/haskell-project_8yaml">haskell-project.yaml</innerfile>
+    <innerfile refid="d7/dae/html__tei__converter_8py">html_tei_converter.py</innerfile>
+    <innerfile refid="d1/d3b/journal_8yml">journal.yml</innerfile>
+    <innerfile refid="db/de9/latex__to__markdown_8py">latex_to_markdown.py</innerfile>
+    <innerfile refid="db/de9/main_8tex">main.tex</innerfile>
+    <innerfile refid="d9/dc7/markdowntex__parser_8py">markdowntex_parser.py</innerfile>
+    <innerfile refid="dc/df7/metadata_8yml">metadata.yml</innerfile>
+    <innerfile refid="da/d74/preamble_8tex">preamble.tex</innerfile>
+    <innerfile refid="de/de3/quick__reconstruction_8py">quick_reconstruction.py</innerfile>
+    <innerfile refid="d7/d5e/references_8bib">references.bib</innerfile>
+    <innerfile refid="df/d56/simple__validate_8py">simple_validate.py</innerfile>
+    <innerfile refid="d6/d51/tei__generator_8py">tei_generator.py</innerfile>
+    <innerfile refid="d8/d2a/test_8tex">test.tex</innerfile>
+    <innerfile refid="d8/ddf/test__basic_8py">test_basic.py</innerfile>
+    <innerfile refid="d4/dc0/test__biblatex_8tex">test_biblatex.tex</innerfile>
+    <innerfile refid="d8/d9a/test__fixes_8py">test_fixes.py</innerfile>
+    <innerfile refid="d7/d1a/test__validator__structure_8py">test_validator_structure.py</innerfile>
+    <innerfile refid="db/d01/update__build__systems_8py">update_build_systems.py</innerfile>
+    <innerfile refid="d4/d5c/validate__publication_8py">validate_publication.py</innerfile>
+    <innerfile refid="db/d9d/verify__all__validators_8py">verify_all_validators.py</innerfile>
+    <innerfile refid="d5/d2c/web__scraper_8py">web_scraper.py</innerfile>
+    <innerfile refid="d6/d18/xslt__transformer_8py">xslt_transformer.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor" kind="class" language="Python" prot="public">
+    <compoundname>advanced_reconstruction::AdvancedTeXReconstructor</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a620851a75c8b961c1b4859c77c11a46f" prot="public" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict advanced_reconstruction.AdvancedTeXReconstructor::content_cache</definition>
+        <argsstring></argsstring>
+        <name>content_cache</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor.content_cache</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="19" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1abd1a72c0b74dab3bf7bf65a8db040647" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>advanced_reconstruction.AdvancedTeXReconstructor.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="18" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a4e601a4d143d3e1637c61757ab596df8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict advanced_reconstruction.AdvancedTeXReconstructor.extract_full_content</definition>
+        <argsstring>(self, Path filepath)</argsstring>
+        <name>extract_full_content</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor.extract_full_content</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract and reconstruct full content from article files.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="21" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="21" bodyend="38"/>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</references>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a00b0808f83caee8a0a609e3670767319" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str advanced_reconstruction.AdvancedTeXReconstructor.reconstruct_to_markdown</definition>
+        <argsstring>(self, Dict article_data)</argsstring>
+        <name>reconstruct_to_markdown</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor.reconstruct_to_markdown</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>article_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reconstruct article data to comprehensive markdown.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="216" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="216" bodyend="310"/>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a54e918af940215c3a180104ce350256d" compoundref="d2/d56/advanced__reconstruction_8py" startline="311" endline="347">advanced_reconstruction.AdvancedTeXReconstructor._extract_text_content</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</definition>
+        <argsstring>(self, str content, Path filepath)</argsstring>
+        <name>_parse_conditional_article</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse articles with conditional content (English/Russian).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="39" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="39" bodyend="71"/>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ade1fd52412a735cda520e4dd2f5d8536" compoundref="d2/d56/advanced__reconstruction_8py" startline="199" endline="215">advanced_reconstruction.AdvancedTeXReconstructor._clean_latex</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a779e48cc8b36817b347556418278e40f" compoundref="d2/d56/advanced__reconstruction_8py" startline="121" endline="152">advanced_reconstruction.AdvancedTeXReconstructor._extract_all_sections</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a579fc70d9be92509597b47b40a5a260c" compoundref="d2/d56/advanced__reconstruction_8py" startline="105" endline="120">advanced_reconstruction.AdvancedTeXReconstructor._extract_author</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a55b49a421b0d9a9233a9c47ad49de3b2" compoundref="d2/d56/advanced__reconstruction_8py" startline="181" endline="198">advanced_reconstruction.AdvancedTeXReconstructor._extract_keywords</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1aedf322d91d53eeee56d6cc2850f07ec2" compoundref="d2/d56/advanced__reconstruction_8py" startline="153" endline="180">advanced_reconstruction.AdvancedTeXReconstructor._extract_math_content</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a9e099fcc6fb5cacdd5fa7e042f1a17d6" compoundref="d2/d56/advanced__reconstruction_8py" startline="85" endline="104">advanced_reconstruction.AdvancedTeXReconstructor._extract_title</references>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a4e601a4d143d3e1637c61757ab596df8" compoundref="d2/d56/advanced__reconstruction_8py" startline="21" endline="38">advanced_reconstruction.AdvancedTeXReconstructor.extract_full_content</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</definition>
+        <argsstring>(self, str content, Path filepath)</argsstring>
+        <name>_parse_standard_article</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>filepath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse standard LaTeX articles.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="72" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="72" bodyend="84"/>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ade1fd52412a735cda520e4dd2f5d8536" compoundref="d2/d56/advanced__reconstruction_8py" startline="199" endline="215">advanced_reconstruction.AdvancedTeXReconstructor._clean_latex</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a779e48cc8b36817b347556418278e40f" compoundref="d2/d56/advanced__reconstruction_8py" startline="121" endline="152">advanced_reconstruction.AdvancedTeXReconstructor._extract_all_sections</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a579fc70d9be92509597b47b40a5a260c" compoundref="d2/d56/advanced__reconstruction_8py" startline="105" endline="120">advanced_reconstruction.AdvancedTeXReconstructor._extract_author</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a55b49a421b0d9a9233a9c47ad49de3b2" compoundref="d2/d56/advanced__reconstruction_8py" startline="181" endline="198">advanced_reconstruction.AdvancedTeXReconstructor._extract_keywords</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1aedf322d91d53eeee56d6cc2850f07ec2" compoundref="d2/d56/advanced__reconstruction_8py" startline="153" endline="180">advanced_reconstruction.AdvancedTeXReconstructor._extract_math_content</references>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a9e099fcc6fb5cacdd5fa7e042f1a17d6" compoundref="d2/d56/advanced__reconstruction_8py" startline="85" endline="104">advanced_reconstruction.AdvancedTeXReconstructor._extract_title</references>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a4e601a4d143d3e1637c61757ab596df8" compoundref="d2/d56/advanced__reconstruction_8py" startline="21" endline="38">advanced_reconstruction.AdvancedTeXReconstructor.extract_full_content</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a9e099fcc6fb5cacdd5fa7e042f1a17d6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str advanced_reconstruction.AdvancedTeXReconstructor._extract_title</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_title</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_title</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract article title.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="85" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="85" bodyend="104"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a579fc70d9be92509597b47b40a5a260c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str advanced_reconstruction.AdvancedTeXReconstructor._extract_author</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_author</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_author</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract author name.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="105" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="105" bodyend="120"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a779e48cc8b36817b347556418278e40f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] advanced_reconstruction.AdvancedTeXReconstructor._extract_all_sections</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_all_sections</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_all_sections</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract all sections with hierarchy.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="121" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="121" bodyend="152"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1aedf322d91d53eeee56d6cc2850f07ec2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[Dict]</type>
+        <definition> List[Dict] advanced_reconstruction.AdvancedTeXReconstructor._extract_math_content</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_math_content</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_math_content</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract mathematical expressions.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="153" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="153" bodyend="180"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a55b49a421b0d9a9233a9c47ad49de3b2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict</type>
+        <definition> Dict advanced_reconstruction.AdvancedTeXReconstructor._extract_keywords</definition>
+        <argsstring>(self, str content)</argsstring>
+        <name>_extract_keywords</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_keywords</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract keywords in multiple languages.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="181" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="181" bodyend="198"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ade1fd52412a735cda520e4dd2f5d8536" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str advanced_reconstruction.AdvancedTeXReconstructor._clean_latex</definition>
+        <argsstring>(self, str text)</argsstring>
+        <name>_clean_latex</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._clean_latex</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Clean LaTeX commands while preserving structure.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="199" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="199" bodyend="215"/>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a54e918af940215c3a180104ce350256d" compoundref="d2/d56/advanced__reconstruction_8py" startline="311" endline="347">advanced_reconstruction.AdvancedTeXReconstructor._extract_text_content</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" compoundref="d2/d56/advanced__reconstruction_8py" startline="39" endline="71">advanced_reconstruction.AdvancedTeXReconstructor._parse_conditional_article</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" compoundref="d2/d56/advanced__reconstruction_8py" startline="72" endline="84">advanced_reconstruction.AdvancedTeXReconstructor._parse_standard_article</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a54e918af940215c3a180104ce350256d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str advanced_reconstruction.AdvancedTeXReconstructor._extract_text_content</definition>
+        <argsstring>(self, str latex_text)</argsstring>
+        <name>_extract_text_content</name>
+        <qualifiedname>advanced_reconstruction.AdvancedTeXReconstructor._extract_text_content</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>latex_text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract readable text from LaTeX content.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="311" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="311" bodyend="347"/>
+        <references refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ade1fd52412a735cda520e4dd2f5d8536" compoundref="d2/d56/advanced__reconstruction_8py" startline="199" endline="215">advanced_reconstruction.AdvancedTeXReconstructor._clean_latex</references>
+        <referencedby refid="d7/d74/classmarkdowntex__parser_1_1_markdown_te_x_parser_1ad93f7bc15a5f00d1b4d294f0d701320c" compoundref="d9/dc7/markdowntex__parser_8py" startline="534" endline="555">markdowntex_parser.MarkdownTeXParser._extract_text_content</referencedby>
+        <referencedby refid="d7/d74/classmarkdowntex__parser_1_1_markdown_te_x_parser_1adccfc09d454f5e23cdce8e02d948ba23" compoundref="d9/dc7/markdowntex__parser_8py" startline="504" endline="533">markdowntex_parser.MarkdownTeXParser.extract_links</referencedby>
+        <referencedby refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a00b0808f83caee8a0a609e3670767319" compoundref="d2/d56/advanced__reconstruction_8py" startline="216" endline="310">advanced_reconstruction.AdvancedTeXReconstructor.reconstruct_to_markdown</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Advanced reconstruction tool with better content parsing.</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>advanced_reconstruction.AdvancedTeXReconstructor</label>
+        <link refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" line="15" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/advanced_reconstruction.py" bodystart="15" bodyend="347"/>
+    <listofallmembers>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1abd1a72c0b74dab3bf7bf65a8db040647" prot="public" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>__init__</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ade1fd52412a735cda520e4dd2f5d8536" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_clean_latex</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a779e48cc8b36817b347556418278e40f" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_all_sections</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a579fc70d9be92509597b47b40a5a260c" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_author</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a55b49a421b0d9a9233a9c47ad49de3b2" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_keywords</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1aedf322d91d53eeee56d6cc2850f07ec2" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_math_content</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a54e918af940215c3a180104ce350256d" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_text_content</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a9e099fcc6fb5cacdd5fa7e042f1a17d6" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_extract_title</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a3236ab83013ca486b6376c9705235c4b" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_parse_conditional_article</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1ac9f28e9a1ffe293798a631a612e7c05d" prot="protected" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>_parse_standard_article</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a620851a75c8b961c1b4859c77c11a46f" prot="public" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>content_cache</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a4e601a4d143d3e1637c61757ab596df8" prot="public" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>extract_full_content</name></member>
+      <member refid="d5/dca/classadvanced__reconstruction_1_1_advanced_te_x_reconstructor_1a00b0808f83caee8a0a609e3670767319" prot="public" virt="non-virtual"><scope>advanced_reconstruction::AdvancedTeXReconstructor</scope><name>reconstruct_to_markdown</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

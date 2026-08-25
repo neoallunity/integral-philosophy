@@ -1,0 +1,535 @@
+\doxysection{content\+\_\+pipeline.\+Content\+Pipeline Class Reference}
+\hypertarget{classcontent__pipeline_1_1_content_pipeline}{}\label{classcontent__pipeline_1_1_content_pipeline}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+
+
+Collaboration diagram for content\+\_\+pipeline.\+Content\+Pipeline\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0793985ccef14ba186a29f0380bb5159}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Path \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\+\_\+dir}}=Path("{}content\+\_\+pipeline"{}))
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a8c63e7b58a8f99983357aa6687d1db8b}{process\+\_\+website}} (self, str url, int max\+\_\+pages=100)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0022330788a94f1dc45862a61b3f93df}{generate\+\_\+report}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}{work\+\_\+dir}} = work\+\_\+dir
+\item 
+dict \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}{dirs}}
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}{scraper}} = None
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}{parser}} = \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{Markdown\+Te\+XParser}}()
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}{uml\+\_\+transformer}} = \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer}{ASTTo\+UMLTransformer}}()
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}{tei\+\_\+generator}} = \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{TEIGenerator}}()
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5}{xslt\+\_\+transformer}} = \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer}{XSLTTransformer}}()
+\item 
+\mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb}{html\+\_\+tei\+\_\+converter}} = \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter}{HTMLTEIConverter}}()
+\item 
+dict \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}{results}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4}{\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website}} (self, str url, int max\+\_\+pages)
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content}} (self)
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8}{\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml}} (self)
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei}} (self)
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06}{\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats}} (self)
+\item 
+bool \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline}} (self)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7}{\+\_\+validate\+\_\+xml}} (self, Path xml\+\_\+file)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959}{\+\_\+validate\+\_\+tei\+\_\+structure}} (self, Path tei\+\_\+file)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799}{\+\_\+check\+\_\+format\+\_\+consistency}} (self)
+\item 
+int \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}{\+\_\+xpath\+\_\+count}} (self, Path xml\+\_\+file, str xpath)
+\item 
+Dict\mbox{[}str, Any\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11}{\+\_\+get\+\_\+directory\+\_\+structure}} (self)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e}{\+\_\+generate\+\_\+recommendations}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Master content transformation pipeline\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00043}{43}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a0793985ccef14ba186a29f0380bb5159}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a0793985ccef14ba186a29f0380bb5159} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path }]{work\+\_\+dir}{ = {\ttfamily Path("{}content\+\_\+pipeline"{})}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00046}{46}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_check\_format\_consistency@{\_check\_format\_consistency}}
+\index{\_check\_format\_consistency@{\_check\_format\_consistency}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_check\_format\_consistency()}{\_check\_format\_consistency()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a2ebb227e2db5d0a2a2051b89b4101799} 
+ Dict\mbox{[}str, Any\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+check\+\_\+format\+\_\+consistency (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Check consistency across generated formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00423}{423}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_generate\_recommendations@{\_generate\_recommendations}}
+\index{\_generate\_recommendations@{\_generate\_recommendations}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_generate\_recommendations()}{\_generate\_recommendations()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a249244c24d82563492497dfc2fbc524e} 
+ List\mbox{[}str\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+generate\+\_\+recommendations (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Generate recommendations based on pipeline results\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00514}{514}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00476}{generate\+\_\+report()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_get\_directory\_structure@{\_get\_directory\_structure}}
+\index{\_get\_directory\_structure@{\_get\_directory\_structure}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_get\_directory\_structure()}{\_get\_directory\_structure()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a046fd801f6ce4072fa3f3732ce7b8b11} 
+ Dict\mbox{[}str, Any\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+get\+\_\+directory\+\_\+structure (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get directory structure and file counts\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00497}{497}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00476}{generate\+\_\+report()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_1\_scrape\_website@{\_stage\_1\_scrape\_website}}
+\index{\_stage\_1\_scrape\_website@{\_stage\_1\_scrape\_website}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_1\_scrape\_website()}{\_stage\_1\_scrape\_website()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a781c3aeeb6c7bf8a17ba9abb911b19d4} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{int}]{max\+\_\+pages}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 1: Scrape website content\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00132}{132}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00065}{scraper}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_2\_parse\_content@{\_stage\_2\_parse\_content}}
+\index{\_stage\_2\_parse\_content@{\_stage\_2\_parse\_content}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_2\_parse\_content()}{\_stage\_2\_parse\_content()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a5fa7fcd45a4d7d57c292d93195f7d783} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 2: Parse MarkdownTeX content to AST\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00165}{165}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00066}{parser}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00047}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_3\_generate\_uml@{\_stage\_3\_generate\_uml}}
+\index{\_stage\_3\_generate\_uml@{\_stage\_3\_generate\_uml}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_3\_generate\_uml()}{\_stage\_3\_generate\_uml()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_aeca7457dd3ff32a794db209bb21454c8} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 3: Generate UML diagrams from site structure\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00229}{229}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00067}{uml\+\_\+transformer}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_4\_generate\_tei@{\_stage\_4\_generate\_tei}}
+\index{\_stage\_4\_generate\_tei@{\_stage\_4\_generate\_tei}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_4\_generate\_tei()}{\_stage\_4\_generate\_tei()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a37a1ec204f46ef4794701981085e8eb1} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 4: Generate canonical TEI XML format\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00267}{267}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00383}{\+\_\+validate\+\_\+xml()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, \mbox{\hyperlink{content__pipeline_8py_source_l00068}{tei\+\_\+generator}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00047}{work\+\_\+dir}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_5\_transform\_formats@{\_stage\_5\_transform\_formats}}
+\index{\_stage\_5\_transform\_formats@{\_stage\_5\_transform\_formats}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_5\_transform\_formats()}{\_stage\_5\_transform\_formats()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a042246df8fe8082ae21d0dec9e4a6b06} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 5: Transform TEI to multiple output formats\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00302}{302}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00069}{xslt\+\_\+transformer}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_stage\_6\_validate\_pipeline@{\_stage\_6\_validate\_pipeline}}
+\index{\_stage\_6\_validate\_pipeline@{\_stage\_6\_validate\_pipeline}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_stage\_6\_validate\_pipeline()}{\_stage\_6\_validate\_pipeline()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a5fa14a99936afdc456de8431dce42995} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Stage 6: Validate pipeline and test isomorphism\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00346}{346}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00423}{\+\_\+check\+\_\+format\+\_\+consistency()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00399}{\+\_\+validate\+\_\+tei\+\_\+structure()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00070}{html\+\_\+tei\+\_\+converter}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_validate\_tei\_structure@{\_validate\_tei\_structure}}
+\index{\_validate\_tei\_structure@{\_validate\_tei\_structure}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_validate\_tei\_structure()}{\_validate\_tei\_structure()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_ad8b772c220d5c18b9add36d3952ea959} 
+ Dict\mbox{[}str, Any\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+validate\+\_\+tei\+\_\+structure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{tei\+\_\+file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate TEI structure\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00399}{399}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00459}{\+\_\+xpath\+\_\+count()}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}.
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_validate\_xml@{\_validate\_xml}}
+\index{\_validate\_xml@{\_validate\_xml}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_validate\_xml()}{\_validate\_xml()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a0d81a94bea0219fcfcc1e01fa0afd1a7} 
+ Dict\mbox{[}str, Any\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+validate\+\_\+xml (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{xml\+\_\+file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate XML file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00383}{383}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}.
+
+Here is the caller graph for this function\+:
+% FIG 14
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!\_xpath\_count@{\_xpath\_count}}
+\index{\_xpath\_count@{\_xpath\_count}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{\_xpath\_count()}{\_xpath\_count()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_acc90c9788913e9c4441f9ebdb568bfbe} 
+ int content\+\_\+pipeline.\+Content\+Pipeline.\+\_\+xpath\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{xml\+\_\+file}{, }\item[{str}]{xpath}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get XPath count from XML file\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00459}{459}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+compare\+\_\+html\+\_\+files()}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00399}{\+\_\+validate\+\_\+tei\+\_\+structure()}}.
+
+Here is the caller graph for this function\+:
+% FIG 15
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a0022330788a94f1dc45862a61b3f93df}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!generate\_report@{generate\_report}}
+\index{generate\_report@{generate\_report}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{generate\_report()}{generate\_report()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a0022330788a94f1dc45862a61b3f93df} 
+ Dict\mbox{[}str, Any\mbox{]} content\+\_\+pipeline.\+Content\+Pipeline.\+generate\+\_\+report (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate comprehensive pipeline report\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00476}{476}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00514}{\+\_\+generate\+\_\+recommendations()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00497}{\+\_\+get\+\_\+directory\+\_\+structure()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00051}{dirs}}, \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00047}{work\+\_\+dir}}.
+
+Here is the call graph for this function\+:
+% FIG 16
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a8c63e7b58a8f99983357aa6687d1db8b}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!process\_website@{process\_website}}
+\index{process\_website@{process\_website}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{process\_website()}{process\_website()}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a8c63e7b58a8f99983357aa6687d1db8b} 
+ bool content\+\_\+pipeline.\+Content\+Pipeline.\+process\+\_\+website (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{url}{, }\item[{int }]{max\+\_\+pages}{ = {\ttfamily 100}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process complete website through the pipeline\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00081}{81}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+References \mbox{\hyperlink{content__pipeline_8py_source_l00132}{\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00165}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00229}{\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00302}{\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00073}{results}}.
+
+Here is the call graph for this function\+:
+% FIG 17
+
+
+\label{doc-variable-members}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!dirs@{dirs}}
+\index{dirs@{dirs}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{dirs}{dirs}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a07958eede59d97fcdb5ef0ca808f1b96} 
+dict content\+\_\+pipeline.\+Content\+Pipeline.\+dirs}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}scraped"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}01\_scraped"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}parsed"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}02\_parsed"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uml"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}03\_uml"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}tei"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}04\_tei"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}transformed"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}05\_transformed"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}validation"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}06\_validation"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}reports"{}}:\ self.work\_dir\ /\ \textcolor{stringliteral}{"{}reports"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00051}{51}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00423}{\+\_\+check\+\_\+format\+\_\+consistency()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00497}{\+\_\+get\+\_\+directory\+\_\+structure()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00132}{\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00165}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00229}{\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00302}{\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00476}{generate\+\_\+report()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!html\_tei\_converter@{html\_tei\_converter}}
+\index{html\_tei\_converter@{html\_tei\_converter}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{html\_tei\_converter}{html\_tei\_converter}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a3436f9334b01391c0cceb8b131202bbb} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+html\+\_\+tei\+\_\+converter = \mbox{\hyperlink{classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter}{HTMLTEIConverter}}()}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00070}{70}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!parser@{parser}}
+\index{parser@{parser}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{parser}{parser}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a014ba767afb3abb130285844fbd7ed02} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+parser = \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{Markdown\+Te\+XParser}}()}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00066}{66}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00165}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!results@{results}}
+\index{results@{results}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{results}{results}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a931f2563440e186e5484feafb1a73b9b} 
+dict content\+\_\+pipeline.\+Content\+Pipeline.\+results}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}start\_time"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}end\_time"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}duration"{}}:\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stages"{}}:\ \{\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00073}{73}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00514}{\+\_\+generate\+\_\+recommendations()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00132}{\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00165}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00229}{\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00302}{\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00346}{\+\_\+stage\+\_\+6\+\_\+validate\+\_\+pipeline()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00476}{generate\+\_\+report()}}, and \mbox{\hyperlink{content__pipeline_8py_source_l00081}{process\+\_\+website()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!scraper@{scraper}}
+\index{scraper@{scraper}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{scraper}{scraper}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a6e4c137f0493d63ae42abbeaa771a975} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+scraper = None}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00065}{65}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00132}{\+\_\+stage\+\_\+1\+\_\+scrape\+\_\+website()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!tei\_generator@{tei\_generator}}
+\index{tei\_generator@{tei\_generator}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{tei\_generator}{tei\_generator}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a51d5d2a89b637e7f8f02beb1d5b842be} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+tei\+\_\+generator = \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{TEIGenerator}}()}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00068}{68}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!uml\_transformer@{uml\_transformer}}
+\index{uml\_transformer@{uml\_transformer}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{uml\_transformer}{uml\_transformer}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_abade25967f1def0af3f5bc1f04d96eae} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+uml\+\_\+transformer = \mbox{\hyperlink{classast__to__uml_1_1_a_s_t_to_u_m_l_transformer}{ASTTo\+UMLTransformer}}()}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00067}{67}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00229}{\+\_\+stage\+\_\+3\+\_\+generate\+\_\+uml()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!work\_dir@{work\_dir}}
+\index{work\_dir@{work\_dir}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{work\_dir}{work\_dir}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_ac3a54dee3986e94da6dbffd35ac0fd91} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+work\+\_\+dir = work\+\_\+dir}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00047}{47}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{html__tei__converter_8py_source_l00684}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+compare\+\_\+html\+\_\+files()}}, \mbox{\hyperlink{format__converter_8py_source_l00140}{format\+\_\+converter.\+Format\+Converter.\+\_\+convert\+\_\+with\+\_\+pandoc()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00052}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+\_\+create\+\_\+xslt\+\_\+stylesheets()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00165}{\+\_\+stage\+\_\+2\+\_\+parse\+\_\+content()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00267}{\+\_\+stage\+\_\+4\+\_\+generate\+\_\+tei()}}, \mbox{\hyperlink{format__converter_8py_source_l00092}{format\+\_\+converter.\+Format\+Converter.\+convert()}}, \mbox{\hyperlink{format__converter_8py_source_l00233}{format\+\_\+converter.\+Format\+Converter.\+convert\+\_\+from\+\_\+ast()}}, \mbox{\hyperlink{format__converter_8py_source_l00196}{format\+\_\+converter.\+Format\+Converter.\+convert\+\_\+to\+\_\+ast()}}, \mbox{\hyperlink{content__pipeline_8py_source_l00476}{generate\+\_\+report()}}, \mbox{\hyperlink{html__tei__converter_8py_source_l00474}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+html\+\_\+to\+\_\+tei()}}, and \mbox{\hyperlink{html__tei__converter_8py_source_l00535}{html\+\_\+tei\+\_\+converter.\+HTMLTEIConverter.\+tei\+\_\+to\+\_\+html()}}.
+
+\Hypertarget{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5}\index{content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}!xslt\_transformer@{xslt\_transformer}}
+\index{xslt\_transformer@{xslt\_transformer}!content\_pipeline.ContentPipeline@{content\_pipeline.ContentPipeline}}
+\doxysubsubsection{\texorpdfstring{xslt\_transformer}{xslt\_transformer}}
+{\footnotesize\ttfamily \label{classcontent__pipeline_1_1_content_pipeline_a37d9377495f6f1f8174200ca6c2435e5} 
+content\+\_\+pipeline.\+Content\+Pipeline.\+xslt\+\_\+transformer = \mbox{\hyperlink{classxslt__transformer_1_1_x_s_l_t_transformer}{XSLTTransformer}}()}
+
+
+
+Definition at line \mbox{\hyperlink{content__pipeline_8py_source_l00069}{69}} of file \mbox{\hyperlink{content__pipeline_8py_source}{content\+\_\+pipeline.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{content__pipeline_8py_source_l00302}{\+\_\+stage\+\_\+5\+\_\+transform\+\_\+formats()}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{content__pipeline_8py}{content\+\_\+pipeline.\+py}}\end{DoxyCompactItemize}

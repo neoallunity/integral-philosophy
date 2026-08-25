@@ -1,0 +1,488 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter" kind="class" language="Python" prot="public">
+    <compoundname>html_tei_converter::HTMLTEIConverter</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>html_tei_converter.HTMLTEIConverter::work_dir</definition>
+        <argsstring></argsstring>
+        <name>work_dir</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.work_dir</qualifiedname>
+        <initializer>=  work_dir or Path(&quot;conversion_workspace&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="40" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="40" bodyend="-1"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" compoundref="d7/dae/html__tei__converter_8py" startline="52" endline="473">html_tei_converter.HTMLTEIConverter._create_xslt_stylesheets</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" compoundref="d7/dae/html__tei__converter_8py" startline="474" endline="534">html_tei_converter.HTMLTEIConverter.html_to_tei</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" compoundref="d7/dae/html__tei__converter_8py" startline="535" endline="577">html_tei_converter.HTMLTEIConverter.tei_to_html</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a00fd922703396e06d55758234072eb22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>html_tei_converter.HTMLTEIConverter.__init__</definition>
+        <argsstring>(self, Optional[Path] work_dir=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>work_dir</declname>
+          <array>[Path]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="39" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="39" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref></type>
+        <definition> ConversionResult html_tei_converter.HTMLTEIConverter.html_to_tei</definition>
+        <argsstring>(self, Path html_file)</argsstring>
+        <name>html_to_tei</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.html_to_tei</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>html_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convert HTML to TEI using tidy + XSLT</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="474" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="474" bodyend="534"/>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" compoundref="d7/dae/html__tei__converter_8py" startline="626" endline="633">html_tei_converter.HTMLTEIConverter._calculate_checksum</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" compoundref="d7/dae/html__tei__converter_8py" startline="634" endline="650">html_tei_converter.HTMLTEIConverter._count_tei_elements</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <references refid="d3/d91/classformat__converter_1_1_format_converter_1a600a43c2e4e4599312aef1a0712b8d07" compoundref="d4/d22/format__converter_8py" startline="42">format_converter.FormatConverter.work_dir</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" compoundref="d7/dae/html__tei__converter_8py" startline="40">html_tei_converter.HTMLTEIConverter.work_dir</references>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dd/d55/classhtml__tei__converter_1_1_conversion_result" kindref="compound">ConversionResult</ref></type>
+        <definition> ConversionResult html_tei_converter.HTMLTEIConverter.tei_to_html</definition>
+        <argsstring>(self, Path tei_file)</argsstring>
+        <name>tei_to_html</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.tei_to_html</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>tei_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convert TEI to HTML using XSLT</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="535" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="535" bodyend="577"/>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" compoundref="d7/dae/html__tei__converter_8py" startline="626" endline="633">html_tei_converter.HTMLTEIConverter._calculate_checksum</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" compoundref="d7/dae/html__tei__converter_8py" startline="651" endline="683">html_tei_converter.HTMLTEIConverter._count_html_elements</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <references refid="d3/d91/classformat__converter_1_1_format_converter_1a600a43c2e4e4599312aef1a0712b8d07" compoundref="d4/d22/format__converter_8py" startline="42">format_converter.FormatConverter.work_dir</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" compoundref="d7/dae/html__tei__converter_8py" startline="40">html_tei_converter.HTMLTEIConverter.work_dir</references>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] html_tei_converter.HTMLTEIConverter.test_isomorphism</definition>
+        <argsstring>(self, Path original_html)</argsstring>
+        <name>test_isomorphism</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.test_isomorphism</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>original_html</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test HTML → TEI → HTML isomorphism</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="578" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="578" bodyend="625"/>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" compoundref="d7/dae/html__tei__converter_8py" startline="808" endline="821">html_tei_converter.HTMLTEIConverter._generate_html_diff</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" compoundref="d7/dae/html__tei__converter_8py" startline="795" endline="807">html_tei_converter.HTMLTEIConverter._is_isomorphic</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" compoundref="d7/dae/html__tei__converter_8py" startline="474" endline="534">html_tei_converter.HTMLTEIConverter.html_to_tei</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" compoundref="d7/dae/html__tei__converter_8py" startline="535" endline="577">html_tei_converter.HTMLTEIConverter.tei_to_html</references>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1add48d65f9b422f454ab226b866dca44c" compoundref="d7/dae/html__tei__converter_8py" startline="822" endline="858">html_tei_converter.HTMLTEIConverter.batch_test_isomorphism</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1add48d65f9b422f454ab226b866dca44c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] html_tei_converter.HTMLTEIConverter.batch_test_isomorphism</definition>
+        <argsstring>(self, List[Path] html_files)</argsstring>
+        <name>batch_test_isomorphism</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter.batch_test_isomorphism</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>html_files</declname>
+          <array>[Path]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Test isomorphism for multiple HTML files</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="822" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="822" bodyend="858"/>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None html_tei_converter.HTMLTEIConverter._create_xslt_stylesheets</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_xslt_stylesheets</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._create_xslt_stylesheets</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create XSLT stylesheets for HTML ↔ TEI conversion</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="52" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="52" bodyend="473"/>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <references refid="d3/d91/classformat__converter_1_1_format_converter_1a600a43c2e4e4599312aef1a0712b8d07" compoundref="d4/d22/format__converter_8py" startline="42">format_converter.FormatConverter.work_dir</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" compoundref="d7/dae/html__tei__converter_8py" startline="40">html_tei_converter.HTMLTEIConverter.work_dir</references>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str html_tei_converter.HTMLTEIConverter._calculate_checksum</definition>
+        <argsstring>(self, Path file_path)</argsstring>
+        <name>_calculate_checksum</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._calculate_checksum</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate SHA-256 checksum of file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="626" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="626" bodyend="633"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" compoundref="d7/dae/html__tei__converter_8py" startline="474" endline="534">html_tei_converter.HTMLTEIConverter.html_to_tei</referencedby>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" compoundref="d7/dae/html__tei__converter_8py" startline="535" endline="577">html_tei_converter.HTMLTEIConverter.tei_to_html</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, int]</type>
+        <definition> Dict[str, int] html_tei_converter.HTMLTEIConverter._count_tei_elements</definition>
+        <argsstring>(self, Path tei_file)</argsstring>
+        <name>_count_tei_elements</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._count_tei_elements</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>tei_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Count TEI elements in file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="634" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="634" bodyend="650"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" compoundref="d7/dae/html__tei__converter_8py" startline="474" endline="534">html_tei_converter.HTMLTEIConverter.html_to_tei</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, int]</type>
+        <definition> Dict[str, int] html_tei_converter.HTMLTEIConverter._count_html_elements</definition>
+        <argsstring>(self, Path html_file)</argsstring>
+        <name>_count_html_elements</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._count_html_elements</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>html_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Count HTML elements in file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="651" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="651" bodyend="683"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" compoundref="d7/dae/html__tei__converter_8py" startline="535" endline="577">html_tei_converter.HTMLTEIConverter.tei_to_html</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, Any]</type>
+        <definition> Dict[str, Any] html_tei_converter.HTMLTEIConverter._compare_html_files</definition>
+        <argsstring>(self, Path original, Path final)</argsstring>
+        <name>_compare_html_files</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._compare_html_files</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>original</declname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>final</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Compare two HTML files for structure and content preservation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="684" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="684" bodyend="732"/>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" compoundref="d7/dae/html__tei__converter_8py" startline="626" endline="633">html_tei_converter.HTMLTEIConverter._calculate_checksum</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" compoundref="d7/dae/html__tei__converter_8py" startline="733" endline="743">html_tei_converter.HTMLTEIConverter._clean_html_with_tidy</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1acc90c9788913e9c4441f9ebdb568bfbe" compoundref="d9/dea/content__pipeline_8py" startline="459" endline="475">content_pipeline.ContentPipeline._xpath_count</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" compoundref="d7/dae/html__tei__converter_8py" startline="744" endline="759">html_tei_converter.HTMLTEIConverter._xpath_count</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" compoundref="d7/dae/html__tei__converter_8py" startline="777" endline="794">html_tei_converter.HTMLTEIConverter._xpath_links</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" compoundref="d7/dae/html__tei__converter_8py" startline="760" endline="776">html_tei_converter.HTMLTEIConverter._xpath_text</references>
+        <references refid="d2/db6/classcontent__pipeline_1_1_content_pipeline_1ac3a54dee3986e94da6dbffd35ac0fd91" compoundref="d9/dea/content__pipeline_8py" startline="47">content_pipeline.ContentPipeline.work_dir</references>
+        <references refid="d3/d91/classformat__converter_1_1_format_converter_1a600a43c2e4e4599312aef1a0712b8d07" compoundref="d4/d22/format__converter_8py" startline="42">format_converter.FormatConverter.work_dir</references>
+        <references refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" compoundref="d7/dae/html__tei__converter_8py" startline="40">html_tei_converter.HTMLTEIConverter.work_dir</references>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str html_tei_converter.HTMLTEIConverter._clean_html_with_tidy</definition>
+        <argsstring>(self, Path html_file)</argsstring>
+        <name>_clean_html_with_tidy</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._clean_html_with_tidy</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>html_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Clean HTML with tidy</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="733" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="733" bodyend="743"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int html_tei_converter.HTMLTEIConverter._xpath_count</definition>
+        <argsstring>(self, Path file_path, str xpath)</argsstring>
+        <name>_xpath_count</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._xpath_count</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>xpath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get XPath count from file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="744" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="744" bodyend="759"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] html_tei_converter.HTMLTEIConverter._xpath_text</definition>
+        <argsstring>(self, Path file_path, str xpath)</argsstring>
+        <name>_xpath_text</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._xpath_text</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>xpath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get XPath text content from file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="760" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="760" bodyend="776"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] html_tei_converter.HTMLTEIConverter._xpath_links</definition>
+        <argsstring>(self, Path file_path)</argsstring>
+        <name>_xpath_links</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._xpath_links</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extract all href attributes from links</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="777" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="777" bodyend="794"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" compoundref="d7/dae/html__tei__converter_8py" startline="684" endline="732">html_tei_converter.HTMLTEIConverter._compare_html_files</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool html_tei_converter.HTMLTEIConverter._is_isomorphic</definition>
+        <argsstring>(self, Dict[str, Any] comparison)</argsstring>
+        <name>_is_isomorphic</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._is_isomorphic</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Dict</type>
+          <declname>comparison</declname>
+          <array>[str, Any]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determine if conversion preserves structure (isomorphism)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="795" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="795" bodyend="807"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str html_tei_converter.HTMLTEIConverter._generate_html_diff</definition>
+        <argsstring>(self, Path original, Path final)</argsstring>
+        <name>_generate_html_diff</name>
+        <qualifiedname>html_tei_converter.HTMLTEIConverter._generate_html_diff</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>original</declname>
+        </param>
+        <param>
+          <type>Path</type>
+          <declname>final</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate diff between HTML files</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="808" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="808" bodyend="821"/>
+        <referencedby refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" compoundref="d7/dae/html__tei__converter_8py" startline="578" endline="625">html_tei_converter.HTMLTEIConverter.test_isomorphism</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Bidirectional HTML ↔ TEI converter with validation</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>html_tei_converter.HTMLTEIConverter</label>
+        <link refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="36" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="36" bodyend="858"/>
+    <listofallmembers>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a00fd922703396e06d55758234072eb22" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>__init__</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a1e2744cd24e192dac4ee7fb780d1f1ba" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_calculate_checksum</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a5c366dad87c63d19a281ffb4ca3e1783" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_clean_html_with_tidy</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af7dd1b17c6a07e871dfca72baf92adae" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_compare_html_files</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a834a4c81492c0a13486d5ac300b66d55" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_count_html_elements</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1af68f39784d81254818032762fccc52f2" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_count_tei_elements</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a3e1de7ac8b2f56c577b9e4e63d3b431a" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_create_xslt_stylesheets</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a0abb4aedda77caeb821d2aa3d6b99886" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_generate_html_diff</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1adbc26c7b93670e13a863721bf12c56b4" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_is_isomorphic</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a4393948823911d8df8ed38544ca0a731" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_xpath_count</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7e6a9a257d6a35579ba52fcadb804866" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_xpath_links</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a8863908c8303f4f4672cf2b6207e9d04" prot="protected" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>_xpath_text</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1add48d65f9b422f454ab226b866dca44c" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>batch_test_isomorphism</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7bbbc9d9f440ec34c2be309bbddf3248" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>html_to_tei</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a22159afc6d778f1dc898a3fcf70c8ade" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>tei_to_html</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1a7d367bf315a5c19de81fa852bec09282" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>test_isomorphism</name></member>
+      <member refid="da/de8/classhtml__tei__converter_1_1_h_t_m_l_t_e_i_converter_1abf7d9e04be2c6e87c81daeaf6f93a069" prot="public" virt="non-virtual"><scope>html_tei_converter::HTMLTEIConverter</scope><name>work_dir</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

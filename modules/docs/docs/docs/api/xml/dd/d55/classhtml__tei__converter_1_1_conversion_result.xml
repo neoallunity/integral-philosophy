@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="dd/d55/classhtml__tei__converter_1_1_conversion_result" kind="class" language="Python" prot="public">
+    <compoundname>html_tei_converter::ConversionResult</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="dd/d55/classhtml__tei__converter_1_1_conversion_result_1a0ecbd663a80f462d201781a0232ab6ee" prot="public" static="yes" mutable="no">
+        <type>Dict</type>
+        <definition>Dict html_tei_converter.ConversionResult::metadata</definition>
+        <argsstring></argsstring>
+        <name>metadata</name>
+        <qualifiedname>html_tei_converter.ConversionResult.metadata</qualifiedname>
+        <initializer>[str, Any]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="33" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Result of conversion operation</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>html_tei_converter.ConversionResult</label>
+        <link refid="dd/d55/classhtml__tei__converter_1_1_conversion_result"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" line="25" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/html_tei_converter.py" bodystart="25" bodyend="35"/>
+    <listofallmembers>
+      <member refid="dd/d55/classhtml__tei__converter_1_1_conversion_result_1a0ecbd663a80f462d201781a0232ab6ee" prot="public" virt="non-virtual"><scope>html_tei_converter::ConversionResult</scope><name>metadata</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

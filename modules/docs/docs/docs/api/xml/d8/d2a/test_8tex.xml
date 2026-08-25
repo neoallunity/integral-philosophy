@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d8/d2a/test_8tex" kind="file" language="C++">
+    <compoundname>test.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">\documentclass{article}</highlight></codeline>
+<codeline><highlight class="normal">\title{Test<sp/>Document}</highlight></codeline>
+<codeline><highlight class="normal">\author{Test<sp/>Author}</highlight></codeline>
+<codeline><highlight class="normal">\begin{document}</highlight></codeline>
+<codeline><highlight class="normal">\maketitle</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>is<sp/>a<sp/>test<sp/>LaTeX<sp/>document<sp/>for<sp/>the<sp/>Integral<sp/>Philosophy<sp/>Publishing<sp/>System.</highlight></codeline>
+<codeline><highlight class="normal">\end{document}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/test.tex"/>
+  </compounddef>
+</doxygen>

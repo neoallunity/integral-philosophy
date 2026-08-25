@@ -1,0 +1,12 @@
+digraph "markdowntex_parser.MarkdownTeXParser.ast_to_dict"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="markdowntex_parser.Markdown\lTeXParser.ast_to_dict",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge3_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="markdowntex_parser.Markdown\lTeXParser._node_to_dict",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/d74/classmarkdowntex__parser_1_1_markdown_te_x_parser.html#aea6dae992ba01f1fbab3ef2836162b3b",tooltip=" "];
+  Node2 -> Node2 [id="edge4_Node000002_Node000002",color="steelblue1",style="solid",tooltip=" "];
+}

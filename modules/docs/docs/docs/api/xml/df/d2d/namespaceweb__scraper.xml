@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="df/d2d/namespaceweb__scraper" kind="namespace" language="Python">
+    <compoundname>web_scraper</compoundname>
+    <innerclass refid="d2/def/classweb__scraper_1_1_web_scraper" prot="public">web_scraper::WebScraper</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="df/d2d/namespaceweb__scraper_1a5e4f0ca6a2ec720b63963e035eb3de1d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>web_scraper.level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>web_scraper.level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="df/d2d/namespaceweb__scraper_1a3de340f8469b515742f415f4fff9838d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>web_scraper.INFO</definition>
+        <argsstring></argsstring>
+        <name>INFO</name>
+        <qualifiedname>web_scraper.INFO</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="df/d2d/namespaceweb__scraper_1aa9cf18d7a5579406cda2165b7ca75490" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>web_scraper.format</definition>
+        <argsstring></argsstring>
+        <name>format</name>
+        <qualifiedname>web_scraper.format</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="28" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="df/d2d/namespaceweb__scraper_1aea268dafffd175f9775c78b73b4ffb4b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>web_scraper.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>web_scraper.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="30" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="df/d2d/namespaceweb__scraper_1a99dd5178a985e50e1eb8c274d45bc2ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>web_scraper.main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <qualifiedname>web_scraper.main</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Main function to run the web scraper</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="452" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" bodystart="452" bodyend="483"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Recursive Web Scraper with JavaScript Processing
+Downloads entire websites while preserving structure and links
+Converts content to MarkdownTeX format for further processing
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/web_scraper.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

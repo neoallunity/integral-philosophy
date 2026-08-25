@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d6/d5c/_prelude_8hs" kind="file" language="C++">
+    <compoundname>Prelude.hs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">{-#<sp/>LANGUAGE<sp/>OverloadedStrings<sp/>#-}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">module<sp/>IntegralPhilosophy.Prelude<sp/>where</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Control.Exception<sp/>as<sp/>Exception</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text<sp/>as<sp/>Text</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Text.IO<sp/>as<sp/>TextIO</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Char<sp/>as<sp/>Char</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>System.IO<sp/>as<sp/>IO</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>qualified<sp/>Data.Time<sp/>as<sp/>Time</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>Data.Time<sp/>(diffUTCTime)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Enhanced<sp/>error<sp/>handling<sp/>for<sp/>academic<sp/>publishing</highlight></codeline>
+<codeline><highlight class="normal">safeReadFile<sp/>::<sp/>FilePath<sp/>-&gt;<sp/>IO<sp/>(Either<sp/>String<sp/>Text.Text)</highlight></codeline>
+<codeline><highlight class="normal">safeReadFile<sp/>path<sp/>=<sp/>Exception.catch</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(Right<sp/>&lt;$&gt;<sp/>TextIO.readFile<sp/>path)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(\e<sp/>-&gt;<sp/>pure<sp/>$<sp/>Left<sp/>$<sp/>&quot;Failed<sp/>to<sp/>read<sp/>&quot;<sp/>++<sp/>path<sp/>++<sp/>&quot;:<sp/>&quot;<sp/>++<sp/>show<sp/>(e<sp/>::<sp/>Exception.SomeException))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Safe<sp/>file<sp/>writing<sp/>with<sp/>backup</highlight></codeline>
+<codeline><highlight class="normal">safeWriteFile<sp/>::<sp/>FilePath<sp/>-&gt;<sp/>Text.Text<sp/>-&gt;<sp/>IO<sp/>(Either<sp/>String<sp/>())</highlight></codeline>
+<codeline><highlight class="normal">safeWriteFile<sp/>path<sp/>content<sp/>=<sp/>Exception.catch</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>let<sp/>backupPath<sp/>=<sp/>path<sp/>++<sp/>&quot;.backup&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>IO.withFile<sp/>backupPath<sp/>IO.WriteMode<sp/>$<sp/>\handle<sp/>-&gt;<sp/>TextIO.hPutStr<sp/>handle<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TextIO.writeFile<sp/>path<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pure<sp/>$<sp/>Right<sp/>()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>)<sp/>(\e<sp/>-&gt;<sp/>pure<sp/>$<sp/>Left<sp/>$<sp/>&quot;Failed<sp/>to<sp/>write<sp/>&quot;<sp/>++<sp/>path<sp/>++<sp/>&quot;:<sp/>&quot;<sp/>++<sp/>show<sp/>(e<sp/>::<sp/>Exception.SomeException))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Academic<sp/>publication<sp/>validation<sp/>utilities</highlight></codeline>
+<codeline><highlight class="normal">validateISBN<sp/>::<sp/>Text.Text<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">validateISBN<sp/>isbn<sp/>=<sp/>Text.length<sp/>isbn<sp/>==<sp/>13<sp/>&amp;&amp;<sp/>Text.all<sp/>Char.isDigit<sp/>isbn</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Enhanced<sp/>timing<sp/>utilities<sp/>for<sp/>publication<sp/>processing</highlight></codeline>
+<codeline><highlight class="normal">measureTime<sp/>::<sp/>IO<sp/>a<sp/>-&gt;<sp/>IO<sp/>(a,<sp/>Double)</highlight></codeline>
+<codeline><highlight class="normal">measureTime<sp/>action<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>startTime<sp/>&lt;-<sp/>Time.getCurrentTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>result<sp/>&lt;-<sp/>action</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>endTime<sp/>&lt;-<sp/>Time.getCurrentTime</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pure<sp/>(result,<sp/>realToFrac<sp/>$<sp/>Time.diffUTCTime<sp/>endTime<sp/>startTime)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Common<sp/>validation<sp/>patterns<sp/>for<sp/>academic<sp/>content</highlight></codeline>
+<codeline><highlight class="normal">containsMathContent<sp/>::<sp/>Text.Text<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">containsMathContent<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;$&quot;<sp/>`Text.isInfixOf`<sp/>content<sp/>||<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;\\begin{&quot;<sp/>`Text.isInfixOf`<sp/>content<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;\\(&quot;<sp/>`Text.isInfixOf`<sp/>content</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Metadata<sp/>extraction<sp/>utilities</highlight></codeline>
+<codeline><highlight class="normal">extractTitle<sp/>::<sp/>Text.Text<sp/>-&gt;<sp/>Maybe<sp/>Text.Text</highlight></codeline>
+<codeline><highlight class="normal">extractTitle<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>Text.lines<sp/>content<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>[]<sp/>-&gt;<sp/>Nothing</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>(firstLine:_)<sp/>-&gt;<sp/>Just<sp/>$<sp/>Text.strip<sp/>firstLine</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>LaTeX<sp/>structure<sp/>detection</highlight></codeline>
+<codeline><highlight class="normal">detectLatexStructure<sp/>::<sp/>Text.Text<sp/>-&gt;<sp/>LatexStructure</highlight></codeline>
+<codeline><highlight class="normal">detectLatexStructure<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\documentclass&quot;<sp/>`Text.isInfixOf`<sp/>content<sp/>=<sp/>FullDocument</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>&quot;\\begin{&quot;<sp/>`Text.isInfixOf`<sp/>content<sp/>=<sp/>Fragment</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|<sp/>otherwise<sp/>=<sp/>PlainText</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Data<sp/>type<sp/>for<sp/>LaTeX<sp/>structure<sp/>classification</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>LatexStructure<sp/>=<sp/>FullDocument<sp/>|<sp/>Fragment<sp/>|<sp/>PlainText</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deriving<sp/>(Show,<sp/>Eq,<sp/>Ord)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Core<sp/>validation<sp/>result<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>ValidationResult<sp/>=<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{<sp/>valid<sp/>::<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>errors<sp/>::<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>warnings<sp/>::<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>metadata<sp/>::<sp/>[(Text.Text,<sp/>Text.Text)]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>deriving<sp/>(Show,<sp/>Eq)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Monoid<sp/>instance<sp/>for<sp/>combining<sp/>validation<sp/>results</highlight></codeline>
+<codeline><highlight class="normal">instance<sp/>Semigroup<sp/>ValidationResult<sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(ValidationResult<sp/>v1<sp/>e1<sp/>w1<sp/>m1)<sp/>&lt;&gt;<sp/>(ValidationResult<sp/>v2<sp/>e2<sp/>w2<sp/>m2)<sp/>=</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ValidationResult<sp/>(v1<sp/>&amp;&amp;<sp/>v2)<sp/>(e1<sp/>++<sp/>e2)<sp/>(w1<sp/>++<sp/>w2)<sp/>(m1<sp/>++<sp/>m2)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">instance<sp/>Monoid<sp/>ValidationResult<sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mempty<sp/>=<sp/>ValidationResult<sp/>True<sp/>[]<sp/>[]<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Success<sp/>constructor<sp/>for<sp/>validation</highlight></codeline>
+<codeline><highlight class="normal">validationSuccess<sp/>::<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">validationSuccess<sp/>=<sp/>ValidationResult<sp/>True<sp/>[]<sp/>[]<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Error<sp/>constructor<sp/>for<sp/>validation</highlight></codeline>
+<codeline><highlight class="normal">validationError<sp/>::<sp/>[Text.Text]<sp/>-&gt;<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">validationError<sp/>errs<sp/>=<sp/>ValidationResult<sp/>False<sp/>errs<sp/>[]<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Warning<sp/>constructor<sp/>for<sp/>validation</highlight></codeline>
+<codeline><highlight class="normal">validationWarning<sp/>::<sp/>[Text.Text]<sp/>-&gt;<sp/>ValidationResult</highlight></codeline>
+<codeline><highlight class="normal">validationWarning<sp/>warns<sp/>=<sp/>ValidationResult<sp/>True<sp/>[]<sp/>warns<sp/>[]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Enhanced<sp/>result<sp/>type<sp/>for<sp/>complex<sp/>operations</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>Result<sp/>a<sp/>=<sp/>Success<sp/>a<sp/>|<sp/>Failure<sp/>Text.Text<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deriving<sp/>(Show,<sp/>Eq,<sp/>Functor)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Utility<sp/>functions<sp/>for<sp/>Result<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">isSuccess<sp/>::<sp/>Result<sp/>a<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">isSuccess<sp/>(Success<sp/>_)<sp/>=<sp/>True</highlight></codeline>
+<codeline><highlight class="normal">isSuccess<sp/>(Failure<sp/>_<sp/>_)<sp/>=<sp/>False</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">getSuccess<sp/>::<sp/>Result<sp/>a<sp/>-&gt;<sp/>Maybe<sp/>a</highlight></codeline>
+<codeline><highlight class="normal">getSuccess<sp/>(Success<sp/>val)<sp/>=<sp/>Just<sp/>val</highlight></codeline>
+<codeline><highlight class="normal">getSuccess<sp/>(Failure<sp/>_<sp/>_)<sp/>=<sp/>Nothing</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">getErrors<sp/>::<sp/>Result<sp/>a<sp/>-&gt;<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal">getErrors<sp/>(Success<sp/>_)<sp/>=<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal">getErrors<sp/>(Failure<sp/>err<sp/>_)<sp/>=<sp/>[err]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">getWarnings<sp/>::<sp/>Result<sp/>a<sp/>-&gt;<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal">getWarnings<sp/>(Success<sp/>_)<sp/>=<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal">getWarnings<sp/>(Failure<sp/>_<sp/>warns)<sp/>=<sp/>warns</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Academic<sp/>publishing<sp/>constants</highlight></codeline>
+<codeline><highlight class="normal">standardPaperSize<sp/>::<sp/>(Int,<sp/>Int)</highlight></codeline>
+<codeline><highlight class="normal">standardPaperSize<sp/>=<sp/>(210,<sp/>297)<sp/>--<sp/>A4<sp/>in<sp/>mm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">standardFontSize<sp/>::<sp/>Int</highlight></codeline>
+<codeline><highlight class="normal">standardFontSize<sp/>=<sp/>12</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">maxAbstractLength<sp/>::<sp/>Int</highlight></codeline>
+<codeline><highlight class="normal">maxAbstractLength<sp/>=<sp/>300</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Common<sp/>LaTeX<sp/>environments<sp/>for<sp/>academic<sp/>papers</highlight></codeline>
+<codeline><highlight class="normal">academicEnvironments<sp/>::<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal">academicEnvironments<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>&quot;abstract&quot;,<sp/>&quot;keywords&quot;,<sp/>&quot;acknowledgments&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;theorem&quot;,<sp/>&quot;lemma&quot;,<sp/>&quot;proposition&quot;,<sp/>&quot;corollary&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;proof&quot;,<sp/>&quot;definition&quot;,<sp/>&quot;example&quot;,<sp/>&quot;remark&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;figure&quot;,<sp/>&quot;table&quot;,<sp/>&quot;algorithm&quot;,<sp/>&quot;equation&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Essential<sp/>LaTeX<sp/>packages<sp/>for<sp/>academic<sp/>publishing</highlight></codeline>
+<codeline><highlight class="normal">essentialPackages<sp/>::<sp/>[Text.Text]</highlight></codeline>
+<codeline><highlight class="normal">essentialPackages<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[<sp/>&quot;inputenc&quot;,<sp/>&quot;fontenc&quot;,<sp/>&quot;graphicx&quot;,<sp/>&quot;amsmath&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;amssymb&quot;,<sp/>&quot;amsfonts&quot;,<sp/>&quot;hyperref&quot;,<sp/>&quot;geometry&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>,<sp/>&quot;babel&quot;,<sp/>&quot;times&quot;,<sp/>&quot;natbib&quot;,<sp/>&quot;url&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Validation<sp/>helpers</highlight></codeline>
+<codeline><highlight class="normal">hasRequiredPackages<sp/>::<sp/>[Text.Text]<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">hasRequiredPackages<sp/>used<sp/>=<sp/>all<sp/>(`elem`<sp/>used)<sp/>essentialPackages</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">hasValidStructure<sp/>::<sp/>LatexStructure<sp/>-&gt;<sp/>Bool</highlight></codeline>
+<codeline><highlight class="normal">hasValidStructure<sp/>FullDocument<sp/>=<sp/>True</highlight></codeline>
+<codeline><highlight class="normal">hasValidStructure<sp/>Fragment<sp/>=<sp/>True</highlight></codeline>
+<codeline><highlight class="normal">hasValidStructure<sp/>PlainText<sp/>=<sp/>True</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Performance<sp/>monitoring<sp/>utilities</highlight></codeline>
+<codeline><highlight class="normal">timeExecution<sp/>::<sp/>String<sp/>-&gt;<sp/>IO<sp/>a<sp/>-&gt;<sp/>IO<sp/>a</highlight></codeline>
+<codeline><highlight class="normal">timeExecution<sp/>description<sp/>action<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>(result,<sp/>duration)<sp/>&lt;-<sp/>measureTime<sp/>action</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>putStrLn<sp/>$<sp/>description<sp/>++<sp/>&quot;<sp/>took<sp/>&quot;<sp/>++<sp/>show<sp/>duration<sp/>++<sp/>&quot;<sp/>seconds&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>return<sp/>result</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>File<sp/>processing<sp/>utilities<sp/>with<sp/>error<sp/>handling</highlight></codeline>
+<codeline><highlight class="normal">processFile<sp/>::<sp/>(Text.Text<sp/>-&gt;<sp/>Result<sp/>a)<sp/>-&gt;<sp/>FilePath<sp/>-&gt;<sp/>IO<sp/>(Result<sp/>a)</highlight></codeline>
+<codeline><highlight class="normal">processFile<sp/>processor<sp/>path<sp/>=<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>result<sp/>&lt;-<sp/>safeReadFile<sp/>path</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>case<sp/>result<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Left<sp/>err<sp/>-&gt;<sp/>pure<sp/>$<sp/>Failure<sp/>(Text.pack<sp/>err)<sp/>[]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Right<sp/>content<sp/>-&gt;<sp/>pure<sp/>$<sp/>processor<sp/>content</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Batch<sp/>processing<sp/>utilities</highlight></codeline>
+<codeline><highlight class="normal">processFiles<sp/>::<sp/>(Text.Text<sp/>-&gt;<sp/>Result<sp/>a)<sp/>-&gt;<sp/>[FilePath]<sp/>-&gt;<sp/>IO<sp/>[Result<sp/>a]</highlight></codeline>
+<codeline><highlight class="normal">processFiles<sp/>processor<sp/>paths<sp/>=<sp/>mapM<sp/>(processFile<sp/>processor)<sp/>paths</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">--<sp/>|<sp/>Academic<sp/>metadata<sp/>extraction</highlight></codeline>
+<codeline><highlight class="normal">extractMetadata<sp/>::<sp/>Text.Text<sp/>-&gt;<sp/>[(Text.Text,<sp/>Text.Text)]</highlight></codeline>
+<codeline><highlight class="normal">extractMetadata<sp/>content<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>let<sp/>lines&apos;<sp/>=<sp/>Text.lines<sp/>content</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>metadataLines<sp/>=<sp/>filter<sp/>(\line<sp/>-&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;\\title&quot;<sp/>`Text.isPrefixOf`<sp/>line<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;\\author&quot;<sp/>`Text.isPrefixOf`<sp/>line<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;\\date&quot;<sp/>`Text.isPrefixOf`<sp/>line)<sp/>lines&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>in<sp/>map<sp/>parseMetadataLine<sp/>metadataLines</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>where</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>parseMetadataLine<sp/>line<sp/>=<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>let<sp/>(key,<sp/>value)<sp/>=<sp/>Text.breakOn<sp/>&quot;{&quot;<sp/>line</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanValue<sp/>=<sp/>Text.drop<sp/>1<sp/>$<sp/>Text.init<sp/>value</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in<sp/>(Text.tail<sp/>key,<sp/>cleanValue)</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/haskell-project/src/IntegralPhilosophy/Prelude.hs"/>
+  </compounddef>
+</doxygen>

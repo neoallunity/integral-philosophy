@@ -1,0 +1,196 @@
+\doxysection{test\+\_\+validator\+\_\+structure.\+py}
+\hypertarget{test__validator__structure_8py_source}{}\label{test__validator__structure_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/test\_validator\_structure.py@{/home/domini/src/Magazine/Magazine/scripts/test\_validator\_structure.py}}
+\mbox{\hyperlink{test__validator__structure_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00001}\mbox{\hyperlink{namespacetest__validator__structure}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00003}00003\ \textcolor{stringliteral}{Simple\ test\ for\ validator\ imports\ without\ problematic\ dependencies.}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00004}00004\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00006}00006\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00007}00007\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00008}00008\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00010}00010\ \textcolor{comment}{\#\ Add\ project\ root\ to\ Python\ path}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00011}00011\ sys.path.insert(0,\ os.path.dirname(os.path.dirname(os.path.abspath(\_\_file\_\_))))}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00014}\mbox{\hyperlink{namespacetest__validator__structure_a885f16ea777b44f586831ef240e22f9a}{00014}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__validator__structure_a885f16ea777b44f586831ef240e22f9a}{test\_all\_validator\_imports}}():}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00015}00015\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ that\ all\ validators\ can\ be\ imported\ successfully."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00016}00016\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Testing\ All\ Validator\ Imports..."{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00018}00018\ \ \ \ \ validators\_to\_test\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00019}00019\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}BaseValidator"{}},\ \textcolor{stringliteral}{"{}validators.validators"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00020}00020\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}HTML5Validator"{}},\ \textcolor{stringliteral}{"{}validators.validators"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}CSSValidator"{}},\ \textcolor{stringliteral}{"{}validators.validators"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00022}00022\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}JavaScriptValidator"{}},\ \textcolor{stringliteral}{"{}validators.validators"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}LaTeXValidator"{}},\ \textcolor{stringliteral}{"{}validators.validators"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}QualityReportGenerator"{}},\ \textcolor{stringliteral}{"{}validators.quality\_report"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}EPUB3Validator"{}},\ \textcolor{stringliteral}{"{}validators.epub3\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PDFValidator"{}},\ \textcolor{stringliteral}{"{}validators.pdf\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}DOCXValidator"{}},\ \textcolor{stringliteral}{"{}validators.docx\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}WCAG21AAValidator"{}},\ \textcolor{stringliteral}{"{}validators.wcag\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PerformanceBenchmark"{}},\ \textcolor{stringliteral}{"{}validators.performance\_benchmark"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}SecurityScanner"{}},\ \textcolor{stringliteral}{"{}validators.security\_scanner"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}BatchProcessor"{}},\ \textcolor{stringliteral}{"{}validators.batch\_processor"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}QualityDashboard"{}},\ \textcolor{stringliteral}{"{}validators.quality\_dashboard"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00033}00033\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00035}00035\ \ \ \ \ successful\_imports\ =\ 0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00036}00036\ \ \ \ \ failed\_imports\ =\ []}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{for}\ validator\_name,\ module\_path\ \textcolor{keywordflow}{in}\ validators\_to\_test:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ exec(f\textcolor{stringliteral}{"{}from\ \{module\_path\}\ import\ \{validator\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ \{validator\_name\}\ imported\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ successful\_imports\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ❌\ \{validator\_name\}\ import\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ failed\_imports.append((validator\_name,\ str(e)))}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00047}00047\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nImport\ Summary:"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00048}00048\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ Successful:\ \{successful\_imports\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00049}00049\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ Failed:\ \{len(failed\_imports)\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{if}\ failed\_imports:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nFailed\ Imports:"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ name,\ error\ \textcolor{keywordflow}{in}\ failed\_imports:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ -\/\ \{name\}:\ \{error\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{return}\ len(failed\_imports)\ ==\ 0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00059}\mbox{\hyperlink{namespacetest__validator__structure_ad75861f7ccae44c5aceede50b0b84323}{00059}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__validator__structure_ad75861f7ccae44c5aceede50b0b84323}{test\_validator\_instantiation}}():}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00060}00060\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ that\ all\ validators\ can\ be\ instantiated."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00061}00061\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n🔍\ Testing\ Validator\ Instantiation..."{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00063}00063\ \ \ \ \ \textcolor{comment}{\#\ Test\ basic\ validators}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ validators.validators\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ HTML5Validator,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ CSSValidator,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ JavaScriptValidator,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ LaTeXValidator,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ html\_validator\ =\ HTML5Validator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ css\_validator\ =\ CSSValidator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ js\_validator\ =\ JavaScriptValidator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ latex\_validator\ =\ LaTeXValidator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ ✓\ Basic\ validators\ instantiated\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ❌\ Basic\ validators\ instantiation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00082}00082\ \ \ \ \ \textcolor{comment}{\#\ Test\ extended\ validators\ (with\ optional\ dependencies)}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00083}00083\ \ \ \ \ extended\_validators\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}EPUB3Validator"{}},\ \textcolor{stringliteral}{"{}validators.epub3\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PDFValidator"{}},\ \textcolor{stringliteral}{"{}validators.pdf\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}DOCXValidator"{}},\ \textcolor{stringliteral}{"{}validators.docx\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}WCAG21AAValidator"{}},\ \textcolor{stringliteral}{"{}validators.wcag\_validator"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}PerformanceBenchmark"{}},\ \textcolor{stringliteral}{"{}validators.performance\_benchmark"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}SecurityScanner"{}},\ \textcolor{stringliteral}{"{}validators.security\_scanner"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}BatchProcessor"{}},\ \textcolor{stringliteral}{"{}validators.batch\_processor"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}QualityDashboard"{}},\ \textcolor{stringliteral}{"{}validators.quality\_dashboard"{}}),}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00092}00092\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00094}00094\ \ \ \ \ successful\_extended\ =\ 0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00095}00095\ \ \ \ \ failed\_extended\ =\ []}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{for}\ validator\_name,\ module\_path\ \textcolor{keywordflow}{in}\ extended\_validators:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ exec(f\textcolor{stringliteral}{"{}from\ \{module\_path\}\ import\ \{validator\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ exec(f\textcolor{stringliteral}{"{}\{validator\_name.lower()\}\_instance\ =\ \{validator\_name\}()"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ✓\ \{validator\_name\}\ instantiated\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ successful\_extended\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ❌\ \{validator\_name\}\ instantiation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ failed\_extended.append((validator\_name,\ str(e)))}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00107}00107\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nExtended\ Validator\ Summary:"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00108}00108\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ Successful:\ \{successful\_extended\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00109}00109\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ Failed:\ \{len(failed\_extended)\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{if}\ failed\_extended:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nFailed\ Extended\ Validators:"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ name,\ error\ \textcolor{keywordflow}{in}\ failed\_extended:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ -\/\ \{name\}:\ \{error\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{return}\ len(failed\_extended)\ ==\ 0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00119}\mbox{\hyperlink{namespacetest__validator__structure_a976535d4a17c94f7fbe230f20bdc08ae}{00119}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__validator__structure_a976535d4a17c94f7fbe230f20bdc08ae}{test\_validator\_interfaces}}():}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00120}00120\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Test\ validator\ interfaces\ are\ correct."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00121}00121\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n🔍\ Testing\ Validator\ Interfaces..."{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ validators.validators\ \textcolor{keyword}{import}\ BaseValidator,\ HTML5Validator}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ BaseValidator\ interface}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }TestValidator(BaseValidator):}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }validate(self,\ file\_path):}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\_create\_result(\textcolor{keyword}{True},\ [],\ \{\})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ test\_validator\ =\ TestValidator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ that\ HTML5Validator\ extends\ BaseValidator}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ html\_validator\ =\ HTML5Validator()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ methods\ exist}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ hasattr(html\_validator,\ \textcolor{stringliteral}{"{}validate"{}}):}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ ❌\ HTML5Validator\ missing\ validate\ method"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\ \ ✓\ Validator\ interfaces\ are\ correct"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ ❌\ Interface\ testing\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00149}\mbox{\hyperlink{namespacetest__validator__structure_aaf54e7cbaa801780e6747914603f4733}{00149}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__validator__structure_aaf54e7cbaa801780e6747914603f4733}{main}}():}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00150}00150\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ simplified\ validator\ tests."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00151}00151\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Running\ Simplified\ Validator\ Tests...\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00153}00153\ \ \ \ \ tests\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ test\_all\_validator\_imports,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ test\_validator\_instantiation,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ test\_validator\_interfaces,}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00157}00157\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00159}00159\ \ \ \ \ results\ =\ []}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{for}\ test\ \textcolor{keywordflow}{in}\ tests:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ test()}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ results.append(result)}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✅\ \{test.\_\_name\_\_\}\ passed"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}❌\ \{test.\_\_name\_\_\}\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ results.append(\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00170}00170\ \ \ \ \ \textcolor{comment}{\#\ Summary}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00171}00171\ \ \ \ \ passed\ =\ sum(results)}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00172}00172\ \ \ \ \ total\ =\ len(results)}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00174}00174\ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00175}00175\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Simplified\ Validator\ Tests\ Summary:\ \{passed\}/\{total\}\ tests\ passed"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00177}00177\ \ \ \ \ \textcolor{keywordflow}{if}\ passed\ ==\ total:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}🎉\ All\ validator\ tests\ passed!"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✅\ Extended\ validation\ system\ structure\ is\ ready"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}📈\ Available\ validators:\ HTML5,\ CSS,\ JavaScript,\ LaTeX,\ EPUB3,\ PDF,\ DOCX,\ WCAG\ 2.1\ AA,\ Performance,\ Security,\ Batch\ Processing,\ Quality\ Dashboard"{}}}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Some\ validator\ tests\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00189}00189\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{test__validator__structure_8py_source_l00190}00190\ \ \ \ \ exit(\mbox{\hyperlink{namespacetest__validator__structure_aaf54e7cbaa801780e6747914603f4733}{main}}())}
+
+\end{DoxyCode}

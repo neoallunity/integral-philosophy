@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d3/d30/classast__to__uml_1_1_u_m_l_edge" kind="class" language="Python" prot="public">
+    <compoundname>ast_to_uml::UMLEdge</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d3/d30/classast__to__uml_1_1_u_m_l_edge_1ade588432f7726dbfd3718b7020edf2ce" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>Optional ast_to_uml.UMLEdge::label</definition>
+        <argsstring></argsstring>
+        <name>label</name>
+        <qualifiedname>ast_to_uml.UMLEdge.label</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="55" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d3/d30/classast__to__uml_1_1_u_m_l_edge_1a86b989c26bd8962b7a3799cec7e0eeec" prot="public" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>Optional ast_to_uml.UMLEdge::style</definition>
+        <argsstring></argsstring>
+        <name>style</name>
+        <qualifiedname>ast_to_uml.UMLEdge.style</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="56" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="56" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>UML edge/connection representation</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ast_to_uml.UMLEdge</label>
+        <link refid="d3/d30/classast__to__uml_1_1_u_m_l_edge"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" line="50" column="1" bodyfile="/home/domini/src/Magazine/Magazine/scripts/ast_to_uml.py" bodystart="50" bodyend="58"/>
+    <listofallmembers>
+      <member refid="d3/d30/classast__to__uml_1_1_u_m_l_edge_1ade588432f7726dbfd3718b7020edf2ce" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLEdge</scope><name>label</name></member>
+      <member refid="d3/d30/classast__to__uml_1_1_u_m_l_edge_1a86b989c26bd8962b7a3799cec7e0eeec" prot="public" virt="non-virtual"><scope>ast_to_uml::UMLEdge</scope><name>style</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

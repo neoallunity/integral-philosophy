@@ -1,0 +1,388 @@
+\doxysection{latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer Class Reference}
+\hypertarget{classlatex__to__markdown_1_1_te_x_analyzer}{}\label{classlatex__to__markdown_1_1_te_x_analyzer}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+
+
+Collaboration diagram for latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a0644d0e02148f39f55d0bec1a501a3dc}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+Dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_ad0b85901fc05ba8ff4cd1e0fc127ab25}{analyze\+\_\+file}} (self, Path filepath)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a19707a655b9ed39d3029401eda5066f6}{reconstruct\+\_\+markdown\+\_\+tex}} (self, Dict analysis)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_ae022fba749977fbf7b44102ce31c59dd}{content\+\_\+map}} = \{\}
+\item 
+dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a82964a3820f001d8f8ff19ca6d4e746f}{structure\+\_\+map}} = \{\}
+\item 
+dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_ad2d103835ebf1267f400bf3a66a52deb}{math\+\_\+content}} = \{\}
+\item 
+dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a70ec0b8dc8646ef02f76c7a8007a7bd6}{metadata}} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a5f1811b52c69cda798bee2c908dfdb6b}{\+\_\+classify\+\_\+file}} (self, Path filepath, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a2a1f2a14112731f0a8f8f1ce854416e9}{\+\_\+extract\+\_\+sections}} (self, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a11307dd50b5393911d82a45b6a8902b9}{\+\_\+extract\+\_\+math}} (self, str content)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_aed3d96c97ac91acc6e1b47b411069a03}{\+\_\+extract\+\_\+citations}} (self, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a5204a0659c38741f08056fa41e7fb655}{\+\_\+extract\+\_\+tables}} (self, str content)
+\item 
+List\mbox{[}Dict\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_af02a871f54c9937acc78314f0dd14b02}{\+\_\+extract\+\_\+figures}} (self, str content)
+\item 
+List\mbox{[}str\mbox{]} \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_aaa3d19b11d0baa27bf21ab3286ef1376}{\+\_\+detect\+\_\+languages}} (self, str content)
+\item 
+Dict \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a83af51a85e897c4e2d29dd1e3706337a}{\+\_\+analyze\+\_\+structure}} (self, str content)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_af759a89d4369e84f67dfb8170a7a8537}{\+\_\+reconstruct\+\_\+article}} (self, Dict analysis)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_aca966b1b7a9b262b1bdd907af52a3262}{\+\_\+reconstruct\+\_\+config}} (self, Dict analysis)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_afe356b0706b8dabd043d4c67c8c7c02a}{\+\_\+reconstruct\+\_\+frontmatter}} (self, Dict analysis)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_aea86b8d2116b2ce019b7eb0c9247a8ea}{\+\_\+reconstruct\+\_\+main}} (self, Dict analysis)
+\item 
+str \mbox{\hyperlink{classlatex__to__markdown_1_1_te_x_analyzer_a54a5f8fa643956c6a533d7cb42b9507c}{\+\_\+reconstruct\+\_\+generic}} (self, Dict analysis)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Analyzes LaTeX files and reconstructs markdown+TeX source.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00015}{15}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a0644d0e02148f39f55d0bec1a501a3dc}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a0644d0e02148f39f55d0bec1a501a3dc} 
+latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00018}{18}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a83af51a85e897c4e2d29dd1e3706337a}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_analyze\_structure@{\_analyze\_structure}}
+\index{\_analyze\_structure@{\_analyze\_structure}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_analyze\_structure()}{\_analyze\_structure()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a83af51a85e897c4e2d29dd1e3706337a} 
+ Dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+analyze\+\_\+structure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Analyze document structure.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00191}{191}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a5f1811b52c69cda798bee2c908dfdb6b}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_classify\_file@{\_classify\_file}}
+\index{\_classify\_file@{\_classify\_file}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_classify\_file()}{\_classify\_file()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a5f1811b52c69cda798bee2c908dfdb6b} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+classify\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{filepath}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Classify file type based on path and content.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00051}{51}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_aaa3d19b11d0baa27bf21ab3286ef1376}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_detect\_languages@{\_detect\_languages}}
+\index{\_detect\_languages@{\_detect\_languages}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_detect\_languages()}{\_detect\_languages()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_aaa3d19b11d0baa27bf21ab3286ef1376} 
+ List\mbox{[}str\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+detect\+\_\+languages (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Detect content languages.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00171}{171}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_aed3d96c97ac91acc6e1b47b411069a03}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_extract\_citations@{\_extract\_citations}}
+\index{\_extract\_citations@{\_extract\_citations}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_extract\_citations()}{\_extract\_citations()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_aed3d96c97ac91acc6e1b47b411069a03} 
+ List\mbox{[}str\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+extract\+\_\+citations (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract bibliographic citations.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00133}{133}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_af02a871f54c9937acc78314f0dd14b02}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_extract\_figures@{\_extract\_figures}}
+\index{\_extract\_figures@{\_extract\_figures}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_extract\_figures()}{\_extract\_figures()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_af02a871f54c9937acc78314f0dd14b02} 
+ List\mbox{[}Dict\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+extract\+\_\+figures (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract figure references.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00154}{154}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a11307dd50b5393911d82a45b6a8902b9}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_extract\_math@{\_extract\_math}}
+\index{\_extract\_math@{\_extract\_math}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_extract\_math()}{\_extract\_math()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a11307dd50b5393911d82a45b6a8902b9} 
+ List\mbox{[}Dict\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+extract\+\_\+math (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract mathematical content.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00093}{93}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a2a1f2a14112731f0a8f8f1ce854416e9}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_extract\_sections@{\_extract\_sections}}
+\index{\_extract\_sections@{\_extract\_sections}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_extract\_sections()}{\_extract\_sections()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a2a1f2a14112731f0a8f8f1ce854416e9} 
+ List\mbox{[}Dict\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+extract\+\_\+sections (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract section hierarchy.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00075}{75}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a5204a0659c38741f08056fa41e7fb655}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_extract\_tables@{\_extract\_tables}}
+\index{\_extract\_tables@{\_extract\_tables}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_extract\_tables()}{\_extract\_tables()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a5204a0659c38741f08056fa41e7fb655} 
+ List\mbox{[}Dict\mbox{]} latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+extract\+\_\+tables (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{content}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Extract table structures.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00144}{144}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{analyze\+\_\+file()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_af759a89d4369e84f67dfb8170a7a8537}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_reconstruct\_article@{\_reconstruct\_article}}
+\index{\_reconstruct\_article@{\_reconstruct\_article}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_reconstruct\_article()}{\_reconstruct\_article()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_af759a89d4369e84f67dfb8170a7a8537} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+reconstruct\+\_\+article (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reconstruct article content as markdown+TeX.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00226}{226}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{reconstruct\+\_\+markdown\+\_\+tex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 9
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_aca966b1b7a9b262b1bdd907af52a3262}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_reconstruct\_config@{\_reconstruct\_config}}
+\index{\_reconstruct\_config@{\_reconstruct\_config}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_reconstruct\_config()}{\_reconstruct\_config()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_aca966b1b7a9b262b1bdd907af52a3262} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+reconstruct\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reconstruct configuration as commented LaTeX.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00281}{281}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{reconstruct\+\_\+markdown\+\_\+tex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 10
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_afe356b0706b8dabd043d4c67c8c7c02a}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_reconstruct\_frontmatter@{\_reconstruct\_frontmatter}}
+\index{\_reconstruct\_frontmatter@{\_reconstruct\_frontmatter}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_reconstruct\_frontmatter()}{\_reconstruct\_frontmatter()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_afe356b0706b8dabd043d4c67c8c7c02a} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+reconstruct\+\_\+frontmatter (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reconstruct frontmatter content.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00292}{292}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{reconstruct\+\_\+markdown\+\_\+tex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 11
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a54a5f8fa643956c6a533d7cb42b9507c}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_reconstruct\_generic@{\_reconstruct\_generic}}
+\index{\_reconstruct\_generic@{\_reconstruct\_generic}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_reconstruct\_generic()}{\_reconstruct\_generic()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a54a5f8fa643956c6a533d7cb42b9507c} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+reconstruct\+\_\+generic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Generic reconstruction for other file types.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00315}{315}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{reconstruct\+\_\+markdown\+\_\+tex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 12
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_aea86b8d2116b2ce019b7eb0c9247a8ea}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!\_reconstruct\_main@{\_reconstruct\_main}}
+\index{\_reconstruct\_main@{\_reconstruct\_main}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{\_reconstruct\_main()}{\_reconstruct\_main()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_aea86b8d2116b2ce019b7eb0c9247a8ea} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+\_\+reconstruct\+\_\+main (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reconstruct main document structure.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00298}{298}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{reconstruct\+\_\+markdown\+\_\+tex()}}.
+
+Here is the caller graph for this function\+:
+% FIG 13
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_ad0b85901fc05ba8ff4cd1e0fc127ab25}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!analyze\_file@{analyze\_file}}
+\index{analyze\_file@{analyze\_file}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{analyze\_file()}{analyze\_file()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_ad0b85901fc05ba8ff4cd1e0fc127ab25} 
+ Dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+analyze\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Path}]{filepath}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Analyze individual LaTeX file.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00024}{24}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+References \mbox{\hyperlink{latex__to__markdown_8py_source_l00191}{\+\_\+analyze\+\_\+structure()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00051}{\+\_\+classify\+\_\+file()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00171}{\+\_\+detect\+\_\+languages()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00133}{\+\_\+extract\+\_\+citations()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00154}{\+\_\+extract\+\_\+figures()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00093}{\+\_\+extract\+\_\+math()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00075}{\+\_\+extract\+\_\+sections()}}, and \mbox{\hyperlink{latex__to__markdown_8py_source_l00144}{\+\_\+extract\+\_\+tables()}}.
+
+Here is the call graph for this function\+:
+% FIG 14
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a19707a655b9ed39d3029401eda5066f6}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!reconstruct\_markdown\_tex@{reconstruct\_markdown\_tex}}
+\index{reconstruct\_markdown\_tex@{reconstruct\_markdown\_tex}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{reconstruct\_markdown\_tex()}{reconstruct\_markdown\_tex()}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a19707a655b9ed39d3029401eda5066f6} 
+ str latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+reconstruct\+\_\+markdown\+\_\+tex (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict}]{analysis}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reconstruct markdown+TeX from analysis.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00208}{208}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+References \mbox{\hyperlink{latex__to__markdown_8py_source_l00226}{\+\_\+reconstruct\+\_\+article()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00281}{\+\_\+reconstruct\+\_\+config()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00292}{\+\_\+reconstruct\+\_\+frontmatter()}}, \mbox{\hyperlink{latex__to__markdown_8py_source_l00315}{\+\_\+reconstruct\+\_\+generic()}}, and \mbox{\hyperlink{latex__to__markdown_8py_source_l00298}{\+\_\+reconstruct\+\_\+main()}}.
+
+Here is the call graph for this function\+:
+% FIG 15
+
+
+\label{doc-variable-members}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_ae022fba749977fbf7b44102ce31c59dd}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!content\_map@{content\_map}}
+\index{content\_map@{content\_map}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{content\_map}{content\_map}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_ae022fba749977fbf7b44102ce31c59dd} 
+dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+content\+\_\+map = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00019}{19}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_ad2d103835ebf1267f400bf3a66a52deb}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!math\_content@{math\_content}}
+\index{math\_content@{math\_content}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{math\_content}{math\_content}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_ad2d103835ebf1267f400bf3a66a52deb} 
+dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+math\+\_\+content = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00021}{21}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a70ec0b8dc8646ef02f76c7a8007a7bd6}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!metadata@{metadata}}
+\index{metadata@{metadata}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{metadata}{metadata}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a70ec0b8dc8646ef02f76c7a8007a7bd6} 
+dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+metadata = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00022}{22}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+\Hypertarget{classlatex__to__markdown_1_1_te_x_analyzer_a82964a3820f001d8f8ff19ca6d4e746f}\index{latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}!structure\_map@{structure\_map}}
+\index{structure\_map@{structure\_map}!latex\_to\_markdown.TeXAnalyzer@{latex\_to\_markdown.TeXAnalyzer}}
+\doxysubsubsection{\texorpdfstring{structure\_map}{structure\_map}}
+{\footnotesize\ttfamily \label{classlatex__to__markdown_1_1_te_x_analyzer_a82964a3820f001d8f8ff19ca6d4e746f} 
+dict latex\+\_\+to\+\_\+markdown.\+Te\+XAnalyzer.\+structure\+\_\+map = \{\}}
+
+
+
+Definition at line \mbox{\hyperlink{latex__to__markdown_8py_source_l00020}{20}} of file \mbox{\hyperlink{latex__to__markdown_8py_source}{latex\+\_\+to\+\_\+markdown.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/domini/src/\+Magazine/\+Magazine/scripts/\mbox{\hyperlink{latex__to__markdown_8py}{latex\+\_\+to\+\_\+markdown.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,541 @@
+\doxysection{tei\+\_\+generator.\+py}
+\hypertarget{tei__generator_8py_source}{}\label{tei__generator_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/tei\_generator.py@{/home/domini/src/Magazine/Magazine/scripts/tei\_generator.py}}
+\mbox{\hyperlink{tei__generator_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00001}\mbox{\hyperlink{namespacetei__generator}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00003}00003\ \textcolor{stringliteral}{TEI\ XML\ Canonical\ Storage\ Format}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00004}00004\ \textcolor{stringliteral}{Converts\ site\ AST\ and\ MarkdownTeX\ to\ TEI\ XML\ for\ canonical\ storage}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00005}00005\ \textcolor{stringliteral}{Supports\ academic\ publishing\ standards\ and\ preservation}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00008}00008\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00009}00009\ \textcolor{keyword}{import}\ uuid}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00010}00010\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ datetime}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00011}00011\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00012}00012\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List,\ Optional,\ Union,\ Any}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00013}00013\ \textcolor{keyword}{from}\ xml.etree.ElementTree\ \textcolor{keyword}{import}\ Element,\ SubElement,\ tostring,\ ElementTree}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00014}00014\ \textcolor{keyword}{from}\ xml.dom\ \textcolor{keyword}{import}\ minidom}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00015}00015\ \textcolor{keyword}{import}\ re}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00017}00017\ \textcolor{comment}{\#\ Import\ from\ our\ parsers}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00018}00018\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{from}\ markdowntex\_parser\ \textcolor{keyword}{import}\ ASTNode,\ NodeType,\ MarkdownTeXParser}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00020}00020\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{from}\ scripts.markdowntex\_parser\ \textcolor{keyword}{import}\ ASTNode,\ NodeType,\ MarkdownTeXParser}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00024}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{00024}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{TEIGenerator}}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00025}00025\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ TEI\ XML\ from\ AST\ and\ site\ data"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00027}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aebac647420f4c4adc4e94c0a25899500}{00027}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aebac647420f4c4adc4e94c0a25899500}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00028}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a}{00028}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a}{tei\_ns}}\ =\ \textcolor{stringliteral}{"{}http://www.tei-\/c.org/ns/1.0"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00029}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726}{00029}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726}{xml\_ns}}\ =\ \textcolor{stringliteral}{"{}http://www.w3.org/XML/1998/namespace"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Register\ namespaces}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00032}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a12085212c364a9ca97b1cbd118c505ab}{00032}}\ \ \ \ \ \ \ \ \ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a12085212c364a9ca97b1cbd118c505ab}{ns\_map}}\ =\ \{\textcolor{stringliteral}{"{}tei"{}}:\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aadf2afc8d2f19b2d27745a6a6235c71a}{tei\_ns}},\ \textcolor{stringliteral}{"{}xml"{}}:\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a36dcdbe5d1d02d11a6332b247e106726}{xml\_ns}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00034}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb}{00034}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb}{generate\_tei\_header}}(self,\ site\_metadata:\ Dict[str,\ Any])\ -\/>\ Element:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ TEI\ header\ with\ site\ metadata"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ TEI\ element}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ tei\ =\ Element(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}TEI"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{f\textcolor{stringliteral}{"{}\{\{\{self.xml\_ns\}\}\}lang"{}}:\ site\_metadata.get(\textcolor{stringliteral}{"{}language"{}},\ \textcolor{stringliteral}{"{}en"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ File\ description}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ file\_desc\ =\ SubElement(tei,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}teiHeader"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ title\_stmt\ =\ SubElement(file\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}fileDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Title\ statement}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ title\_stmt\ =\ SubElement(title\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}titleStmt"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ title\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ title\_stmt,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}title"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.xml\_ns\}\}\}lang"{}}:\ site\_metadata.get(\textcolor{stringliteral}{"{}language"{}},\ \textcolor{stringliteral}{"{}en"{}}),}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}main"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ title.text\ =\ site\_metadata.get(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}title"{}},\ site\_metadata.get(\textcolor{stringliteral}{"{}base\_url"{}},\ \textcolor{stringliteral}{"{}Untitled\ Site"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Author\ statement}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ author\_stmt\ =\ SubElement(title\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}author"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ author\_name\ =\ SubElement(author\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}name"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ author\_name.text\ =\ site\_metadata.get(\textcolor{stringliteral}{"{}author"{}},\ \textcolor{stringliteral}{"{}Web\ Scraper"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Publication\ statement}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ publication\_stmt\ =\ SubElement(title\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}publicationStmt"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ publisher\ =\ SubElement(publication\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}publisher"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ publisher.text\ =\ \textcolor{stringliteral}{"{}Integral\ Philosophy\ Publishing\ System"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ date\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ publication\_stmt,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}date"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}when"{}}:\ datetime.now().isoformat().split(\textcolor{stringliteral}{"{}T"{}})[0],}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}creation"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ date.text\ =\ datetime.now().strftime(\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Source\ description}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ source\_desc\ =\ SubElement(title\_stmt,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}sourceDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ source\_bibl\ =\ SubElement(source\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}bibl"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ source\_title\ =\ SubElement(source\_bibl,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}title"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ source\_title.text\ =\ site\_metadata.get(\textcolor{stringliteral}{"{}base\_url"{}},\ \textcolor{stringliteral}{"{}Unknown\ Source"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}scraped\_at"{}}\ \textcolor{keywordflow}{in}\ site\_metadata:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ source\_note\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ source\_bibl,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}note"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}scraper"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ source\_note.text\ =\ f\textcolor{stringliteral}{"{}Scraped\ on\ \{site\_metadata['scraped\_at']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Profile\ description}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ profile\_desc\ =\ SubElement(file\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}profileDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ lang\_usage\ =\ SubElement(profile\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}langUsage"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ language\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ lang\_usage,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}language"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}ident"{}}:\ site\_metadata.get(\textcolor{stringliteral}{"{}language"{}},\ \textcolor{stringliteral}{"{}en"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ language.text\ =\ site\_metadata.get(\textcolor{stringliteral}{"{}language"{}},\ \textcolor{stringliteral}{"{}English"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Encoding\ description}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ encoding\_desc\ =\ SubElement(profile\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}encodingDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ project\_desc\ =\ SubElement(encoding\_desc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}projectDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ project\_desc.text\ =\ \textcolor{stringliteral}{"{}This\ document\ was\ automatically\ generated\ from\ web\ content\ using\ the\ Integral\ Philosophy\ Publishing\ System."{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tei}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00110}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494}{00110}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494}{generate\_text\_body}}(self,\ pages:\ Dict[str,\ Any])\ -\/>\ Element:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ TEI\ text\ body\ from\ page\ content"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ body\ =\ Element(f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}text"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Front\ matter\ with\ table\ of\ contents}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ front\ =\ SubElement(body,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}front"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ div\_toc\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ front,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}contents"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ toc\_head\ =\ SubElement(div\_toc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}head"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ toc\_head.text\ =\ \textcolor{stringliteral}{"{}Table\ of\ Contents"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ table\ of\ contents}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ url,\ page\_info\ \textcolor{keywordflow}{in}\ pages.items():}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ page\_metadata\ =\ page\_info.get(\textcolor{stringliteral}{"{}metadata"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ title\ =\ page\_metadata.get(\textcolor{stringliteral}{"{}title"{}},\ url)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ toc\_item\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ div\_toc,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}toc-\/entry"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ toc\_ref\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ toc\_item,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}ref"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}target"{}}:\ f\textcolor{stringliteral}{"{}\#\{self.\_create\_page\_id(url)\}"{}}\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ toc\_ref.text\ =\ title}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Main\ body\ with\ page\ content}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ main\_body\ =\ SubElement(body,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}body"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ url,\ page\_info\ \textcolor{keywordflow}{in}\ pages.items():}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ page\_div\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb}{\_convert\_page\_to\_tei\_div}}(url,\ page\_info)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ main\_body.append(page\_div)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ body}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00146}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb}{00146}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa0bf3edb1377df08199383141ea16ffb}{\_convert\_page\_to\_tei\_div}}(self,\ url:\ str,\ page\_info:\ Dict[str,\ Any])\ -\/>\ Element:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ a\ single\ page\ to\ TEI\ div"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ page\_id\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe}{\_create\_page\_id}}(url)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ page\_metadata\ =\ page\_info.get(\textcolor{stringliteral}{"{}metadata"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ page\ div\ (temporarily\ without\ parent)}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ page\_div\ =\ Element(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}page"{}},\ f\textcolor{stringliteral}{"{}\{\{\{self.xml\_ns\}\}\}id"{}}:\ page\_id\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Page\ header}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ page\_head\ =\ SubElement(page\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}head"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ page\_head.text\ =\ page\_metadata.get(\textcolor{stringliteral}{"{}title"{}},\ url)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ page\ metadata\ as\ teiHeader\ within\ the\ div}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ page\_metadata:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}metadata"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ URL}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}url"{}}\ \textcolor{keywordflow}{in}\ page\_metadata:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ url\_p\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}url"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ url\_p.text\ =\ f\textcolor{stringliteral}{"{}URL:\ \{page\_metadata['url']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Language}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}language"{}}\ \textcolor{keywordflow}{in}\ page\_metadata:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lang\_p\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}language"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lang\_p.text\ =\ f\textcolor{stringliteral}{"{}Language:\ \{page\_metadata['language']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Description}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}description"{}}\ \textcolor{keywordflow}{in}\ page\_metadata\ \textcolor{keywordflow}{and}\ page\_metadata[\textcolor{stringliteral}{"{}description"{}}]:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ desc\_p\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}description"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ desc\_p.text\ =\ f\textcolor{stringliteral}{"{}Description:\ \{page\_metadata['description']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Keywords}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}keywords"{}}\ \textcolor{keywordflow}{in}\ page\_metadata\ \textcolor{keywordflow}{and}\ page\_metadata[\textcolor{stringliteral}{"{}keywords"{}}]:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ keywords\_p\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}keywords"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ keywords\_p.text\ =\ f\textcolor{stringliteral}{"{}Keywords:\ \{page\_metadata['keywords']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Scraped\ date}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}scraped\_at"{}}\ \textcolor{keywordflow}{in}\ page\_metadata:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ date\_p\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ meta\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}scraped-\/date"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ date\_p.text\ =\ f\textcolor{stringliteral}{"{}Scraped:\ \{page\_metadata['scraped\_at']\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ page\ content}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}content"{}}\ \textcolor{keywordflow}{in}\ page\_info:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ content\ if\ it's\ a\ string}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(page\_info[\textcolor{stringliteral}{"{}content"{}}],\ str):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parser\ =\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_markdown_te_x_parser}{MarkdownTeXParser}}()}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ast\ =\ parser.parse(page\_info[\textcolor{stringliteral}{"{}content"{}}])}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\_div\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(ast)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Assume\ it's\ already\ parsed\ AST}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\_div\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(page\_info[\textcolor{stringliteral}{"{}content"{}}])}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ page\_div.append(content\_div)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ links\ section}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}links"{}}\ \textcolor{keywordflow}{in}\ page\_info\ \textcolor{keywordflow}{and}\ page\_info[\textcolor{stringliteral}{"{}links"{}}]:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ links\_div\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}links"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ links\_head\ =\ SubElement(links\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}head"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ links\_head.text\ =\ \textcolor{stringliteral}{"{}Links"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ links\_list\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ links\_div,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}list"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}bulleted"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ link\_url\ \textcolor{keywordflow}{in}\ page\_info[\textcolor{stringliteral}{"{}links"{}}]:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_item\ =\ SubElement(links\_list,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}item"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_ref\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_item,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}ref"{}},\ attrib=\{\textcolor{stringliteral}{"{}target"{}}:\ link\_url\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_ref.text\ =\ link\_url}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ page\_div}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00236}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{00236}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(self,\ ast\_node:\ Union[ASTNode,\ Dict])\ -\/>\ Element:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Convert\ AST\ node\ to\ TEI\ XML"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Handle\ both\ ASTNode\ and\ dictionary\ representations}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(ast\_node,\ dict):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ node\_type\ =\ \mbox{\hyperlink{classmarkdowntex__parser_1_1_node_type}{NodeType}}(ast\_node[\textcolor{stringliteral}{"{}type"{}}])}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ ast\_node.get(\textcolor{stringliteral}{"{}content"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ attributes\ =\ ast\_node.get(\textcolor{stringliteral}{"{}attributes"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ node\_type\ =\ ast\_node.type}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ ast\_node.content}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ attributes\ =\ ast\_node.attributes\ \textcolor{keywordflow}{or}\ \{\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ TEI\ element\ based\ on\ node\ type}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ node\_type\ ==\ NodeType.DOCUMENT:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ div\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}div"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}document"{}}\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ child\_elem\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ div.append(child\_elem)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ div}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.HEADING:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ level\ =\ attributes.get(\textcolor{stringliteral}{"{}level"{}},\ 1)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ head\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}head"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ f\textcolor{stringliteral}{"{}heading-\/\{level\}"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(child\_elem,\ Element):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ head.text\ =\ (head.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})\ +\ (child\_elem.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ head.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ head}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.PARAGRAPH:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}p"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ child\_elem\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p.append(child\_elem)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00286}00286\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.LINK:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ ref\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}ref"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}target"{}}:\ attributes.get(\textcolor{stringliteral}{"{}href"{}},\ \textcolor{stringliteral}{"{}"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(child\_elem,\ Element):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ref.text\ =\ (ref.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})\ +\ (child\_elem.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ref.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ref}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.IMAGE:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ figure\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}figure"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ graphic\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ figure,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}graphic"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}url"{}}:\ attributes.get(\textcolor{stringliteral}{"{}src"{}},\ \textcolor{stringliteral}{"{}"{}}),\ \textcolor{stringliteral}{"{}mimeType"{}}:\ \textcolor{stringliteral}{"{}image/jpeg"{}}\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ attributes.get(\textcolor{stringliteral}{"{}alt"{}}):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fig\_desc\ =\ SubElement(figure,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}figDesc"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fig\_desc.text\ =\ attributes[\textcolor{stringliteral}{"{}alt"{}}]}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00315}00315\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ figure}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.CODE\_BLOCK:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ quote\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}quote"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}code"{}},\ \textcolor{stringliteral}{"{}xml:lang"{}}:\ attributes.get(\textcolor{stringliteral}{"{}language"{}},\ \textcolor{stringliteral}{"{}"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ quote.text\ =\ str(content)\ \textcolor{keywordflow}{if}\ content\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quote}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.INLINE\_CODE:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ hi\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}hi"{}},\ attrib=\{\textcolor{stringliteral}{"{}rend"{}}:\ \textcolor{stringliteral}{"{}t"{}}\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ hi.text\ =\ str(content)\ \textcolor{keywordflow}{if}\ content\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hi}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.MATH\_BLOCK:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ formula\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}formula"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}notation"{}}:\ attributes.get(\textcolor{stringliteral}{"{}format"{}},\ \textcolor{stringliteral}{"{}latex"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ formula.text\ =\ str(content)\ \textcolor{keywordflow}{if}\ content\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ formula}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.INLINE\_MATH:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ hi\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}hi"{}},\ attrib=\{\textcolor{stringliteral}{"{}rend"{}}:\ \textcolor{stringliteral}{"{}it"{}}\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ formula\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hi,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}formula"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}notation"{}}:\ attributes.get(\textcolor{stringliteral}{"{}format"{}},\ \textcolor{stringliteral}{"{}latex"{}})\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ formula.text\ =\ str(content)\ \textcolor{keywordflow}{if}\ content\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hi}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00350}00350\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.LIST:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ list\_elem\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}list"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}ordered"{}}\ \textcolor{keywordflow}{if}\ attributes.get(\textcolor{stringliteral}{"{}ordered"{}})\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}bulleted"{}}\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00357}00357\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(item)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ item\_elem\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\_elem.append(item\_elem)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list\_elem}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.LIST\_ITEM:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ item\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}item"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ child\_elem\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.append(child\_elem)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ item.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ item}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.QUOTE:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ quote\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}quote"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ child\_elem\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quote.append(child\_elem)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quote.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quote}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.STRONG:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ hi\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}hi"{}},\ attrib=\{\textcolor{stringliteral}{"{}rend"{}}:\ \textcolor{stringliteral}{"{}bold"{}}\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(child\_elem,\ Element):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hi.text\ =\ (hi.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})\ +\ (child\_elem.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hi.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hi}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.EMPHASIS:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ hi\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}hi"{}},\ attrib=\{\textcolor{stringliteral}{"{}rend"{}}:\ \textcolor{stringliteral}{"{}it"{}}\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(content,\ list):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ child\ \textcolor{keywordflow}{in}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ child\_elem\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_add2a8fe86123aa1852e00d1e89f62860}{\_convert\_ast\_to\_tei}}(child)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(child\_elem,\ Element):}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hi.text\ =\ (hi.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})\ +\ (child\_elem.text\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ content:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hi.text\ =\ str(content)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hi}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ node\_type\ ==\ NodeType.TEXT:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ span\ =\ SubElement(\textcolor{keywordtype}{None},\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}span"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ span.text\ =\ str(content)\ \textcolor{keywordflow}{if}\ content\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ span}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Return\ None\ for\ unsupported\ types}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00426}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe}{00426}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_aa265f4655d384b6215fe70d21e5b6afe}{\_create\_page\_id}}(self,\ url:\ str)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ valid\ TEI\ XML\ ID\ from\ URL"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Clean\ URL\ to\ create\ valid\ XML\ ID}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ clean\_id\ =\ re.sub(\textcolor{stringliteral}{r"{}[\string^a-\/zA-\/Z0-\/9\_-\/]"{}},\ \textcolor{stringliteral}{"{}\_"{}},\ url)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ clean\_id\ =\ re.sub(\textcolor{stringliteral}{r"{}\string^[\string^a-\/zA-\/Z\_]"{}},\ \textcolor{stringliteral}{"{}\_"{}},\ clean\_id)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ clean\_id\ =\ clean\_id[:50]\ \ \textcolor{comment}{\#\ Limit\ length}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ clean\_id\ \textcolor{keywordflow}{or}\ f\textcolor{stringliteral}{"{}page\_\{uuid.uuid4().hex[:8]\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00433}00433\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00434}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a6cffaf2cda0037154d931564ee139b77}{00434}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a6cffaf2cda0037154d931564ee139b77}{generate\_tei\_document}}(self,\ site\_ast:\ Dict[str,\ Any])\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ complete\ TEI\ XML\ document"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ metadata\ and\ pages}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ site\_metadata\ =\ site\_ast.get(\textcolor{stringliteral}{"{}metadata"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ pages\ =\ site\_ast.get(\textcolor{stringliteral}{"{}pages"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00440}00440\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ TEI\ structure}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ tei\_root\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a62fb30e8d10a0d40e483392478e52adb}{generate\_tei\_header}}(site\_metadata)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ text\_body\ =\ self.\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a76e652d556d47c74f42173f6a9370494}{generate\_text\_body}}(pages)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ tei\_root.append(text\_body)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ TEI\ specific\ elements}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ revision\ history}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ revision\_desc\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ tei\_root.find(f\textcolor{stringliteral}{"{}.//\{\{\{self.tei\_ns\}\}\}teiHeader"{}}),}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}revisionDesc"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00452}00452\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ change\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ revision\_desc,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}change"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}when"{}}:\ datetime.now().isoformat(),\ \textcolor{stringliteral}{"{}who"{}}:\ \textcolor{stringliteral}{"{}\#web\_scraper"{}}\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ change.text\ =\ \textcolor{stringliteral}{"{}Initial\ TEI\ XML\ generation\ from\ scraped\ web\ content"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ stand-\/off\ markup\ for\ links\ and\ metadata}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ standoff\ =\ SubElement(tei\_root,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}standOff"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ link\ graph\ as\ standoff\ markup}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ link\_list\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ standoff,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}listBibl"{}},\ attrib=\{\textcolor{stringliteral}{"{}type"{}}:\ \textcolor{stringliteral}{"{}links"{}}\}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00467}00467\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ link\_graph\ =\ site\_ast.get(\textcolor{stringliteral}{"{}links"{}},\ \{\})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ source\_url,\ target\_urls\ \textcolor{keywordflow}{in}\ link\_graph.items():}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ target\_url\ \textcolor{keywordflow}{in}\ target\_urls:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_item\ =\ SubElement(link\_list,\ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}bibl"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_ref\ =\ SubElement(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_item,}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\{\{\{self.tei\_ns\}\}\}ref"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attrib=\{\textcolor{stringliteral}{"{}target"{}}:\ f\textcolor{stringliteral}{"{}\#\{self.\_create\_page\_id(target\_url)\}"{}}\},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ link\_ref.text\ =\ f\textcolor{stringliteral}{"{}Link\ from\ \{source\_url\}\ to\ \{target\_url\}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00478}00478\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Pretty\ print\ XML}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ rough\_string\ =\ tostring(tei\_root,\ encoding=\textcolor{stringliteral}{"{}unicode"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ reparsed\ =\ minidom.parseString(rough\_string)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ XML\ declaration\ and\ DOCTYPE}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ pretty\_xml\ =\ reparsed.toprettyxml(indent=\textcolor{stringliteral}{"{}\ \ "{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Add\ DOCTYPE\ declaration}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ pretty\_xml\ =\ pretty\_xml.replace(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<?xml\ version="{}1.0"{}\ ?>'},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<?xml\ version="{}1.0"{}\ encoding="{}UTF-\/8"{}?>\(\backslash\)n<!DOCTYPE\ TEI\ PUBLIC\ "{}-\///TEI\ P5//DTD//EN"{}\ "{}http://www.tei-\/c.org/release/xml/tei/custom/schema/dtd/tei.dtd"{}>'},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pretty\_xml}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00494}\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a0ce19e8690a182201774891901468d43}{00494}}\ \ \ \ \ \textcolor{keyword}{def\ }\mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator_a0ce19e8690a182201774891901468d43}{save\_tei\_document}}(self,\ tei\_xml:\ str,\ output\_path:\ Union[str,\ Path])\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Save\ TEI\ XML\ document\ to\ file"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00496}00496\ \ \ \ \ \ \ \ \ output\_path\ =\ Path(output\_path)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ output\_path.parent.mkdir(parents=\textcolor{keyword}{True},\ exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(output\_path,\ \textcolor{stringliteral}{"{}w"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ f.write(tei\_xml)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}TEI\ XML\ document\ saved\ to:\ \{output\_path\}"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00505}\mbox{\hyperlink{namespacetei__generator_acf50eff91da4c8e2774a9b3e57b6342c}{00505}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetei__generator_acf50eff91da4c8e2774a9b3e57b6342c}{main}}():}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00506}00506\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Main\ function\ for\ testing"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00507}00507\ \ \ \ \ \textcolor{keyword}{import}\ argparse}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00509}00509\ \ \ \ \ parser\ =\ argparse.ArgumentParser(description=\textcolor{stringliteral}{"{}Generate\ TEI\ XML\ from\ site\ AST"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00510}00510\ \ \ \ \ parser.add\_argument(\textcolor{stringliteral}{"{}input"{}},\ help=\textcolor{stringliteral}{"{}Input\ site\ AST\ JSON\ file"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00511}00511\ \ \ \ \ parser.add\_argument(}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/o"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/output"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ default=\textcolor{stringliteral}{"{}tei\_output/site\_document.xml"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ help=\textcolor{stringliteral}{"{}Output\ TEI\ XML\ file"{}},}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00516}00516\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00517}00517\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00518}00518\ \ \ \ \ args\ =\ parser.parse\_args()}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00520}00520\ \ \ \ \ \textcolor{comment}{\#\ Load\ site\ AST}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00521}00521\ \ \ \ \ \textcolor{keyword}{with}\ open(args.input,\ \textcolor{stringliteral}{"{}r"{}},\ encoding=\textcolor{stringliteral}{"{}utf-\/8"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ site\_ast\ =\ json.load(f)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00523}00523\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00524}00524\ \ \ \ \ \textcolor{comment}{\#\ Generate\ TEI\ XML}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00525}00525\ \ \ \ \ generator\ =\ \mbox{\hyperlink{classtei__generator_1_1_t_e_i_generator}{TEIGenerator}}()}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00526}00526\ \ \ \ \ tei\_xml\ =\ generator.generate\_tei\_document(site\_ast)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00528}00528\ \ \ \ \ \textcolor{comment}{\#\ Save\ TEI\ document}}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00529}00529\ \ \ \ \ generator.save\_tei\_document(tei\_xml,\ args.output)}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00531}00531\ \ \ \ \ print(\textcolor{stringliteral}{"{}TEI\ XML\ generation\ completed\ successfully!"{}})}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00533}00533\ }
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00534}00534\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{tei__generator_8py_source_l00535}00535\ \ \ \ \ \mbox{\hyperlink{namespacetei__generator_acf50eff91da4c8e2774a9b3e57b6342c}{main}}()}
+
+\end{DoxyCode}

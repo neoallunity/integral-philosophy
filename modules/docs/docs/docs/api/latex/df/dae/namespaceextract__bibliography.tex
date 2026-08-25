@@ -1,0 +1,181 @@
+\doxysection{extract\+\_\+bibliography Namespace Reference}
+\hypertarget{namespaceextract__bibliography}{}\label{namespaceextract__bibliography}\index{extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_ae756c30899a4afc25a7306194305d3c4}{extract\+\_\+citations\+\_\+from\+\_\+latex}} (latex\+\_\+file)
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_a8157a0bf8db7d2f97c82cacc05534d70}{find\+\_\+context\+\_\+info}} (latex\+\_\+file, author\+\_\+name)
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_af4f9f5e90e68762492bcacade6c9b5f0}{create\+\_\+bibtex\+\_\+entry}} (citation\+\_\+key, latex\+\_\+file)
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_a02e817bb7c1bea3d92058625f8d932fb}{process\+\_\+article}} (article\+\_\+dir)
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_ac5acfb9f990161ac49d7ba2f3f446b72}{update\+\_\+master\+\_\+bibliography}} ()
+\item 
+\mbox{\hyperlink{namespaceextract__bibliography_a7e605d5e6f91c5bd22a412fe298adc9b}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Bibliography Extractor for Integral Philosophy Publishing System
+
+This script extracts citations from LaTeX files and generates bibliography files.
+It can extract citations from all articles and create individual .bib files for each article.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespaceextract__bibliography_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceextract__bibliography_af4f9f5e90e68762492bcacade6c9b5f0}\index{extract\_bibliography@{extract\_bibliography}!create\_bibtex\_entry@{create\_bibtex\_entry}}
+\index{create\_bibtex\_entry@{create\_bibtex\_entry}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{create\_bibtex\_entry()}{create\_bibtex\_entry()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_af4f9f5e90e68762492bcacade6c9b5f0} 
+extract\+\_\+bibliography.\+create\+\_\+bibtex\+\_\+entry (\begin{DoxyParamCaption}\item[{}]{citation\+\_\+key}{, }\item[{}]{latex\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a BibTeX entry for a citation based on context analysis.
+
+Args:
+    citation_key (str): The citation key
+    latex_file (Path): Path to the LaTeX file
+
+Returns:
+    str: BibTeX entry or None if not enough information
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00115}{115}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+References \mbox{\hyperlink{extract__bibliography_8py_source_l00066}{find\+\_\+context\+\_\+info()}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00178}{process\+\_\+article()}}.
+
+Here is the call graph for this function\+:
+% FIG 0
+Here is the caller graph for this function\+:
+% FIG 1
+\Hypertarget{namespaceextract__bibliography_ae756c30899a4afc25a7306194305d3c4}\index{extract\_bibliography@{extract\_bibliography}!extract\_citations\_from\_latex@{extract\_citations\_from\_latex}}
+\index{extract\_citations\_from\_latex@{extract\_citations\_from\_latex}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{extract\_citations\_from\_latex()}{extract\_citations\_from\_latex()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_ae756c30899a4afc25a7306194305d3c4} 
+extract\+\_\+bibliography.\+extract\+\_\+citations\+\_\+from\+\_\+latex (\begin{DoxyParamCaption}\item[{}]{latex\+\_\+file}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract all citation keys from a LaTeX file.
+
+Args:
+    latex_file (Path): Path to the LaTeX file
+
+Returns:
+    set: Set of citation keys found in the file
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00016}{16}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00178}{process\+\_\+article()}}.
+
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{namespaceextract__bibliography_a8157a0bf8db7d2f97c82cacc05534d70}\index{extract\_bibliography@{extract\_bibliography}!find\_context\_info@{find\_context\_info}}
+\index{find\_context\_info@{find\_context\_info}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{find\_context\_info()}{find\_context\_info()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_a8157a0bf8db7d2f97c82cacc05534d70} 
+extract\+\_\+bibliography.\+find\+\_\+context\+\_\+info (\begin{DoxyParamCaption}\item[{}]{latex\+\_\+file}{, }\item[{}]{author\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find context information for an author in the text.
+
+Args:
+    latex_file (Path): Path to the LaTeX file
+    author_name (str): Author name to search for
+
+Returns:
+    dict: Context information including year, title, etc.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00066}{66}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00115}{create\+\_\+bibtex\+\_\+entry()}}.
+
+Here is the caller graph for this function\+:
+% FIG 3
+\Hypertarget{namespaceextract__bibliography_a7e605d5e6f91c5bd22a412fe298adc9b}\index{extract\_bibliography@{extract\_bibliography}!main@{main}}
+\index{main@{main}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_a7e605d5e6f91c5bd22a412fe298adc9b} 
+extract\+\_\+bibliography.\+main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Main function to handle command line arguments and run extraction.\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00283}{283}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+References \mbox{\hyperlink{extract__bibliography_8py_source_l00283}{main()}}, \mbox{\hyperlink{extract__bibliography_8py_source_l00178}{process\+\_\+article()}}, and \mbox{\hyperlink{extract__bibliography_8py_source_l00239}{update\+\_\+master\+\_\+bibliography()}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00283}{main()}}.
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\Hypertarget{namespaceextract__bibliography_a02e817bb7c1bea3d92058625f8d932fb}\index{extract\_bibliography@{extract\_bibliography}!process\_article@{process\_article}}
+\index{process\_article@{process\_article}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{process\_article()}{process\_article()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_a02e817bb7c1bea3d92058625f8d932fb} 
+extract\+\_\+bibliography.\+process\+\_\+article (\begin{DoxyParamCaption}\item[{}]{article\+\_\+dir}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process a single article and generate its bibliography file.
+
+Args:
+    article_dir (Path): Path to the article directory
+
+Returns:
+    int: Number of citations processed
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00178}{178}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+References \mbox{\hyperlink{extract__bibliography_8py_source_l00115}{create\+\_\+bibtex\+\_\+entry()}}, and \mbox{\hyperlink{extract__bibliography_8py_source_l00016}{extract\+\_\+citations\+\_\+from\+\_\+latex()}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00283}{main()}}.
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\Hypertarget{namespaceextract__bibliography_ac5acfb9f990161ac49d7ba2f3f446b72}\index{extract\_bibliography@{extract\_bibliography}!update\_master\_bibliography@{update\_master\_bibliography}}
+\index{update\_master\_bibliography@{update\_master\_bibliography}!extract\_bibliography@{extract\_bibliography}}
+\doxysubsubsection{\texorpdfstring{update\_master\_bibliography()}{update\_master\_bibliography()}}
+{\footnotesize\ttfamily \label{namespaceextract__bibliography_ac5acfb9f990161ac49d7ba2f3f446b72} 
+extract\+\_\+bibliography.\+update\+\_\+master\+\_\+bibliography (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update the master bibliography from all individual article bibliographies.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{extract__bibliography_8py_source_l00239}{239}} of file \mbox{\hyperlink{extract__bibliography_8py_source}{extract\+\_\+bibliography.\+py}}.
+
+
+
+Referenced by \mbox{\hyperlink{extract__bibliography_8py_source_l00283}{main()}}.
+
+Here is the caller graph for this function\+:
+% FIG 8

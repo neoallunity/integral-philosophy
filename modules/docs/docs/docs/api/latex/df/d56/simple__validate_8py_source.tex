@@ -1,0 +1,109 @@
+\doxysection{simple\+\_\+validate.\+py}
+\hypertarget{simple__validate_8py_source}{}\label{simple__validate_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/simple\_validate.py@{/home/domini/src/Magazine/Magazine/scripts/simple\_validate.py}}
+\mbox{\hyperlink{simple__validate_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00001}\mbox{\hyperlink{namespacesimple__validate}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00003}00003\ \textcolor{stringliteral}{Simple\ validation\ script\ for\ Integral\ Philosophy\ publication.}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00004}00004\ \textcolor{stringliteral}{Validates\ LaTeX\ files\ and\ generates\ basic\ quality\ report.}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00008}00008\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00009}00009\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00011}00011\ \textcolor{comment}{\#\ Add\ project\ root\ to\ path}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00012}00012\ sys.path.insert(0,\ os.path.dirname(os.path.dirname(os.path.abspath(\_\_file\_\_))))}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00014}00014\ \textcolor{keyword}{from}\ validators\ \textcolor{keyword}{import}\ LaTeXValidator,\ QualityReportGenerator}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00017}\mbox{\hyperlink{namespacesimple__validate_a427a9e54f25480f1d300576f8ca7341c}{00017}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacesimple__validate_a427a9e54f25480f1d300576f8ca7341c}{main}}():}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00018}00018\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ simple\ LaTeX\ validation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00019}00019\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Integral\ Philosophy\ LaTeX\ Validation\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00021}00021\ \ \ \ \ validator\ =\ LaTeXValidator()}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00022}00022\ \ \ \ \ results\ =\ []}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00024}00024\ \ \ \ \ \textcolor{comment}{\#\ Validate\ main\ LaTeX\ files}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00025}00025\ \ \ \ \ latex\_files\ =\ [}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}main.tex"{}},}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}preamble.tex"{}},}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/fonts.tex"{}},}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/bibliography.tex"{}},}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/structure.tex"{}},}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00031}00031\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00033}00033\ \ \ \ \ print(\textcolor{stringliteral}{"{}📝\ Validating\ LaTeX\ files..."{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{for}\ latex\_file\ \textcolor{keywordflow}{in}\ latex\_files:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ Path(latex\_file).exists():}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ validator.validate(Path(latex\_file))}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ results.append(result)}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ print(}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}\ \ ✓\ \{latex\_file\}:\ \{result.error\_count\}\ errors,\ \{result.warning\_count\}\ warnings"{}}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00042}00042\ \ \ \ \ \textcolor{comment}{\#\ Generate\ simple\ quality\ report}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{if}\ results:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n📊\ Quality\ Summary:"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ total\_errors\ =\ sum(r.error\_count\ \textcolor{keywordflow}{for}\ r\ \textcolor{keywordflow}{in}\ results)}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ total\_warnings\ =\ sum(r.warning\_count\ \textcolor{keywordflow}{for}\ r\ \textcolor{keywordflow}{in}\ results)}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ •\ Total\ Errors:\ \{total\_errors\}"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ •\ Total\ Warnings:\ \{total\_warnings\}"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ •\ Files\ Checked:\ \{len(results)\}"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Calculate\ basic\ score}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ max\_possible\_issues\ =\ len(results)\ *\ 10\ \ \textcolor{comment}{\#\ Assume\ 10\ is\ max\ issues\ per\ file}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ issues\_found\ =\ total\_errors\ +\ (total\_warnings\ *\ 0.3)\ \ \textcolor{comment}{\#\ Weight\ warnings\ less}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ score\ =\ max(0,\ 100\ -\/\ (issues\_found\ /\ max\_possible\_issues\ *\ 100))}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ •\ Quality\ Score:\ \{score:.1f\}/100"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ simple\ report}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ report\_data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_errors"{}}:\ total\_errors,}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_warnings"{}}:\ total\_warnings,}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}files\_checked"{}}:\ len(results),}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}quality\_score"{}}:\ score,}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}recommendations"{}}:\ [],}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ total\_errors\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ report\_data[\textcolor{stringliteral}{"{}recommendations"{}}].append(\textcolor{stringliteral}{"{}Fix\ critical\ LaTeX\ syntax\ errors"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ total\_warnings\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ report\_data[\textcolor{stringliteral}{"{}recommendations"{}}].append(\textcolor{stringliteral}{"{}Review\ and\ address\ LaTeX\ warnings"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ score\ <\ 80:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ report\_data[\textcolor{stringliteral}{"{}recommendations"{}}].append(}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Consider\ improving\ LaTeX\ code\ quality"{}}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Save\ to\ out\ directory}}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ out\_dir\ =\ Path(\textcolor{stringliteral}{"{}out/validation\_reports"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ out\_dir.mkdir(parents=\textcolor{keyword}{True},\ exist\_ok=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ open(out\_dir\ /\ \textcolor{stringliteral}{"{}latex\_quality\_report.json"{}},\ \textcolor{stringliteral}{"{}w"{}})\ \textcolor{keyword}{as}\ f:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ json.dump(report\_data,\ f,\ indent=2)}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n📄\ Report\ saved\ to:\ \{out\_dir\}/latex\_quality\_report.json"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ score\ >=\ 90:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}🎉\ Excellent\ LaTeX\ quality!"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ score\ >=\ 70:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}👍\ Good\ LaTeX\ quality\ with\ room\ for\ improvement"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}⚠️\ \ LaTeX\ quality\ needs\ attention"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00098}00098\ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ No\ LaTeX\ files\ found\ to\ validate"{}})}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{return}\ 1}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00102}00102\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{simple__validate_8py_source_l00103}00103\ \ \ \ \ exit(\mbox{\hyperlink{namespacesimple__validate_a427a9e54f25480f1d300576f8ca7341c}{main}}())}
+
+\end{DoxyCode}

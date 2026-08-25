@@ -1,0 +1,164 @@
+\doxysection{test\+\_\+basic.\+py}
+\hypertarget{test__basic_8py_source}{}\label{test__basic_8py_source}\index{/home/domini/src/Magazine/Magazine/scripts/test\_basic.py@{/home/domini/src/Magazine/Magazine/scripts/test\_basic.py}}
+\mbox{\hyperlink{test__basic_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00001}\mbox{\hyperlink{namespacetest__basic}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00003}00003\ \textcolor{stringliteral}{Базовый\ тест\ LaTeX-\/журнала\ без\ pytest.}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00004}00004\ \textcolor{stringliteral}{Проверяет,\ что\ структура\ проекта\ корректна\ и\ LaTeX\ компилируется.}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00008}00008\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00009}00009\ \textcolor{keyword}{import}\ subprocess}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00010}00010\ \textcolor{keyword}{from}\ pathlib\ \textcolor{keyword}{import}\ Path}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00013}\mbox{\hyperlink{namespacetest__basic_a735da0cbf1dd4db1e47fad62762ce354}{00013}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__basic_a735da0cbf1dd4db1e47fad62762ce354}{test\_latex\_compilation}}():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Тест\ базовой\ LaTeX\ компиляции."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00016}00016\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Тест\ LaTeX\ компиляции..."{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Проверка\ наличия\ основных\ файлов}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00020}00020\ \ \ \ \ \ \ \ \ required\_files\ =\ [\textcolor{stringliteral}{"{}main.tex"{}},\ \textcolor{stringliteral}{"{}preamble.tex"{}}]}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ file\ \textcolor{keywordflow}{in}\ required\_files:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ Path(file).exists():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ FileNotFoundError(f\textcolor{stringliteral}{"{}Отсутствует\ файл:\ \{file\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Тестовая\ компиляция\ через\ make}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{stringliteral}{"{}make"{}},\ \textcolor{stringliteral}{"{}check-\/deps"{}}],\ capture\_output=\textcolor{keyword}{True},\ text=\textcolor{keyword}{True},\ cwd=\textcolor{stringliteral}{"{}."{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.returncode\ !=\ 0:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ RuntimeError(f\textcolor{stringliteral}{"{}Проверка\ зависимостей\ не\ пройдена:\ \{result.stderr\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ LaTeX\ зависимости\ доступны"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Проверка\ синтаксиса}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ [}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}lualatex"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/interaction=nonstopmode"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/halt-\/on-\/error"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/output-\/directory=tmp"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}main.tex"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ capture\_output=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ text=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ cwd=\textcolor{stringliteral}{"{}."{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.returncode\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ LaTeX\ компиляция\ успешна"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}⚠️\ \ LaTeX\ компиляция\ завершилась\ с\ предупреждениями"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Проверяем,\ что\ PDF\ все\ равно\ создан}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ Path(\textcolor{stringliteral}{"{}tmp/main.pdf"{}}).exists():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ PDF\ файл\ создан\ несмотря\ на\ предупреждения"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✗\ Ошибка\ LaTeX\ компиляции:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00065}\mbox{\hyperlink{namespacetest__basic_a379b18f28381575becac4769e23aaf7e}{00065}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__basic_a379b18f28381575becac4769e23aaf7e}{test\_makefile}}():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00066}00066\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Тест\ Makefile."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00068}00068\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Тест\ Makefile..."{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Проверка\ основных\ целей}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ result\ =\ subprocess.run(}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ [\textcolor{stringliteral}{"{}make"{}},\ \textcolor{stringliteral}{"{}help"{}}],\ capture\_output=\textcolor{keyword}{True},\ text=\textcolor{keyword}{True},\ cwd=\textcolor{stringliteral}{"{}."{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.returncode\ !=\ 0:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ RuntimeError(\textcolor{stringliteral}{"{}Makefile\ help\ не\ работает"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}Интегральная\ философия"{}}\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ result.stdout:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}Некорректное\ название\ проекта\ в\ help"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ Makefile\ корректен"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✗\ Ошибка\ Makefile:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00090}\mbox{\hyperlink{namespacetest__basic_a6050ac19ac585b6e384b38facc047c5f}{00090}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__basic_a6050ac19ac585b6e384b38facc047c5f}{test\_project\_structure}}():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00091}00091\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Тест\ структуры\ проекта."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00093}00093\ \ \ \ \ print(\textcolor{stringliteral}{"{}🔍\ Тест\ структуры\ проекта..."{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ required\_dirs\ =\ [\textcolor{stringliteral}{"{}cfg"{}},\ \textcolor{stringliteral}{"{}chapters"{}},\ \textcolor{stringliteral}{"{}articles"{}},\ \textcolor{stringliteral}{"{}frontmatter"{}},\ \textcolor{stringliteral}{"{}backmatter"{}}]}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ dir\_name\ \textcolor{keywordflow}{in}\ required\_dirs:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ Path(dir\_name).exists():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ FileNotFoundError(f\textcolor{stringliteral}{"{}Отсутствует\ директория:\ \{dir\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ required\_files\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/fonts.tex"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/bibliography.tex"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cfg/cfg-\/structure.tex"{}},}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ file\_path\ \textcolor{keywordflow}{in}\ required\_files:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ Path(file\_path).exists():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ FileNotFoundError(f\textcolor{stringliteral}{"{}Отсутствует\ файл:\ \{file\_path\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}✓\ Структура\ проекта\ корректна"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✗\ Ошибка\ структуры:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00120}\mbox{\hyperlink{namespacetest__basic_a54e98f2e1a994bf913089df457973465}{00120}}\ \textcolor{keyword}{def\ }\mbox{\hyperlink{namespacetest__basic_a54e98f2e1a994bf913089df457973465}{main}}():}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00121}00121\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Запуск\ всех\ тестов."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00123}00123\ \ \ \ \ print(\textcolor{stringliteral}{"{}🚀\ Запуск\ базовых\ тестов\ LaTeX\ журнала...\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00125}00125\ \ \ \ \ tests\ =\ [}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ test\_project\_structure,}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ test\_makefile,}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ test\_latex\_compilation,}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00129}00129\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00131}00131\ \ \ \ \ results\ =\ []}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{for}\ test\ \textcolor{keywordflow}{in}\ tests:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ test()}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ results.append(result)}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}✗\ Тест\ завершился\ с\ исключением:\ \{e\}\(\backslash\)n"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ results.append(\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00142}00142\ \ \ \ \ \textcolor{comment}{\#\ Итоги}}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00143}00143\ \ \ \ \ passed\ =\ sum(results)}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00144}00144\ \ \ \ \ total\ =\ len(results)}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00146}00146\ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}\ *\ 50)}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00147}00147\ \ \ \ \ print(f\textcolor{stringliteral}{"{}Итоги:\ \{passed\}/\{total\}\ тестов\ пройдено"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{if}\ passed\ ==\ total:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}🎉\ Все\ тесты\ пройдены!"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}❌\ Некоторые\ тесты\ не\ пройдены"{}})}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00157}00157\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{test__basic_8py_source_l00158}00158\ \ \ \ \ exit(\mbox{\hyperlink{namespacetest__basic_a54e98f2e1a994bf913089df457973465}{main}}())}
+
+\end{DoxyCode}

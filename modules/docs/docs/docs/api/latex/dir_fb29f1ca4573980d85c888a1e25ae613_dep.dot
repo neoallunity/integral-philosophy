@@ -1,0 +1,17 @@
+digraph "/home/domini/src/Magazine/Magazine/haskell-project/src"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=FreeSans.ttf,fontsize=10,labelfontname=FreeSans.ttf,labelfontsize=10];
+  node [fontname=FreeSans.ttf,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_a8cc617d2f706db737818769d7937be1 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="haskell-project", fontname=FreeSans.ttf,fontsize=10 style="filled,dashed", URL="dir_a8cc617d2f706db737818769d7937be1.html",tooltip=""]
+  subgraph clusterdir_fb29f1ca4573980d85c888a1e25ae613 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=FreeSans.ttf,fontsize=10 style="filled,bold", URL="dir_fb29f1ca4573980d85c888a1e25ae613.html",tooltip=""]
+    dir_fb29f1ca4573980d85c888a1e25ae613 [shape=plaintext, label="src"];
+  dir_31d929f1679b9028ddb95f9cec2427be [label="IntegralPhilosophy", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_31d929f1679b9028ddb95f9cec2427be.html",tooltip=""];
+  dir_f8a3365de196da2ff5b0c5d3d1b56938 [label="Tools", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_f8a3365de196da2ff5b0c5d3d1b56938.html",tooltip=""];
+  }
+  }
+}

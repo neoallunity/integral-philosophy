@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d4/d20/cfg-links_8tex" kind="file" language="C++">
+    <compoundname>cfg-links.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-links.tex<sp/>—<sp/>гиперссылки,<sp/>bookmarks,<sp/>cleveref</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\usepackage{xurl}</highlight></codeline>
+<codeline><highlight class="normal">\urlstyle{same}</highlight></codeline>
+<codeline><highlight class="normal">\definecolor{JournalLink}{HTML}{1B4F8A}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">\usepackage{bookmark}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage[nameinlink,noabbrev]{cleveref}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Русские<sp/>подписи<sp/>для<sp/>\cref/\Cref</highlight></codeline>
+<codeline><highlight class="normal">\crefname{chapter}{гл.}{гл.}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{chapter}{Глава}{Главы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{section}{разд.}{разд.}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{section}{Раздел}{Разделы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{subsection}{подразд.}{подразд.}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{subsection}{Подраздел}{Подразделы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{figure}{рис.}{рис.}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{figure}{Рисунок}{Рисунки}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{table}{табл.}{табл.}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{table}{Таблица}{Таблицы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{equation}{формула}{формулы}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{equation}{Формула}{Формулы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{theorem}{теорема}{теоремы}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{theorem}{Теорема}{Теоремы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{lemma}{лемма}{леммы}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{lemma}{Лемма}{Леммы}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{definition}{определение}{определения}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{definition}{Определение}{Определения}</highlight></codeline>
+<codeline><highlight class="normal">\crefname{algorithm}{алгоритм}{алгоритмы}</highlight></codeline>
+<codeline><highlight class="normal">\Crefname{algorithm}{Алгоритм}{Алгоритмы}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-links.tex"/>
+  </compounddef>
+</doxygen>

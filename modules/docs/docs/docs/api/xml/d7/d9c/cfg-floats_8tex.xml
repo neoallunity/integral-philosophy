@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.15.0" xml:lang="en-US">
+  <compounddef id="d7/d9c/cfg-floats_8tex" kind="file" language="C++">
+    <compoundname>cfg-floats.tex</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>cfg-floats.tex<sp/>—<sp/>графика,<sp/>таблицы,<sp/>списки,<sp/>листинги,<sp/>алгоритмы</highlight></codeline>
+<codeline><highlight class="normal">%<sp/>============================================</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Геометрия</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Графика/цвет</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{graphicx}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{xcolor}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Таблицы</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{booktabs}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{longtable}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{float}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Списки</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{enumitem}</highlight></codeline>
+<codeline><highlight class="normal">\setlist[itemize]{topsep=0.4\baselineskip,<sp/>itemsep=0.15\baselineskip,<sp/>leftmargin=*}</highlight></codeline>
+<codeline><highlight class="normal">\setlist[enumerate]{topsep=0.4\baselineskip,<sp/>itemsep=0.15\baselineskip,<sp/>leftmargin=*}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Листинги</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{listings}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\lstlistingname}{Листинг}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\lstlistlistingname}{Список<sp/>листингов}</highlight></codeline>
+<codeline><highlight class="normal">\lstset{basicstyle=\ttfamily\small,<sp/>columns=fullflexible,<sp/>breaklines=true,<sp/>frame=single}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">%<sp/>Алгоритмы</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{algorithm}</highlight></codeline>
+<codeline><highlight class="normal">\usepackage{algpseudocode}</highlight></codeline>
+<codeline><highlight class="normal">\floatname{algorithm}{Алгоритм}</highlight></codeline>
+<codeline><highlight class="normal">\renewcommand{\listalgorithmname}{Список<sp/>алгоритмов}</highlight></codeline>
+    </programlisting>
+    <location file="/home/domini/src/Magazine/Magazine/config/cfg/cfg-floats.tex"/>
+  </compounddef>
+</doxygen>
