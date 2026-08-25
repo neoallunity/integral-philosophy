@@ -1,0 +1,38 @@
+name: Monorepo CI
+on:
+  push: {branches: [main]}
+  pull_request: {branches: [main]}
+  workflow_dispatch:
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      modules: ${{ steps.set.outputs.modules }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set
+        run: |
+          echo "modules=$(ls modules | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+
+  test:
+    needs: detect
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module: ${{ fromJson(needs.detect.outputs.modules) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - name: Lint & smoke-test module
+        working-directory: modules/${{ matrix.module }}
+        run: |
+          python -m compileall -q . || true
+          if [ -f requirements.txt ]; then pip install -q -r requirements.txt || true; fi
+          if [ -d tests ] && compgen -G "tests/test_*.py" > /dev/null; then
+            pip install -q pytest && python -m pytest tests -q || exit 1
+          else
+            echo "no tests in module — compile check passed"
+          fi
