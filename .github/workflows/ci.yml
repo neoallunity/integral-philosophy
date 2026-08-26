@@ -10,7 +10,7 @@ jobs:
     outputs:
       modules: ${{ steps.set.outputs.modules }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: set
         run: |
           echo "modules=$(ls modules | jq -R -s -c 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
@@ -23,7 +23,7 @@ jobs:
       matrix:
         module: ${{ fromJson(needs.detect.outputs.modules) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
       - name: Lint & smoke-test module
