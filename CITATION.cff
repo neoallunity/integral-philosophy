@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it."
+title: "Integral Philosophy (monorepo)"
+abstract: "Unified framework integrating philosophy, web, and API subsystems."
+authors:
+  - family-names: "Integral Philosophy Team"
+license: CC-BY-4.0
+repository-code: "https://github.com/neoallunity/integral-philosophy"
+keywords: [philosophy, monorepo, nix, haskell, ontology]
