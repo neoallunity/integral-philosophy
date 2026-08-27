@@ -1,11 +1,10 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule: {interval: "weekly"}
-  - package-ecosystem: "pip"
-    directory: "/subprojects/integral-philosophy-core"
-    schedule: {interval: "weekly"}
   - package-ecosystem: "github-actions"
     directory: "/"
-    schedule: {interval: "weekly"}
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 99
+    auto-merge: true
+    labels:
+      - "dependencies"
