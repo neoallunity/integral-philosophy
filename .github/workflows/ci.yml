@@ -26,6 +26,14 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with: {python-version: "3.11"}
+      - name: Install local monorepo packages
+        working-directory: modules
+        run: |
+          for m in core web; do
+            if [ -f "$m/pyproject.toml" ] || [ -f "$m/setup.py" ]; then
+              pip install -q -e "$m" || exit 1
+            fi
+          done
       - name: Lint & smoke-test module
         working-directory: modules/${{ matrix.module }}
         run: |
