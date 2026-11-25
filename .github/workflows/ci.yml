@@ -29,8 +29,8 @@ jobs:
       - name: Lint & smoke-test module
         working-directory: modules/${{ matrix.module }}
         run: |
-          python -m compileall -q . || true
-          if [ -f requirements.txt ]; then pip install -q -r requirements.txt || true; fi
+          python -m compileall -q .
+          if [ -f requirements.txt ]; then pip install -q -r requirements.txt; fi
           if [ -d tests ] && compgen -G "tests/test_*.py" > /dev/null; then
             pip install -q pytest && python -m pytest tests -q || exit 1
           else
