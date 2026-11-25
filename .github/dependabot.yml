@@ -8,3 +8,22 @@ updates:
     auto-merge: true
     labels:
       - "dependencies"
+
+  # Canonical monorepo paths (the old / and /subprojects/integral-philosophy-core
+  # entries no longer exist and caused "No files found in ..." job failures).
+  - package-ecosystem: "pip"
+    directory: "/modules/cli"
+    schedule: {interval: "weekly"}
+    labels: ["dependencies"]
+  - package-ecosystem: "pip"
+    directory: "/modules/core"
+    schedule: {interval: "weekly"}
+    labels: ["dependencies"]
+  - package-ecosystem: "pip"
+    directory: "/modules/docs"
+    schedule: {interval: "weekly"}
+    labels: ["dependencies"]
+  - package-ecosystem: "pip"
+    directory: "/modules/web"
+    schedule: {interval: "weekly"}
+    labels: ["dependencies"]
